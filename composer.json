@@ -1,0 +1,15 @@
+{
+  "name": "2plug/sdk-fitbank-baas",
+  "description": "SDK da API Bank As A Service - FITBANK",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Alexandre G R Alves",
+      "email": "alexandre@2plug.com.br"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "7.4.2"
+  }
+}

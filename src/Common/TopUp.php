@@ -6,7 +6,7 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace TwoPlug\TopUp;
+namespace TwoPlug\SdkFitbank\Common;
 
 class TopUp
 {
@@ -20,6 +20,31 @@ class TopUp
     private ?string $productKey;
     private ?array $tags;
     private ?string $documentNumber;
+
+    public function __construct(
+        ?int    $productType = null,
+        ?int    $productSubType = null,
+        ?int    $productValue = null,
+        ?string $contractIdentifier = null,
+        ?string $taxNumber = null,
+        ?string $originNSU = null,
+        ?string $batchIdentifier = null,
+        ?string $productKey = null,
+        ?array  $tags = null,
+        ?string $documentNumber = null,
+    )
+    {
+        $this->productType = $productType;
+        $this->productSubType = $productSubType;
+        $this->productValue = $productValue;
+        $this->contractIdentifier = $contractIdentifier;
+        $this->taxNumber = $taxNumber;
+        $this->originNSU = $originNSU;
+        $this->batchIdentifier = $batchIdentifier;
+        $this->productKey = $productKey;
+        $this->tags = $tags;
+        $this->documentNumber = $documentNumber;
+    }
 
     /**
      * @return int|null

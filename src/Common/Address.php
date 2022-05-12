@@ -1,30 +1,30 @@
 <?php
 
-namespace two_plug\sdk_fitbank;
+namespace TwoPlug\SdkFitbank\Common;
 
 class Address
 {
-    private string $addressLine;
-    private string $addressLine2;
-    private string $zipCode;
-    private string $neighborhood;
-    private int $cityCode;
-    private string $cityName;
-    private string $state;
-    private int $addressType;
-    private string $country;
-    private string $complement;
+    private ?string $addressLine;
+    private ?string $addressLine2;
+    private ?string $zipCode;
+    private ?string $neighborhood;
+    private ?int $cityCode;
+    private ?string $cityName;
+    private ?string $state;
+    private ?int $addressType;
+    private ?string $country;
+    private ?string $complement;
 
-    public function __construct(string $addressLine = null,
-                                string $addressLine2 = null,
-                                string $zipCode = null,
-                                string $neighborhood = null,
-                                int    $cityCode = null,
-                                string $cityName = null,
-                                string $state = null,
-                                int    $addressType = null,
-                                string $country = null,
-                                string $complement = null)
+    public function __construct(?string $addressLine = null,
+                                ?string $addressLine2 = null,
+                                ?string $zipCode = null,
+                                ?string $neighborhood = null,
+                                ?int    $cityCode = null,
+                                ?string $cityName = null,
+                                ?string $state = null,
+                                ?int    $addressType = null,
+                                ?string $country = null,
+                                ?string $complement = null)
     {
         $this->addressLine = $addressLine;
         $this->addressLine2 = $addressLine2;

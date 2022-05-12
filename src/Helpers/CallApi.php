@@ -1,11 +1,12 @@
 <?php
 
-namespace two_plug\sdk_fitbank;
+namespace TwoPlug\SdkFitbank\Helpers;
 
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
-use stdClass;
 use GuzzleHttp\Client;
-use two_plug\sdk_fitbank\Configuration as Config;
+use TwoPlug\SdkFitbank\Configuration as Config;
+use stdClass;
 
 class CallApi
 {
@@ -26,11 +27,12 @@ class CallApi
         $this->credential = $configuration->getCredential();
         $username = $this->credential['username'];
         $password = $this->credential['password'];
+        $b64 = base64_encode("{$username}:{$password}");
 
         $this->header = [
-            'User-Agent' => 'sdk_fitbank/1.0',
+            'User-Agent' => 'SdkFitbank/1.0',
             'Accept' => 'application/json',
-            'Authorization' => 'Basic ' . base64_encode("{$username}:{$password}")
+            'Authorization' => "Basic {$b64}"
         ];
     }
 
@@ -49,9 +51,9 @@ class CallApi
      * @return stdClass
      * @throws GuzzleException
      */
-    public function call(string $method, array $data): stdClass
+    public function call(string $method, array $data): object
     {
-        array_merge($data, [
+        $data = array_merge($data, [
             'Method' => $method,
             'PartnerId' => $this->credential['patternId'],
             'BusinessUnitId' => $this->credential['bussinesUnitId']
@@ -59,9 +61,10 @@ class CallApi
 
         try {
             $response = $this->client->post('', [
-                'hearders' => $this->header,
+                'headers' => $this->header,
                 'json' => $data
             ]);
+
             return $this->parseResponse($response);
         } catch (ClientException $e) {
             $response = $e->getResponse();
@@ -73,10 +76,10 @@ class CallApi
      * @param $response
      * @return stdClass
      */
-    private function parseResponse($response): stdClass
+    private function parseResponse($response): object
     {
-        $responseObject = new stdClass;
-        $responseObject->body = json_decode($response->getBody()->getContents());
+        $responseObject = (object)[];
+        $responseObject->data = json_decode($response->getBody()->getContents());
         $responseObject->statusCode = $response->getStatusCode();
 
         return $responseObject;

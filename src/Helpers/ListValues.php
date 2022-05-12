@@ -1,6 +1,6 @@
 <?php
 
-namespace two_plug\sdk_fitbank;
+namespace TwoPlug\SdkFitbank\Helpers;
 
 class ListValues
 {
@@ -24,6 +24,23 @@ class ListValues
     {
         $docTypes = self::documentTypes();
         return $docTypes[$id];
+    }
+
+    public static function documentFormat(): array
+    {
+        return [
+            0 => 'PDF',
+            1 => 'JPG',
+            2 => 'JPEG',
+            3 => 'TXT',
+            4 => 'PNG',
+        ];
+    }
+
+    public static function getDocumentFormatById(int $id): string
+    {
+        $arr = self::documentFormat();
+        return $arr[$id];
     }
 
     public static function genders(): array
@@ -54,7 +71,7 @@ class ListValues
         ];
     }
 
-    public static function maritalStatusById(int $id): string
+    public static function getMaritalStatusById(int $id): string
     {
         $maritalStatus = self::maritalStatus();
         return $maritalStatus[$id];
@@ -69,7 +86,7 @@ class ListValues
         ];
     }
 
-    public static function companyTypesById(int $id): string
+    public static function getCompanyTypesById(int $id): string
     {
         $companyTypes = self::companyTypes();
         return $companyTypes[$id];

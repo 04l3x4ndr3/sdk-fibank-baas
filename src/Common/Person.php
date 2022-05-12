@@ -1,33 +1,76 @@
 <?php
 
-namespace two_plug\sdk_fitbank;
+namespace TwoPlug\SdkFitbank\Common;
 
 class Person
 {
-    private string $name;
-    private string $taxNumber;
-    private string $occupation;
-    private string $mail;
-    private string $phone;
-    private string $phoneNumber;
-    private int $personRoleType;
-    private string $motherFullName;
-    private string $fatherFullName;
-    private string $nationality;
-    private string $birthCity;
-    private string $birthState;
-    private string $birthDate;
-    private int $gender;
-    private int $maritalStatus;
-    private string $spouseName;
-    private string $identityDocument;
-    private string $personName;
-    private string $nickname;
-    private bool $publiclyExposedPerson;
-    private array $personDocuments;
+    private ?string $name;
+    private ?string $taxNumber;
+    private ?string $occupation;
+    private ?string $mail;
+    private ?string $phone;
+    private ?string $phoneNumber;
+    private ?int $personRoleType;
+    private ?string $motherFullName;
+    private ?string $fatherFullName;
+    private ?string $nationality;
+    private ?string $birthCity;
+    private ?string $birthState;
+    private ?string $birthDate;
+    private ?int $gender;
+    private ?int $maritalStatus;
+    private ?string $spouseName;
+    private ?string $identityDocument;
+    private ?string $personName;
+    private ?string $nickname;
+    private ?bool $publiclyExposedPerson;
+    private ?array $personDocuments;
 
-    public function __construct()
+    public function __construct(
+        ?string $name = null,
+        ?string $taxNumber = null,
+        ?string $mail = null,
+        ?string $occupation = null,
+        ?string $phone = null,
+        ?int    $personRoleType = null,
+        ?string $motherFullName = null,
+        ?string $fatherFullName = null,
+        ?string $nationality = null,
+        ?string $birthCity = null,
+        ?string $birthState = null,
+        ?int    $gender = null,
+        ?int    $maritalStatus = null,
+        ?string $spouseName = null,
+        ?string $identityDocument = null,
+        ?string $birthDate = null,
+        ?string $personName = null,
+        ?string $phoneNumber = null,
+        ?string $nickname = null,
+        ?bool   $publiclyExposedPerson = null,
+        ?array  $personDocuments = null
+    )
     {
+        $this->name = $name;
+        $this->taxNumber = $taxNumber;
+        $this->occupation = $occupation;
+        $this->mail = $mail;
+        $this->phone = $phone;
+        $this->phoneNumber = $phoneNumber;
+        $this->personRoleType = $personRoleType;
+        $this->motherFullName = $motherFullName;
+        $this->fatherFullName = $fatherFullName;
+        $this->nationality = $nationality;
+        $this->birthCity = $birthCity;
+        $this->birthState = $birthState;
+        $this->birthDate = $birthDate;
+        $this->gender = $gender;
+        $this->maritalStatus = $maritalStatus;
+        $this->spouseName = $spouseName;
+        $this->identityDocument = $identityDocument;
+        $this->personName = $personName;
+        $this->nickname = $nickname;
+        $this->publiclyExposedPerson = $publiclyExposedPerson;
+        $this->personDocuments = $personDocuments;
     }
 
     /**
@@ -364,7 +407,7 @@ class Person
      */
     public function addPersonDocuments(Document $personDocuments): static
     {
-        $this->personDocuments[] = $personDocuments->toArray();
+        $this->personDocuments[] = $personDocuments;
         return $this;
     }
 
@@ -373,6 +416,14 @@ class Person
      */
     public function toArray(): array
     {
+        $_documents = [];
+
+        if (isset($this->personDocuments)) {
+            foreach ($this->personDocuments as $document) {
+                $_documents[] = $document->toArray();
+            }
+        }
+
         return [
             "Name" => $this->name,
             "TaxNumber" => $this->taxNumber,
@@ -383,7 +434,7 @@ class Person
             "MotherFullName" => $this->motherFullName,
             "FatherFullName" => $this->fatherFullName,
             "Nationality" => $this->nationality,
-            "BirthCity" => $this->birthState,
+            "BirthCity" => $this->birthCity,
             "BirthState" => $this->birthState,
             "Gender" => $this->gender,
             "MaritalStatus" => $this->maritalStatus,
@@ -394,7 +445,7 @@ class Person
             "Nickname" => $this->nickname,
             "PersonName" => $this->personName,
             "PubliclyExposedPerson" => $this->publiclyExposedPerson,
-            "PersonDocuments" => $this->personDocuments
+            "PersonDocuments" => $_documents
         ];
     }
 }

@@ -1,15 +1,22 @@
 {
-  "name": "2plug/sdk-fitbank-baas",
+  "name": "two_plug/sdk-fitbank",
   "description": "SDK da API Bank As A Service - FITBANK",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "MIT",
+  "type": "library",
   "authors": [
     {
       "name": "Alexandre G R Alves",
       "email": "alexandre@2plug.com.br"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "TwoPlug\\SdkFitbank\\": "src/"
+    }
+  },
   "require": {
+    "php": "^7.0",
     "guzzlehttp/guzzle": "7.4.2"
   }
 }

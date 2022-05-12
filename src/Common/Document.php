@@ -1,22 +1,24 @@
 <?php
 
-namespace two_plug\sdk_fitbank;
+namespace TwoPlug\SdkFitbank\Common;
 
 class Document
 {
-    private string $documentFile;
-    private int $documentFormat;
-    private string $documentName;
-    private int $documentType;
-    private string $description;
-    private string $expirationDate;
+    private ?string $documentFile;
+    private ?int $documentFormat;
+    private ?string $documentName;
+    private ?int $documentType;
+    private ?string $description;
+    private ?string $expirationDate;
 
-    public function __construct(string $documentFile = null,
-                                int $documentFormat = null,
-                                string $documentName = null,
-                                int $documentType = null,
-                                string $description = null,
-                                string $expirationDate = null)
+    public function __construct(
+        ?string $documentFile = null,
+        ?int    $documentFormat = null,
+        ?string $documentName = null,
+        ?int    $documentType = null,
+        ?string $description = null,
+        ?string $expirationDate = null,
+    )
     {
         $this->documentFile = $documentFile;
         $this->documentFormat = $documentFormat;
@@ -29,7 +31,7 @@ class Document
     /**
      * @return string
      */
-    public function getDocumentFile(): ?string
+    public function getDocumentFile(): string
     {
         return $this->documentFile;
     }
@@ -45,7 +47,7 @@ class Document
     /**
      * @return int
      */
-    public function getDocumentFormat():int
+    public function getDocumentFormat(): int
     {
         return $this->documentFormat;
     }
@@ -61,7 +63,7 @@ class Document
     /**
      * @return string
      */
-    public function getDocumentName():string
+    public function getDocumentName(): string
     {
         return $this->documentName;
     }
@@ -77,7 +79,7 @@ class Document
     /**
      * @return int
      */
-    public function getDocumentType():int
+    public function getDocumentType(): int
     {
         return $this->documentType;
     }
@@ -93,7 +95,7 @@ class Document
     /**
      * @return string
      */
-    public function getDescription():string
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -109,7 +111,7 @@ class Document
     /**
      * @return string
      */
-    public function getExpirationDate():string
+    public function getExpirationDate(): string
     {
         return $this->expirationDate;
     }

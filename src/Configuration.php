@@ -1,21 +1,62 @@
 <?php
 
-namespace two_plug\sdk_fitbank;
+namespace TwoPlug\SdkFitbank;
 
 class Configuration
 {
-    const API_USERNAME = "c0712dd8-465e-4c91-ad23-a2b7a2d8a68c";
-    const API_PASSWORD = "2617f4b3-b932-417b-ac5a-f41aa7b6e6a8";
-    const PATTERN_ID = "606";
-    const BUSINESS_UNIT_ID = "629";
-    const MKT_PLACE_ID = "32977";
+    const API_USERNAME = "5cbf8a8e-abf2-4f45-9b8c-25de65dc7459"; # "c0712dd8-465e-4c91-ad23-a2b7a2d8a68c";
+    const API_PASSWORD = "76046849-a1eb-4a36-b085-0e68965bef2a"; # "2617f4b3-b932-417b-ac5a-f41aa7b6e6a8";
+    const PATTERN_ID = "715"; # "606";
+    const BUSINESS_UNIT_ID = "840"; # "629";
+    const MKT_PLACE_ID = "54265"; # "32977";
     const ENV_SANDBOX = "sandbox";
     const ENV_PRODUCTION = "production";
     const URL_SANDBOX = "https://sandboxapi.fitbank.com.br/main/execute";
     const URL_PRODUCTION = "https://api.fitbank.com.br/main/execute";
 
-    private string $environment = self::ENV_SANDBOX;
-    private array $credentials = [
+    const GENDER_MALE = 0;
+    const GENDER_FEMALE = 1;
+    const GENDER_OTHER = 2;
+
+    const MARITAL_STATUS_NOTMARRIED = 0;
+    const MARITAL_STATUS_MARRIED = 1;
+    const MARITAL_STATUS_DIVORCED = 2;
+    const MARITAL_STATUS_SEPARATE = 3;
+    const MARITAL_STATUS_WIDOWER = 4;
+    const MARITAL_STATUS_SINGLE = 5;
+    const MARITAL_STATUS_OTHER = 6;
+
+    const COMPANY_TYPE_SA = 0;
+    const COMPANY_TYPE_LTDA = 1;
+    const COMPANY_TYPE_MEI = 2;
+
+    const DOCUMENT_TYPE_IDENTITY_DOCUMENT_FRONT = 0;
+    const DOCUMENT_TYPE_TAXNUMBER = 1;
+    const DOCUMENT_TYPE_PROOF_OF_RESIDENCE = 2;
+    const DOCUMENT_TYPE_CNH = 3;
+    const DOCUMENT_TYPE_CNPJ = 4;
+    const DOCUMENT_TYPE_SOCIAL_CONTRACT = 5;
+    const DOCUMENT_TYPE_LETTER_OF_ATTORNE = 6;
+    const DOCUMENT_TYPE_IDENTITY_DOCUMENT_VERSE = 7;
+    const DOCUMENT_TYPE_IDENTITY_DOCUMENT = 10;
+    const DOCUMENT_TYPE_MINUTE_OF_CONSTITUTION = 11;
+
+    const DOCUMENT_FORMAT_PDF = 0;
+    const DOCUMENT_FORMAT_JPG = 1;
+    const DOCUMENT_FORMAT_JPEG = 2;
+    const DOCUMENT_FORMAT_TXT = 3;
+    const DOCUMENT_FORMAT_PNG = 4;
+
+    const ADDRESS_TYPE_COMERCIAL = 0;
+    const ADDRESS_TYPE_RESIDENCIAL = 1;
+
+    const PERSON_ROLE_TYPE_HOLDER = 0;
+    const PERSON_ROLE_TYPE_PROCURATOR = 1;
+    const PERSON_ROLE_TYPE_BEARER = 2;
+    const PERSON_ROLE_TYPE_ASSOCIATE = 3;
+
+    private ?string $environment = self::ENV_SANDBOX;
+    private ?array $credentials = [
         'username' => self::API_USERNAME,
         'password' => self::API_PASSWORD,
         'patternId' => self::PATTERN_ID,
@@ -55,7 +96,7 @@ class Configuration
      * @param string $mktPlaceId
      * @return void
      */
-    public function setCredentials(string $username, string $password, string $patternId, string $bussinesUnitId, string $mktPlaceId): void
+    public function setCredential(string $username, string $password, string $patternId, string $bussinesUnitId, string $mktPlaceId): void
     {
         $this->credentials = [
             'username' => $username,

@@ -1,6 +1,6 @@
 <?php
 
-namespace two_plug\sdk_fitbank;
+namespace TwoPlug\SdkFitbank\Common;
 
 class LimitedAccount
 {

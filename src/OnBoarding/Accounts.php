@@ -1,9 +1,13 @@
 <?php
 
-namespace two_plug\sdk_fitbank;
+namespace TwoPlug\SdkFitbank\OnBoarding;
 
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
+use TwoPlug\SdkFitbank\Common\Account;
+use TwoPlug\SdkFitbank\Configuration;
+use TwoPlug\SdkFitbank\Errors\RequiredError;
+use TwoPlug\SdkFitbank\Helpers\CallApi;
 
 class Accounts
 {
@@ -13,6 +17,7 @@ class Accounts
     {
         $this->httpCli = new CallApi($configuration);
     }
+
 
     /**
      * @param Account $account
@@ -44,7 +49,7 @@ class Accounts
      */
     public function getAccount(string $identifier = null, string $taxNumber = null, string $accountKey = null): object
     {
-        if (!isset($identifier) and !isset($taxNumber) and !isset($accountKey)) throw new Exception('Enter one of the method parameters!', 500);
+        if (!isset($identifier) and !isset($taxNumber) and !isset($accountKey)) throw new RequiredError('Enter one of the method parameters!');
 
         return $this->httpCli->call('GetAccount', [
             'Identifier' => $identifier,
@@ -76,19 +81,23 @@ class Accounts
      * @return object
      * @throws GuzzleException
      */
-    public function getAccountEntry(string $taxNumber, string $startDate, string $endDate, bool $onlyBalance = false, string $entryClassificationType = "Debit"): object
+    public function getAccountEntry(string $taxNumber, string $startDate, string $endDate, ?string $bank = null, ?string $bankBranch = null, ?string $bankAccount = null, ?string $bankAccountDigit = null, bool $onlyBalance = false, string $entryClassificationType = "Debit"): object
     {
-        return $this->httpCli->call('GetAccountEntry', [
+        $call = $this->httpCli->call('GetAccountEntry', [
             "TaxNumber" => $taxNumber,
             "StartDate" => $startDate,
             "EndDate" => $endDate,
-            "Bank" => $this->bank,
-            "BankBranch" => $this->bankBranch,
-            "BankAccount" => $this->bankAccount,
-            "BankAccountDigit" => $this->bankAccountDigit,
+            "Bank" => $bank,
+            "BankBranch" => $bankBranch,
+            "BankAccount" => $bankAccount,
+            "BankAccountDigit" => $bankAccountDigit,
             "OnlyBalance" => $onlyBalance,
             "EntryClassificationType" => $entryClassificationType
         ]);
+
+        # fix api return
+        if (isset($call->data->Entry)) $call->data->Entry = json_decode($call->data->Entry);
+        return $call;
     }
 
     /**
@@ -101,19 +110,23 @@ class Accounts
      * @return object
      * @throws GuzzleException
      */
-    public function getAccountEntryPaged(string $taxNumber, string $startDate, string $endDate, bool $onlyBalance = false, int $pageSize = 25, int $pageIndex = 0): object
+    public function getAccountEntryPaged(string $taxNumber, string $startDate, string $endDate, ?string $bank = null, ?string $bankBranch = null, ?string $bankAccount = null, ?string $bankAccountDigit = null, bool $onlyBalance = false, int $pageSize = 25, int $pageIndex = 0): object
     {
-        return $this->httpCli->call('GetAccountEntryPaged', [
+        $call = $this->httpCli->call('GetAccountEntryPaged', [
             "TaxNumber" => $taxNumber,
             "StartDate" => $startDate,
             "EndDate" => $endDate,
-            "Bank" => $this->bank,
-            "BankBranch" => $this->bankBranch,
-            "BankAccount" => $this->bankAccount,
-            "BankAccountDigit" => $this->bankAccountDigit,
+            "Bank" => $bank,
+            "BankBranch" => $bankBranch,
+            "BankAccount" => $bankAccount,
+            "BankAccountDigit" => $bankAccountDigit,
             "OnlyBalance" => $onlyBalance,
             "PageSize" => $pageSize,
             "PageIndex" => $pageIndex
         ]);
+
+        # fix api return
+        if (isset($call->data->Entry)) $call->data->Entry = json_decode($call->data->Entry);
+        return $call;
     }
 }

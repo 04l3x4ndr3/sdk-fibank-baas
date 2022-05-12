@@ -8,7 +8,7 @@ class Configuration
     const API_PASSWORD = "[your API_PASSWORD number]";
     const PATTERN_ID = "[your PATTERN_ID number]";
     const BUSINESS_UNIT_ID = "[your BUSINESS_UNIT_ID number]";
-    const MKT_PLACE_ID = "[your ]";
+    const MKT_PLACE_ID = "[your MKT_PLACE_ID number]";
     const ENV_SANDBOX = "sandbox";
     const ENV_PRODUCTION = "production";
     const URL_SANDBOX = "https://sandboxapi.fitbank.com.br/main/execute";

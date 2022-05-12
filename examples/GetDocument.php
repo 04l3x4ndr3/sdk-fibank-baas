@@ -8,11 +8,12 @@
 
 require_once('../vendor/autoload.php');
 
-use TwoPlug\SdkFitbank\Configuration as Config;
-use TwoPlug\SdkFitbank\OnBoarding\Accounts;
+use \TwoPlug\SdkFitbank\Configuration as Config;
+use \TwoPlug\SdkFitbank\OnBoarding\Documents;
 
-$accounts = new Accounts(new Config());
-$accountInfo = $accounts->getAccount('', '08963882713', '');
 
+$documents = new Documents(new Config());
+
+$document = $documents->getDocument('08963882713', 5);
 header('content-type: application/json');
-echo json_encode($accountInfo);
+echo json_encode($document);

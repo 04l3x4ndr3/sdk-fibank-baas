@@ -3,6 +3,8 @@
 namespace TwoPlug\SdkFitbank\OnBoarding;
 
 use GuzzleHttp\Exception\GuzzleException;
+use TwoPlug\SdkFitbank\Configuration;
+use TwoPlug\SdkFitbank\Helpers\CallApi;
 
 class Documents
 {
@@ -19,11 +21,11 @@ class Documents
      * @return object
      * @throws GuzzleException
      */
-    public function getDocuments(string $taxNumber, int $documentType): object
+    public function getDocument(string $taxNumber, int $documentType): object
     {
-        return $this->httpCli->call('ResendDocuments', [
+        return $this->httpCli->call('GetDocument', [
             'TaxNumber' => $taxNumber,
-            'DocumentType' => ListValues::getDocumentTypeById($documentType)
+            'DocumentType' => $documentType
         ]);
     }
 

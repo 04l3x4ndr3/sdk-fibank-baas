@@ -3,6 +3,9 @@
 namespace TwoPlug\SdkFitbank\OnBoarding;
 
 use GuzzleHttp\Exception\GuzzleException;
+use TwoPlug\SdkFitbank\Common\AccountHolder;
+use TwoPlug\SdkFitbank\Configuration;
+use TwoPlug\SdkFitbank\Helpers\CallApi;
 
 class PersonData
 {
@@ -14,12 +17,12 @@ class PersonData
     }
 
     /**
-     * @param Account $account
+     * @param AccountHolder $accountHolder
      * @return object
      * @throws GuzzleException
      */
-    public function updatePersonData(Account $account): object
+    public function updatePersonData(AccountHolder $accountHolder): object
     {
-        return $this->httpCli->call('UpdatePersonData', $account->toArray());
+        return $this->httpCli->call('UpdatePersonData', $accountHolder->toArray());
     }
 }

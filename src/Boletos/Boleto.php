@@ -577,6 +577,18 @@ class Boleto
     }
 
     /**
+     * @param string $Barcode
+     * @return object
+     * @throws GuzzleException
+     */
+    public function GetBoletoOutByBarcode(string $Barcode): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = ['Barcode' => $Barcode];
+        return $http->call('GetBoletoOutByBarcode', $data);
+    }
+
+    /**
      * @param string|null $InicialDate
      * @param string|null $FinalDate
      * @param string|null $RecieverTaxNumber

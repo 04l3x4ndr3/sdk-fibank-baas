@@ -17,6 +17,7 @@ $objTopUp = new TopUp();
 $objTopUp->setProductValue(15);
 $objTopUp->setContractIdentifier('27998142442');
 $objTopUp->setTaxNumber('08963882713');
+$objTopUp->setProductType(0);
 $objTopUp->setOriginNSU('01f17467-a2c4-4dcc-8034-7fdfc1fa15e9');
 $objTopUp->setBatchIdentifier('970000000134');
 $objTopUp->setProductKey('CLARO85-1500-970000000134');
@@ -24,7 +25,7 @@ $objTopUp->setTags(["TAG-1", "TAG-2", "TopUp"]);
 
 # TopUps
 $topUps = new TopUps(new Configuration());
-$generateTopUp = $topUps->generateTopUp($topUps);
+$generateTopUp = $topUps->generateTopUp($objTopUp);
 
 header('content-type: application/json');
 echo json_encode($generateTopUp);

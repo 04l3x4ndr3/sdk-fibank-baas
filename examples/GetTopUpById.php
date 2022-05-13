@@ -13,12 +13,12 @@ use TwoPlug\SdkFitbank\Extras\TopUps;
 
 # Create TopUp object
 $objTopUp = new TopUp();
-$objTopUp->setOriginNSU('a76c9064-3c19-408a-ab9b-374b35bb655a');
 $objTopUp->setDocumentNumber(205);
+$objTopUp->setOriginNSU('a76c9064-3c19-408a-ab9b-374b35bb655a');
 
 # TopUps
 $topUps = new TopUps(new Configuration());
-$getTopUpProducts = $topUps->getTopUpProducts($topUps);
+$getTopUpProducts = $topUps->getTopUpById($objTopUp);
 
 header('content-type: application/json');
 echo json_encode($getTopUpProducts);

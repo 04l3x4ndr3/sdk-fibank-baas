@@ -11,7 +11,7 @@ namespace TwoPlug\SdkFitbank\Extras;
 use GuzzleHttp\Exception\GuzzleException;
 use TwoPlug\SdkFitbank\Configuration;
 use TwoPlug\SdkFitbank\Helpers\CallApi;
-use TwoPlug\TopUp\TopUp;
+use TwoPlug\SdkFitbank\Common\TopUp;
 
 class TopUps
 {
@@ -64,7 +64,7 @@ class TopUps
     {
         return $this->httpCli->call('GetTopUpById', [
             'DocumentNumber' => $topUp->getDocumentNumber(),
-            'OriginNS' => $topUp->getOriginNS()
+            'OriginNSU' => $topUp->getOriginNSU()
         ]);
     }
 
@@ -77,7 +77,7 @@ class TopUps
     {
         return $this->httpCli->call('AuthorizeTopUp', [
             'DocumentNumber' => $topUp->getDocumentNumber(),
-            'OriginNS' => $topUp->getOriginNS()
+            'OriginNSU' => $topUp->getOriginNSU()
         ]);
     }
 }

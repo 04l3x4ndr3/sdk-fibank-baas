@@ -21,7 +21,7 @@ class CallApi
     {
         $this->client = new Client([
             'base_uri' => $configuration->getUrl(),
-            'timeout' => 10
+            'timeout' => 60
         ]);
 
         $this->credential = $configuration->getCredential();

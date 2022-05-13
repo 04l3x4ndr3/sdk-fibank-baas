@@ -6,10 +6,15 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace TwoPlug\SdkFitbank\Common;
+namespace TwoPlug\SdkFitbank\Extras;
+
+use GuzzleHttp\Exception\GuzzleException;
+use TwoPlug\SdkFitbank\Configuration;
+use TwoPlug\SdkFitbank\Helpers\CallApi;
 
 class TopUp
 {
+    private Configuration $configuration;
     private ?int $productType;
     private ?int $productSubType;
     private ?int $productValue;
@@ -34,6 +39,8 @@ class TopUp
         ?string $documentNumber = null,
     )
     {
+        $this->configuration = new Configuration();
+
         $this->productType = $productType;
         $this->productSubType = $productSubType;
         $this->productValue = $productValue;
@@ -44,6 +51,7 @@ class TopUp
         $this->productKey = $productKey;
         $this->tags = $tags;
         $this->documentNumber = $documentNumber;
+
     }
 
     /**
@@ -223,5 +231,77 @@ class TopUp
             "Tags" => $this->tags,
             "DocumentNumber" => $this->documentNumber
         ]);
+    }
+
+    /**
+     * @param int|null $ProductType
+     * @param int|null $ProductSubType
+     * @param float|null $ProductValue
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getTopUpProducts(?int $ProductType = null, ?int $ProductSubType = null, ?float $ProductValue = null): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = [
+            'ProductType' => $ProductType ?? $this->getProductType(),
+            'ProductSubType' => $ProductSubType ?? $this->getProductSubType(),
+            'ProductValue' => $ProductValue ?? $this->getProductValue()
+        ];
+        return $http->call('GetTopUpProducts', $data);
+    }
+
+    /**
+     * @param TopUp $topUp
+     * @return object
+     * @throws GuzzleException
+     */
+    public function generateTopUp(TopUp $topUp): object
+    {
+        $http = new CallApi($this->configuration);
+        $topUp = $topUp->toArray() ?? $this->toArray();
+        $data = [
+            'ContractIdentifier' => $topUp->getContractIdentifier(),
+            'TaxNumber' => $topUp->getTaxNumber(),
+            'ProductType' => $topUp->getProductType(),
+            'OriginNSU' => $topUp->getOriginNSU(),
+            'BatchIdentifier' => $topUp->getBatchIdentifier(),
+            'ProductKey' => $topUp->getProductKey(),
+            'ProductValue' => $topUp->getProductValue(),
+            'Tags' => $topUp->getTags(),
+        ];
+        return $http->call('GenerateTopUp', $data);
+    }
+
+    /**
+     * @param string|null $DocumentNumber
+     * @param string|null $OriginNSU
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getTopUpById(?string $DocumentNumber = null, ?string $OriginNSU = null): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = [
+            'DocumentNumber' => $DocumentNumber ?? $this->getDocumentNumber(),
+            'OriginNSU' => $OriginNSU ?? $this->getOriginNSU()
+        ];
+        return $http->call('GetTopUpById', $data);
+    }
+
+    /**
+     * @param string|null $DocumentNumber
+     * @param string|null $OriginNSU
+     * @return object
+     * @throws GuzzleException
+     */
+    public function authorizeTopUp(?string $DocumentNumber = null, ?string $OriginNSU = null): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = [
+            'DocumentNumber' => $DocumentNumber ?? $this->getDocumentNumber(),
+            'OriginNSU' => $OriginNSU ?? $this->getOriginNSU()
+        ];
+        return $http->call('AuthorizeTopUp', $data);
     }
 }

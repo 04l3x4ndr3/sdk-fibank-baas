@@ -9,9 +9,9 @@
 require_once('../vendor/autoload.php');
 
 use TwoPlug\SdkFitbank\Configuration as Config;
-use TwoPlug\SdkFitbank\OnBoarding\Accounts;
+use TwoPlug\SdkFitbank\OnBoarding\Account;
 
-$accounts = new Accounts(new Config());
+$accounts = new Account(new Config());
 $accountEntry = $accounts->getAccountEntry('08963882713', '01/04/2022', date('d/m/Y'), '', '', '', '', false, 'Debit');
 
 header('content-type: application/json');

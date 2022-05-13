@@ -14,7 +14,7 @@ use \TwoPlug\SdkFitbank\Common\Person;
 use \TwoPlug\SdkFitbank\Common\Account;
 use \TwoPlug\SdkFitbank\Common\Document;
 use \TwoPlug\SdkFitbank\Common\AccountHolder;
-use \TwoPlug\SdkFitbank\OnBoarding\Accounts;
+use \TwoPlug\SdkFitbank\OnBoarding\Account;
 
 # Create object Account Holder
 $objAccountHolder = new AccountHolder();
@@ -97,7 +97,7 @@ $objAccountHolder->addPerson(
 $objAccount = new Account();
 $objAccount->setHolder($objAccountHolder);
 
-$accounts = new Accounts(new Config());
+$accounts = new Account(new Config());
 $newAccount = $accounts->newAccount($objAccount);
 header('content-type: application/json');
 echo json_encode($newAccount);

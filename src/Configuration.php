@@ -4,11 +4,11 @@ namespace TwoPlug\SdkFitbank;
 
 class Configuration
 {
-    const API_USERNAME = "5cbf8a8e-abf2-4f45-9b8c-25de65dc7459"; # "c0712dd8-465e-4c91-ad23-a2b7a2d8a68c";
-    const API_PASSWORD = "76046849-a1eb-4a36-b085-0e68965bef2a"; # "2617f4b3-b932-417b-ac5a-f41aa7b6e6a8";
-    const PATTERN_ID = 715; # "606";
-    const BUSINESS_UNIT_ID = 840; # "629";
-    const MKT_PLACE_ID = 54265; # "32977";
+    const API_USERNAME = "[ENTER YOUR DATA]";
+    const API_PASSWORD = "[ENTER YOUR DATA]";
+    const PATTERN_ID = "[ENTER YOUR DATA]";
+    const BUSINESS_UNIT_ID = "[ENTER YOUR DATA]";
+    const MKT_PLACE_ID = "[ENTER YOUR DATA]";
     const ENV_SANDBOX = "sandbox";
     const ENV_PRODUCTION = "production";
     const URL_SANDBOX = "https://sandboxapi.fitbank.com.br/main/execute";

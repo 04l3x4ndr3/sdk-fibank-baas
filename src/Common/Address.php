@@ -198,18 +198,20 @@ class Address
         $this->complement = $complement;
     }
 
-
     public function toArray(): array
     {
         return [
             "AddressLine" => $this->addressLine,
+            "Line" => $this->addressLine,
             "AddressLine2" => $this->addressLine2,
+            "Line2" => $this->addressLine2,
             "ZipCode" => $this->zipCode,
             "Neighborhood" => $this->neighborhood,
             "CityCode" => $this->cityCode,
             "CityName" => $this->cityName,
             "State" => $this->state,
             "AddressType" => $this->addressType,
+            "Type" => $this->addressType,
             "Country" => $this->country,
             "Complement" => $this->complement
         ];

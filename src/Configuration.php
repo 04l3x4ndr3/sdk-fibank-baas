@@ -30,6 +30,9 @@ class Configuration
     const COMPANY_TYPE_LTDA = 1;
     const COMPANY_TYPE_MEI = 2;
 
+    const ADDRESS_TYPE_BUSINESS = 0;
+    const ADDRESS_TYPE_HOME = 1;
+
     const DOCUMENT_TYPE_IDENTITY_DOCUMENT_FRONT = 0;
     const DOCUMENT_TYPE_TAXNUMBER = 1;
     const DOCUMENT_TYPE_PROOF_ADDRESS = 2;

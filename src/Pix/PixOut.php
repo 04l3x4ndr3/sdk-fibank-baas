@@ -795,7 +795,7 @@ class PixOut
      * @return object
      * @throws GuzzleException
      */
-    public function GetPixOutByDate(string $TaxNumber, int $Bank, int $BankBranck, int $BankAccount, int $BankAccountDigit, string $StartDate, string $EndDate, int $PageIndex, int $PageSize): object
+    public function getPixOutByDate(string $TaxNumber, int $Bank, int $BankBranck, int $BankAccount, int $BankAccountDigit, string $StartDate, string $EndDate, int $PageIndex, int $PageSize): object
     {
         $http = new CallApi($this->configuration);
         $data = [
@@ -811,4 +811,52 @@ class PixOut
         ];
         return $http->call('GetPixOutById', $data);
     }
+
+    /**
+     * @param string $TaxNumber
+     * @param int $Bank
+     * @param string $StartDate
+     * @param string $EndDate
+     * @param int $PageIndex
+     * @param int $PageSize
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getRefundPixOutByDate(string $TaxNumber, int $Bank, string $StartDate, string $EndDate, int $PageIndex, int $PageSize): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = [
+            "TaxNumber" => $TaxNumber,
+            "Bank" => $Bank,
+            "StartDate" => $StartDate,
+            "EndDate" => $EndDate,
+            "PageIndex" => $PageIndex,
+            "PageSize" => $PageSize
+        ];
+        return $http->call('GetRefundPixOutByDate', $data);
+    }
+
+    /**
+     * @param int $DocumentNumber
+     * @param int $Bank
+     * @param int $BankBranck
+     * @param int $BankAccount
+     * @param int $BankAccountDigit
+     * @return object
+     * @throws GuzzleException
+     */
+    public function cancelPixOut(int $DocumentNumber, int $Bank, int $BankBranck, int $BankAccount, int $BankAccountDigit): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = [
+            "DocumentNumber" => $DocumentNumber,
+            "Bank" => $Bank,
+            "BankBranck" => $BankBranck,
+            "BankAccount" => $BankAccount,
+            "BankAccountDigit" => $BankAccountDigit,
+        ];
+        return $http->call('CancelPixOut', $data);
+    }
+
+
 }

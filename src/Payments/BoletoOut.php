@@ -634,7 +634,7 @@ class BoletoOut
      * @return object
      * @throws GuzzleException
      */
-    public function GenerateBoletoOut(BoletoOut $boleto): object
+    public function generateBoletoOut(BoletoOut $boleto): object
     {
         $http = new CallApi($this->configuration);
         $data = $boleto->toArray();
@@ -646,7 +646,7 @@ class BoletoOut
      * @return object
      * @throws GuzzleException
      */
-    public function GetBoletoOutById(string $DocumentNumber): object
+    public function getBoletoOutById(string $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
@@ -658,7 +658,7 @@ class BoletoOut
      * @return object
      * @throws GuzzleException
      */
-    public function GetBoletoOutByBarcode(string $Barcode): object
+    public function getBoletoOutByBarcode(string $Barcode): object
     {
         $http = new CallApi($this->configuration);
         $data = ['Barcode' => $Barcode];
@@ -670,7 +670,7 @@ class BoletoOut
      * @return object
      * @throws GuzzleException
      */
-    public function CancelBoletoOut(string $DocumentNumber): object
+    public function cancelBoletoOut(string $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
@@ -682,7 +682,7 @@ class BoletoOut
      * @return object
      * @throws GuzzleException
      */
-    public function GetInfosByBarcode(string $Barcode): object
+    public function getInfosByBarcode(string $Barcode): object
     {
         $http = new CallApi($this->configuration);
         $data = ['Barcode' => $Barcode];
@@ -695,7 +695,7 @@ class BoletoOut
      * @return object
      * @throws GuzzleException
      */
-    public function GetInfosCIPByBarcode(string $Taxnumber, string $Barcode): object
+    public function getInfosCIPByBarcode(string $Taxnumber, string $Barcode): object
     {
         $http = new CallApi($this->configuration);
         $data = [

@@ -316,7 +316,7 @@ class GPS
      * @return object
      * @throws GuzzleException
      */
-    public function GeneratePaymentFGTS(GPS $gps): object
+    public function generatePaymentFGTS(GPS $gps): object
     {
         $http = new CallApi($this->configuration);
         $data = $gps->toArray();
@@ -328,7 +328,7 @@ class GPS
      * @return object
      * @throws GuzzleException
      */
-    public function GetGpsOutById(string $DocumentNumber): object
+    public function getGpsOutById(string $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
@@ -340,7 +340,7 @@ class GPS
      * @return object
      * @throws GuzzleException
      */
-    public function CancelPaymentGps(string $DocumentNumber): object
+    public function cancelPaymentGps(string $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];

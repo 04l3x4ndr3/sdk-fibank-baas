@@ -69,7 +69,31 @@ class Boleto
      * @param float|null $totalValue
      * @param array|null $products
      */
-    public function __construct(?int $groupTemplate, ?string $customerName, ?string $customerTaxNumber, ?string $customerMail, ?string $customerPhone, ?float $rateValue, ?int $ratesent, ?string $supplierTaxNumber, ?string $supplierFullName, ?string $supplierTradingName, ?string $supplierLegalName, ?string $supplierMail, ?string $supplierPhone, ?string $addressLine1, ?string $neighborhood, ?string $city, ?string $state, ?string $zipCode, ?string $mailToSend, ?string $phoneToSend, ?int $externalNumber, ?int $identifier, ?string $dueDate, ?float $totalValue, ?array $products)
+    public function __construct(?int    $groupTemplate = null,
+                                ?string $customerName = null,
+                                ?string $customerTaxNumber = null,
+                                ?string $customerMail = null,
+                                ?string $customerPhone = null,
+                                ?float  $rateValue = null,
+                                ?int    $ratesent = null,
+                                ?string $supplierTaxNumber = null,
+                                ?string $supplierFullName = null,
+                                ?string $supplierTradingName = null,
+                                ?string $supplierLegalName = null,
+                                ?string $supplierMail = null,
+                                ?string $supplierPhone = null,
+                                ?string $addressLine1 = null,
+                                ?string $neighborhood = null,
+                                ?string $city = null,
+                                ?string $state = null,
+                                ?string $zipCode = null,
+                                ?string $mailToSend = null,
+                                ?string $phoneToSend = null,
+                                ?int    $externalNumber = null,
+                                ?int    $identifier = null,
+                                ?string $dueDate = null,
+                                ?float  $totalValue = null,
+                                ?array  $products = null)
     {
         $this->configuration = new Configuration();
 
@@ -557,7 +581,7 @@ class Boleto
      * @return object
      * @throws GuzzleException
      */
-    public function GenerateBoleto(Boleto $boleto = null): object
+    public function generateBoleto(Boleto $boleto = null): object
     {
         $http = new CallApi($this->configuration);
         $data = $boleto->toArray() ?? $this->toArray();
@@ -569,7 +593,7 @@ class Boleto
      * @return object
      * @throws GuzzleException
      */
-    public function GetBoletoById(int $documentNumber): object
+    public function getBoletoById(int $documentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $documentNumber];
@@ -581,7 +605,7 @@ class Boleto
      * @return object
      * @throws GuzzleException
      */
-    public function GetBoletoOutByBarcode(string $Barcode): object
+    public function getBoletoOutByBarcode(string $Barcode): object
     {
         $http = new CallApi($this->configuration);
         $data = ['Barcode' => $Barcode];
@@ -596,7 +620,7 @@ class Boleto
      * @return object
      * @throws GuzzleException
      */
-    public function GetBoletoByDate(?string $InicialDate = null, ?string $FinalDate = null, ?string $RecieverTaxNumber = null, ?int $Status = null): object
+    public function getBoletoByDate(?string $InicialDate = null, ?string $FinalDate = null, ?string $RecieverTaxNumber = null, ?int $Status = null): object
     {
         $http = new CallApi($this->configuration);
         $data = [
@@ -613,7 +637,7 @@ class Boleto
      * @return object
      * @throws GuzzleException
      */
-    public function CancelBoleto(int $DocumentNumber): object
+    public function cancelBoleto(int $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber,];

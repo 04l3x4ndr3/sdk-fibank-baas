@@ -296,7 +296,7 @@ class FGTS
      * @return object
      * @throws GuzzleException
      */
-    public function GeneratePaymentFGTS(FGTS $fgts): object
+    public function generatePaymentFGTS(FGTS $fgts): object
     {
         $http = new CallApi($this->configuration);
         $data = $fgts->toArray();
@@ -308,7 +308,7 @@ class FGTS
      * @return object
      * @throws GuzzleException
      */
-    public function GetFgtsOutById(string $DocumentNumber): object
+    public function getFgtsOutById(string $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
@@ -320,7 +320,7 @@ class FGTS
      * @return object
      * @throws GuzzleException
      */
-    public function CancelPaymentFgts(string $DocumentNumber): object
+    public function cancelPaymentFgts(string $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];

@@ -120,7 +120,7 @@ class TED
      * @param TED $ted
      * @return object
      */
-    public function MoneyTransferIn(TED $ted): object
+    public function moneyTransferIn(TED $ted): object
     {
         $http = new CallApi($this->configuration);
         $data = $ted->toArray();
@@ -131,7 +131,7 @@ class TED
      * @param int $DocumentNumber
      * @return object
      */
-    public function GetMoneyTransferInById(int $DocumentNumber): object
+    public function getMoneyTransferInById(int $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
@@ -142,76 +142,10 @@ class TED
      * @param int $DocumentNumber
      * @return object
      */
-    public function CancelMoneyTransferIn(int $DocumentNumber): object
+    public function cancelMoneyTransferIn(int $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
         return $http->call('CancelMoneyTransferIn', $data);
-    }
-
-
-
-
-    /**
-     * @param string $FromTaxNumber
-     * @param string $ToTaxNumber
-     * @param string $ToName
-     * @param int $Bank
-     * @param int $BankBranch
-     * @param int $BankAccount
-     * @param int $BankAccountDigit
-     * @param int $AccountType
-     * @param float $Value
-     * @param float $RateValue
-     * @param string $Identifier
-     * @param int $RateValueType
-     * @param array $Tags
-     * @param string $Description
-     * @param string $PaymentDate
-     * @return object
-     */
-    public function MoneyTransfer(string $FromTaxNumber, string $ToTaxNumber, string $ToName, int $Bank, int $BankBranch, int $BankAccount, int $BankAccountDigit, int $AccountType, float $Value, float $RateValue, string $Identifier, int $RateValueType, array $Tags, string $Description, string $PaymentDate): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = [
-            "FromTaxNumber" => $FromTaxNumber,
-            "ToTaxNumber" => $ToTaxNumber,
-            "ToName" => $ToName,
-            "Bank" => $Bank,
-            "BankBranch" => $BankBranch,
-            "BankAccount" => $BankAccount,
-            "BankAccountDigit" => $BankAccountDigit,
-            "AccountType" => $AccountType,
-            "Value" => $Value,
-            "RateValue" => $RateValue,
-            "Identifier" => $Identifier,
-            "RateValueType" => $RateValueType,
-            "Tags" => $Tags,
-            "Description" => $Description,
-            "PaymentDate" => $PaymentDate
-        ];
-        return $http->call('MoneyTransfer', $data);
-    }
-
-    /**
-     * @param int $DocumentNumber
-     * @return object
-     */
-    public function GetMoneyTransferOutById(int $DocumentNumber): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = ["DocumentNumber" => $DocumentNumber,];
-        return $http->call('GetMoneyTransferOutById', $data);
-    }
-
-    /**
-     * @param int $DocumentNumber
-     * @return object
-     */
-    public function CancelMoneyTransfer(int $DocumentNumber): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = ["DocumentNumber" => $DocumentNumber,];
-        return $http->call('CancelMoneyTransfer', $data);
     }
 }

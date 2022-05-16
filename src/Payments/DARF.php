@@ -404,7 +404,7 @@ class DARF
      * @return object
      * @throws GuzzleException
      */
-    public function GeneratePaymentDARF(DARF $darf): object
+    public function generatePaymentDARF(DARF $darf): object
     {
         $http = new CallApi($this->configuration);
         $data = $darf->toArray();
@@ -416,7 +416,7 @@ class DARF
      * @return object
      * @throws GuzzleException
      */
-    public function GetDarfOutById(string $DocumentNumber): object
+    public function getDarfOutById(string $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
@@ -428,7 +428,7 @@ class DARF
      * @return object
      * @throws GuzzleException
      */
-    public function CancelPaymentDARF(string $DocumentNumber): object
+    public function cancelPaymentDARF(string $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];

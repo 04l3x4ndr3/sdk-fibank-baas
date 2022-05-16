@@ -120,7 +120,7 @@ class TransferOut
      * @param TransferOut $out
      * @return object
      */
-    public function MoneyTransfer(TransferOut $out): object
+    public function moneyTransfer(TransferOut $out): object
     {
         $http = new CallApi($this->configuration);
         $data = $out->toArray();
@@ -131,7 +131,7 @@ class TransferOut
      * @param int $DocumentNumber
      * @return object
      */
-    public function GetMoneyTransferOutById(int $DocumentNumber): object
+    public function getMoneyTransferOutById(int $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber,];
@@ -142,7 +142,7 @@ class TransferOut
      * @param int $DocumentNumber
      * @return object
      */
-    public function CancelMoneyTransfer(int $DocumentNumber): object
+    public function cancelMoneyTransfer(int $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber,];

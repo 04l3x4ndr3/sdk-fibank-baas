@@ -406,7 +406,7 @@ class NominalCard
      * @param NominalCard $card
      * @return object
      */
-    public function RequestCard(NominalCard $card): object
+    public function requestCard(NominalCard $card): object
     {
         $http = new CallApi($this->configuration);
         $data = $card->toArray();
@@ -417,7 +417,7 @@ class NominalCard
      * @param string $IdentifierCard
      * @return object
      */
-    public function ConfirmCardRequest(string $IdentifierCard): object
+    public function confirmCardRequest(string $IdentifierCard): object
     {
         $http = new CallApi($this->configuration);
         $data = ["IdentifierCard" => $IdentifierCard];
@@ -428,7 +428,7 @@ class NominalCard
      * @param string $IdentifierCard
      * @return object
      */
-    public function GetCardByIdentifierCard(string $IdentifierCard): object
+    public function getCardByIdentifierCard(string $IdentifierCard): object
     {
         $http = new CallApi($this->configuration);
         $data = ["IdentifierCard" => $IdentifierCard];
@@ -440,7 +440,7 @@ class NominalCard
      * @param int $Action
      * @return object
      */
-    public function GetCardActionStatus(string $IdentifierCard, int $Action): object
+    public function getCardActionStatus(string $IdentifierCard, int $Action): object
     {
         $http = new CallApi($this->configuration);
         $data = [
@@ -454,7 +454,7 @@ class NominalCard
      * @param string $IdentifierCard
      * @return object
      */
-    public function ActivateCard(string $IdentifierCard): object
+    public function activateCard(string $IdentifierCard): object
     {
         $http = new CallApi($this->configuration);
         $data = ["IdentifierCard" => $IdentifierCard];
@@ -467,7 +467,7 @@ class NominalCard
      * @param int $Reason
      * @return object
      */
-    public function BlockCard(string $IdentifierCard, string $Pin, int $Reason): object
+    public function blockCard(string $IdentifierCard, string $Pin, int $Reason): object
     {
         $http = new CallApi($this->configuration);
         $data = [
@@ -483,7 +483,7 @@ class NominalCard
      * @param string $Pin
      * @return object
      */
-    public function UnblockCard(string $IdentifierCard, string $Pin): object
+    public function unblockCard(string $IdentifierCard, string $Pin): object
     {
         $http = new CallApi($this->configuration);
         $data = [
@@ -500,7 +500,7 @@ class NominalCard
      * @param string $PinCheck
      * @return object
      */
-    public function ChangePinCard(string $IdentifierCard, string $CurrentPin, string $Pin, string $PinCheck): object
+    public function changePinCard(string $IdentifierCard, string $CurrentPin, string $Pin, string $PinCheck): object
     {
         $http = new CallApi($this->configuration);
         $data = [
@@ -517,7 +517,7 @@ class NominalCard
      * @param int $ConsumeType
      * @return object
      */
-    public function UpdateConsumeType(string $IdentifierCard, int $ConsumeType): object
+    public function updateConsumeType(string $IdentifierCard, int $ConsumeType): object
     {
         $http = new CallApi($this->configuration);
         $data = [
@@ -533,7 +533,7 @@ class NominalCard
      * @param int $ReasonCode
      * @return object
      */
-    public function InactivateAndReissueCard(string $IdentifierCard, string $Pin, int $ReasonCode): object
+    public function inactivateAndReissueCard(string $IdentifierCard, string $Pin, int $ReasonCode): object
     {
         $http = new CallApi($this->configuration);
         $data = [

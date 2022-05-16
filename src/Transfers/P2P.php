@@ -196,7 +196,7 @@ class P2P
      * @return object
      * @throws GuzzleException
      */
-    public function InternalTransfer(P2P $p2p): object
+    public function internalTransfer(P2P $p2p): object
     {
         $http = new CallApi($this->configuration);
         $data = $p2p->toArray();
@@ -208,7 +208,7 @@ class P2P
      * @return object
      * @throws GuzzleException
      */
-    public function GetInternalTransferById(int $DocumentNumber): object
+    public function getInternalTransferById(int $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
@@ -221,7 +221,7 @@ class P2P
      * @return object
      * @throws GuzzleException
      */
-    public function GetInternalTransferByDate(string $TaxNumber, string $TransferDate): object
+    public function getInternalTransferByDate(string $TaxNumber, string $TransferDate): object
     {
         $http = new CallApi($this->configuration);
         $data = [
@@ -236,7 +236,7 @@ class P2P
      * @return object
      * @throws GuzzleException
      */
-    public function CancelInternalTransfer(int $DocumentNumber): object
+    public function cancelInternalTransfer(int $DocumentNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];

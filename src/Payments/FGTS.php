@@ -1,0 +1,329 @@
+<?php
+/*
+ * Copyright (c) 2022.
+ * @authorAlexandre G R Alves
+ * Author Github: https://github.com/04l3x4ndr3
+ * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
+ */
+
+namespace TwoPlug\SdkFitbank\Payments;
+
+use GuzzleHttp\Exception\GuzzleException;
+use TwoPlug\SdkFitbank\Configuration;
+use TwoPlug\SdkFitbank\Helpers\CallApi;
+
+class FGTS
+{
+    private Configuration $configuration;
+    private string $taxNumber;
+    private string $contributorTaxNumber;
+    private float $principalValue;
+    private int $codeRevenue;
+    private string $barcode;
+    private int $fgtsIdentifier;
+    private int $socialConnectivityCode;
+    private int $socialConnectivityDigit;
+    private string $paymentDate;
+    private int $rateValueType;
+    private float $rateValue;
+    private string $identifier;
+
+    /**
+     * @param string|null $taxNumber
+     * @param string|null $contributorTaxNumber
+     * @param float|null $principalValue
+     * @param int|null $codeRevenue
+     * @param string|null $barcode
+     * @param int|null $fgtsIdentifier
+     * @param int|null $socialConnectivityCode
+     * @param int|null $socialConnectivityDigit
+     * @param string|null $paymentDate
+     * @param int $rateValueType
+     * @param float $rateValue
+     * @param string|null $identifier
+     */
+    public function __construct(?string $taxNumber = null,
+                                ?string $contributorTaxNumber = null,
+                                ?float  $principalValue = null,
+                                ?int    $codeRevenue = null,
+                                ?string $barcode = null,
+                                ?int    $fgtsIdentifier = null,
+                                ?int    $socialConnectivityCode = null,
+                                ?int    $socialConnectivityDigit = null,
+                                ?string $paymentDate = null,
+                                int     $rateValueType = 0,
+                                float   $rateValue = 0,
+                                ?string $identifier = null)
+    {
+        $this->configuration = new Configuration();
+        $this->taxNumber = $taxNumber;
+        $this->contributorTaxNumber = $contributorTaxNumber;
+        $this->principalValue = $principalValue;
+        $this->codeRevenue = $codeRevenue;
+        $this->barcode = $barcode;
+        $this->fgtsIdentifier = $fgtsIdentifier;
+        $this->socialConnectivityCode = $socialConnectivityCode;
+        $this->socialConnectivityDigit = $socialConnectivityDigit;
+        $this->paymentDate = $paymentDate;
+        $this->rateValueType = $rateValueType;
+        $this->rateValue = $rateValue;
+        $this->identifier = $identifier;
+    }
+
+    /**
+     * @param Configuration $configuration
+     */
+    public function setConfiguration(Configuration $configuration): void
+    {
+        $this->configuration = $configuration;
+    }
+
+
+    /**
+     * @return string|null
+     */
+    public function getTaxNumber(): ?string
+    {
+        return $this->taxNumber;
+    }
+
+    /**
+     * @param string|null $taxNumber
+     */
+    public function setTaxNumber(?string $taxNumber): void
+    {
+        $this->taxNumber = $taxNumber;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getContributorTaxNumber(): ?string
+    {
+        return $this->contributorTaxNumber;
+    }
+
+    /**
+     * @param string|null $contributorTaxNumber
+     */
+    public function setContributorTaxNumber(?string $contributorTaxNumber): void
+    {
+        $this->contributorTaxNumber = $contributorTaxNumber;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getPrincipalValue(): ?float
+    {
+        return $this->principalValue;
+    }
+
+    /**
+     * @param float|null $principalValue
+     */
+    public function setPrincipalValue(?float $principalValue): void
+    {
+        $this->principalValue = $principalValue;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getCodeRevenue(): ?int
+    {
+        return $this->codeRevenue;
+    }
+
+    /**
+     * @param int|null $codeRevenue
+     */
+    public function setCodeRevenue(?int $codeRevenue): void
+    {
+        $this->codeRevenue = $codeRevenue;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBarcode(): ?string
+    {
+        return $this->barcode;
+    }
+
+    /**
+     * @param string|null $barcode
+     */
+    public function setBarcode(?string $barcode): void
+    {
+        $this->barcode = $barcode;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getFgtsIdentifier(): ?int
+    {
+        return $this->fgtsIdentifier;
+    }
+
+    /**
+     * @param int|null $fgtsIdentifier
+     */
+    public function setFgtsIdentifier(?int $fgtsIdentifier): void
+    {
+        $this->fgtsIdentifier = $fgtsIdentifier;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSocialConnectivityCode(): ?int
+    {
+        return $this->socialConnectivityCode;
+    }
+
+    /**
+     * @param int|null $socialConnectivityCode
+     */
+    public function setSocialConnectivityCode(?int $socialConnectivityCode): void
+    {
+        $this->socialConnectivityCode = $socialConnectivityCode;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSocialConnectivityDigit(): ?int
+    {
+        return $this->socialConnectivityDigit;
+    }
+
+    /**
+     * @param int|null $socialConnectivityDigit
+     */
+    public function setSocialConnectivityDigit(?int $socialConnectivityDigit): void
+    {
+        $this->socialConnectivityDigit = $socialConnectivityDigit;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPaymentDate(): ?string
+    {
+        return $this->paymentDate;
+    }
+
+    /**
+     * @param string|null $paymentDate
+     */
+    public function setPaymentDate(?string $paymentDate): void
+    {
+        $this->paymentDate = $paymentDate;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRateValueType(): int
+    {
+        return $this->rateValueType;
+    }
+
+    /**
+     * @param int $rateValueType
+     */
+    public function setRateValueType(int $rateValueType): void
+    {
+        $this->rateValueType = $rateValueType;
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getRateValue(): float|int
+    {
+        return $this->rateValue;
+    }
+
+    /**
+     * @param float|int $rateValue
+     */
+    public function setRateValue(float|int $rateValue): void
+    {
+        $this->rateValue = $rateValue;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * @param string|null $identifier
+     */
+    public function setIdentifier(?string $identifier): void
+    {
+        $this->identifier = $identifier;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            "TaxNumber" => $this->taxNumber,
+            "ContributorTaxNumber" => $this->contributorTaxNumber,
+            "PrincipalValue" => $this->principalValue,
+            "CodeRevenue" => $this->codeRevenue,
+            "Barcode" => $this->barcode,
+            "FgtsIdentifier" => $this->fgtsIdentifier,
+            "SocialConnectivityCode" => $this->socialConnectivityCode,
+            "SocialConnectivityDigit" => $this->socialConnectivityDigit,
+            "PaymentDate" => $this->paymentDate,
+            "RateValueType" => $this->rateValueType,
+            "Identifier" => $this->identifier
+        ];
+    }
+
+    /**
+     * @param FGTS $fgts
+     * @return object
+     * @throws GuzzleException
+     */
+    public function GeneratePaymentFGTS(FGTS $fgts): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = $fgts->toArray();
+        return $http->call('GeneratePaymentFGTS', $data);
+    }
+
+    /**
+     * @param string $DocumentNumber
+     * @return object
+     * @throws GuzzleException
+     */
+    public function GetFgtsOutById(string $DocumentNumber): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = ['DocumentNumber' => $DocumentNumber];
+        return $http->call('GetFgtsOutById', $data);
+    }
+
+    /**
+     * @param string $DocumentNumber
+     * @return object
+     * @throws GuzzleException
+     */
+    public function CancelPaymentFgts(string $DocumentNumber): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = ['DocumentNumber' => $DocumentNumber];
+        return $http->call('CancelPaymentFgts', $data);
+    }
+}

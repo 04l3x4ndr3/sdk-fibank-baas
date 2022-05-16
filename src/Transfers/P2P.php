@@ -15,11 +15,42 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 class P2P
 {
     private Configuration $configuration;
+    private string $fromTaxNumber;
+    private string $toTaxNumber;
+    private float $value;
+    private float $rateValue;
+    private string $transferDate;
+    private string $identifier;
+    private string $description;
 
-    public function __construct()
+    /**
+     * @param string|null $fromTaxNumber
+     * @param string|null $toTaxNumber
+     * @param float|null $value
+     * @param float|null $rateValue
+     * @param string|null $transferDate
+     * @param string|null $identifier
+     * @param string|null $description
+     */
+    public function __construct(?string $fromTaxNumber = null,
+                                ?string $toTaxNumber = null,
+                                ?float  $value = null,
+                                ?float  $rateValue = null,
+                                ?string $transferDate = null,
+                                ?string $identifier = null,
+                                ?string $description = null)
     {
         $this->configuration = new Configuration();
+
+        $this->fromTaxNumber = $fromTaxNumber;
+        $this->toTaxNumber = $toTaxNumber;
+        $this->value = $value;
+        $this->rateValue = $rateValue;
+        $this->transferDate = $transferDate;
+        $this->identifier = $identifier;
+        $this->description = $description;
     }
+
 
     /**
      * @param Configuration $configuration
@@ -32,28 +63,143 @@ class P2P
     }
 
     /**
-     * @param string $FromTaxNumber
-     * @param string $ToTaxNumber
-     * @param float $Value
-     * @param float $RateValue
-     * @param string $TransferDate
-     * @param string $Identifier
-     * @param string $Description
+     * @return string|null
+     */
+    public function getFromTaxNumber(): ?string
+    {
+        return $this->fromTaxNumber;
+    }
+
+    /**
+     * @param string|null $fromTaxNumber
+     */
+    public function setFromTaxNumber(?string $fromTaxNumber): void
+    {
+        $this->fromTaxNumber = $fromTaxNumber;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getToTaxNumber(): ?string
+    {
+        return $this->toTaxNumber;
+    }
+
+    /**
+     * @param string|null $toTaxNumber
+     */
+    public function setToTaxNumber(?string $toTaxNumber): void
+    {
+        $this->toTaxNumber = $toTaxNumber;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getValue(): ?float
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param float|null $value
+     */
+    public function setValue(?float $value): void
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getRateValue(): ?float
+    {
+        return $this->rateValue;
+    }
+
+    /**
+     * @param float|null $rateValue
+     */
+    public function setRateValue(?float $rateValue): void
+    {
+        $this->rateValue = $rateValue;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTransferDate(): ?string
+    {
+        return $this->transferDate;
+    }
+
+    /**
+     * @param string|null $transferDate
+     */
+    public function setTransferDate(?string $transferDate): void
+    {
+        $this->transferDate = $transferDate;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * @param string|null $identifier
+     */
+    public function setIdentifier(?string $identifier): void
+    {
+        $this->identifier = $identifier;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $description
+     */
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            "FromTaxNumber" => $this->fromTaxNumber,
+            "ToTaxNumber" => $this->toTaxNumber,
+            "Value" => $this->value,
+            "RateValue" => $this->rateValue,
+            "TransferDate" => $this->transferDate,
+            "Identifier" => $this->identifier,
+            "Description" => $this->description
+        ];
+    }
+
+    /**
+     * @param P2P $p2p
      * @return object
      * @throws GuzzleException
      */
-    public function InternalTransfer(string $FromTaxNumber, string $ToTaxNumber, float $Value, float $RateValue, string $TransferDate, string $Identifier, string $Description,): object
+    public function InternalTransfer(P2P $p2p): object
     {
         $http = new CallApi($this->configuration);
-        $data = [
-            "FromTaxNumber" => $FromTaxNumber,
-            "ToTaxNumber" => $ToTaxNumber,
-            "Value" => $Value,
-            "RateValue" => $RateValue,
-            "TransferDate" => $TransferDate,
-            "Identifier" => $Identifier,
-            "Description" => $Description
-        ];
+        $data = $p2p->toArray();
         return $http->call('InternalTransfer', $data);
     }
 

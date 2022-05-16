@@ -289,7 +289,7 @@ class PixKey
      * @return object
      * @throws GuzzleException
      */
-    public function ChangePixKey(string $TaxNumber,
+    public function changePixKey(string $TaxNumber,
                                  string $PixKey,
                                  string $FromBank,
                                  string $FromBankBranch,

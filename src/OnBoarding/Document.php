@@ -17,7 +17,6 @@ class Document {
 	private ?string $expirationDate;
 
 	/**
-	 * @param Configuration $configuration
 	 * @param string|null $documentFile
 	 * @param int|null $documentFormat
 	 * @param string|null $documentName

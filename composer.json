@@ -1,6 +1,7 @@
 {
   "name": "two_plug/sdk-fitbank-baas",
   "description": "SDK da API Bank As A Service - FITBANK",
+  "version": "dev-0.1.0",
   "minimum-stability": "stable",
   "license": "MIT",
   "type": "library",
@@ -16,7 +17,7 @@
     }
   },
   "require": {
-    "php": "^7.2.5 || ^8.0",
+    "php": "^7.4.2 || ^8.0",
     "guzzlehttp/guzzle": "7.4.2"
   }
 }

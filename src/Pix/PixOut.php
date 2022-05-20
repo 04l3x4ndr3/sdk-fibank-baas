@@ -763,19 +763,19 @@ class PixOut
     /**
      * @param int $DocumentNumber
      * @param int $Bank
-     * @param int $BankBranck
+     * @param int $BankBranch
      * @param int $BankAccount
      * @param int $BankAccountDigit
      * @return object
      * @throws GuzzleException
      */
-    public function getPixOutById(int $DocumentNumber, int $Bank, int $BankBranck, int $BankAccount, int $BankAccountDigit): object
+    public function getPixOutById(int $DocumentNumber, int $Bank, int $BankBranch, int $BankAccount, int $BankAccountDigit): object
     {
         $http = new CallApi($this->configuration);
         $data = [
             "DocumentNumber" => $DocumentNumber,
             "Bank" => $Bank,
-            "BankBranck" => $BankBranck,
+            "BankBranch" => $BankBranch,
             "BankAccount" => $BankAccount,
             "BankAccountDigit" => $BankAccountDigit,
         ];
@@ -785,7 +785,7 @@ class PixOut
     /**
      * @param string $TaxNumber
      * @param int $Bank
-     * @param int $BankBranck
+     * @param int $BankBranch
      * @param int $BankAccount
      * @param int $BankAccountDigit
      * @param string $StartDate
@@ -795,13 +795,13 @@ class PixOut
      * @return object
      * @throws GuzzleException
      */
-    public function getPixOutByDate(string $TaxNumber, int $Bank, int $BankBranck, int $BankAccount, int $BankAccountDigit, string $StartDate, string $EndDate, int $PageIndex, int $PageSize): object
+    public function getPixOutByDate(string $TaxNumber, int $Bank, int $BankBranch, int $BankAccount, int $BankAccountDigit, string $StartDate, string $EndDate, int $PageIndex, int $PageSize): object
     {
         $http = new CallApi($this->configuration);
         $data = [
             "TaxNumber" => $TaxNumber,
             "Bank" => $Bank,
-            "BankBranck" => $BankBranck,
+            "BankBranch" => $BankBranch,
             "BankAccount" => $BankAccount,
             "BankAccountDigit" => $BankAccountDigit,
             "StartDate" => $StartDate,
@@ -839,19 +839,19 @@ class PixOut
     /**
      * @param int $DocumentNumber
      * @param int $Bank
-     * @param int $BankBranck
+     * @param int $BankBranch
      * @param int $BankAccount
      * @param int $BankAccountDigit
      * @return object
      * @throws GuzzleException
      */
-    public function cancelPixOut(int $DocumentNumber, int $Bank, int $BankBranck, int $BankAccount, int $BankAccountDigit): object
+    public function cancelPixOut(int $DocumentNumber, int $Bank, int $BankBranch, int $BankAccount, int $BankAccountDigit): object
     {
         $http = new CallApi($this->configuration);
         $data = [
             "DocumentNumber" => $DocumentNumber,
             "Bank" => $Bank,
-            "BankBranck" => $BankBranck,
+            "BankBranch" => $BankBranch,
             "BankAccount" => $BankAccount,
             "BankAccountDigit" => $BankAccountDigit,
         ];

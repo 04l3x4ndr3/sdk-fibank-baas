@@ -1,23 +1,31 @@
 <?php
+/*
+ * Copyright (c) 2022.
+ * @authorAlexandre G R Alves
+ * Author Github: https://github.com/04l3x4ndr3
+ * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
+ */
 
 namespace TwoPlug\SdkFitbank;
 
 class Configuration
 {
-    const API_USERNAME = "5cbf8a8e-abf2-4f45-9b8c-25de65dc7459"; # "c0712dd8-465e-4c91-ad23-a2b7a2d8a68c";
-    const API_PASSWORD = "76046849-a1eb-4a36-b085-0e68965bef2a"; # "2617f4b3-b932-417b-ac5a-f41aa7b6e6a8";
-    const PATTERN_ID = 715; # "606";
-    const BUSINESS_UNIT_ID = 840; # "629";
-    const MKT_PLACE_ID = 54265; # "32977";
+    const API_USERNAME = "[INPUT YOUR API_USERNAME]";
+    const API_PASSWORD = "[INPUT YOUR API_PASSWORD]";
+    const PATTERN_ID = "[INPUT YOUR API_PASSWORD]";
+    const BUSINESS_UNIT_ID = "[INPUT YOUR API_PASSWORD]";
+    const MKT_PLACE_ID = "[INPUT YOUR API_PASSWORD]";
     const ENV_SANDBOX = "sandbox";
     const ENV_PRODUCTION = "production";
     const URL_SANDBOX = "https://sandboxapi.fitbank.com.br/main/execute";
     const URL_PRODUCTION = "https://api.fitbank.com.br/main/execute";
 
+    # gender types
     const GENDER_MALE = 0;
     const GENDER_FEMALE = 1;
     const GENDER_OTHER = 2;
 
+    # matial status
     const MARITAL_STATUS_NOTMARRIED = 0;
     const MARITAL_STATUS_MARRIED = 1;
     const MARITAL_STATUS_DIVORCED = 2;
@@ -26,13 +34,16 @@ class Configuration
     const MARITAL_STATUS_SINGLE = 5;
     const MARITAL_STATUS_OTHER = 6;
 
+    # company types
     const COMPANY_TYPE_SA = 0;
     const COMPANY_TYPE_LTDA = 1;
     const COMPANY_TYPE_MEI = 2;
 
+    # address types
     const ADDRESS_TYPE_BUSINESS = 0;
     const ADDRESS_TYPE_HOME = 1;
 
+    # document types
     const DOCUMENT_TYPE_IDENTITY_DOCUMENT_FRONT = 0;
     const DOCUMENT_TYPE_TAXNUMBER = 1;
     const DOCUMENT_TYPE_PROOF_ADDRESS = 2;
@@ -44,15 +55,14 @@ class Configuration
     const DOCUMENT_TYPE_IDENTITY_DOCUMENT = 10;
     const DOCUMENT_TYPE_MINUTE_OF_CONSTITUTION = 11;
 
+    # document formats
     const DOCUMENT_FORMAT_PDF = 0;
     const DOCUMENT_FORMAT_JPG = 1;
     const DOCUMENT_FORMAT_JPEG = 2;
     const DOCUMENT_FORMAT_TXT = 3;
     const DOCUMENT_FORMAT_PNG = 4;
 
-    const ADDRESS_TYPE_COMERCIAL = 0;
-    const ADDRESS_TYPE_RESIDENCIAL = 1;
-
+    # Person role types
     const PERSON_ROLE_TYPE_HOLDER = 0;
     const PERSON_ROLE_TYPE_PROCURATOR = 1;
     const PERSON_ROLE_TYPE_BEARER = 2;

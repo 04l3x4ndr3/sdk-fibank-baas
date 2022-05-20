@@ -10,9 +10,6 @@ require_once('../vendor/autoload.php');
 
 use \TwoPlug\SdkFitbank\Configuration as Config;
 use \TwoPlug\SdkFitbank\Common\Address;
-use \TwoPlug\SdkFitbank\Common\Person;
-use \TwoPlug\SdkFitbank\Common\Account;
-use \TwoPlug\SdkFitbank\Common\Document;
 use \TwoPlug\SdkFitbank\Common\AccountHolder;
 use TwoPlug\SdkFitbank\OnBoarding\PersonData;
 
@@ -50,7 +47,7 @@ $objAccountHolder->addAddresse(
         13,
         'Cariacica',
         'Espirito Santo',
-        Config::ADDRESS_TYPE_RESIDENCIAL,
+        Config::ADDRESS_TYPE_HOME,
         'Brasil',
         'Tr3 1503'
     )

@@ -78,8 +78,8 @@ class CallApi
      */
     private function parseResponse($response): object
     {
-        $responseObject = (object)[];
-        $responseObject->data = json_decode($response->getBody()->getContents());
+        //$responseObject = (object)[];
+        $responseObject = json_decode($response->getBody()->getContents());
         $responseObject->statusCode = $response->getStatusCode();
 
         return $responseObject;

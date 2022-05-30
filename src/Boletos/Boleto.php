@@ -125,6 +125,16 @@ class Boleto
     }
 
     /**
+     * @return Configuration
+     */
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
+    }
+
+
+
+    /**
      * @return int|null
      */
     public function getGroupTemplate(): ?int
@@ -581,10 +591,10 @@ class Boleto
      * @return object
      * @throws GuzzleException
      */
-    public function generateBoleto(Boleto $boleto = null): object
+    public function generateBoleto(?Boleto $boleto = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $boleto->toArray() ?? $this->toArray();
+        $data = (isset($boleto)) ? $boleto->toArray() : $this->toArray();
         return $http->call('GenerateBoleto', $data);
     }
 

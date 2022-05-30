@@ -15,13 +15,13 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 class PixKey
 {
     private Configuration $configuration;
-    private string $pixKey;
-    private string $taxNumber;
-    private string $pixKeyType;
-    private string $bank;
-    private string $bankBranch;
-    private string $bankAccount;
-    private string $bankAccountDigit;
+    private ?string $pixKey;
+    private ?string $taxNumber;
+    private ?string $pixKeyType;
+    private ?string $bank;
+    private ?string $bankBranch;
+    private ?string $bankAccount;
+    private ?string $bankAccountDigit;
 
     /**
      * @param string|null $pixKey

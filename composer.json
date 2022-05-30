@@ -1,7 +1,6 @@
 {
   "name": "two_plug/sdk-fitbank-baas",
   "description": "SDK da API Bank As A Service - FITBANK",
-  "version": "dev-0.1.0",
   "minimum-stability": "stable",
   "license": "MIT",
   "type": "library",

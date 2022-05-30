@@ -320,14 +320,30 @@ class PixKey
     }
 
     /**
-     * @param PixKey|null $pixKey
+     * @param string|null $TaxNumber
+     * @param string|null $Bank
+     * @param string|null $BankBranch
+     * @param string|null $BankAccount
+     * @param string|null $BankAccountDigit
      * @return object
      * @throws GuzzleException
      */
-    public function getPixKeys(?PixKey $pixKey = null): object
+    public function getPixKeys(
+        ?string $TaxNumber = null,
+        ?string $Bank = null,
+        ?string $BankBranch = null,
+        ?string $BankAccount = null,
+        ?string $BankAccountDigit = null
+    ): object
     {
         $http = new CallApi($this->configuration);
-        $data = (isset($pixKey)) ? $pixKey->toArray() : $this->toArray();
+        $data = [
+            "TaxNumber" => $TaxNumber ?? $this->taxNumber,
+            "Bank" => $Bank ?? $this->bank,
+            "BankBranch" => $BankBranch ?? $this->bankBranch,
+            "BankAccount" => $BankAccount ?? $this->bankAccount,
+            "BankAccountDigit" => $BankAccountDigit ?? $this->bankAccountDigit,
+        ];
         return $http->call('GetPixKeys', $data);
     }
 }

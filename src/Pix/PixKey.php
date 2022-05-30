@@ -189,10 +189,10 @@ class PixKey
      * @return object
      * @throws GuzzleException
      */
-    public function createPixKey(PixKey $pixKey): object
+    public function createPixKey(?PixKey $pixKey = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $pixKey->toArray();
+        $data = $pixKey->toArray() || $this->toArray();
         return $http->call('CreatePixKey', $data);
     }
 
@@ -320,14 +320,14 @@ class PixKey
     }
 
     /**
-     * @param PixKey $pixKey
+     * @param PixKey|null $pixKey
      * @return object
      * @throws GuzzleException
      */
-    public function getPixKeys(PixKey $pixKey): object
+    public function getPixKeys(?PixKey $pixKey = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $pixKey->toArray();
+        $data = $pixKey->toArray() ?? $this->toArray();
         return $http->call('GetPixKeys', $data);
     }
 }

@@ -15,19 +15,19 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 class GPS
 {
     private Configuration $configuration;
-    private string $taxNumber;
-    private string $contributorTaxNumber;
-    private float $principalValue;
-    private float $fineInterestValue;
-    private float $otherValues;
-    private string $paymentDate;
-    private string $dueDate;
-    private string $identifier;
-    private int $paymentCode;
-    private string $referenceNumber;
-    private string $jurisdictionDate;
-    private int $rateValueType;
-    private float $rateValue;
+    private ?string $taxNumber;
+    private ?string $contributorTaxNumber;
+    private ?float $principalValue;
+    private ?float $fineInterestValue;
+    private ?float $otherValues;
+    private ?string $paymentDate;
+    private ?string $dueDate;
+    private ?string $identifier;
+    private ?int $paymentCode;
+    private ?string $referenceNumber;
+    private ?string $jurisdictionDate;
+    private ?int $rateValueType;
+    private ?float $rateValue;
 
     /**
      * @param string|null $taxNumber
@@ -71,6 +71,14 @@ class GPS
         $this->jurisdictionDate = $jurisdictionDate;
         $this->rateValueType = $rateValueType;
         $this->rateValue = $rateValue;
+    }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
     }
 
     /**
@@ -316,10 +324,10 @@ class GPS
      * @return object
      * @throws GuzzleException
      */
-    public function generatePaymentFGTS(GPS $gps): object
+    public function generatePaymentFGTS(?GPS $gps = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $gps->toArray();
+        $data = (isset($gps)) ? $gps->toArray() : $this->toArray();
         return $http->call('GeneratePaymentGPS', $data);
     }
 

@@ -36,7 +36,7 @@ class Account extends AccountHolder
     public function newAccount(?Account $account = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $account->toArray() ?? parent::toArray();
+        $data = (isset($account)) ? $account->toArray() : parent::toArray();
         return $http->call('NewAccount', $data);
     }
 

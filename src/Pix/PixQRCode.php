@@ -15,7 +15,6 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 class PixQRCode
 {
 
-
     public function cancelPixOut(int $DocumentNumber, int $Bank, int $BankBranch, int $BankAccount, int $BankAccountDigit): object
     {
         $http = new CallApi($this->configuration);

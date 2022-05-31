@@ -2,11 +2,10 @@
 
 namespace TwoPlug\SdkFitbank\Helpers;
 
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use TwoPlug\SdkFitbank\Configuration as Config;
-use stdClass;
+use TwoPlug\SdkFitbank\Errors\ClientError;
 
 class CallApi
 {
@@ -30,8 +29,8 @@ class CallApi
         $b64 = base64_encode("{$username}:{$password}");
 
         $this->header = [
-            'User-Agent' => 'SdkFitbank/1.0',
-            'Accept' => 'application/json',
+            'User-Agent' => 'SDKFitbank/1.0',
+            'Accept' => 'Application/json',
             'Authorization' => "Basic {$b64}"
         ];
     }
@@ -48,7 +47,7 @@ class CallApi
     /**
      * @param string $method
      * @param array $data
-     * @return stdClass
+     * @return object
      * @throws GuzzleException
      */
     public function call(string $method, array $data): object
@@ -67,7 +66,7 @@ class CallApi
             ]);
 
             return $this->parseResponse($response);
-        } catch (ClientException $e) {
+        } catch (ClientError $e) {
             $response = $e->getResponse();
             return $this->parseResponse($response);
         }

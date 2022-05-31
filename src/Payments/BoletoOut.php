@@ -15,35 +15,34 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 class BoletoOut
 {
     private Configuration $configuration;
-
-    private string $name;
-    private string $taxNumber;
-    private string $barcode;
-    private string $beneficiaryName;
-    private string $guarantorTaxNumber;
-    private string $guarantorName;
-    private string $payerTaxNumber;
-    private string $payerName;
-    private string $mailToSend;
-    private string $phoneToSend;
-    private float $principalValue;
-    private float $discountValue;
-    private float $extraValue;
-    private string $paymentDate;
-    private string $dueDate;
-    private string $feePayerFullName;
-    private string $feePayerTaxNumber;
-    private string $feePayerMail;
-    private string $feePayerPhone;
-    private int $feePayerBank;
-    private string $feePayerBankBranch;
-    private string $feePayerBankAccount;
-    private string $feePayerBankAccountDigit;
-    private array $tags;
-    private string $description;
-    private string $identifier;
-    private int $rateValueType;
-    private int $rateValue;
+    private ?string $name;
+    private ?string $taxNumber;
+    private ?string $barcode;
+    private ?string $beneficiaryName;
+    private ?string $guarantorTaxNumber;
+    private ?string $guarantorName;
+    private ?string $payerTaxNumber;
+    private ?string $payerName;
+    private ?string $mailToSend;
+    private ?string $phoneToSend;
+    private ?float $principalValue;
+    private ?float $discountValue;
+    private ?float $extraValue;
+    private ?string $paymentDate;
+    private ?string $dueDate;
+    private ?string $feePayerFullName;
+    private ?string $feePayerTaxNumber;
+    private ?string $feePayerMail;
+    private ?string $feePayerPhone;
+    private ?int $feePayerBank;
+    private ?string $feePayerBankBranch;
+    private ?string $feePayerBankAccount;
+    private ?string $feePayerBankAccountDigit;
+    private ?array $tags;
+    private ?string $description;
+    private ?string $identifier;
+    private ?int $rateValueType;
+    private ?int $rateValue;
 
     /**
      * @param string|null $name
@@ -634,10 +633,10 @@ class BoletoOut
      * @return object
      * @throws GuzzleException
      */
-    public function generateBoletoOut(BoletoOut $boleto): object
+    public function generateBoletoOut(?BoletoOut $boleto = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $boleto->toArray();
+        $data = (isset($boleto)) ? $boleto->toArray() : $this->toArray();
         return $http->call('GenerateBoletoOut', $data);
     }
 
@@ -690,16 +689,16 @@ class BoletoOut
     }
 
     /**
-     * @param string $Taxnumber
+     * @param string $TaxNumber
      * @param string $Barcode
      * @return object
      * @throws GuzzleException
      */
-    public function getInfosCIPByBarcode(string $Taxnumber, string $Barcode): object
+    public function getInfosCIPByBarcode(string $TaxNumber, string $Barcode): object
     {
         $http = new CallApi($this->configuration);
         $data = [
-            "Taxnumber" => $Taxnumber,
+            "TaxNumber" => $TaxNumber,
             "Barcode" => $Barcode
         ];
         return $http->call('GetInfosCIPByBarcode', $data);

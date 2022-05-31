@@ -8,8 +8,8 @@
 
 namespace TwoPlug\SdkFitbank\Extras;
 
-use GuzzleHttp\Exception\GuzzleException;
 use TwoPlug\SdkFitbank\Configuration;
+use GuzzleHttp\Exception\GuzzleException;
 use TwoPlug\SdkFitbank\Helpers\CallApi;
 
 class TopUp
@@ -51,7 +51,6 @@ class TopUp
         $this->productKey = $productKey;
         $this->tags = $tags;
         $this->documentNumber = $documentNumber;
-
     }
 
     /**
@@ -252,14 +251,14 @@ class TopUp
     }
 
     /**
-     * @param TopUp $topUp
+     * @param TopUp|null $topUp
      * @return object
      * @throws GuzzleException
      */
-    public function generateTopUp(TopUp $topUp): object
+    public function generateTopUp(?TopUp $topUp = null): object
     {
         $http = new CallApi($this->configuration);
-        $topUp = $topUp->toArray() ?? $this->toArray();
+        $topUp = (isset($topUp)) ? $topUp->toArray() : $this->toArray();
         $data = [
             'ContractIdentifier' => $topUp->getContractIdentifier(),
             'TaxNumber' => $topUp->getTaxNumber(),

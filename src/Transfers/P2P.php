@@ -15,13 +15,13 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 class P2P
 {
     private Configuration $configuration;
-    private string $fromTaxNumber;
-    private string $toTaxNumber;
-    private float $value;
-    private float $rateValue;
-    private string $transferDate;
-    private string $identifier;
-    private string $description;
+    private ?string $fromTaxNumber;
+    private ?string $toTaxNumber;
+    private ?float $value;
+    private ?float $rateValue;
+    private ?string $transferDate;
+    private ?string $identifier;
+    private ?string $description;
 
     /**
      * @param string|null $fromTaxNumber
@@ -51,15 +51,20 @@ class P2P
         $this->description = $description;
     }
 
+    /**
+     * @return Configuration
+     */
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
+    }
 
     /**
      * @param Configuration $configuration
-     * @return $this
      */
-    public function setConfiguration(Configuration $configuration): self
+    public function setConfiguration(Configuration $configuration): void
     {
         $this->configuration = $configuration;
-        return $this;
     }
 
     /**
@@ -174,7 +179,6 @@ class P2P
         $this->description = $description;
     }
 
-
     /**
      * @return array
      */
@@ -196,10 +200,10 @@ class P2P
      * @return object
      * @throws GuzzleException
      */
-    public function internalTransfer(P2P $p2p): object
+    public function internalTransfer(?P2P $p2p = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $p2p->toArray();
+        $data = (isset($p2p)) ? $p2p->toArray() : $this->toArray();
         return $http->call('InternalTransfer', $data);
     }
 

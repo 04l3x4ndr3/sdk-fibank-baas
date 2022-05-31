@@ -98,6 +98,14 @@ class NominalCard
     }
 
     /**
+     * @return Configuration
+     */
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
+    }
+
+    /**
      * @return string
      */
     public function getIdentifierProduct(): string
@@ -406,10 +414,10 @@ class NominalCard
      * @param NominalCard $card
      * @return object
      */
-    public function requestCard(NominalCard $card): object
+    public function requestCard(?NominalCard $card = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $card->toArray();
+        $data = (isset($card)) ? $card->toArray() : $this->toArray();
         return $http->call('RequestCard', $data);
     }
 

@@ -13,21 +13,21 @@ use TwoPlug\SdkFitbank\Configuration;
 class TransferOut
 {
     private Configuration $configuration;
-    private string $fromTaxNumber;
-    private string $toTaxNumber;
-    private string $toName;
-    private int $bank;
-    private int $bankBranch;
-    private int $bankAccount;
-    private int $bankAccountDigit;
-    private int $accountType;
-    private float $value;
-    private float $rateValue;
-    private string $identifier;
-    private int $rateValueType;
-    private array $tags;
-    private string $description;
-    private string $paymentDate;
+    private ?string $fromTaxNumber;
+    private ?string $toTaxNumber;
+    private ?string $toName;
+    private ?int $bank;
+    private ?int $bankBranch;
+    private ?int $bankAccount;
+    private ?int $bankAccountDigit;
+    private ?int $accountType;
+    private ?float $value;
+    private ?float $rateValue;
+    private ?string $identifier;
+    private ?int $rateValueType;
+    private ?array $tags;
+    private ?string $description;
+    private ?string $paymentDate;
 
     /**
      * @param string|null $fromTaxNumber
@@ -81,15 +81,260 @@ class TransferOut
         $this->paymentDate = $paymentDate;
     }
 
+    /**
+     * @return Configuration
+     */
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
+    }
 
     /**
      * @param Configuration $configuration
-     * @return $this
      */
-    public function setConfiguration(Configuration $configuration): self
+    public function setConfiguration(Configuration $configuration): void
     {
         $this->configuration = $configuration;
-        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFromTaxNumber(): ?string
+    {
+        return $this->fromTaxNumber;
+    }
+
+    /**
+     * @param string|null $fromTaxNumber
+     */
+    public function setFromTaxNumber(?string $fromTaxNumber): void
+    {
+        $this->fromTaxNumber = $fromTaxNumber;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getToTaxNumber(): ?string
+    {
+        return $this->toTaxNumber;
+    }
+
+    /**
+     * @param string|null $toTaxNumber
+     */
+    public function setToTaxNumber(?string $toTaxNumber): void
+    {
+        $this->toTaxNumber = $toTaxNumber;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getToName(): ?string
+    {
+        return $this->toName;
+    }
+
+    /**
+     * @param string|null $toName
+     */
+    public function setToName(?string $toName): void
+    {
+        $this->toName = $toName;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getBank(): ?int
+    {
+        return $this->bank;
+    }
+
+    /**
+     * @param int|null $bank
+     */
+    public function setBank(?int $bank): void
+    {
+        $this->bank = $bank;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getBankBranch(): ?int
+    {
+        return $this->bankBranch;
+    }
+
+    /**
+     * @param int|null $bankBranch
+     */
+    public function setBankBranch(?int $bankBranch): void
+    {
+        $this->bankBranch = $bankBranch;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getBankAccount(): ?int
+    {
+        return $this->bankAccount;
+    }
+
+    /**
+     * @param int|null $bankAccount
+     */
+    public function setBankAccount(?int $bankAccount): void
+    {
+        $this->bankAccount = $bankAccount;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getBankAccountDigit(): ?int
+    {
+        return $this->bankAccountDigit;
+    }
+
+    /**
+     * @param int|null $bankAccountDigit
+     */
+    public function setBankAccountDigit(?int $bankAccountDigit): void
+    {
+        $this->bankAccountDigit = $bankAccountDigit;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getAccountType(): ?int
+    {
+        return $this->accountType;
+    }
+
+    /**
+     * @param int|null $accountType
+     */
+    public function setAccountType(?int $accountType): void
+    {
+        $this->accountType = $accountType;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getValue(): ?float
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param float|null $value
+     */
+    public function setValue(?float $value): void
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getRateValue(): ?float
+    {
+        return $this->rateValue;
+    }
+
+    /**
+     * @param float|null $rateValue
+     */
+    public function setRateValue(?float $rateValue): void
+    {
+        $this->rateValue = $rateValue;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * @param string|null $identifier
+     */
+    public function setIdentifier(?string $identifier): void
+    {
+        $this->identifier = $identifier;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getRateValueType(): ?int
+    {
+        return $this->rateValueType;
+    }
+
+    /**
+     * @param int|null $rateValueType
+     */
+    public function setRateValueType(?int $rateValueType): void
+    {
+        $this->rateValueType = $rateValueType;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getTags(): ?array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param array|null $tags
+     */
+    public function setTags(?array $tags): void
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $description
+     */
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPaymentDate(): ?string
+    {
+        return $this->paymentDate;
+    }
+
+    /**
+     * @param string|null $paymentDate
+     */
+    public function setPaymentDate(?string $paymentDate): void
+    {
+        $this->paymentDate = $paymentDate;
     }
 
     /**
@@ -120,10 +365,10 @@ class TransferOut
      * @param TransferOut $out
      * @return object
      */
-    public function moneyTransfer(TransferOut $out): object
+    public function moneyTransfer(?TransferOut $out = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $out->toArray();
+        $data = (isset($out)) ? $out->toArray() : $this->toArray();
         return $http->call('MoneyTransfer', $data);
     }
 

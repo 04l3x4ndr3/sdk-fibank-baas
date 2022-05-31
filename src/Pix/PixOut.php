@@ -15,57 +15,56 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 class PixOut
 {
     private Configuration $configuration;
-    private string $taxNumber;
-    private string $bank;
-    private string $bankBranch;
-    private string $bankAccount;
-    private string $bankAccountDigit;
-    private string $toTaxNumber;
-    private string $toName;
-    private string $toBank;
-    private string $toBankBranch;
-    private string $toBankAccount;
-    private string $toBankAccountDigit;
-    private float $value;
-    private string $PixKey;
-    private int $pixKeyType;
-    private int $AccountType;
-    private int $rateValue;
-    private string $identifier;
-    private string $paymentDate;
-//$tags":{"RefundPix":"RefundPix"},
-    private string $description;
-    private string $entriesName;
-    private string $entriesTaxNumber;
-    private string $entriesValue;
-    private string $entriesDescription;
-    private string $entriesBank;
-    private string $entriesBankBranch;
-    private string $entriesBankAccount;
-    private string $entriesBankAccountDigit;
-    private string $onlineTransfer;
-    private string $searchProtocol;
-    private string $customerMessage;
-    private int $transactionPurpose;
-    private int $agentModality;
-    private int $transactionDetailsType;
-    private float $transactionDetailsValue;
+    private ?string $taxNumber;
+    private ?string $bank;
+    private ?string $bankBranch;
+    private ?string $bankAccount;
+    private ?string $bankAccountDigit;
+    private ?string $toTaxNumber;
+    private ?string $toName;
+    private ?string $toBank;
+    private ?string $toBankBranch;
+    private ?string $toBankAccount;
+    private ?string $toBankAccountDigit;
+    private ?float $value;
+    private ?string $PixKey;
+    private ?int $pixKeyType;
+    private ?int $AccountType;
+    private ?int $rateValue;
+    private ?string $identifier;
+    private ?string $paymentDate;
+    private ?string $description;
+    private ?string $entriesName;
+    private ?string $entriesTaxNumber;
+    private ?string $entriesValue;
+    private ?string $entriesDescription;
+    private ?string $entriesBank;
+    private ?string $entriesBankBranch;
+    private ?string $entriesBankAccount;
+    private ?string $entriesBankAccountDigit;
+    private ?string $onlineTransfer;
+    private ?string $searchProtocol;
+    private ?string $customerMessage;
+    private ?int $transactionPurpose;
+    private ?int $agentModality;
+    private ?int $transactionDetailsType;
+    private ?float $transactionDetailsValue;
 
     /**
-     * @param string $taxNumber
-     * @param string $bank
-     * @param string $bankBranch
-     * @param string $bankAccount
-     * @param string $bankAccountDigit
-     * @param string $toTaxNumber
-     * @param string $toName
-     * @param string $toBank
-     * @param string $toBankBranch
-     * @param string $toBankAccount
-     * @param string $toBankAccountDigit
-     * @param float $value
-     * @param string $identifier
-     * @param string $paymentDate
+     * @param string|null $taxNumber
+     * @param string|null $bank
+     * @param string|null $bankBranch
+     * @param string|null $bankAccount
+     * @param string|null $bankAccountDigit
+     * @param string|null $toTaxNumber
+     * @param string|null $toName
+     * @param string|null $toBank
+     * @param string|null $toBankBranch
+     * @param string|null $toBankAccount
+     * @param string|null $toBankAccountDigit
+     * @param float|null $value
+     * @param string|null $identifier
+     * @param string|null $paymentDate
      * @param string|null $PixKey
      * @param int|null $pixKeyType
      * @param int|null $AccountType
@@ -83,35 +82,35 @@ class PixOut
      * @param string|null $customerMessage
      * @param bool $onlineTransfer
      */
-    public function __construct(string  $taxNumber,
-                                string  $bank,
-                                string  $bankBranch,
-                                string  $bankAccount,
-                                string  $bankAccountDigit,
-                                string  $toTaxNumber,
-                                string  $toName,
-                                string  $toBank,
-                                string  $toBankBranch,
-                                string  $toBankAccount,
-                                string  $toBankAccountDigit,
-                                float   $value,
-                                string  $identifier,
-                                string  $paymentDate,
-                                ?string $PixKey,
-                                ?int    $pixKeyType,
-                                ?int    $AccountType,
-                                ?int    $rateValue,
-                                ?string $description,
-                                ?string $entriesName,
-                                ?string $entriesTaxNumber,
-                                ?string $entriesValue,
-                                ?string $entriesDescription,
-                                ?string $entriesBank,
-                                ?string $entriesBankBranch,
-                                ?string $entriesBankAccount,
-                                ?string $entriesBankAccountDigit,
-                                ?string $searchProtocol,
-                                ?string $customerMessage,
+    public function __construct(?string $taxNumber = null,
+                                ?string $bank = null,
+                                ?string $bankBranch = null,
+                                ?string $bankAccount = null,
+                                ?string $bankAccountDigit = null,
+                                ?string $toTaxNumber = null,
+                                ?string $toName = null,
+                                ?string $toBank = null,
+                                ?string $toBankBranch = null,
+                                ?string $toBankAccount = null,
+                                ?string $toBankAccountDigit = null,
+                                ?float  $value = null,
+                                ?string $identifier = null,
+                                ?string $paymentDate = null,
+                                ?string $PixKey = null,
+                                ?int    $pixKeyType = null,
+                                ?int    $AccountType = null,
+                                ?int    $rateValue = null,
+                                ?string $description = null,
+                                ?string $entriesName = null,
+                                ?string $entriesTaxNumber = null,
+                                ?string $entriesValue = null,
+                                ?string $entriesDescription = null,
+                                ?string $entriesBank = null,
+                                ?string $entriesBankBranch = null,
+                                ?string $entriesBankAccount = null,
+                                ?string $entriesBankAccountDigit = null,
+                                ?string $searchProtocol = null,
+                                ?string $customerMessage = null,
                                 bool    $onlineTransfer = true)
     {
         $this->configuration = new Configuration();
@@ -148,6 +147,13 @@ class PixOut
         $this->customerMessage = $customerMessage;
     }
 
+    /**
+     * @return Configuration
+     */
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
+    }
 
     /**
      * @param Configuration $configuration
@@ -158,545 +164,545 @@ class PixOut
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTaxNumber(): string
+    public function getTaxNumber(): ?string
     {
         return $this->taxNumber;
     }
 
     /**
-     * @param string $taxNumber
+     * @param string|null $taxNumber
      */
-    public function setTaxNumber(string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): void
     {
         $this->taxNumber = $taxNumber;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getBank(): string
+    public function getBank(): ?string
     {
         return $this->bank;
     }
 
     /**
-     * @param string $bank
+     * @param string|null $bank
      */
-    public function setBank(string $bank): void
+    public function setBank(?string $bank): void
     {
         $this->bank = $bank;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getBankBranch(): string
+    public function getBankBranch(): ?string
     {
         return $this->bankBranch;
     }
 
     /**
-     * @param string $bankBranch
+     * @param string|null $bankBranch
      */
-    public function setBankBranch(string $bankBranch): void
+    public function setBankBranch(?string $bankBranch): void
     {
         $this->bankBranch = $bankBranch;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getBankAccount(): string
+    public function getBankAccount(): ?string
     {
         return $this->bankAccount;
     }
 
     /**
-     * @param string $bankAccount
+     * @param string|null $bankAccount
      */
-    public function setBankAccount(string $bankAccount): void
+    public function setBankAccount(?string $bankAccount): void
     {
         $this->bankAccount = $bankAccount;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getBankAccountDigit(): string
+    public function getBankAccountDigit(): ?string
     {
         return $this->bankAccountDigit;
     }
 
     /**
-     * @param string $bankAccountDigit
+     * @param string|null $bankAccountDigit
      */
-    public function setBankAccountDigit(string $bankAccountDigit): void
+    public function setBankAccountDigit(?string $bankAccountDigit): void
     {
         $this->bankAccountDigit = $bankAccountDigit;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getToTaxNumber(): string
+    public function getToTaxNumber(): ?string
     {
         return $this->toTaxNumber;
     }
 
     /**
-     * @param string $toTaxNumber
+     * @param string|null $toTaxNumber
      */
-    public function setToTaxNumber(string $toTaxNumber): void
+    public function setToTaxNumber(?string $toTaxNumber): void
     {
         $this->toTaxNumber = $toTaxNumber;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getToName(): string
+    public function getToName(): ?string
     {
         return $this->toName;
     }
 
     /**
-     * @param string $toName
+     * @param string|null $toName
      */
-    public function setToName(string $toName): void
+    public function setToName(?string $toName): void
     {
         $this->toName = $toName;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getToBank(): string
+    public function getToBank(): ?string
     {
         return $this->toBank;
     }
 
     /**
-     * @param string $toBank
+     * @param string|null $toBank
      */
-    public function setToBank(string $toBank): void
+    public function setToBank(?string $toBank): void
     {
         $this->toBank = $toBank;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getToBankBranch(): string
+    public function getToBankBranch(): ?string
     {
         return $this->toBankBranch;
     }
 
     /**
-     * @param string $toBankBranch
+     * @param string|null $toBankBranch
      */
-    public function setToBankBranch(string $toBankBranch): void
+    public function setToBankBranch(?string $toBankBranch): void
     {
         $this->toBankBranch = $toBankBranch;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getToBankAccount(): string
+    public function getToBankAccount(): ?string
     {
         return $this->toBankAccount;
     }
 
     /**
-     * @param string $toBankAccount
+     * @param string|null $toBankAccount
      */
-    public function setToBankAccount(string $toBankAccount): void
+    public function setToBankAccount(?string $toBankAccount): void
     {
         $this->toBankAccount = $toBankAccount;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getToBankAccountDigit(): string
+    public function getToBankAccountDigit(): ?string
     {
         return $this->toBankAccountDigit;
     }
 
     /**
-     * @param string $toBankAccountDigit
+     * @param string|null $toBankAccountDigit
      */
-    public function setToBankAccountDigit(string $toBankAccountDigit): void
+    public function setToBankAccountDigit(?string $toBankAccountDigit): void
     {
         $this->toBankAccountDigit = $toBankAccountDigit;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getValue(): float
+    public function getValue(): ?float
     {
         return $this->value;
     }
 
     /**
-     * @param float $value
+     * @param float|null $value
      */
-    public function setValue(float $value): void
+    public function setValue(?float $value): void
     {
         $this->value = $value;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPixKey(): string
+    public function getPixKey(): ?string
     {
         return $this->PixKey;
     }
 
     /**
-     * @param string $PixKey
+     * @param string|null $PixKey
      */
-    public function setPixKey(string $PixKey): void
+    public function setPixKey(?string $PixKey): void
     {
         $this->PixKey = $PixKey;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPixKeyType(): int
+    public function getPixKeyType(): ?int
     {
         return $this->pixKeyType;
     }
 
     /**
-     * @param int $pixKeyType
+     * @param int|null $pixKeyType
      */
-    public function setPixKeyType(int $pixKeyType): void
+    public function setPixKeyType(?int $pixKeyType): void
     {
         $this->pixKeyType = $pixKeyType;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getAccountType(): int
+    public function getAccountType(): ?int
     {
         return $this->AccountType;
     }
 
     /**
-     * @param int $AccountType
+     * @param int|null $AccountType
      */
-    public function setAccountType(int $AccountType): void
+    public function setAccountType(?int $AccountType): void
     {
         $this->AccountType = $AccountType;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getRateValue(): int
+    public function getRateValue(): ?int
     {
         return $this->rateValue;
     }
 
     /**
-     * @param int $rateValue
+     * @param int|null $rateValue
      */
-    public function setRateValue(int $rateValue): void
+    public function setRateValue(?int $rateValue): void
     {
         $this->rateValue = $rateValue;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getIdentifier(): string
+    public function getIdentifier(): ?string
     {
         return $this->identifier;
     }
 
     /**
-     * @param string $identifier
+     * @param string|null $identifier
      */
-    public function setIdentifier(string $identifier): void
+    public function setIdentifier(?string $identifier): void
     {
         $this->identifier = $identifier;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPaymentDate(): string
+    public function getPaymentDate(): ?string
     {
         return $this->paymentDate;
     }
 
     /**
-     * @param string $paymentDate
+     * @param string|null $paymentDate
      */
-    public function setPaymentDate(string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): void
     {
         $this->paymentDate = $paymentDate;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      */
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEntriesName(): string
+    public function getEntriesName(): ?string
     {
         return $this->entriesName;
     }
 
     /**
-     * @param string $entriesName
+     * @param string|null $entriesName
      */
-    public function setEntriesName(string $entriesName): void
+    public function setEntriesName(?string $entriesName): void
     {
         $this->entriesName = $entriesName;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEntriesTaxNumber(): string
+    public function getEntriesTaxNumber(): ?string
     {
         return $this->entriesTaxNumber;
     }
 
     /**
-     * @param string $entriesTaxNumber
+     * @param string|null $entriesTaxNumber
      */
-    public function setEntriesTaxNumber(string $entriesTaxNumber): void
+    public function setEntriesTaxNumber(?string $entriesTaxNumber): void
     {
         $this->entriesTaxNumber = $entriesTaxNumber;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEntriesValue(): string
+    public function getEntriesValue(): ?string
     {
         return $this->entriesValue;
     }
 
     /**
-     * @param string $entriesValue
+     * @param string|null $entriesValue
      */
-    public function setEntriesValue(string $entriesValue): void
+    public function setEntriesValue(?string $entriesValue): void
     {
         $this->entriesValue = $entriesValue;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEntriesDescription(): string
+    public function getEntriesDescription(): ?string
     {
         return $this->entriesDescription;
     }
 
     /**
-     * @param string $entriesDescription
+     * @param string|null $entriesDescription
      */
-    public function setEntriesDescription(string $entriesDescription): void
+    public function setEntriesDescription(?string $entriesDescription): void
     {
         $this->entriesDescription = $entriesDescription;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEntriesBank(): string
+    public function getEntriesBank(): ?string
     {
         return $this->entriesBank;
     }
 
     /**
-     * @param string $entriesBank
+     * @param string|null $entriesBank
      */
-    public function setEntriesBank(string $entriesBank): void
+    public function setEntriesBank(?string $entriesBank): void
     {
         $this->entriesBank = $entriesBank;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEntriesBankBranch(): string
+    public function getEntriesBankBranch(): ?string
     {
         return $this->entriesBankBranch;
     }
 
     /**
-     * @param string $entriesBankBranch
+     * @param string|null $entriesBankBranch
      */
-    public function setEntriesBankBranch(string $entriesBankBranch): void
+    public function setEntriesBankBranch(?string $entriesBankBranch): void
     {
         $this->entriesBankBranch = $entriesBankBranch;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEntriesBankAccount(): string
+    public function getEntriesBankAccount(): ?string
     {
         return $this->entriesBankAccount;
     }
 
     /**
-     * @param string $entriesBankAccount
+     * @param string|null $entriesBankAccount
      */
-    public function setEntriesBankAccount(string $entriesBankAccount): void
+    public function setEntriesBankAccount(?string $entriesBankAccount): void
     {
         $this->entriesBankAccount = $entriesBankAccount;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEntriesBankAccountDigit(): string
+    public function getEntriesBankAccountDigit(): ?string
     {
         return $this->entriesBankAccountDigit;
     }
 
     /**
-     * @param string $entriesBankAccountDigit
+     * @param string|null $entriesBankAccountDigit
      */
-    public function setEntriesBankAccountDigit(string $entriesBankAccountDigit): void
+    public function setEntriesBankAccountDigit(?string $entriesBankAccountDigit): void
     {
         $this->entriesBankAccountDigit = $entriesBankAccountDigit;
     }
 
     /**
-     * @return string
+     * @return bool|string|null
      */
-    public function getOnlineTransfer(): string
+    public function getOnlineTransfer(): bool|string|null
     {
         return $this->onlineTransfer;
     }
 
     /**
-     * @param string $onlineTransfer
+     * @param bool|string|null $onlineTransfer
      */
-    public function setOnlineTransfer(string $onlineTransfer): void
+    public function setOnlineTransfer(bool|string|null $onlineTransfer): void
     {
         $this->onlineTransfer = $onlineTransfer;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSearchProtocol(): string
+    public function getSearchProtocol(): ?string
     {
         return $this->searchProtocol;
     }
 
     /**
-     * @param string $searchProtocol
+     * @param string|null $searchProtocol
      */
-    public function setSearchProtocol(string $searchProtocol): void
+    public function setSearchProtocol(?string $searchProtocol): void
     {
         $this->searchProtocol = $searchProtocol;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCustomerMessage(): string
+    public function getCustomerMessage(): ?string
     {
         return $this->customerMessage;
     }
 
     /**
-     * @param string $customerMessage
+     * @param string|null $customerMessage
      */
-    public function setCustomerMessage(string $customerMessage): void
+    public function setCustomerMessage(?string $customerMessage): void
     {
         $this->customerMessage = $customerMessage;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTransactionPurpose(): int
+    public function getTransactionPurpose(): ?int
     {
         return $this->transactionPurpose;
     }
 
     /**
-     * @param int $transactionPurpose
+     * @param int|null $transactionPurpose
      */
-    public function setTransactionPurpose(int $transactionPurpose): void
+    public function setTransactionPurpose(?int $transactionPurpose): void
     {
         $this->transactionPurpose = $transactionPurpose;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getAgentModality(): int
+    public function getAgentModality(): ?int
     {
         return $this->agentModality;
     }
 
     /**
-     * @param int $agentModality
+     * @param int|null $agentModality
      */
-    public function setAgentModality(int $agentModality): void
+    public function setAgentModality(?int $agentModality): void
     {
         $this->agentModality = $agentModality;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTransactionDetailsType(): int
+    public function getTransactionDetailsType(): ?int
     {
         return $this->transactionDetailsType;
     }
 
     /**
-     * @param int $transactionDetailsType
+     * @param int|null $transactionDetailsType
      */
-    public function setTransactionDetailsType(int $transactionDetailsType): void
+    public function setTransactionDetailsType(?int $transactionDetailsType): void
     {
         $this->transactionDetailsType = $transactionDetailsType;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getTransactionDetailsValue(): float
+    public function getTransactionDetailsValue(): ?float
     {
         return $this->transactionDetailsValue;
     }
 
     /**
-     * @param float $transactionDetailsValue
+     * @param float|null $transactionDetailsValue
      */
-    public function setTransactionDetailsValue(float $transactionDetailsValue): void
+    public function setTransactionDetailsValue(?float $transactionDetailsValue): void
     {
         $this->transactionDetailsValue = $transactionDetailsValue;
     }
@@ -753,10 +759,10 @@ class PixOut
      * @return object
      * @throws GuzzleException
      */
-    public function generatePixOut(PixOut $pixOut): object
+    public function generatePixOut(?PixOut $pixOut = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $pixOut->toArray();
+        $data = (isset($pixOut)) ? $pixOut->toArray() : $this->toArray();
         return $http->call('GeneratePixOut', $data);
     }
 

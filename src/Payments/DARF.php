@@ -404,10 +404,10 @@ class DARF
      * @return object
      * @throws GuzzleException
      */
-    public function generatePaymentDARF(DARF $darf): object
+    public function generatePaymentDARF(?DARF $darf = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $darf->toArray();
+        $data = (isset($darf)) ? $darf->toArray() : $this->toArray();
         return $http->call('GeneratePaymentDARF', $data);
     }
 

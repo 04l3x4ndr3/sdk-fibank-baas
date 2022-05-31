@@ -132,7 +132,13 @@ class Boleto
         return $this->configuration;
     }
 
-
+    /**
+     * @param Configuration $configuration
+     */
+    public function setConfiguration(Configuration $configuration): void
+    {
+        $this->configuration = $configuration;
+    }
 
     /**
      * @return int|null
@@ -576,14 +582,6 @@ class Boleto
             "DueDate" => $this->dueDate,
             "TotalValue" => $this->totalValue
         ];
-    }
-
-    /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
     }
 
     /**

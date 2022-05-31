@@ -15,18 +15,18 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 class FGTS
 {
     private Configuration $configuration;
-    private string $taxNumber;
-    private string $contributorTaxNumber;
-    private float $principalValue;
-    private int $codeRevenue;
-    private string $barcode;
-    private int $fgtsIdentifier;
-    private int $socialConnectivityCode;
-    private int $socialConnectivityDigit;
-    private string $paymentDate;
-    private int $rateValueType;
-    private float $rateValue;
-    private string $identifier;
+    private ?string $taxNumber;
+    private ?string $contributorTaxNumber;
+    private ?float $principalValue;
+    private ?int $codeRevenue;
+    private ?string $barcode;
+    private ?int $fgtsIdentifier;
+    private ?int $socialConnectivityCode;
+    private ?int $socialConnectivityDigit;
+    private ?string $paymentDate;
+    private ?int $rateValueType;
+    private ?float $rateValue;
+    private ?string $identifier;
 
     /**
      * @param string|null $taxNumber
@@ -77,7 +77,6 @@ class FGTS
     {
         $this->configuration = $configuration;
     }
-
 
     /**
      * @return string|null
@@ -224,33 +223,33 @@ class FGTS
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getRateValueType(): int
+    public function getRateValueType(): ?int
     {
         return $this->rateValueType;
     }
 
     /**
-     * @param int $rateValueType
+     * @param int|null $rateValueType
      */
-    public function setRateValueType(int $rateValueType): void
+    public function setRateValueType(?int $rateValueType): void
     {
         $this->rateValueType = $rateValueType;
     }
 
     /**
-     * @return float|int
+     * @return float|int|null
      */
-    public function getRateValue(): float|int
+    public function getRateValue(): float|int|null
     {
         return $this->rateValue;
     }
 
     /**
-     * @param float|int $rateValue
+     * @param float|int|null $rateValue
      */
-    public function setRateValue(float|int $rateValue): void
+    public function setRateValue(float|int|null $rateValue): void
     {
         $this->rateValue = $rateValue;
     }
@@ -270,6 +269,7 @@ class FGTS
     {
         $this->identifier = $identifier;
     }
+
 
     /**
      * @return array
@@ -296,10 +296,10 @@ class FGTS
      * @return object
      * @throws GuzzleException
      */
-    public function generatePaymentFGTS(FGTS $fgts): object
+    public function generatePaymentFGTS(?FGTS $fgts = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $fgts->toArray();
+        $data = (isset($fgts)) ? $fgts->toArray() : $this->toArray();
         return $http->call('GeneratePaymentFGTS', $data);
     }
 

@@ -35,7 +35,17 @@ class Product
      * @param int|null $productQty
      * @param float|null $productValue
      */
-    public function __construct(?int $sellerPersonType, ?string $sellerName, ?string $sellerTaxNumber, ?int $receiverPersonType, ?string $receiverName, ?string $receiverTaxNumber, ?int $reference, ?int $productCode, ?string $productName, ?int $productQty, ?float $productValue)
+    public function __construct(?int    $sellerPersonType = null,
+                                ?string $sellerName = null,
+                                ?string $sellerTaxNumber = null,
+                                ?int    $receiverPersonType = null,
+                                ?string $receiverName = null,
+                                ?string $receiverTaxNumber = null,
+                                ?int    $reference = null,
+                                ?int    $productCode = null,
+                                ?string $productName = null,
+                                ?int    $productQty = null,
+                                ?float  $productValue = null)
     {
         $this->sellerPersonType = $sellerPersonType;
         $this->sellerName = $sellerName;

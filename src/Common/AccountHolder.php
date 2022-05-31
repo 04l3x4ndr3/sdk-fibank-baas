@@ -2,8 +2,6 @@
 
 namespace TwoPlug\SdkFitbank\Common;
 
-use TwoPlug\SdkFitbank\Configuration;
-
 class AccountHolder extends Person
 {
     private ?int $companyType;
@@ -310,7 +308,9 @@ class AccountHolder extends Person
         return $this;
     }
 
-
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         $_addresses = [];

@@ -127,7 +127,7 @@ class Account extends AccountHolder
             "BankBranch" => $bankBranch ?? "",
             "BankAccount" => $bankAccount ?? "",
             "BankAccountDigit" => $bankAccountDigit ?? "",
-            "OnlyBalance" => $onlyBalance,
+            "OnlyBalance" => ($onlyBalance) ? "true" : "false",
             "EntryClassificationType" => $entryClassificationType
         ];
         $call = $http->call('GetAccountEntry', $data);

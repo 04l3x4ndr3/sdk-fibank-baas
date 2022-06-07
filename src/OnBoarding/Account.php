@@ -44,7 +44,6 @@ class Account extends AccountHolder
         parent::__construct($personName, $phoneNumber, $taxNumber, $mail, $identityDocument, $motherFullName, $fatherFullName, $nationality, $birthState, $gender, $maritalStatus, $spouseName, $occupation, $birthDate, $publiclyExposedPerson, $companyType, $isCompany, $nickname, $checkPendingTransfers, $companyActivity, $constitutionDate, $bank, $bankBranch, $bankAccount, $bankAccountDigit, $addresses, $documents, $persons);
     }
 
-
     /**
      * @param Account|null $account
      * @return object
@@ -108,26 +107,26 @@ class Account extends AccountHolder
      * @param string $taxNumber
      * @param string $startDate
      * @param string $endDate
-     * @param string|null $bank
-     * @param string|null $bankBranch
-     * @param string|null $bankAccount
-     * @param string|null $bankAccountDigit
+     * @param string $bank
+     * @param string $bankBranch
+     * @param string $bankAccount
+     * @param string $bankAccountDigit
      * @param bool $onlyBalance
      * @param string $entryClassificationType
      * @return object
      * @throws GuzzleException
      */
-    public function getAccountEntry(string $taxNumber, string $startDate, string $endDate, ?string $bank = null, ?string $bankBranch = null, ?string $bankAccount = null, ?string $bankAccountDigit = null, bool $onlyBalance = false, string $entryClassificationType = "Debit"): object
+    public function getAccountEntry(string $taxNumber, string $startDate, string $endDate, string $bank = "", string $bankBranch = "", string $bankAccount = "", string $bankAccountDigit = "", bool $onlyBalance = false, string $entryClassificationType = "Debit"): object
     {
         $http = new CallApi(parent::getConfiguration());
         $data = [
             "TaxNumber" => $taxNumber,
             "StartDate" => $startDate,
             "EndDate" => $endDate,
-            "Bank" => $bank,
-            "BankBranch" => $bankBranch,
-            "BankAccount" => $bankAccount,
-            "BankAccountDigit" => $bankAccountDigit,
+            "Bank" => $bank ?? "",
+            "BankBranch" => $bankBranch ?? "",
+            "BankAccount" => $bankAccount ?? "",
+            "BankAccountDigit" => $bankAccountDigit ?? "",
             "OnlyBalance" => $onlyBalance,
             "EntryClassificationType" => $entryClassificationType
         ];
@@ -142,17 +141,17 @@ class Account extends AccountHolder
      * @param string $taxNumber
      * @param string $startDate
      * @param string $endDate
-     * @param string|null $bank
-     * @param string|null $bankBranch
-     * @param string|null $bankAccount
-     * @param string|null $bankAccountDigit
+     * @param string $bank
+     * @param string $bankBranch
+     * @param string $bankAccount
+     * @param string $bankAccountDigit
      * @param bool $onlyBalance
      * @param int $pageSize
      * @param int $pageIndex
      * @return object
      * @throws GuzzleException
      */
-    public function getAccountEntryPaged(string $taxNumber, string $startDate, string $endDate, ?string $bank = null, ?string $bankBranch = null, ?string $bankAccount = null, ?string $bankAccountDigit = null, bool $onlyBalance = false, int $pageSize = 25, int $pageIndex = 0): object
+    public function getAccountEntryPaged(string $taxNumber, string $startDate, string $endDate, string $bank = "", string $bankBranch = "", string $bankAccount = "", string $bankAccountDigit = "", bool $onlyBalance = false, int $pageSize = 25, int $pageIndex = 0): object
     {
         $http = new CallApi(parent::getConfiguration());
         $data = [

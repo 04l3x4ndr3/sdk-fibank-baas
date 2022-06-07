@@ -2,8 +2,12 @@
 
 namespace TwoPlug\SdkFitbank\Common;
 
+use TwoPlug\SdkFitbank\Configuration;
+
 class Person
 {
+    private Configuration $configuration;
+
     private ?string $name;
     private ?string $taxNumber;
     private ?string $occupation;
@@ -50,6 +54,7 @@ class Person
         ?array  $personDocuments = null
     )
     {
+        $this->configuration = new Configuration();
         $this->name = $name;
         $this->taxNumber = $taxNumber;
         $this->occupation = $occupation;
@@ -74,341 +79,355 @@ class Person
     }
 
     /**
-     * @return string
+     * @return Configuration
      */
-    public function getName(): string
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
+    }
+
+    /**
+     * @param Configuration $configuration
+     */
+    public function setConfiguration(Configuration $configuration): void
+    {
+        $this->configuration = $configuration;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      */
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTaxNumber(): string
+    public function getTaxNumber(): ?string
     {
         return $this->taxNumber;
     }
 
     /**
-     * @param string $taxNumber
+     * @param string|null $taxNumber
      */
-    public function setTaxNumber(string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): void
     {
         $this->taxNumber = $taxNumber;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMail(): string
-    {
-        return $this->mail;
-    }
-
-    /**
-     * @param string $mail
-     */
-    public function setMail(string $mail): void
-    {
-        $this->mail = $mail;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOccupation(): string
+    public function getOccupation(): ?string
     {
         return $this->occupation;
     }
 
     /**
-     * @param string $occupation
+     * @param string|null $occupation
      */
-    public function setOccupation(string $occupation): void
+    public function setOccupation(?string $occupation): void
     {
         $this->occupation = $occupation;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPhone(): string
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @param string|null $mail
+     */
+    public function setMail(?string $mail): void
+    {
+        $this->mail = $mail;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
     /**
-     * @param string $phone
+     * @param string|null $phone
      */
-    public function setPhone(string $phone): void
+    public function setPhone(?string $phone): void
     {
         $this->phone = $phone;
     }
 
     /**
-     * @return int
+     * @return string|null
      */
-    public function getPersonRoleType(): int
-    {
-        return $this->personRoleType;
-    }
-
-    /**
-     * @param int $personRoleType
-     */
-    public function setPersonRoleType(int $personRoleType): void
-    {
-        $this->personRoleType = $personRoleType;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMotherFullName(): string
-    {
-        return $this->motherFullName;
-    }
-
-    /**
-     * @param string $motherFullName
-     */
-    public function setMotherFullName(string $motherFullName): void
-    {
-        $this->motherFullName = $motherFullName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFatherFullName(): string
-    {
-        return $this->fatherFullName;
-    }
-
-    /**
-     * @param string $fatherFullName
-     */
-    public function setFatherFullName(string $fatherFullName): void
-    {
-        $this->fatherFullName = $fatherFullName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNationality(): string
-    {
-        return $this->nationality;
-    }
-
-    /**
-     * @param string $nationality
-     */
-    public function setNationality(string $nationality): void
-    {
-        $this->nationality = $nationality;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBirthCity(): string
-    {
-        return $this->birthCity;
-    }
-
-    /**
-     * @param string $birthCity
-     */
-    public function setBirthCity(string $birthCity): void
-    {
-        $this->birthCity = $birthCity;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBirthState(): string
-    {
-        return $this->birthState;
-    }
-
-    /**
-     * @param string $birthState
-     */
-    public function setBirthState(string $birthState): void
-    {
-        $this->birthState = $birthState;
-    }
-
-    /**
-     * @return int
-     */
-    public function getGender(): int
-    {
-        return $this->gender;
-    }
-
-    /**
-     * @param int $gender
-     */
-    public function setGender(int $gender): void
-    {
-        $this->gender = $gender;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaritalStatus(): int
-    {
-        return $this->maritalStatus;
-    }
-
-    /**
-     * @param int $maritalStatus
-     */
-    public function setMaritalStatus(int $maritalStatus): void
-    {
-        $this->maritalStatus = $maritalStatus;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSpouseName(): string
-    {
-        return $this->spouseName;
-    }
-
-    /**
-     * @param string $spouseName
-     */
-    public function setSpouseName(string $spouseName): void
-    {
-        $this->spouseName = $spouseName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIdentityDocument(): string
-    {
-        return $this->identityDocument;
-    }
-
-    /**
-     * @param string $identityDocument
-     */
-    public function setIdentityDocument(string $identityDocument): void
-    {
-        $this->identityDocument = $identityDocument;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBirthDate(): string
-    {
-        return $this->birthDate;
-    }
-
-    /**
-     * @param string $birthDate
-     */
-    public function setBirthDate(string $birthDate): void
-    {
-        $this->birthDate = $birthDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPersonName(): string
-    {
-        return $this->personName;
-    }
-
-    /**
-     * @param string $personName
-     */
-    public function setPersonName(string $personName): void
-    {
-        $this->personName = $personName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhoneNumber(): string
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
     /**
-     * @param string $phoneNumber
+     * @param string|null $phoneNumber
      */
-    public function setPhoneNumber(string $phoneNumber): void
+    public function setPhoneNumber(?string $phoneNumber): void
     {
         $this->phoneNumber = $phoneNumber;
     }
 
     /**
-     * @return string
+     * @return int|null
      */
-    public function getNickname(): string
+    public function getPersonRoleType(): ?int
+    {
+        return $this->personRoleType;
+    }
+
+    /**
+     * @param int|null $personRoleType
+     */
+    public function setPersonRoleType(?int $personRoleType): void
+    {
+        $this->personRoleType = $personRoleType;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMotherFullName(): ?string
+    {
+        return $this->motherFullName;
+    }
+
+    /**
+     * @param string|null $motherFullName
+     */
+    public function setMotherFullName(?string $motherFullName): void
+    {
+        $this->motherFullName = $motherFullName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFatherFullName(): ?string
+    {
+        return $this->fatherFullName;
+    }
+
+    /**
+     * @param string|null $fatherFullName
+     */
+    public function setFatherFullName(?string $fatherFullName): void
+    {
+        $this->fatherFullName = $fatherFullName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNationality(): ?string
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * @param string|null $nationality
+     */
+    public function setNationality(?string $nationality): void
+    {
+        $this->nationality = $nationality;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBirthCity(): ?string
+    {
+        return $this->birthCity;
+    }
+
+    /**
+     * @param string|null $birthCity
+     */
+    public function setBirthCity(?string $birthCity): void
+    {
+        $this->birthCity = $birthCity;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBirthState(): ?string
+    {
+        return $this->birthState;
+    }
+
+    /**
+     * @param string|null $birthState
+     */
+    public function setBirthState(?string $birthState): void
+    {
+        $this->birthState = $birthState;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBirthDate(): ?string
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * @param string|null $birthDate
+     */
+    public function setBirthDate(?string $birthDate): void
+    {
+        $this->birthDate = $birthDate;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getGender(): ?int
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param int|null $gender
+     */
+    public function setGender(?int $gender): void
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMaritalStatus(): ?int
+    {
+        return $this->maritalStatus;
+    }
+
+    /**
+     * @param int|null $maritalStatus
+     */
+    public function setMaritalStatus(?int $maritalStatus): void
+    {
+        $this->maritalStatus = $maritalStatus;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSpouseName(): ?string
+    {
+        return $this->spouseName;
+    }
+
+    /**
+     * @param string|null $spouseName
+     */
+    public function setSpouseName(?string $spouseName): void
+    {
+        $this->spouseName = $spouseName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIdentityDocument(): ?string
+    {
+        return $this->identityDocument;
+    }
+
+    /**
+     * @param string|null $identityDocument
+     */
+    public function setIdentityDocument(?string $identityDocument): void
+    {
+        $this->identityDocument = $identityDocument;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPersonName(): ?string
+    {
+        return $this->personName;
+    }
+
+    /**
+     * @param string|null $personName
+     */
+    public function setPersonName(?string $personName): void
+    {
+        $this->personName = $personName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNickname(): ?string
     {
         return $this->nickname;
     }
 
     /**
-     * @param string $nickname
+     * @param string|null $nickname
      */
-    public function setNickname(string $nickname): void
+    public function setNickname(?string $nickname): void
     {
         $this->nickname = $nickname;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getPubliclyExposedPerson(): bool
+    public function getPubliclyExposedPerson(): ?bool
     {
         return $this->publiclyExposedPerson;
     }
 
     /**
-     * @param bool $publiclyExposedPerson
+     * @param bool|null $publiclyExposedPerson
      */
-    public function setPubliclyExposedPerson(bool $publiclyExposedPerson): void
+    public function setPubliclyExposedPerson(?bool $publiclyExposedPerson): void
     {
         $this->publiclyExposedPerson = $publiclyExposedPerson;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getPersonDocuments(): array
+    public function getPersonDocuments(): ?array
     {
         return $this->personDocuments;
     }
 
     /**
-     * @param Document $personDocuments
-     * @return Person
+     * @param array|null $personDocuments
      */
-    public function addPersonDocuments(Document $personDocuments): static
+    public function addPersonDocuments(?array $personDocuments): void
     {
-        $this->personDocuments[] = $personDocuments;
-        return $this;
+        $this->personDocuments = $personDocuments;
     }
 
     /**

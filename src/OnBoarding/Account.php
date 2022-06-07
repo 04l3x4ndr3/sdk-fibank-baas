@@ -133,7 +133,7 @@ class Account extends AccountHolder
         $call = $http->call('GetAccountEntry', $data);
 
         # fix api return
-        if (isset($call->data->Entry)) $call->data->Entry = json_decode($call->data->Entry);
+        if (isset($call->data->Entry)) $call->data->Entry = json_decode($call->data->Entry, false);
         return $call;
     }
 

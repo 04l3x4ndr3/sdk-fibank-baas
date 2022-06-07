@@ -12,21 +12,38 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 
 class Account extends AccountHolder
 {
-    private Configuration $configuration;
-
-    public function __construct(?string $personName = null, ?string $phoneNumber = null, ?string $taxNumber = null, ?string $mail = null, ?string $identityDocument = null, ?string $motherFullName = null, ?string $fatherFullName = null, ?string $nationality = null, ?string $birthState = null, ?int $gender = null, ?int $maritalStatus = null, ?string $spouseName = null, ?string $occupation = null, ?string $birthDate = null, ?bool $publiclyExposedPerson = null, ?int $companyType = null, ?int $isCompany = null, ?string $nickname = null, ?int $checkPendingTransfers = null, ?string $companyActivity = null, ?string $constitutionDate = null, ?string $bank = null, ?string $bankBranch = null, ?string $bankAccount = null, ?string $bankAccountDigit = null, ?array $addresses = null, ?array $documents = null, ?array $persons = null)
+    public function __construct(
+        ?string $personName = null,
+        ?string $phoneNumber = null,
+        ?string $taxNumber = null,
+        ?string $mail = null,
+        ?string $identityDocument = null,
+        ?string $motherFullName = null,
+        ?string $fatherFullName = null,
+        ?string $nationality = null,
+        ?string $birthState = null,
+        ?int    $gender = null,
+        ?int    $maritalStatus = null,
+        ?string $spouseName = null,
+        ?string $occupation = null,
+        ?string $birthDate = null,
+        ?bool   $publiclyExposedPerson = null,
+        ?int    $companyType = null,
+        ?int    $isCompany = null,
+        ?string $nickname = null,
+        ?int    $checkPendingTransfers = null,
+        ?string $companyActivity = null,
+        ?string $constitutionDate = null,
+        ?string $bank = null,
+        ?string $bankBranch = null,
+        ?string $bankAccount = null,
+        ?string $bankAccountDigit = null,
+        ?array  $addresses = null, ?array $documents = null,
+        ?array  $persons = null)
     {
         parent::__construct($personName, $phoneNumber, $taxNumber, $mail, $identityDocument, $motherFullName, $fatherFullName, $nationality, $birthState, $gender, $maritalStatus, $spouseName, $occupation, $birthDate, $publiclyExposedPerson, $companyType, $isCompany, $nickname, $checkPendingTransfers, $companyActivity, $constitutionDate, $bank, $bankBranch, $bankAccount, $bankAccountDigit, $addresses, $documents, $persons);
-        $this->configuration = new Configuration();
     }
 
-    /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
-    }
 
     /**
      * @param Account|null $account
@@ -35,7 +52,7 @@ class Account extends AccountHolder
      */
     public function newAccount(?Account $account = null): object
     {
-        $http = new CallApi($this->configuration);
+        $http = new CallApi(parent::getConfiguration());
         $data = (isset($account)) ? $account->toArray() : parent::toArray();
         return $http->call('NewAccount', $data);
     }
@@ -47,7 +64,7 @@ class Account extends AccountHolder
      */
     public function newLimitedAccount(LimitedAccount $limitedAccount): object
     {
-        $http = new CallApi($this->configuration);
+        $http = new CallApi(parent::getConfiguration());
         return $http->call('LimitedAccount', $limitedAccount->toArray());
     }
 
@@ -62,7 +79,7 @@ class Account extends AccountHolder
     public function getAccount(string $identifier = null, string $taxNumber = null, string $accountKey = null): object
     {
         if (!isset($identifier) and !isset($taxNumber) and !isset($accountKey)) throw new RequiredError('Enter one of the method parameters!');
-        $http = new CallApi($this->configuration);
+        $http = new CallApi(parent::getConfiguration());
         $data = [
             'Identifier' => $identifier,
             'TaxNumber' => $taxNumber,
@@ -79,7 +96,7 @@ class Account extends AccountHolder
      */
     public function getAccountList(int $pageSize = 5, int $index = 0): object
     {
-        $http = new CallApi($this->configuration);
+        $http = new CallApi(parent::getConfiguration());
         $data = [
             'PageSize' => $pageSize,
             'Index' => $index
@@ -102,7 +119,7 @@ class Account extends AccountHolder
      */
     public function getAccountEntry(string $taxNumber, string $startDate, string $endDate, ?string $bank = null, ?string $bankBranch = null, ?string $bankAccount = null, ?string $bankAccountDigit = null, bool $onlyBalance = false, string $entryClassificationType = "Debit"): object
     {
-        $http = new CallApi($this->configuration);
+        $http = new CallApi(parent::getConfiguration());
         $data = [
             "TaxNumber" => $taxNumber,
             "StartDate" => $startDate,
@@ -137,7 +154,7 @@ class Account extends AccountHolder
      */
     public function getAccountEntryPaged(string $taxNumber, string $startDate, string $endDate, ?string $bank = null, ?string $bankBranch = null, ?string $bankAccount = null, ?string $bankAccountDigit = null, bool $onlyBalance = false, int $pageSize = 25, int $pageIndex = 0): object
     {
-        $http = new CallApi($this->configuration);
+        $http = new CallApi(parent::getConfiguration());
         $data = [
             "TaxNumber" => $taxNumber,
             "StartDate" => $startDate,

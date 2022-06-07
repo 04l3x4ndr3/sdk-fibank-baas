@@ -2,8 +2,13 @@
 
 namespace TwoPlug\SdkFitbank\Common;
 
+use TwoPlug\SdkFitbank\Configuration;
+use TwoPlug\SdkFitbank\OnBoarding\Document;
+
 class AccountHolder extends Person
 {
+    private Configuration $configuration;
+
     private ?int $companyType;
     private ?int $isCompany;
     private ?int $checkPendingTransfers;
@@ -72,6 +77,7 @@ class AccountHolder extends Person
             $documents
         );
 
+        $this->configuration = new Configuration();
         $this->companyType = $companyType;
         $this->isCompany = $isCompany;
         $this->checkPendingTransfers = $checkPendingTransfers;
@@ -85,6 +91,23 @@ class AccountHolder extends Person
         $this->addresses = $addresses;
         $this->persons = $persons;
     }
+
+    /**
+     * @return Configuration
+     */
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
+    }
+
+    /**
+     * @param Configuration $configuration
+     */
+    public function setConfiguration(Configuration $configuration): void
+    {
+        $this->configuration = $configuration;
+    }
+
 
     /**
      * @return int

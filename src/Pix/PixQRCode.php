@@ -28,5 +28,4 @@ class PixQRCode
         return $http->call('CancelPixOut', $data);
     }
 
-
 }

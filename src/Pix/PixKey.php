@@ -235,14 +235,14 @@ class PixKey
     }
 
     /**
-     * @param PixKey $pixKey
+     * @param PixKey|null $pixKey
      * @return object
      * @throws GuzzleException
      */
-    public function getPixKeyStatus(PixKey $pixKey): object
+    public function getPixKeyStatus(?PixKey $pixKey=null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $pixKey->toArray();
+        $data = (isset($pixKey)) ? $pixKey->toArray() : $this->toArray();
         return $http->call('GetPixKeyStatus', $data);
     }
 
@@ -263,14 +263,14 @@ class PixKey
     }
 
     /**
-     * @param PixKey $pixKey
+     * @param PixKey|null $pixKey
      * @return object
      * @throws GuzzleException
      */
-    public function cancelPixKey(PixKey $pixKey): object
+    public function cancelPixKey(?PixKey $pixKey=null): object
     {
         $http = new CallApi($this->configuration);
-        $data = $pixKey->toArray();
+        $data = (isset($pixKey)) ? $pixKey->toArray() : $this->toArray();
         return $http->call('CancelPixKey', $data);
     }
 

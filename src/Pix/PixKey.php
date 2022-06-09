@@ -217,19 +217,19 @@ class PixKey
     }
 
     /**
-     * @param string $TaxNumber
      * @param string $PixKey
      * @param string $PixKeyType
+     * @param string $TaxNumber
      * @return object
      * @throws GuzzleException
      */
-    public function resendPixKeyToken(string $TaxNumber, string $PixKey, string $PixKeyType): object
+    public function resendPixKeyToken(string $PixKey, string $PixKeyType, string $TaxNumber): object
     {
         $http = new CallApi($this->configuration);
         $data = [
-            "TaxNumber" => $TaxNumber,
             "PixKey" => $PixKey,
-            "PixKeyType" => $PixKeyType
+            "PixKeyType" => $PixKeyType,
+            "TaxNumber" => $TaxNumber
         ];
         return $http->call('ResendPixKeyToken', $data);
     }

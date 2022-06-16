@@ -196,7 +196,8 @@ class P2P
     }
 
     /**
-     * @param P2P $p2p
+     * @description Transferir valores entre contas
+     * @param P2P|null $p2p
      * @return object
      * @throws GuzzleException
      */
@@ -208,6 +209,7 @@ class P2P
     }
 
     /**
+     * @description Recuperar os dados da Transferência entre contas
      * @param int $DocumentNumber
      * @return object
      * @throws GuzzleException
@@ -220,6 +222,7 @@ class P2P
     }
 
     /**
+     * @description Consulta de Status por conta virtual
      * @param string $TaxNumber
      * @param string $TransferDate
      * @return object
@@ -236,6 +239,7 @@ class P2P
     }
 
     /**
+     * @description Cancelamento de Transferência Interna
      * @param int $DocumentNumber
      * @return object
      * @throws GuzzleException

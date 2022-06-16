@@ -341,7 +341,8 @@ class TED
     }
 
     /**
-     * @param TED $ted
+     * @description Recarrega a conta virtual criada via TED
+     * @param TED|null $ted
      * @return object
      */
     public function moneyTransferIn(?TED $ted = null): object
@@ -352,6 +353,7 @@ class TED
     }
 
     /**
+     * @description Consulta de recarga via TED
      * @param int $DocumentNumber
      * @return object
      */
@@ -363,6 +365,7 @@ class TED
     }
 
     /**
+     * @description Cancelamento de recarga de conta virtual via TED
      * @param int $DocumentNumber
      * @return object
      */

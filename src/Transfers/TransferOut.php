@@ -362,7 +362,8 @@ class TransferOut
     }
 
     /**
-     * @param TransferOut $out
+     * @description Transferência bancária
+     * @param TransferOut|null $out
      * @return object
      */
     public function moneyTransfer(?TransferOut $out = null): object
@@ -373,6 +374,7 @@ class TransferOut
     }
 
     /**
+     * @description Consulta de transferência bancária
      * @param int $DocumentNumber
      * @return object
      */
@@ -384,6 +386,7 @@ class TransferOut
     }
 
     /**
+     * @description Cancelamento de transferência bancária
      * @param int $DocumentNumber
      * @return object
      */

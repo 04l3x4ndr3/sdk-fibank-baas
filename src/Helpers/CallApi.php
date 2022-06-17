@@ -12,6 +12,7 @@ class CallApi
     private Client $client;
     private array $credential;
     private array $header;
+    private array $postData;
 
     /**
      * @param Config $configuration
@@ -59,17 +60,28 @@ class CallApi
             'MktPlaceId' => $this->credential['mktPlaceId']
         ]);
 
-        try {
-            $response = $this->client->post('', [
-                'headers' => $this->header,
-                'json' => $data
-            ]);
+        $data = [
+            'headers' => $this->header,
+            'json' => $data
+        ];
 
+        $this->postData = $data;
+
+        try {
+            $response = $this->client->post('', $data);
             return $this->parseResponse($response);
         } catch (ClientError $e) {
             $response = $e->getResponse();
             return $this->parseResponse($response);
         }
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getPostData(): ?array
+    {
+        return $this->postData;
     }
 
     /**

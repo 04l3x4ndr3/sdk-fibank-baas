@@ -238,6 +238,7 @@ class PixLimit
     public function toArray(): array
     {
         return [
+            "TaxNumber" => $this->taxNumber,
             "Bank" => $this->bank,
             "BankBranch" => $this->bankBranch,
             "BankAccount" => $this->bankAccount,

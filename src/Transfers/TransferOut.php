@@ -8,7 +8,9 @@
 
 namespace TwoPlug\SdkFitbank\Transfers;
 
+use GuzzleHttp\Exception\GuzzleException;
 use TwoPlug\SdkFitbank\Configuration;
+use TwoPlug\SdkFitbank\Helpers\CallApi;
 
 class TransferOut
 {
@@ -365,6 +367,7 @@ class TransferOut
      * @description Transferência bancária
      * @param TransferOut|null $out
      * @return object
+     * @throws GuzzleException
      */
     public function moneyTransfer(?TransferOut $out = null): object
     {
@@ -377,6 +380,7 @@ class TransferOut
      * @description Consulta de transferência bancária
      * @param int $DocumentNumber
      * @return object
+     * @throws GuzzleException
      */
     public function getMoneyTransferOutById(int $DocumentNumber): object
     {
@@ -389,6 +393,7 @@ class TransferOut
      * @description Cancelamento de transferência bancária
      * @param int $DocumentNumber
      * @return object
+     * @throws GuzzleException
      */
     public function cancelMoneyTransfer(int $DocumentNumber): object
     {

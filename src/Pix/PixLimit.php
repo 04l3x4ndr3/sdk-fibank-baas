@@ -252,7 +252,7 @@ class PixLimit
 
     /**
      * @param PixLimit|null $pixLimit
-     * @return object|\stdClass
+     * @return object
      * @throws GuzzleException
      */
     public function getAccountOperationLimit(?PixLimit $pixLimit = null)
@@ -264,7 +264,7 @@ class PixLimit
 
     /**
      * @param PixLimit|null $pixLimit
-     * @return object|\stdClass
+     * @return object
      * @throws GuzzleException
      */
     public function changeAccountOperationLimit(?PixLimit $pixLimit = null)

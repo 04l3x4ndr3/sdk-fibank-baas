@@ -29,7 +29,7 @@ class PixOut
     private ?string $value;
     private ?string $pixKey;
     private ?string $pixKeyType;
-    private ?string $accountType;
+    private ?string $toBankAccountType;
     private ?string $rateValue;
     private ?string $rateValueType;
     private ?string $identifier;
@@ -57,7 +57,7 @@ class PixOut
      * @param string|null $value
      * @param string|null $pixKey
      * @param string|null $pixKeyType
-     * @param string|null $accountType
+     * @param string|null $toBankAccountType
      * @param string|null $rateValue
      * @param string|null $rateValueType
      * @param string|null $identifier
@@ -81,10 +81,10 @@ class PixOut
                                 ?string $toBankBranch = null,
                                 ?string $toBankAccount = null,
                                 ?string $toBankAccountDigit = null,
+                                ?string $toBankAccountType = null,
                                 ?string $value = null,
                                 ?string $pixKey = null,
                                 ?string $pixKeyType = null,
-                                ?string $accountType = null,
                                 ?string $rateValue = null,
                                 ?string $rateValueType = null,
                                 ?string $identifier = null,
@@ -112,7 +112,7 @@ class PixOut
         $this->value = $value;
         $this->pixKey = $pixKey;
         $this->pixKeyType = $pixKeyType;
-        $this->accountType = $accountType;
+        $this->toBankAccountType = $toBankAccountType;
         $this->rateValue = $rateValue;
         $this->rateValueType = $rateValueType;
         $this->identifier = $identifier;
@@ -370,17 +370,17 @@ class PixOut
     /**
      * @return string|null
      */
-    public function getAccountType(): ?string
+    public function getToBankAccountType(): ?string
     {
-        return $this->accountType;
+        return $this->toBankAccountType;
     }
 
     /**
-     * @param string|null $accountType
+     * @param string|null $toBankAccountType
      */
-    public function setAccountType(?string $accountType): void
+    public function setToBankAccountType(?string $toBankAccountType): void
     {
-        $this->accountType = $accountType;
+        $this->toBankAccountType = $toBankAccountType;
     }
 
     /**
@@ -579,7 +579,7 @@ class PixOut
             "Value" => $this->value,
             "PixKey" => $this->pixKey,
             "PixKeyType" => $this->pixKeyType,
-            "AccountType" => $this->accountType,
+            "AccountType" => $this->toBankAccountType,
             "RateValue" => $this->rateValue,
             "RateValueType" => $this->rateValueType,
             "Identifier" => $this->identifier,

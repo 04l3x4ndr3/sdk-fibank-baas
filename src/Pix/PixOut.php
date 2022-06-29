@@ -709,8 +709,4 @@ class PixOut
         ];
         return $http->call('GetRefundPixOutByDate', $data);
     }
-
-
-
-
 }

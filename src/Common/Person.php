@@ -29,12 +29,12 @@ class Person
     private ?array $personDocuments;
 
     public function __construct(
-        string $name,
-        string $taxNumber,
-        string $mail,
-        int    $personRoleType,
-        string $birthDate,
-        array  $personDocuments,
+        ?string $name = null,
+        ?string $taxNumber = null,
+        ?string $mail = null,
+        ?int    $personRoleType = null,
+        ?string $birthDate = null,
+        ?array  $personDocuments = null,
         ?string $occupation = null,
         ?string $phone = null,
         ?string $motherFullName = null,

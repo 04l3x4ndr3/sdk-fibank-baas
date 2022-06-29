@@ -15,16 +15,16 @@ class Address
     private ?string $country;
     private ?string $complement;
 
-    public function __construct(?string $addressLine = null,
-                                ?string $addressLine2 = null,
-                                ?string $zipCode = null,
-                                ?string $neighborhood = null,
-                                ?int    $cityCode = null,
-                                ?string $cityName = null,
-                                ?string $state = null,
-                                ?int    $addressType = null,
-                                ?string $country = null,
-                                ?string $complement = null)
+    public function __construct(string $addressLine,
+                                string $addressLine2,
+                                string $zipCode,
+                                string $neighborhood,
+                                int    $cityCode,
+                                string $cityName,
+                                string $state,
+                                int    $addressType,
+                                string $country,
+                                string $complement)
     {
         $this->addressLine = $addressLine;
         $this->addressLine2 = $addressLine2;

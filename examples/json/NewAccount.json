@@ -1,0 +1,89 @@
+{
+  "Method": "NewAccount",
+  "PartnerId": 93234,
+  "BusinessUnitId": 40380,
+  "PersonName": "string",
+  "PhoneNumber": "8564755632",
+  "TaxNumber": "30934646000107",
+  "Mail": "henry@fitbank.com.br",
+  "IdentityDocument": "0000000000",
+  "MotherFullName": "Josefa Sousa",
+  "FatherFullName": "Mario Andrade",
+  "Nationality": "Brasileira",
+  "BirthState": "São Paulo",
+  "Gender": 0,
+  "MaritalStatus": 1,
+  "SpouseName": "Jualiana Queiroz de Castro",
+  "Occupation": "Profissional de T.I.",
+  "BirthDate": "01/01/2001",
+  "PubliclyExposedPerson": true,
+  "CompanyType": 0,
+  "IsCompany": 1,
+  "Nickname": "Jose",
+  "CheckPendingTransfers": 0,
+  "CompanyActivity": "Tecnologia",
+  "ConstitutionDate": "02/06/2002",
+  "MonthlyIncome": "1200.55",
+  "Bank": "621",
+  "BankBranch": "3212",
+  "BankAccount": "51351",
+  "BankAccountDigit": "5",
+  "Addresses": [
+    {
+      "AddressLine": "Av José Bastos",
+      "AddressLine2": "4140",
+      "ZipCode": "60431086",
+      "Neighborhood": "Rodolfo Teófilo",
+      "CityCode": 85,
+      "CityName": "Fortaleza",
+      "State": "CE",
+      "AddressType": 0,
+      "Country": "Brasil",
+      "Complement": "CASA"
+    }
+  ],
+  "Documents": [
+    {
+      "DocumentFile": "dGVzdGU=",
+      "DocumentFormat": 0,
+      "DocumentName": "CNH",
+      "DocumentType": 0,
+      "Description": "Envio de documento",
+      "ExpirationDate": "12/02/2025"
+    }
+  ],
+  "Persons": [
+    {
+      "Name": "Fernando",
+      "TaxNumber": "30934646000107",
+      "Mail": "henry@fitbank.com.br",
+      "Occupation": "Profissional de T.I.",
+      "Phone": "8567867546",
+      "PersonRoleType": 3,
+      "MotherFullName": "Josefa Sousa",
+      "FatherFullName": "Mario Andrade",
+      "Nationality": "Brasileira",
+      "BirthCity": "São Paulo",
+      "BirthState": "São Paulo",
+      "Gender": 0,
+      "MaritalStatus": 1,
+      "SpouseName": "Jualiana Queiroz de Castro",
+      "IdentityDocument": "0000000000",
+      "BirthDate": "01/01/2001",
+      "PersonName": "string",
+      "PhoneNumber": "8564755632",
+      "Nickname": "Jose",
+      "PubliclyExposedPerson": true,
+      "PersonDocuments": [
+        {
+          "DocumentFile": "dGVzdGU=",
+          "DocumentFormat": 0,
+          "DocumentName": "CNH",
+          "DocumentType": 0,
+          "Description": "Envio de documento",
+          "ExpirationDate": "12/02/2025"
+        }
+      ]
+    }
+  ]
+}

@@ -6,8 +6,6 @@ use TwoPlug\SdkFitbank\Configuration;
 
 class Person
 {
-    private Configuration $configuration;
-
     private ?string $name;
     private ?string $taxNumber;
     private ?string $occupation;
@@ -31,12 +29,14 @@ class Person
     private ?array $personDocuments;
 
     public function __construct(
-        ?string $name = null,
-        ?string $taxNumber = null,
-        ?string $mail = null,
+        string $name,
+        string $taxNumber,
+        string $mail,
+        int    $personRoleType,
+        string $birthDate,
+        array  $personDocuments,
         ?string $occupation = null,
         ?string $phone = null,
-        ?int    $personRoleType = null,
         ?string $motherFullName = null,
         ?string $fatherFullName = null,
         ?string $nationality = null,
@@ -46,15 +46,12 @@ class Person
         ?int    $maritalStatus = null,
         ?string $spouseName = null,
         ?string $identityDocument = null,
-        ?string $birthDate = null,
         ?string $personName = null,
         ?string $phoneNumber = null,
         ?string $nickname = null,
-        ?bool   $publiclyExposedPerson = null,
-        ?array  $personDocuments = null
+        ?bool   $publiclyExposedPerson = null
     )
     {
-        $this->configuration = new Configuration();
         $this->name = $name;
         $this->taxNumber = $taxNumber;
         $this->occupation = $occupation;
@@ -76,22 +73,6 @@ class Person
         $this->nickname = $nickname;
         $this->publiclyExposedPerson = $publiclyExposedPerson;
         $this->personDocuments = $personDocuments;
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfiguration(): Configuration
-    {
-        return $this->configuration;
-    }
-
-    /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
     }
 
     /**

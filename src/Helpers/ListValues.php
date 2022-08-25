@@ -26,7 +26,13 @@ class ListValues
         return $docTypes[$id];
     }
 
-    public static function documentFormat(): array
+    public static function getDocumentTypeIdByValue(string $value): string
+    {
+        return array_search($value, self::documentTypes());
+    }
+
+
+    public static function documentFormats(): array
     {
         return [
             0 => 'PDF',
@@ -43,6 +49,12 @@ class ListValues
         return $arr[$id];
     }
 
+    public static function getDocumentFormatIdByValue(string $value): string
+    {
+        return array_search($value, self::documentFormats());
+    }
+
+
     public static function genders(): array
     {
         return [
@@ -52,11 +64,17 @@ class ListValues
         ];
     }
 
-    public static function getGendersById(int $id): string
+    public static function getGenderById(int $id): string
     {
         $genders = self::genders();
         return $genders[$id];
     }
+
+    public static function getGenderIdByValue(string $value): string
+    {
+        return array_search($value, self::genders());
+    }
+
 
     public static function maritalStatus(): array
     {
@@ -77,6 +95,12 @@ class ListValues
         return $maritalStatus[$id];
     }
 
+    public static function getMaritalStatusIdByValue(string $value): string
+    {
+        return array_search($value, self::maritalStatus());
+    }
+
+
     public static function companyTypes(): array
     {
         return [
@@ -86,9 +110,14 @@ class ListValues
         ];
     }
 
-    public static function getCompanyTypesById(int $id): string
+    public static function getCompanyTypeById(int $id): string
     {
         $companyTypes = self::companyTypes();
         return $companyTypes[$id];
+    }
+
+    public static function getCompanyTypeIdByValue(string $value): string
+    {
+        return array_search($value, self::companyTypes());
     }
 }

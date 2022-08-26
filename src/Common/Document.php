@@ -25,13 +25,14 @@ class Document
      * @param int|null $description
      * @param string|null $expirationDate
      */
-    public function __construct(?string $documentFile,
-                                ?int $documentFormat,
-                                ?string $documentName,
-                                ?string $documentType,
-                                ?int $description,
-                                ?string $expirationDate)
-    {
+    public function __construct(
+        ?string $documentFile = null,
+        ?int $documentFormat = null,
+        ?string $documentName = null,
+        ?string $documentType = null,
+        ?int $description = null,
+        ?string $expirationDate = null
+    ) {
         $this->documentFile = $documentFile;
         $this->documentFormat = $documentFormat;
         $this->documentName = $documentName;
@@ -149,6 +150,5 @@ class Document
             "Description" => $this->description,
             "ExpirationDate" => $this->expirationDate
         ];
-
     }
 }

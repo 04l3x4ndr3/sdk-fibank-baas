@@ -4,6 +4,8 @@ namespace TwoPlug\SdkFitbank\Helpers;
 
 class ListValues
 {
+    # API LIST VALUES
+
     public static function documentTypes(): array
     {
         return [
@@ -119,5 +121,50 @@ class ListValues
     public static function getCompanyTypeIdByValue(string $value): string
     {
         return array_search($value, self::companyTypes());
+    }
+
+
+    # WEBHOOK LIST VALUES
+
+    public static function accountConditionsTypes(): array
+    {
+        return [
+            'Created',
+            'Limited',
+            'Verified',
+            'Blocked',
+            'Terminated',
+        ];
+    }
+
+    public static function getAccountConditionTypeById(int $id): string
+    {
+        $companyTypes = self::accountConditionsTypes();
+        return $companyTypes[$id];
+    }
+
+    public static function getAccountConditionTypeIdByValue(string $value): string
+    {
+        return array_search($value, self::accountConditionsTypes());
+    }
+
+
+    public static function accountStatus(): array
+    {
+        return [
+            'Disabled',
+            'Enabled',
+        ];
+    }
+
+    public static function getAccountStatusById(int $id): string
+    {
+        $companyTypes = self::accountStatus();
+        return $companyTypes[$id];
+    }
+
+    public static function getAccountStatusIdByValue(string $value): string
+    {
+        return array_search($value, self::accountStatus());
     }
 }

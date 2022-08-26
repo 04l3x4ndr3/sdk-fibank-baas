@@ -14,6 +14,7 @@ class AccountHolder extends Person
     private ?int $checkPendingTransfers;
     private ?string $companyActivity;
     private ?string $constitutionDate;
+    private ?string $monthlyIncome;
     private ?string $bank;
     private ?string $bankBranch;
     private ?string $bankAccount;
@@ -44,6 +45,7 @@ class AccountHolder extends Person
         ?int    $checkPendingTransfers = null,
         ?string $companyActivity = null,
         ?string $constitutionDate = null,
+        ?string $monthlyIncome = null,
         ?string $bank = null,
         ?string $bankBranch = null,
         ?string $bankAccount = null,
@@ -83,6 +85,7 @@ class AccountHolder extends Person
         $this->checkPendingTransfers = $checkPendingTransfers;
         $this->companyActivity = $companyActivity;
         $this->constitutionDate = $constitutionDate;
+        $this->monthlyIncome = $monthlyIncome;
         $this->bank = $bank;
         $this->bankBranch = $bankBranch;
         $this->bankAccount = $bankAccount;
@@ -187,6 +190,22 @@ class AccountHolder extends Person
     public function setConstitutionDate(string $constitutionDate): void
     {
         $this->constitutionDate = $constitutionDate;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMonthlyIncome(): ?string
+    {
+        return $this->monthlyIncome;
+    }
+
+    /**
+     * @param string|null $monthlyIncome
+     */
+    public function setMonthlyIncome(?string $monthlyIncome): void
+    {
+        $this->monthlyIncome = $monthlyIncome;
     }
 
     /**

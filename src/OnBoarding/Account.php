@@ -6,7 +6,6 @@ use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use TwoPlug\SdkFitbank\Common\AccountHolder;
 use TwoPlug\SdkFitbank\Common\LimitedAccount;
-use TwoPlug\SdkFitbank\Configuration;
 use TwoPlug\SdkFitbank\Errors\RequiredError;
 use TwoPlug\SdkFitbank\Helpers\CallApi;
 
@@ -34,6 +33,7 @@ class Account extends AccountHolder
         ?int    $checkPendingTransfers = null,
         ?string $companyActivity = null,
         ?string $constitutionDate = null,
+        ?string $monthlyIncome = null,
         ?string $bank = null,
         ?string $bankBranch = null,
         ?string $bankAccount = null,
@@ -41,7 +41,7 @@ class Account extends AccountHolder
         ?array  $addresses = null, ?array $documents = null,
         ?array  $persons = null)
     {
-        parent::__construct($personName, $phoneNumber, $taxNumber, $mail, $identityDocument, $motherFullName, $fatherFullName, $nationality, $birthState, $gender, $maritalStatus, $spouseName, $occupation, $birthDate, $publiclyExposedPerson, $companyType, $isCompany, $nickname, $checkPendingTransfers, $companyActivity, $constitutionDate, $bank, $bankBranch, $bankAccount, $bankAccountDigit, $addresses, $documents, $persons);
+        parent::__construct($personName, $phoneNumber, $taxNumber, $mail, $identityDocument, $motherFullName, $fatherFullName, $nationality, $birthState, $gender, $maritalStatus, $spouseName, $occupation, $birthDate, $publiclyExposedPerson, $companyType, $isCompany, $nickname, $checkPendingTransfers, $companyActivity, $constitutionDate, $monthlyIncome, $bank, $bankBranch, $bankAccount, $bankAccountDigit, $addresses, $documents, $persons);
     }
 
     /**

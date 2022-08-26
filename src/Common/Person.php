@@ -404,11 +404,11 @@ class Person
     }
 
     /**
-     * @param array|null $personDocuments
+     * @param Document $document
      */
-    public function addPersonDocuments(?array $personDocuments): void
+    public function addPersonDocuments(Document $document): void
     {
-        $this->personDocuments = $personDocuments;
+        $this->personDocuments[] = $document;
     }
 
     /**
@@ -417,7 +417,6 @@ class Person
     public function toArray(): array
     {
         $_documents = [];
-
         if (isset($this->personDocuments)) {
             foreach ($this->personDocuments as $document) {
                 $_documents[] = $document->toArray();

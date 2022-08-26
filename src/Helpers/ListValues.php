@@ -167,4 +167,26 @@ class ListValues
     {
         return array_search($value, self::accountStatus());
     }
+
+
+    public static function personRoleTypes(): array
+    {
+        return [
+            'Holder',
+            'Procurator',
+            'Bearer',
+            'Associate',
+        ];
+    }
+
+    public static function getPersonRoleTypesById(int $id): string
+    {
+        $companyTypes = self::personRoleTypes();
+        return $companyTypes[$id];
+    }
+
+    public static function getPersonRoleTypesIdByValue(string $value): string
+    {
+        return array_search($value, self::personRoleTypes());
+    }
 }

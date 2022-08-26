@@ -247,7 +247,7 @@ class TopUp
             'ProductSubType' => $ProductSubType ?? $this->getProductSubType(),
             'ProductValue' => $ProductValue ?? $this->getProductValue()
         ];
-        return $http->call('GetTopUpProducts', $data);
+        return $http->call('GetTopUpProducts', array_filter($data));
     }
 
     /**
@@ -269,7 +269,7 @@ class TopUp
             'ProductValue' => $topUp->getProductValue(),
             'Tags' => $topUp->getTags(),
         ];
-        return $http->call('GenerateTopUp', $data);
+        return $http->call('GenerateTopUp', array_filter($data));
     }
 
     /**
@@ -285,7 +285,7 @@ class TopUp
             'DocumentNumber' => $DocumentNumber ?? $this->getDocumentNumber(),
             'OriginNSU' => $OriginNSU ?? $this->getOriginNSU()
         ];
-        return $http->call('GetTopUpById', $data);
+        return $http->call('GetTopUpById', array_filter($data));
     }
 
     /**
@@ -301,6 +301,6 @@ class TopUp
             'DocumentNumber' => $DocumentNumber ?? $this->getDocumentNumber(),
             'OriginNSU' => $OriginNSU ?? $this->getOriginNSU()
         ];
-        return $http->call('AuthorizeTopUp', $data);
+        return $http->call('AuthorizeTopUp', array_filter($data));
     }
 }

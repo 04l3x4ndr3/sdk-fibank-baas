@@ -193,7 +193,7 @@ class PixKey
     {
         $http = new CallApi($this->configuration);
         $data = (isset($pixKey)) ? $pixKey->toArray() : $this->toArray();
-        return $http->call('CreatePixKey', $data);
+        return $http->call('CreatePixKey', array_filter($data));
     }
 
     /**
@@ -213,7 +213,7 @@ class PixKey
             "TaxNumber" => $TaxNumber,
             "ConfirmationCode" => $ConfirmationCode,
         ];
-        return $http->call('ConfirmPixKeyHold', $data);
+        return $http->call('ConfirmPixKeyHold', array_filter($data));
     }
 
     /**
@@ -231,7 +231,7 @@ class PixKey
             "PixKeyType" => $PixKeyType,
             "TaxNumber" => $TaxNumber
         ];
-        return $http->call('ResendPixKeyToken', $data);
+        return $http->call('ResendPixKeyToken', array_filter($data));
     }
 
     /**
@@ -243,7 +243,7 @@ class PixKey
     {
         $http = new CallApi($this->configuration);
         $data = (isset($pixKey)) ? $pixKey->toArray() : $this->toArray();
-        return $http->call('GetPixKeyStatus', $data);
+        return $http->call('GetPixKeyStatus', array_filter($data));
     }
 
     /**
@@ -259,7 +259,7 @@ class PixKey
             "TaxNumber" => $TaxNumber,
             "PixKey" => $PixKey,
         ];
-        return $http->call('GetInfosPixKey', $data);
+        return $http->call('GetInfosPixKey', array_filter($data));
     }
 
     /**
@@ -271,7 +271,7 @@ class PixKey
     {
         $http = new CallApi($this->configuration);
         $data = (isset($pixKey)) ? $pixKey->toArray() : $this->toArray();
-        return $http->call('CancelPixKey', $data);
+        return $http->call('CancelPixKey', array_filter($data));
     }
 
     /**
@@ -316,7 +316,7 @@ class PixKey
             "ToBankAccount" => $ToBankAccount,
             "ToBankAccountDigit" => $ToBankAccountDigit,
         ];
-        return $http->call('ChangePixKey', $data);
+        return $http->call('ChangePixKey', array_filter($data));
     }
 
     /**
@@ -344,6 +344,6 @@ class PixKey
             "BankAccount" => $BankAccount ?? $this->bankAccount,
             "BankAccountDigit" => $BankAccountDigit ?? $this->bankAccountDigit,
         ];
-        return $http->call('GetPixKeys', $data);
+        return $http->call('GetPixKeys', array_filter($data));
     }
 }

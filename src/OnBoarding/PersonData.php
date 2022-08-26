@@ -26,6 +26,6 @@ class PersonData extends AccountHolder
     {
         $http = new CallApi($this->configuration);
         $data = (isset($accountHolder)) ? $accountHolder->toArray() : parent::toArray();
-        return $http->call('UpdatePersonData', $data);
+        return $http->call('UpdatePersonData', array_filter($data));
     }
 }

@@ -637,7 +637,7 @@ class BoletoOut
     {
         $http = new CallApi($this->configuration);
         $data = (isset($boleto)) ? $boleto->toArray() : $this->toArray();
-        return $http->call('GenerateBoletoOut', $data);
+        return $http->call('GenerateBoletoOut', array_filter($data));
     }
 
     /**
@@ -649,7 +649,7 @@ class BoletoOut
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('GetBoletoOutById', $data);
+        return $http->call('GetBoletoOutById', array_filter($data));
     }
 
     /**
@@ -661,7 +661,7 @@ class BoletoOut
     {
         $http = new CallApi($this->configuration);
         $data = ['Barcode' => $Barcode];
-        return $http->call('GetBoletoOutByBarcode', $data);
+        return $http->call('GetBoletoOutByBarcode', array_filter($data));
     }
 
     /**
@@ -673,7 +673,7 @@ class BoletoOut
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('CancelBoletoOut', $data);
+        return $http->call('CancelBoletoOut', array_filter($data));
     }
 
     /**
@@ -685,7 +685,7 @@ class BoletoOut
     {
         $http = new CallApi($this->configuration);
         $data = ['Barcode' => $Barcode];
-        return $http->call('GetInfosByBarcode', $data);
+        return $http->call('GetInfosByBarcode', array_filter($data));
     }
 
     /**
@@ -701,7 +701,7 @@ class BoletoOut
             "TaxNumber" => $TaxNumber,
             "Barcode" => $Barcode
         ];
-        return $http->call('GetInfosCIPByBarcode', $data);
+        return $http->call('GetInfosCIPByBarcode', array_filter($data));
 
     }
 }

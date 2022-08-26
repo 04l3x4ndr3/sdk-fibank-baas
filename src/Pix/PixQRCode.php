@@ -25,7 +25,7 @@ class PixQRCode
             "BankAccount" => $BankAccount,
             "BankAccountDigit" => $BankAccountDigit,
         ];
-        return $http->call('CancelPixOut', $data);
+        return $http->call('CancelPixOut', array_filter($data));
     }
 
 }

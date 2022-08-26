@@ -349,7 +349,7 @@ class TED
     {
         $http = new CallApi($this->configuration);
         $data = isset($ted) ? $ted->toArray() : $this->toArray();
-        return $http->call('MoneyTransferIn', $data);
+        return $http->call('MoneyTransferIn', array_filter($data));
     }
 
     /**
@@ -361,7 +361,7 @@ class TED
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('GetMoneyTransferInById', $data);
+        return $http->call('GetMoneyTransferInById', array_filter($data));
     }
 
     /**
@@ -373,6 +373,6 @@ class TED
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('CancelMoneyTransferIn', $data);
+        return $http->call('CancelMoneyTransferIn', array_filter($data));
     }
 }

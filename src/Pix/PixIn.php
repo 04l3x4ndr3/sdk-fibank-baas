@@ -53,6 +53,6 @@ class PixIn
             "PageIndex" => $PageIndex,
             "PageSize" => $PageSize
         ];
-        return $http->call('GetPixInByDate', $data);
+        return $http->call('GetPixInByDate', array_filter($data));
     }
 }

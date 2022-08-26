@@ -408,7 +408,7 @@ class DARF
     {
         $http = new CallApi($this->configuration);
         $data = (isset($darf)) ? $darf->toArray() : $this->toArray();
-        return $http->call('GeneratePaymentDARF', $data);
+        return $http->call('GeneratePaymentDARF', array_filter($data));
     }
 
     /**
@@ -420,7 +420,7 @@ class DARF
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('GetDarfOutById', $data);
+        return $http->call('GetDarfOutById', array_filter($data));
     }
 
     /**
@@ -432,7 +432,7 @@ class DARF
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('CancelPaymentDARF', $data);
+        return $http->call('CancelPaymentDARF', array_filter($data));
     }
 
 }

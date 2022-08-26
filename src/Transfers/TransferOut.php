@@ -373,7 +373,7 @@ class TransferOut
     {
         $http = new CallApi($this->configuration);
         $data = (isset($out)) ? $out->toArray() : $this->toArray();
-        return $http->call('MoneyTransfer', $data);
+        return $http->call('MoneyTransfer', array_filter($data));
     }
 
     /**
@@ -386,7 +386,7 @@ class TransferOut
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber,];
-        return $http->call('GetMoneyTransferOutById', $data);
+        return $http->call('GetMoneyTransferOutById', array_filter($data));
     }
 
     /**
@@ -399,6 +399,6 @@ class TransferOut
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber,];
-        return $http->call('CancelMoneyTransfer', $data);
+        return $http->call('CancelMoneyTransfer', array_filter($data));
     }
 }

@@ -260,7 +260,7 @@ class PixLimit
     {
         $http = new CallApi($this->configuration);
         $data = (isset($pixLimit)) ? $pixLimit->toArray() : $this->toArray();
-        return $http->call('GetAccountOperationLimit', $data);
+        return $http->call('GetAccountOperationLimit', array_filter($data));
     }
 
     /**
@@ -272,6 +272,6 @@ class PixLimit
     {
         $http = new CallApi($this->configuration);
         $data = (isset($pixLimit)) ? $pixLimit->toArray() : $this->toArray();
-        return $http->call('ChangeAccountOperationLimit', $data);
+        return $http->call('ChangeAccountOperationLimit', array_filter($data));
     }
 }

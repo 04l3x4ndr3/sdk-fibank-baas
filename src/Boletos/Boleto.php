@@ -593,7 +593,7 @@ class Boleto
     {
         $http = new CallApi($this->configuration);
         $data = (isset($boleto)) ? $boleto->toArray() : $this->toArray();
-        return $http->call('GenerateBoleto', $data);
+        return $http->call('GenerateBoleto', array_filter($data));
     }
 
     /**
@@ -605,7 +605,7 @@ class Boleto
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $documentNumber];
-        return $http->call('GetBoletoById', $data);
+        return $http->call('GetBoletoById', array_filter($data));
     }
 
     /**
@@ -617,7 +617,7 @@ class Boleto
     {
         $http = new CallApi($this->configuration);
         $data = ['Barcode' => $Barcode];
-        return $http->call('GetBoletoOutByBarcode', $data);
+        return $http->call('GetBoletoOutByBarcode', array_filter($data));
     }
 
     /**
@@ -637,7 +637,7 @@ class Boleto
             "RecieverTaxNumber" => $RecieverTaxNumber,
             "Status" => $Status
         ];
-        return $http->call('GetBoletoByDate', $data);
+        return $http->call('GetBoletoByDate', array_filter($data));
     }
 
     /**
@@ -649,6 +649,6 @@ class Boleto
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber,];
-        return $http->call('CancelBoleto', $data);
+        return $http->call('CancelBoleto', array_filter($data));
     }
 }

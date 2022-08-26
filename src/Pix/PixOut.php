@@ -605,7 +605,7 @@ class PixOut
     {
         $http = new CallApi($this->configuration);
         $data = (isset($pixOut)) ? $pixOut->toArray() : $this->toArray();
-        return $http->call('GeneratePixOut', $data);
+        return $http->call('GeneratePixOut', array_filter($data));
     }
 
     /**
@@ -629,7 +629,7 @@ class PixOut
             "BankAccount" => $BankAccount,
             "BankAccountDigit" => $BankAccountDigit,
         ];
-        return $http->call('GetPixOutById', $data);
+        return $http->call('GetPixOutById', array_filter($data));
     }
 
     /**
@@ -659,7 +659,7 @@ class PixOut
             "PageIndex" => $PageIndex,
             "PageSize" => $PageSize
         ];
-        return $http->call('GetPixOutById', $data);
+        return $http->call('GetPixOutById', array_filter($data));
     }
 
     /**
@@ -683,7 +683,7 @@ class PixOut
             "BankAccount" => $BankAccount,
             "BankAccountDigit" => $BankAccountDigit,
         ];
-        return $http->call('CancelPixOut', $data);
+        return $http->call('CancelPixOut', array_filter($data));
     }
 
     /**
@@ -707,6 +707,6 @@ class PixOut
             "PageIndex" => $PageIndex,
             "PageSize" => $PageSize
         ];
-        return $http->call('GetRefundPixOutByDate', $data);
+        return $http->call('GetRefundPixOutByDate', array_filter($data));
     }
 }

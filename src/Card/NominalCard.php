@@ -418,7 +418,7 @@ class NominalCard
     {
         $http = new CallApi($this->configuration);
         $data = (isset($card)) ? $card->toArray() : $this->toArray();
-        return $http->call('RequestCard', $data);
+        return $http->call('RequestCard', array_filter($data));
     }
 
     /**
@@ -429,7 +429,7 @@ class NominalCard
     {
         $http = new CallApi($this->configuration);
         $data = ["IdentifierCard" => $IdentifierCard];
-        return $http->call('ConfirmCardRequest', $data);
+        return $http->call('ConfirmCardRequest', array_filter($data));
     }
 
     /**
@@ -440,7 +440,7 @@ class NominalCard
     {
         $http = new CallApi($this->configuration);
         $data = ["IdentifierCard" => $IdentifierCard];
-        return $http->call('GetCardByIdentifierCard', $data);
+        return $http->call('GetCardByIdentifierCard', array_filter($data));
     }
 
     /**
@@ -455,7 +455,7 @@ class NominalCard
             "IdentifierCard" => $IdentifierCard,
             "Action" => $Action
         ];
-        return $http->call('GetCardActionStatus', $data);
+        return $http->call('GetCardActionStatus', array_filter($data));
     }
 
     /**
@@ -466,7 +466,7 @@ class NominalCard
     {
         $http = new CallApi($this->configuration);
         $data = ["IdentifierCard" => $IdentifierCard];
-        return $http->call('ActivateCard', $data);
+        return $http->call('ActivateCard', array_filter($data));
     }
 
     /**
@@ -483,7 +483,7 @@ class NominalCard
             "Pin" => $Pin,
             "ReasonCode" => $Reason
         ];
-        return $http->call('BlockCard', $data);
+        return $http->call('BlockCard', array_filter($data));
     }
 
     /**
@@ -498,7 +498,7 @@ class NominalCard
             "IdentifierCard" => $IdentifierCard,
             "Pin" => $Pin
         ];
-        return $http->call('UnblockCard', $data);
+        return $http->call('UnblockCard', array_filter($data));
     }
 
     /**
@@ -517,7 +517,7 @@ class NominalCard
             "Pin" => $Pin,
             "PinCheck" => $PinCheck,
         ];
-        return $http->call('ChangePinCard', $data);
+        return $http->call('ChangePinCard', array_filter($data));
     }
 
     /**
@@ -532,7 +532,7 @@ class NominalCard
             "IdentifierCard" => $IdentifierCard,
             "ConsumeType" => $ConsumeType
         ];
-        return $http->call('UpdateConsumeType', $data);
+        return $http->call('UpdateConsumeType', array_filter($data));
     }
 
     /**
@@ -549,6 +549,6 @@ class NominalCard
             "Pin" => $Pin,
             "ReasonCode" => $ReasonCode
         ];
-        return $http->call('InactivateAndReissueCard', $data);
+        return $http->call('InactivateAndReissueCard', array_filter($data));
     }
 }

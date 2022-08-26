@@ -328,7 +328,7 @@ class GPS
     {
         $http = new CallApi($this->configuration);
         $data = (isset($gps)) ? $gps->toArray() : $this->toArray();
-        return $http->call('GeneratePaymentGPS', $data);
+        return $http->call('GeneratePaymentGPS', array_filter($data));
     }
 
     /**
@@ -340,7 +340,7 @@ class GPS
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('GetGpsOutById', $data);
+        return $http->call('GetGpsOutById', array_filter($data));
     }
 
     /**
@@ -352,6 +352,6 @@ class GPS
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('CancelPaymentGps', $data);
+        return $http->call('CancelPaymentGps', array_filter($data));
     }
 }

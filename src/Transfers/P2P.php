@@ -205,7 +205,7 @@ class P2P
     {
         $http = new CallApi($this->configuration);
         $data = (isset($p2p)) ? $p2p->toArray() : $this->toArray();
-        return $http->call('InternalTransfer', $data);
+        return $http->call('InternalTransfer', array_filter($data));
     }
 
     /**
@@ -218,7 +218,7 @@ class P2P
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('GetInternalTransferById', $data);
+        return $http->call('GetInternalTransferById', array_filter($data));
     }
 
     /**
@@ -235,7 +235,7 @@ class P2P
             "TaxNumber" => $TaxNumber,
             "TransferDate" => $TransferDate
         ];
-        return $http->call('GetInternalTransferByDate', $data);
+        return $http->call('GetInternalTransferByDate', array_filter($data));
     }
 
     /**
@@ -248,6 +248,6 @@ class P2P
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('CancelInternalTransfer', $data);
+        return $http->call('CancelInternalTransfer', array_filter($data));
     }
 }

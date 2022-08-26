@@ -300,7 +300,7 @@ class FGTS
     {
         $http = new CallApi($this->configuration);
         $data = (isset($fgts)) ? $fgts->toArray() : $this->toArray();
-        return $http->call('GeneratePaymentFGTS', $data);
+        return $http->call('GeneratePaymentFGTS', array_filter($data));
     }
 
     /**
@@ -312,7 +312,7 @@ class FGTS
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('GetFgtsOutById', $data);
+        return $http->call('GetFgtsOutById', array_filter($data));
     }
 
     /**
@@ -324,6 +324,6 @@ class FGTS
     {
         $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('CancelPaymentFgts', $data);
+        return $http->call('CancelPaymentFgts', array_filter($data));
     }
 }

@@ -53,7 +53,7 @@ class Account extends AccountHolder
     {
         $http = new CallApi(parent::getConfiguration());
         $data = (isset($account)) ? $account->toArray() : parent::toArray();
-        return $http->call('NewAccount', $data);
+        return $http->call('NewAccount', array_filter($data));
     }
 
     /**
@@ -64,7 +64,7 @@ class Account extends AccountHolder
     public function newLimitedAccount(LimitedAccount $limitedAccount): object
     {
         $http = new CallApi(parent::getConfiguration());
-        return $http->call('LimitedAccount', $limitedAccount->toArray());
+        return $http->call('LimitedAccount', array_filter($limitedAccount->toArray()));
     }
 
     /**
@@ -84,7 +84,7 @@ class Account extends AccountHolder
             'TaxNumber' => $taxNumber,
             'AccountKey' => $accountKey
         ];
-        return $http->call('GetAccount', $data);
+        return $http->call('GetAccount', array_filter($data));
     }
 
     /**
@@ -100,7 +100,7 @@ class Account extends AccountHolder
             'PageSize' => $pageSize,
             'Index' => $index
         ];
-        return $http->call('GetAccountList', $data);
+        return $http->call('GetAccountList', array_filter($data));
     }
 
     /**
@@ -130,7 +130,7 @@ class Account extends AccountHolder
             "OnlyBalance" => ($onlyBalance) ? "true" : "false",
             "EntryClassificationType" => $entryClassificationType
         ];
-        $call = $http->call('GetAccountEntry', $data);
+        $call = $http->call('GetAccountEntry', array_filter($data));
 
         # fix api return
         if (isset($call->Entry)) $call->Entry = json_decode($call->Entry, false);
@@ -166,7 +166,7 @@ class Account extends AccountHolder
             "PageSize" => $pageSize,
             "PageIndex" => $pageIndex
         ];
-        $call = $http->call('GetAccountEntryPaged', $data);
+        $call = $http->call('GetAccountEntryPaged', array_filter($data));
 
         # fix api return
         if (isset($call->data->Entry)) $call->data->Entry = json_decode($call->data->Entry);

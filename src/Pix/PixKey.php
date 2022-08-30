@@ -15,7 +15,7 @@ use TwoPlug\SdkFitbank\Helpers\CallApi;
 class PixKey
 {
     private Configuration $configuration;
-    private ?string $pixKey;
+    private ?string $pixKeyValue;
     private ?string $taxNumber;
     private ?string $pixKeyType;
     private ?string $bank;
@@ -33,7 +33,7 @@ class PixKey
      * @param string|null $bankAccountDigit
      */
     public function __construct(
-        ?string $pixKey = null,
+        ?string $pixKeyValue = null,
         ?string $taxNumber = null,
         ?string $pixKeyType = null,
         ?string $bank = null,
@@ -42,7 +42,7 @@ class PixKey
         ?string $bankAccountDigit = null
     ) {
         $this->configuration = new Configuration();
-        $this->pixKey = $pixKey;
+        $this->pixKeyValue = $pixKeyValue;
         $this->taxNumber = $taxNumber;
         $this->pixKeyType = $pixKeyType;
         $this->bank = $bank;
@@ -64,15 +64,15 @@ class PixKey
      */
     public function getPixKey(): ?string
     {
-        return $this->pixKey;
+        return $this->pixKeyValue;
     }
 
     /**
      * @param string|null $pixKey
      */
-    public function setPixKey(?string $pixKey): void
+    public function setPixKeyValue(?string $pixKeyValue): void
     {
-        $this->pixKey = $pixKey;
+        $this->pixKeyValue = $pixKeyValue;
     }
 
     /**
@@ -177,7 +177,7 @@ class PixKey
     public function toArray(): array
     {
         return [
-            "PixKey" => $this->pixKey,
+            "PixKey" => $this->pixKeyValue,
             "TaxNumber" => $this->taxNumber,
             "PixKeyType" => $this->pixKeyType,
             "Bank" => $this->bank,
@@ -199,7 +199,7 @@ class PixKey
         $http = new CallApi($this->configuration);
         $_ = $pixKey ?? $this;
         $data = array_filter([
-            "PixKey" => $_->pixKey,
+            "PixKey" => $_->pixKeyValue,
             "TaxNumber" => $_->taxNumber,
             "PixKeyType" => $_->pixKeyType,
             "Bank" => $_->bank,
@@ -225,7 +225,7 @@ class PixKey
         $http = new CallApi($this->configuration);
         $_ = $pixKey ?? $this;
         $data = [
-            "PixKey" => $_->pixKey,
+            "PixKey" => $_->pixKeyValue,
             "PixKeyType" => $_->pixKeyType,
             "TaxNumber" => $_->taxNumber,
             "ConfirmationCode" => $ConfirmationCode,
@@ -245,7 +245,7 @@ class PixKey
         $http = new CallApi($this->configuration);
         $_ = $pixKey ?? $this;
         $data = array_filter([
-            "PixKey" => $_->pixKey,
+            "PixKey" => $_->pixKeyValue,
             "PixKeyType" => $_->pixKeyType,
             "TaxNumber" => $_->taxNumber
         ], function ($v) {
@@ -266,7 +266,7 @@ class PixKey
         $http = new CallApi($this->configuration);
         $_ = $pixKey ?? $this;
         $data = array_filter([
-            "PixKey" => $_->pixKey,
+            "PixKey" => $_->pixKeyValue,
             "PixKeyType" => $_->pixKeyType,
             "TaxNumber" => $_->taxNumber,
             "Bank" => $_->bank,
@@ -291,7 +291,7 @@ class PixKey
         $http = new CallApi($this->configuration);
         $_ = $pixKey ?? $this;
         $data = array_filter([
-            "PixKey" => $_->pixKey,
+            "PixKey" => $_->pixKeyValue,
             "TaxNumber" => $_->taxNumber,
         ], function ($v) {
             return $v !== null;
@@ -311,7 +311,7 @@ class PixKey
         $http = new CallApi($this->configuration);
         $_ = $pixKey ?? $this;
         $data = array_filter([
-            "PixKey" => $_->pixKey,
+            "PixKey" => $_->pixKeyValue,
             "TaxNumber" => $_->taxNumber,
             "PixKeyType" => $_->pixKeyType,
             "Bank" => $_->bank,
@@ -352,7 +352,7 @@ class PixKey
             "FromBankBranch" => $_->bankBranch,
             "FromBankAccount" => $_->bankAccount,
             "FromBankAccountDigit" => $_->bankAccountDigit,
-            "PixKey" => $_->bankAccountDigit,
+            "PixKey" => $_->pixKeyValue,
             "ToBusinessUnitId" => $ToBusinessUnitId,
             "ToBank" => $ToBank,
             "ToBankBranch" => $ToBankBranch,

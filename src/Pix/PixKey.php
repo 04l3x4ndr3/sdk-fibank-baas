@@ -198,6 +198,7 @@ class PixKey
     {
         $http = new CallApi($this->configuration);
         $_ = $pixKey ?? $this;
+
         $data = array_filter([
             "PixKey" => $_->pixKeyValue,
             "TaxNumber" => $_->taxNumber,
@@ -209,7 +210,8 @@ class PixKey
         ], function ($v) {
             return $v !== null;
         });
-        return $http->call('CreatePixKey', array_filter($data));
+
+        return $http->call('CreatePixKey', $data);
     }
 
     /**
@@ -224,13 +226,15 @@ class PixKey
     {
         $http = new CallApi($this->configuration);
         $_ = $pixKey ?? $this;
-        $data = [
+        $data = array_filter([
             "PixKey" => $_->pixKeyValue,
             "PixKeyType" => $_->pixKeyType,
             "TaxNumber" => $_->taxNumber,
             "ConfirmationCode" => $ConfirmationCode,
-        ];
-        return $http->call('ConfirmPixKeyHold', array_filter($data));
+        ], function ($v) {
+            return $v !== null;
+        });
+        return $http->call('ConfirmPixKeyHold', $data);
     }
 
     /**
@@ -382,7 +386,6 @@ class PixKey
         ], function ($v) {
             return $v !== null;
         });
-
         return $http->call('GetPixKeys', $data);
     }
 }

@@ -48,22 +48,23 @@ class TransferOut
      * @param string|null $description
      * @param string|null $paymentDate
      */
-    public function __construct(?string $fromTaxNumber = null,
-                                ?string $toTaxNumber = null,
-                                ?string $toName = null,
-                                ?int    $bank = null,
-                                ?int    $bankBranch = null,
-                                ?int    $bankAccount = null,
-                                ?int    $bankAccountDigit = null,
-                                ?int    $accountType = null,
-                                ?float  $value = null,
-                                ?float  $rateValue = null,
-                                ?string $identifier = null,
-                                ?int    $rateValueType = null,
-                                ?array  $tags = null,
-                                ?string $description = null,
-                                ?string $paymentDate = null)
-    {
+    public function __construct(
+        ?string $fromTaxNumber = null,
+        ?string $toTaxNumber = null,
+        ?string $toName = null,
+        ?int $bank = null,
+        ?int $bankBranch = null,
+        ?int $bankAccount = null,
+        ?int $bankAccountDigit = null,
+        ?int $accountType = null,
+        ?float $value = null,
+        ?float $rateValue = null,
+        ?string $identifier = null,
+        ?int $rateValueType = null,
+        ?array $tags = null,
+        ?string $description = null,
+        ?string $paymentDate = null
+    ) {
         $this->configuration = new Configuration();
 
         $this->fromTaxNumber = $fromTaxNumber;
@@ -372,8 +373,10 @@ class TransferOut
     public function moneyTransfer(?TransferOut $out = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = (isset($out)) ? $out->toArray() : $this->toArray();
-        return $http->call('MoneyTransfer', array_filter($data));
+        $data = array_filter($out->toArray() ?? $this->toArray(), function ($v) {
+            return $v !== null;
+        });
+        return $http->call('MoneyTransfer', $data);
     }
 
     /**
@@ -386,7 +389,7 @@ class TransferOut
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber,];
-        return $http->call('GetMoneyTransferOutById', array_filter($data));
+        return $http->call('GetMoneyTransferOutById', $data);
     }
 
     /**
@@ -399,6 +402,6 @@ class TransferOut
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber,];
-        return $http->call('CancelMoneyTransfer', array_filter($data));
+        return $http->call('CancelMoneyTransfer', $data);
     }
 }

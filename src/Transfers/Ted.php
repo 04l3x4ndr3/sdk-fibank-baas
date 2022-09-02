@@ -45,21 +45,22 @@ class TED
      * @param string|null $FromTaxNumber
      * @param array $Products
      */
-    public function __construct(?string $SupplierName = null,
-                                ?string $SupplierTaxNumber = null,
-                                ?string $SupplierTradingName = null,
-                                ?string $SupplierMail = null,
-                                ?string $SupplierPhone = null,
-                                ?string $BankNumber = null,
-                                ?string $BankBranch = null,
-                                ?string $BankAccount = null,
-                                ?string $TransferDate = null,
-                                ?float  $TotalValue = null,
-                                ?float  $RateValue = null,
-                                ?string $FromName = null,
-                                ?string $FromTaxNumber = null,
-                                ?array  $Products = [])
-    {
+    public function __construct(
+        ?string $SupplierName = null,
+        ?string $SupplierTaxNumber = null,
+        ?string $SupplierTradingName = null,
+        ?string $SupplierMail = null,
+        ?string $SupplierPhone = null,
+        ?string $BankNumber = null,
+        ?string $BankBranch = null,
+        ?string $BankAccount = null,
+        ?string $TransferDate = null,
+        ?float $TotalValue = null,
+        ?float $RateValue = null,
+        ?string $FromName = null,
+        ?string $FromTaxNumber = null,
+        ?array $Products = []
+    ) {
         $this->configuration = new Configuration();
         $this->supplierName = $SupplierName;
         $this->supplierTaxNumber = $SupplierTaxNumber;
@@ -348,8 +349,10 @@ class TED
     public function moneyTransferIn(?TED $ted = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = isset($ted) ? $ted->toArray() : $this->toArray();
-        return $http->call('MoneyTransferIn', array_filter($data));
+        $data = array_filter($ted->toArray() ?? $this->toArray(), function ($v) {
+            return $v !== null;
+        });
+        return $http->call('MoneyTransferIn', $data);
     }
 
     /**
@@ -361,7 +364,7 @@ class TED
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('GetMoneyTransferInById', array_filter($data));
+        return $http->call('GetMoneyTransferInById', $data);
     }
 
     /**
@@ -373,6 +376,6 @@ class TED
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('CancelMoneyTransferIn', array_filter($data));
+        return $http->call('CancelMoneyTransferIn', $data);
     }
 }

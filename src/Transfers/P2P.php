@@ -32,14 +32,15 @@ class P2P
      * @param string|null $identifier
      * @param string|null $description
      */
-    public function __construct(?string $fromTaxNumber = null,
-                                ?string $toTaxNumber = null,
-                                ?float  $value = null,
-                                ?float  $rateValue = null,
-                                ?string $transferDate = null,
-                                ?string $identifier = null,
-                                ?string $description = null)
-    {
+    public function __construct(
+        ?string $fromTaxNumber = null,
+        ?string $toTaxNumber = null,
+        ?float $value = null,
+        ?float $rateValue = null,
+        ?string $transferDate = null,
+        ?string $identifier = null,
+        ?string $description = null
+    ) {
         $this->configuration = new Configuration();
 
         $this->fromTaxNumber = $fromTaxNumber;
@@ -204,7 +205,9 @@ class P2P
     public function internalTransfer(?P2P $p2p = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = (isset($p2p)) ? $p2p->toArray() : $this->toArray();
+        $data = array_filter($p2p->toArray() ?? $this->toArray(), function ($v) {
+            return $v !== null;
+        });
         return $http->call('InternalTransfer', array_filter($data));
     }
 
@@ -218,7 +221,7 @@ class P2P
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('GetInternalTransferById', array_filter($data));
+        return $http->call('GetInternalTransferById', $data);
     }
 
     /**
@@ -235,7 +238,7 @@ class P2P
             "TaxNumber" => $TaxNumber,
             "TransferDate" => $TransferDate
         ];
-        return $http->call('GetInternalTransferByDate', array_filter($data));
+        return $http->call('GetInternalTransferByDate', $data);
     }
 
     /**
@@ -248,6 +251,6 @@ class P2P
     {
         $http = new CallApi($this->configuration);
         $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('CancelInternalTransfer', array_filter($data));
+        return $http->call('CancelInternalTransfer', $data);
     }
 }

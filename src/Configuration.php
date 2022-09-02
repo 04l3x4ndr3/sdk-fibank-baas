@@ -121,6 +121,14 @@ class Configuration
     }
 
     /**
+     * @param bool $val
+     * @return bool
+     */
+    public function showHttpErrors(bool $val): bool{
+        return $val;
+    }
+
+    /**
      * @return string
      */
     public function getEnvironment(): string
@@ -148,5 +156,4 @@ class Configuration
 
         return self::URL_SANDBOX;
     }
-
 }

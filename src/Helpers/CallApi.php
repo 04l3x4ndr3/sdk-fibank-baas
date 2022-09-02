@@ -11,7 +11,7 @@ class CallApi
 {
     private Client $client;
     private array $credential;
-    private array $httpErrors;
+    private bool $httpErrors;
     private array $header;
     private array $postData;
 

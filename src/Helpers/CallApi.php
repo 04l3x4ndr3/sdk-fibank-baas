@@ -11,6 +11,7 @@ class CallApi
 {
     private Client $client;
     private array $credential;
+    private array $httpErrors;
     private array $header;
     private array $postData;
 
@@ -28,6 +29,8 @@ class CallApi
         $username = $this->credential['username'];
         $password = $this->credential['password'];
         $b64 = base64_encode("{$username}:{$password}");
+
+        $this->httpErrors = $configuration->showHttpErrors ?? false;
 
         $this->header = [
             'User-Agent' => 'SDKFitbank/1.0',
@@ -61,6 +64,7 @@ class CallApi
         ]);
 
         $data = [
+            'http_erros' => $this->httpErrors,
             'headers' => $this->header,
             'json' => $data
         ];

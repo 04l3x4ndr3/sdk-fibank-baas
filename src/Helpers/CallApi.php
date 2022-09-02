@@ -96,5 +96,4 @@ class CallApi
     {
         return json_decode($response->getBody()->getContents());
     }
-
 }

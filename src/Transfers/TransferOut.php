@@ -366,14 +366,15 @@ class TransferOut
 
     /**
      * @description Transferência bancária
-     * @param TransferOut|null $out
+     * @param TransferOut|null $transferOut
      * @return object
      * @throws GuzzleException
      */
-    public function moneyTransfer(?TransferOut $out = null): object
+    public function moneyTransfer(?TransferOut $transferOut = null): object
     {
         $http = new CallApi($this->configuration);
-        $data = array_filter($out->toArray() ?? $this->toArray(), function ($v) {
+        if(!isset($transferOut)) $transferOut = $this;
+        $data = array_filter($transferOut->toArray(), function ($v) {
             return $v !== null;
         });
         return $http->call('MoneyTransfer', $data);

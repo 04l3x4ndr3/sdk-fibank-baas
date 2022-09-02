@@ -85,13 +85,14 @@ class Configuration
      * @param string $bussinesUnitId
      * @param string $mktPlaceId
      */
-    public function __construct(string $environment = self::ENV_SANDBOX,
-                                string $username = self::API_USERNAME,
-                                string $password = self::API_PASSWORD,
-                                string $patternId = self::PATTERN_ID,
-                                string $bussinesUnitId = self::BUSINESS_UNIT_ID,
-                                string $mktPlaceId = self::MKT_PLACE_ID)
-    {
+    public function __construct(
+        string $environment = self::ENV_SANDBOX,
+        string $username = self::API_USERNAME,
+        string $password = self::API_PASSWORD,
+        string $patternId = self::PATTERN_ID,
+        string $bussinesUnitId = self::BUSINESS_UNIT_ID,
+        string $mktPlaceId = self::MKT_PLACE_ID
+    ) {
         $this->setEnvironment($environment);
         $this->setCredential($username, $password, $patternId, $bussinesUnitId, $mktPlaceId);
     }
@@ -109,8 +110,13 @@ class Configuration
      * @param string $mktPlaceId
      * @return void
      */
-    public function setCredential(string $username, string $password, string $patternId, string $bussinesUnitId, string $mktPlaceId): void
-    {
+    public function setCredential(
+        string $username,
+        string $password,
+        string $patternId,
+        string $bussinesUnitId,
+        string $mktPlaceId
+    ): void {
         $this->credentials = [
             'username' => $username,
             'password' => $password,
@@ -124,7 +130,8 @@ class Configuration
      * @param bool $val
      * @return bool
      */
-    public function showHttpErrors(bool $val): bool{
+    public function showHttpErrors(bool $val = false): bool
+    {
         return $val;
     }
 

@@ -30,7 +30,7 @@ class CallApi
         $password = $this->credential['password'];
         $b64 = base64_encode("{$username}:{$password}");
 
-        $this->httpErrors = $configuration->showHttpErrors ?? false;
+        $this->httpErrors = $configuration->showHttpErrors();
 
         $this->header = [
             'User-Agent' => 'SDKFitbank/1.0',

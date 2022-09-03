@@ -87,7 +87,7 @@ class Account extends AccountHolder
         $http = new CallApi(parent::getConfiguration());
         $_ = (isset($account)) ? $account->toArray() : parent::toArray();
         $data = array_filter($_, function ($v) {
-            return $v !== false;
+            return $v !== null;
         });
         return $http->call('NewAccount', $data);
     }

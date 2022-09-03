@@ -399,6 +399,7 @@ class AccountHolder extends Person
             "CheckPendingTransfers" => $this->checkPendingTransfers,
             "CompanyActivity" => $this->companyActivity,
             "ConstitutionDate" => $this->constitutionDate,
+            "MonthlyIncome" => $this->monthlyIncome,
             "Bank" => $this->bank,
             "BankBranch" => $this->bankBranch,
             "BankAccount" => $this->bankAccount,

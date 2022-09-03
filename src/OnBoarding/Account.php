@@ -30,7 +30,7 @@ class Account extends AccountHolder
         ?int $companyType = null,
         ?int $isCompany = null,
         ?string $nickname = null,
-        ?int $checkPendingTransfers = null,
+        ?bool $checkPendingTransfers = null,
         ?string $companyActivity = null,
         ?string $constitutionDate = null,
         ?string $monthlyIncome = null,

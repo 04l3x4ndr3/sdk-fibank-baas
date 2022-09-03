@@ -11,7 +11,7 @@ class AccountHolder extends Person
 
     private ?int $companyType;
     private ?int $isCompany;
-    private ?int $checkPendingTransfers;
+    private ?bool $checkPendingTransfers;
     private ?string $companyActivity;
     private ?string $constitutionDate;
     private ?string $monthlyIncome;
@@ -42,7 +42,7 @@ class AccountHolder extends Person
         ?int    $companyType = null,
         ?int    $isCompany = null,
         ?string $nickname = null,
-        ?int    $checkPendingTransfers = null,
+        ?bool    $checkPendingTransfers = null,
         ?string $companyActivity = null,
         ?string $constitutionDate = null,
         ?string $monthlyIncome = null,
@@ -147,7 +147,7 @@ class AccountHolder extends Person
     /**
      * @return int
      */
-    public function getCheckPendingTransfers(): int
+    public function getCheckPendingTransfers(): bool
     {
         return $this->checkPendingTransfers;
     }
@@ -155,7 +155,7 @@ class AccountHolder extends Person
     /**
      * @param int $checkPendingTransfers
      */
-    public function setCheckPendingTransfers(int $checkPendingTransfers): void
+    public function setCheckPendingTransfers(bool $checkPendingTransfers): void
     {
         $this->checkPendingTransfers = $checkPendingTransfers;
     }

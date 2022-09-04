@@ -77,23 +77,16 @@ class Configuration
         'mktPlaceId' => self::MKT_PLACE_ID
     ];
 
-    /**
-     * @param string $environment
-     * @param string $username
-     * @param string $password
-     * @param string $patternId
-     * @param string $bussinesUnitId
-     * @param string $mktPlaceId
-     */
     public function __construct()
     {
-        $username = $_ENV['API_USERNAME'] ?? self::API_USERNAME;
-        $password = $_ENV['API_PASSWORD'] ?? self::API_PASSWORD;
-        $patternId = $_ENV['PATTERN_ID'] ?? self::PATTERN_ID;
-        $bussinesUnitId = $_ENV['BUSINESS_UNIT_ID'] ?? self::BUSINESS_UNIT_ID;
-        $mktPlaceId = $_ENV['MKT_PLACE_ID'] ?? self::MKT_PLACE_ID;
+        $username = $_ENV['FITBANK_API_USERNAME'] ?? self::API_USERNAME;
+        $password = $_ENV['FITBANK_API_PASSWORD'] ?? self::API_PASSWORD;
+        $patternId = $_ENV['FITBANK_PATTERN_ID'] ?? self::PATTERN_ID;
+        $bussinesUnitId = $_ENV['FITBANK_BUSINESS_UNIT_ID'] ?? self::BUSINESS_UNIT_ID;
+        $mktPlaceId = $_ENV['FITBANK_MKT_PLACE_ID'] ?? self::MKT_PLACE_ID;
+
         $this->setCredential($username, $password, $patternId, $bussinesUnitId, $mktPlaceId);
-        $this->setEnvironment($_ENV['ENVIROMENT']);
+        $this->setEnvironment($_ENV['APP_ENV'] ?? self::ENV_SANDBOX);
     }
 
     public function getCredential(): array

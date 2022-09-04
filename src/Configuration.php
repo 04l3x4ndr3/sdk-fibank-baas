@@ -68,7 +68,7 @@ class Configuration
     const PERSON_ROLE_TYPE_BEARER = 2;
     const PERSON_ROLE_TYPE_ASSOCIATE = 3;
 
-    private ?string $environment = self::ENV_SANDBOX;
+    private ?string $environment;
     private ?array $credentials = [
         'username' => self::API_USERNAME,
         'password' => self::API_PASSWORD,
@@ -85,16 +85,15 @@ class Configuration
      * @param string $bussinesUnitId
      * @param string $mktPlaceId
      */
-    public function __construct(
-        string $environment = self::ENV_SANDBOX,
-        string $username = self::API_USERNAME,
-        string $password = self::API_PASSWORD,
-        string $patternId = self::PATTERN_ID,
-        string $bussinesUnitId = self::BUSINESS_UNIT_ID,
-        string $mktPlaceId = self::MKT_PLACE_ID
-    ) {
-        $this->setEnvironment($environment);
+    public function __construct()
+    {
+        $username = $_ENV['API_USERNAME'] ?? self::API_USERNAME;
+        $password = $_ENV['API_PASSWORD'] ?? self::API_PASSWORD;
+        $patternId = $_ENV['PATTERN_ID'] ?? self::PATTERN_ID;
+        $bussinesUnitId = $_ENV['BUSINESS_UNIT_ID'] ?? self::BUSINESS_UNIT_ID;
+        $mktPlaceId = $_ENV['MKT_PLACE_ID'] ?? self::MKT_PLACE_ID;
         $this->setCredential($username, $password, $patternId, $bussinesUnitId, $mktPlaceId);
+        $this->setEnvironment($_ENV['ENVIROMENT']);
     }
 
     public function getCredential(): array

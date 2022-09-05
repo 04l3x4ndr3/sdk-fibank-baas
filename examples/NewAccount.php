@@ -37,6 +37,7 @@ $objAccountHolder->setNickname('Alexandre');
 $objAccountHolder->setCheckPendingTransfers(false);
 $objAccountHolder->setCompanyActivity('Tecnologia da Informação');
 $objAccountHolder->setConstitutionDate('01/01/2018');
+
 # Add address on AccountHolder
 $objAccountHolder->addAddresse(
     new Address(

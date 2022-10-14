@@ -41,7 +41,7 @@ class Boleto {
 	private ?string $supplierPhone;
 	private ?float $rateValue;
 	private ?int $rateSent;
-	private ?int $externalNumber;
+	private ?string $externalNumber;
 	private ?int $identifier;
 	private ?int $comments;
 	private ?array $products;
@@ -530,16 +530,16 @@ class Boleto {
 	/**
 	 * @return int|null
 	 */
-	public function getExternalNumber(): ?int
+	public function getExternalNumber(): ?string
 	{
 		return $this->externalNumber;
 	}
 
 	/**
-	 * @param int|null $externalNumber
+	 * @param string|null $externalNumber
 	 * @return Boleto
 	 */
-	public function setExternalNumber(?int $externalNumber): self
+	public function setExternalNumber(?string $externalNumber): self
 	{
 		$this->externalNumber = $externalNumber;
 		return $this;

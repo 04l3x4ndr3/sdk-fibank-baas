@@ -42,8 +42,8 @@ class Boleto {
 	private ?float $rateValue;
 	private ?int $rateSent;
 	private ?string $externalNumber;
-	private ?int $identifier;
-	private ?int $comments;
+	private ?string $identifier;
+	private ?string $comments;
 	private ?array $products;
 	private ?string $dueDate;
 	private ?float $totalValue;
@@ -548,7 +548,7 @@ class Boleto {
 	/**
 	 * @return int|null
 	 */
-	public function getIdentifier(): ?int
+	public function getIdentifier(): ?string
 	{
 		return $this->identifier;
 	}
@@ -557,7 +557,7 @@ class Boleto {
 	 * @param int|null $identifier
 	 * @return Boleto
 	 */
-	public function setIdentifier(?int $identifier): self
+	public function setIdentifier(?string $identifier): self
 	{
 		$this->identifier = $identifier;
 		return $this;
@@ -566,7 +566,7 @@ class Boleto {
 	/**
 	 * @return int|null
 	 */
-	public function getComments(): ?int
+	public function getComments(): ?string
 	{
 		return $this->comments;
 	}
@@ -575,7 +575,7 @@ class Boleto {
 	 * @param int|null $comments
 	 * @return Boleto
 	 */
-	public function setComments(?int $comments): self
+	public function setComments(?string $comments): self
 	{
 		$this->comments = $comments;
 		return $this;

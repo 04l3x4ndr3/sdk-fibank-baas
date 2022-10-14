@@ -15,8 +15,8 @@ class Product {
 	private ?int $receiverPersonType;
 	private ?string $receiverName;
 	private ?string $receiverTaxNumber;
-	private ?int $reference;
-	private ?int $productCode;
+	private ?string $reference;
+	private ?string $productCode;
 	private ?string $productName;
 	private ?int $productQty;
 	private ?float $productValue;
@@ -29,7 +29,7 @@ class Product {
 	 * @param string|null $receiverName
 	 * @param string|null $receiverTaxNumber
 	 * @param int|null $reference
-	 * @param int|null $productCode
+	 * @param string|null $productCode
 	 * @param string|null $productName
 	 * @param int|null $productQty
 	 * @param float|null $productValue
@@ -41,7 +41,7 @@ class Product {
 								?string $receiverName = NULL,
 								?string $receiverTaxNumber = NULL,
 								?int    $reference = NULL,
-								?int    $productCode = NULL,
+								?string $productCode = NULL,
 								?string $productName = NULL,
 								?int    $productQty = NULL,
 								?float  $productValue = NULL)
@@ -188,7 +188,7 @@ class Product {
 	/**
 	 * @return int|null
 	 */
-	public function getProductCode(): ?int
+	public function getProductCode(): ?string
 	{
 		return $this->productCode;
 	}
@@ -197,7 +197,7 @@ class Product {
 	 * @param int|null $productCode
 	 * @return Product
 	 */
-	public function setProductCode(?int $productCode): self
+	public function setProductCode(?string $productCode): self
 	{
 		$this->productCode = $productCode;
 		return $this;

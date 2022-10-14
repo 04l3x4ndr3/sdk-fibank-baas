@@ -8,248 +8,269 @@
 
 namespace TwoPlug\SdkFitbank\Common;
 
-class Product
-{
-    private ?int $sellerPersonType;
-    private ?string $sellerName;
-    private ?string $sellerTaxNumber;
-    private ?int $receiverPersonType;
-    private ?string $receiverName;
-    private ?string $receiverTaxNumber;
-    private ?int $reference;
-    private ?int $productCode;
-    private ?string $productName;
-    private ?int $productQty;
-    private ?float $productValue;
+class Product {
+	private ?int $sellerPersonType;
+	private ?string $sellerName;
+	private ?string $sellerTaxNumber;
+	private ?int $receiverPersonType;
+	private ?string $receiverName;
+	private ?string $receiverTaxNumber;
+	private ?int $reference;
+	private ?int $productCode;
+	private ?string $productName;
+	private ?int $productQty;
+	private ?float $productValue;
 
-    /**
-     * @param int|null $sellerPersonType
-     * @param string|null $sellerName
-     * @param string|null $sellerTaxNumber
-     * @param int|null $receiverPersonType
-     * @param string|null $receiverName
-     * @param string|null $receiverTaxNumber
-     * @param int|null $reference
-     * @param int|null $productCode
-     * @param string|null $productName
-     * @param int|null $productQty
-     * @param float|null $productValue
-     */
-    public function __construct(?int    $sellerPersonType = null,
-                                ?string $sellerName = null,
-                                ?string $sellerTaxNumber = null,
-                                ?int    $receiverPersonType = null,
-                                ?string $receiverName = null,
-                                ?string $receiverTaxNumber = null,
-                                ?int    $reference = null,
-                                ?int    $productCode = null,
-                                ?string $productName = null,
-                                ?int    $productQty = null,
-                                ?float  $productValue = null)
-    {
-        $this->sellerPersonType = $sellerPersonType;
-        $this->sellerName = $sellerName;
-        $this->sellerTaxNumber = $sellerTaxNumber;
-        $this->receiverPersonType = $receiverPersonType;
-        $this->receiverName = $receiverName;
-        $this->receiverTaxNumber = $receiverTaxNumber;
-        $this->reference = $reference;
-        $this->productCode = $productCode;
-        $this->productName = $productName;
-        $this->productQty = $productQty;
-        $this->productValue = $productValue;
-    }
+	/**
+	 * @param int|null $sellerPersonType
+	 * @param string|null $sellerName
+	 * @param string|null $sellerTaxNumber
+	 * @param int|null $receiverPersonType
+	 * @param string|null $receiverName
+	 * @param string|null $receiverTaxNumber
+	 * @param int|null $reference
+	 * @param int|null $productCode
+	 * @param string|null $productName
+	 * @param int|null $productQty
+	 * @param float|null $productValue
+	 */
+	public function __construct(?int    $sellerPersonType = NULL,
+								?string $sellerName = NULL,
+								?string $sellerTaxNumber = NULL,
+								?int    $receiverPersonType = NULL,
+								?string $receiverName = NULL,
+								?string $receiverTaxNumber = NULL,
+								?int    $reference = NULL,
+								?int    $productCode = NULL,
+								?string $productName = NULL,
+								?int    $productQty = NULL,
+								?float  $productValue = NULL)
+	{
+		$this->sellerPersonType = $sellerPersonType;
+		$this->sellerName = $sellerName;
+		$this->sellerTaxNumber = $sellerTaxNumber;
+		$this->receiverPersonType = $receiverPersonType;
+		$this->receiverName = $receiverName;
+		$this->receiverTaxNumber = $receiverTaxNumber;
+		$this->reference = $reference;
+		$this->productCode = $productCode;
+		$this->productName = $productName;
+		$this->productQty = $productQty;
+		$this->productValue = $productValue;
+	}
 
-    /**
-     * @return int|null
-     */
-    public function getSellerPersonType(): ?int
-    {
-        return $this->sellerPersonType;
-    }
+	/**
+	 * @return int|null
+	 */
+	public function getSellerPersonType(): ?int
+	{
+		return $this->sellerPersonType;
+	}
 
-    /**
-     * @param int|null $sellerPersonType
-     */
-    public function setSellerPersonType(?int $sellerPersonType): void
-    {
-        $this->sellerPersonType = $sellerPersonType;
-    }
+	/**
+	 * @param int|null $sellerPersonType
+	 * @return Product
+	 */
+	public function setSellerPersonType(?int $sellerPersonType): self
+	{
+		$this->sellerPersonType = $sellerPersonType;
+		return $this;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getSellerName(): ?string
-    {
-        return $this->sellerName;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getSellerName(): ?string
+	{
+		return $this->sellerName;
+	}
 
-    /**
-     * @param string|null $sellerName
-     */
-    public function setSellerName(?string $sellerName): void
-    {
-        $this->sellerName = $sellerName;
-    }
+	/**
+	 * @param string|null $sellerName
+	 * @return Product
+	 */
+	public function setSellerName(?string $sellerName): self
+	{
+		$this->sellerName = $sellerName;
+		return $this;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getSellerTaxNumber(): ?string
-    {
-        return $this->sellerTaxNumber;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getSellerTaxNumber(): ?string
+	{
+		return $this->sellerTaxNumber;
+	}
 
-    /**
-     * @param string|null $sellerTaxNumber
-     */
-    public function setSellerTaxNumber(?string $sellerTaxNumber): void
-    {
-        $this->sellerTaxNumber = $sellerTaxNumber;
-    }
+	/**
+	 * @param string|null $sellerTaxNumber
+	 * @return Product
+	 */
+	public function setSellerTaxNumber(?string $sellerTaxNumber): self
+	{
+		$this->sellerTaxNumber = $sellerTaxNumber;
+		return $this;
+	}
 
-    /**
-     * @return int|null
-     */
-    public function getReceiverPersonType(): ?int
-    {
-        return $this->receiverPersonType;
-    }
+	/**
+	 * @return int|null
+	 */
+	public function getReceiverPersonType(): ?int
+	{
+		return $this->receiverPersonType;
+	}
 
-    /**
-     * @param int|null $receiverPersonType
-     */
-    public function setReceiverPersonType(?int $receiverPersonType): void
-    {
-        $this->receiverPersonType = $receiverPersonType;
-    }
+	/**
+	 * @param int|null $receiverPersonType
+	 * @return Product
+	 */
+	public function setReceiverPersonType(?int $receiverPersonType): self
+	{
+		$this->receiverPersonType = $receiverPersonType;
+		return $this;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getReceiverName(): ?string
-    {
-        return $this->receiverName;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getReceiverName(): ?string
+	{
+		return $this->receiverName;
+	}
 
-    /**
-     * @param string|null $receiverName
-     */
-    public function setReceiverName(?string $receiverName): void
-    {
-        $this->receiverName = $receiverName;
-    }
+	/**
+	 * @param string|null $receiverName
+	 * @return Product
+	 */
+	public function setReceiverName(?string $receiverName): self
+	{
+		$this->receiverName = $receiverName;
+		return $this;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getReceiverTaxNumber(): ?string
-    {
-        return $this->receiverTaxNumber;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getReceiverTaxNumber(): ?string
+	{
+		return $this->receiverTaxNumber;
+	}
 
-    /**
-     * @param string|null $receiverTaxNumber
-     */
-    public function setReceiverTaxNumber(?string $receiverTaxNumber): void
-    {
-        $this->receiverTaxNumber = $receiverTaxNumber;
-    }
+	/**
+	 * @param string|null $receiverTaxNumber
+	 * @return Product
+	 */
+	public function setReceiverTaxNumber(?string $receiverTaxNumber): self
+	{
+		$this->receiverTaxNumber = $receiverTaxNumber;
+		return $this;
+	}
 
-    /**
-     * @return int|null
-     */
-    public function getReference(): ?int
-    {
-        return $this->reference;
-    }
+	/**
+	 * @return int|null
+	 */
+	public function getReference(): ?int
+	{
+		return $this->reference;
+	}
 
-    /**
-     * @param int|null $reference
-     */
-    public function setReference(?int $reference): void
-    {
-        $this->reference = $reference;
-    }
+	/**
+	 * @param int|null $reference
+	 * @return Product
+	 */
+	public function setReference(?int $reference): self
+	{
+		$this->reference = $reference;
+		return $this;
+	}
 
-    /**
-     * @return int|null
-     */
-    public function getProductCode(): ?int
-    {
-        return $this->productCode;
-    }
+	/**
+	 * @return int|null
+	 */
+	public function getProductCode(): ?int
+	{
+		return $this->productCode;
+	}
 
-    /**
-     * @param int|null $productCode
-     */
-    public function setProductCode(?int $productCode): void
-    {
-        $this->productCode = $productCode;
-    }
+	/**
+	 * @param int|null $productCode
+	 * @return Product
+	 */
+	public function setProductCode(?int $productCode): self
+	{
+		$this->productCode = $productCode;
+		return $this;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getProductName(): ?string
-    {
-        return $this->productName;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getProductName(): ?string
+	{
+		return $this->productName;
+	}
 
-    /**
-     * @param string|null $productName
-     */
-    public function setProductName(?string $productName): void
-    {
-        $this->productName = $productName;
-    }
+	/**
+	 * @param string|null $productName
+	 * @return Product
+	 */
+	public function setProductName(?string $productName): self
+	{
+		$this->productName = $productName;
+		return $this;
+	}
 
-    /**
-     * @return int|null
-     */
-    public function getProductQty(): ?int
-    {
-        return $this->productQty;
-    }
+	/**
+	 * @return int|null
+	 */
+	public function getProductQty(): ?int
+	{
+		return $this->productQty;
+	}
 
-    /**
-     * @param int|null $productQty
-     */
-    public function setProductQty(?int $productQty): void
-    {
-        $this->productQty = $productQty;
-    }
+	/**
+	 * @param int|null $productQty
+	 * @return Product
+	 */
+	public function setProductQty(?int $productQty): self
+	{
+		$this->productQty = $productQty;
+		return $this;
+	}
 
-    /**
-     * @return float|null
-     */
-    public function getProductValue(): ?float
-    {
-        return $this->productValue;
-    }
+	/**
+	 * @return float|null
+	 */
+	public function getProductValue(): ?float
+	{
+		return $this->productValue;
+	}
 
-    /**
-     * @param float|null $productValue
-     */
-    public function setProductValue(?float $productValue): void
-    {
-        $this->productValue = $productValue;
-    }
+	/**
+	 * @param float|null $productValue
+	 * @return Product
+	 */
+	public function setProductValue(?float $productValue): self
+	{
+		$this->productValue = $productValue;
+		return $this;
+	}
 
-    public function toArray(): array
-    {
-        return [
-            "SellerPersonType" => $this->sellerPersonType,
-            "SellerName" => $this->sellerName,
-            "SellerTaxNumber" => $this->sellerTaxNumber,
-            "ReceiverPersonType" => $this->receiverPersonType,
-            "ReceiverName" => $this->receiverName,
-            "ReceiverTaxNumber" => $this->receiverTaxNumber,
-            "Reference" => $this->reference,
-            "ProductCode" => $this->productCode,
-            "ProductName" => $this->productName,
-            "ProductQty" => $this->productQty,
-            "ProductValue" => $this->productValue
-        ];
-    }
+	public function toArray(): array
+	{
+		return [
+			"SellerPersonType" => $this->sellerPersonType,
+			"SellerName" => $this->sellerName,
+			"SellerTaxNumber" => $this->sellerTaxNumber,
+			"ReceiverPersonType" => $this->receiverPersonType,
+			"ReceiverName" => $this->receiverName,
+			"ReceiverTaxNumber" => $this->receiverTaxNumber,
+			"Reference" => $this->reference,
+			"ProductCode" => $this->productCode,
+			"ProductName" => $this->productName,
+			"ProductQty" => $this->productQty,
+			"ProductValue" => $this->productValue
+		];
+	}
 }

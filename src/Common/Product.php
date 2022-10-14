@@ -21,42 +21,8 @@ class Product {
 	private ?int $productQty;
 	private ?float $productValue;
 
-	/**
-	 * @param int|null $sellerPersonType
-	 * @param string|null $sellerName
-	 * @param string|null $sellerTaxNumber
-	 * @param int|null $receiverPersonType
-	 * @param string|null $receiverName
-	 * @param string|null $receiverTaxNumber
-	 * @param int|null $reference
-	 * @param string|null $productCode
-	 * @param string|null $productName
-	 * @param int|null $productQty
-	 * @param float|null $productValue
-	 */
-	public function __construct(?int    $sellerPersonType = NULL,
-								?string $sellerName = NULL,
-								?string $sellerTaxNumber = NULL,
-								?int    $receiverPersonType = NULL,
-								?string $receiverName = NULL,
-								?string $receiverTaxNumber = NULL,
-								?int    $reference = NULL,
-								?string $productCode = NULL,
-								?string $productName = NULL,
-								?int    $productQty = NULL,
-								?float  $productValue = NULL)
+	public function __construct()
 	{
-		$this->sellerPersonType = $sellerPersonType;
-		$this->sellerName = $sellerName;
-		$this->sellerTaxNumber = $sellerTaxNumber;
-		$this->receiverPersonType = $receiverPersonType;
-		$this->receiverName = $receiverName;
-		$this->receiverTaxNumber = $receiverTaxNumber;
-		$this->reference = $reference;
-		$this->productCode = $productCode;
-		$this->productName = $productName;
-		$this->productQty = $productQty;
-		$this->productValue = $productValue;
 	}
 
 	/**
@@ -168,18 +134,18 @@ class Product {
 	}
 
 	/**
-	 * @return int|null
+	 * @return string|null
 	 */
-	public function getReference(): ?int
+	public function getReference(): ?string
 	{
 		return $this->reference;
 	}
 
 	/**
-	 * @param int|null $reference
+	 * @param string|null $reference
 	 * @return Product
 	 */
-	public function setReference(?int $reference): self
+	public function setReference(?string $reference): self
 	{
 		$this->reference = $reference;
 		return $this;

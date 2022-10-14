@@ -23,6 +23,17 @@ class Product {
 
 	public function __construct()
 	{
+		$this->sellerPersonType = NULL;
+		$this->sellerName = NULL;
+		$this->sellerTaxNumber = NULL;
+		$this->receiverPersonType = NULL;
+		$this->receiverName = NULL;
+		$this->receiverTaxNumber = NULL;
+		$this->reference = NULL;
+		$this->productCode = NULL;
+		$this->productName = NULL;
+		$this->productQty = NULL;
+		$this->productValue = NULL;
 	}
 
 	/**

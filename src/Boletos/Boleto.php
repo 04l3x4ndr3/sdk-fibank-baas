@@ -57,6 +57,44 @@ class Boleto {
 	public function __construct()
 	{
 		$this->configuration = new Configuration();
+
+		$this->groupTemplate = NULL;
+		$this->customerName = NULL;
+		$this->customerTaxNumber = NULL;
+		$this->customerMail = NULL;
+		$this->customerPhone = NULL;
+		$this->neighborhood = NULL;
+		$this->city = NULL;
+		$this->state = NULL;
+		$this->zipCode = NULL;
+		$this->addressLine1 = NULL;
+		$this->addressLine2 = NULL;
+		$this->mailToSend = NULL;
+		$this->phoneToSend = NULL;
+		$this->supplierTaxNumber = NULL;
+		$this->supplierFullName = NULL;
+		$this->supplierTradingName = NULL;
+		$this->supplierLegalName = NULL;
+		$this->supplierBank = NULL;
+		$this->supplierBankBranch = NULL;
+		$this->supplierBankAccount = NULL;
+		$this->supplierBankAccountDigit = NULL;
+		$this->supplierMail = NULL;
+		$this->supplierPhone = NULL;
+		$this->rateValue = NULL;
+		$this->rateSent = NULL;
+		$this->externalNumber = NULL;
+		$this->identifier = NULL;
+		$this->comments = NULL;
+		$this->products = NULL;
+		$this->dueDate = NULL;
+		$this->totalValue = NULL;
+		$this->finePercent = NULL;
+		$this->fineValue = NULL;
+		$this->interestPercent = NULL;
+		$this->discountDate = NULL;
+		$this->discountValue = NULL;
+		$this->rebateValue = NULL;
 	}
 
 	/**

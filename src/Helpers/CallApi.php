@@ -37,7 +37,7 @@ class CallApi {
 		$body = array_merge($data, [
 			'Method' => $method,
 			'PartnerId' => $this->credential['patternId'],
-			'BusinessUnitId' => $this->credential['bussinesUnitId'],
+			'BusinessUnitId' => $this->credential['businessUnitId'],
 			'MktPlaceId' => $this->credential['mktPlaceId']
 		]);
 

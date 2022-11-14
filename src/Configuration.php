@@ -24,7 +24,7 @@ class Configuration {
 			'username' => $_SERVER['FITBANK_API_USERNAME'] ?? $username,
 			'password' => $_SERVER['FITBANK_API_PASSWORD'] ?? $password,
 			'patternId' => $_SERVER['FITBANK_PATTERN_ID'] ?? $patternId,
-			'bussinesUnitId' => $_SERVER['FITBANK_BUSINESS_UNIT_ID'] ?? $bussinesUnitId,
+			'businessUnitId' => $_SERVER['FITBANK_BUSINESS_UNIT_ID'] ?? $bussinesUnitId,
 			'mktPlaceId' => $_SERVER['FITBANK_MKT_PLACE_ID'] ?? $mktPlaceId
 		];
 

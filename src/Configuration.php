@@ -20,6 +20,7 @@ class Configuration {
 
 	public function __construct(?string $username = NULL, ?string $password = NULL, ?string $patternId = NULL, ?string $bussinesUnitId = NULL, ?string $mktPlaceId = NULL)
 	{
+		$this->environment = $_SERVER['FITBANK_ENVIRONMENT'] ?? self::ENV_SANDBOX;
 		$this->credentials = [
 			'username' => $_SERVER['FITBANK_API_USERNAME'] ?? $username,
 			'password' => $_SERVER['FITBANK_API_PASSWORD'] ?? $password,
@@ -27,8 +28,7 @@ class Configuration {
 			'businessUnitId' => $_SERVER['FITBANK_BUSINESS_UNIT_ID'] ?? $bussinesUnitId,
 			'mktPlaceId' => $_SERVER['FITBANK_MKT_PLACE_ID'] ?? $mktPlaceId
 		];
-
-		$this->environment = $_SERVER['FITBANK_ENVIRONMENT'] ?? self::ENV_SANDBOX;
+		$this->httpHeader = [];
 	}
 
 	/**

@@ -2,8 +2,6 @@
 
 namespace O4l3x4ndr3\SdkFitbank\Common;
 
-use O4l3x4ndr3\SdkFitbank\OnBoarding\Documents;
-
 class AccountHolder extends Person {
 
 	private ?int $companyType;
@@ -269,10 +267,10 @@ class AccountHolder extends Person {
 	}
 
 	/**
-	 * @param Documents $document
+	 * @param Document $document
 	 * @return $this
 	 */
-	public function addDocument(Documents $document): self
+	public function addDocument(Document $document): self
 	{
 		$this->documents[] = $document;
 		return $this;

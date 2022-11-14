@@ -1,6 +1,6 @@
 <?php
 
-namespace O4l3x4ndr3\SdkFitbank\Errors;
+namespace TwoPlug\SdkFitbank\Errors;
 
 class ValidationError extends \Exception
 {

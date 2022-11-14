@@ -6,10 +6,10 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace O4l3x4ndr3\SdkFitbank\Transfers;
+namespace TwoPlug\SdkFitbank\Transfers;
 
-use O4l3x4ndr3\SdkFitbank\Common\Product;
-use O4l3x4ndr3\SdkFitbank\Configuration;
+use TwoPlug\SdkFitbank\Common\Product;
+use TwoPlug\SdkFitbank\Configuration;
 
 class TED
 {

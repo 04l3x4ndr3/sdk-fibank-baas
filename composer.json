@@ -4,17 +4,17 @@
   "minimum-stability": "stable",
   "license": "proprietary",
   "type": "library",
+  "autoload": {
+    "psr-4": {
+      "O4l3x4ndr3\\SdkFitbank\\": "src/"
+    }
+  },
   "authors": [
     {
       "name": "Alexandre G R Alves",
       "email": "alexandre@2plug.com.br"
     }
   ],
-  "autoload": {
-    "psr-4": {
-      "O4l3x4ndr3\\SdkFitbank\\": "src/"
-    }
-  },
   "require": {
     "php": ">=7.4",
     "guzzlehttp/guzzle": "^7.4.2"

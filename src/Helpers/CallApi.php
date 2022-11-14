@@ -19,11 +19,11 @@ class CallApi {
 		$this->config = $config ?? new Configuration();
 		$this->credential = $this->config->getCredential();
 		$b64 = base64_encode("{$this->credential['username']}:{$this->credential['password']}");
-		$this->header = array_merge([
+		$this->header = [
 			'User-Agent' => 'SDKFitbank/1.0',
 			'Accept' => 'Application/json',
 			'Authorization' => "Basic {$b64}"
-		]);
+		];
 	}
 
 	/**
@@ -42,12 +42,12 @@ class CallApi {
 		]);
 
 		$client = new Client();
-		$options = array_filter([
+		$options = [
 			'headers' => $this->header,
 			'json' => $body
-		]);
+		];
 
-		$res = $client->request($method, $this->config->getUrl(), $options);
+		$res = $client->request('POST', $this->config->getUrl(), $options);
 		return json_decode($res->getBody());
 	}
 

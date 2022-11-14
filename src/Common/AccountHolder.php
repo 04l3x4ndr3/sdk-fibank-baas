@@ -20,6 +20,7 @@ class AccountHolder extends Person {
 
 	public function __construct()
 	{
+		parent::__construct();
 		$this->companyType = NULL;
 		$this->isCompany = NULL;
 		$this->checkPendingTransfers = NULL;

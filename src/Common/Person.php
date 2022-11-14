@@ -48,7 +48,6 @@ class Person {
 		$this->nickname = NULL;
 		$this->publiclyExposedPerson = NULL;
 		$this->personDocuments = NULL;
-
 	}
 
 	/**

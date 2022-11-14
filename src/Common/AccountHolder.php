@@ -134,10 +134,12 @@ class AccountHolder extends Person {
 
 	/**
 	 * @param string|null $monthlyIncome
+	 * @return AccountHolder
 	 */
 	public function setMonthlyIncome(?string $monthlyIncome): self
 	{
 		$this->monthlyIncome = $monthlyIncome;
+		return $this;
 	}
 
 	/**

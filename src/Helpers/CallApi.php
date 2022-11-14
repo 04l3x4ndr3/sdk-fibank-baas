@@ -23,7 +23,7 @@ class CallApi {
 			'User-Agent' => 'SDKFitbank/1.0',
 			'Accept' => 'Application/json',
 			'Authorization' => "Basic {$b64}"
-		], $config->getHttpHeader());
+		]);
 	}
 
 	/**

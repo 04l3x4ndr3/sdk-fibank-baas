@@ -1,5 +1,5 @@
 {
-  "name": "04l3x4ndr3/sdk-fibank-baas",
+  "name": "o4l3x4ndr3/sdk-fibank-baas",
   "description": "SDK da API Bank As A Service - FITBANK",
   "minimum-stability": "stable",
   "license": "proprietary",
@@ -12,7 +12,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "TwoPlug\\SdkFitbank\\": "src/"
+      "O4l3x4ndr3\\SdkFitbank\\": "src/"
     }
   },
   "require": {

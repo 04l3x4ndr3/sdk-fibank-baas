@@ -2,411 +2,365 @@
 
 namespace O4l3x4ndr3\SdkFitbank\Common;
 
-use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\OnBoarding\Document;
 
-class AccountHolder extends Person
-{
-    private Configuration $configuration;
+class AccountHolder extends Person {
 
-    private ?int $companyType;
-    private ?int $isCompany;
-    private ?bool $checkPendingTransfers;
-    private ?string $companyActivity;
-    private ?string $constitutionDate;
-    private ?string $monthlyIncome;
-    private ?string $bank;
-    private ?string $bankBranch;
-    private ?string $bankAccount;
-    private ?string $bankAccountDigit;
-    private ?array $documents;
-    private ?array $addresses;
-    private ?array $persons;
+	private ?int $companyType;
+	private ?int $isCompany;
+	private ?bool $checkPendingTransfers;
+	private ?string $companyActivity;
+	private ?string $constitutionDate;
+	private ?string $monthlyIncome;
+	private ?string $bank;
+	private ?string $bankBranch;
+	private ?string $bankAccount;
+	private ?string $bankAccountDigit;
+	private ?array $documents;
+	private ?array $addresses;
+	private ?array $persons;
 
-    public function __construct(
-        ?string $personName = null,
-        ?string $phoneNumber = null,
-        ?string $taxNumber = null,
-        ?string $mail = null,
-        ?string $identityDocument = null,
-        ?string $motherFullName = null,
-        ?string $fatherFullName = null,
-        ?string $nationality = null,
-        ?string $birthState = null,
-        ?int    $gender = null,
-        ?int    $maritalStatus = null,
-        ?string $spouseName = null,
-        ?string $occupation = null,
-        ?string $birthDate = null,
-        ?bool   $publiclyExposedPerson = null,
-        ?int    $companyType = null,
-        ?int    $isCompany = null,
-        ?string $nickname = null,
-        ?bool    $checkPendingTransfers = null,
-        ?string $companyActivity = null,
-        ?string $constitutionDate = null,
-        ?string $monthlyIncome = null,
-        ?string $bank = null,
-        ?string $bankBranch = null,
-        ?string $bankAccount = null,
-        ?string $bankAccountDigit = null,
-        ?array  $addresses = null,
-        ?array  $documents = null,
-        ?array  $persons = null,
-    )
-    {
-        parent::__construct(
-            $personName,
-            $taxNumber,
-            $mail,
-            $occupation,
-            $phoneNumber,
-            null,
-            $motherFullName,
-            $fatherFullName,
-            $nationality,
-            null,
-            $birthState,
-            $gender,
-            $maritalStatus,
-            $spouseName,
-            $identityDocument,
-            $birthDate,
-            $personName,
-            $phoneNumber,
-            $nickname,
-            $publiclyExposedPerson,
-            $documents
-        );
+	public function __construct()
+	{
+		$this->companyType = NULL;
+		$this->isCompany = NULL;
+		$this->checkPendingTransfers = NULL;
+		$this->companyActivity = NULL;
+		$this->constitutionDate = NULL;
+		$this->monthlyIncome = NULL;
+		$this->bank = NULL;
+		$this->bankBranch = NULL;
+		$this->bankAccount = NULL;
+		$this->bankAccountDigit = NULL;
+		$this->documents = NULL;
+		$this->addresses = NULL;
+		$this->persons = NULL;
+	}
 
-        $this->configuration = new Configuration();
-        $this->companyType = $companyType;
-        $this->isCompany = $isCompany;
-        $this->checkPendingTransfers = $checkPendingTransfers;
-        $this->companyActivity = $companyActivity;
-        $this->constitutionDate = $constitutionDate;
-        $this->monthlyIncome = $monthlyIncome;
-        $this->bank = $bank;
-        $this->bankBranch = $bankBranch;
-        $this->bankAccount = $bankAccount;
-        $this->bankAccountDigit = $bankAccountDigit;
-        $this->documents = $documents;
-        $this->addresses = $addresses;
-        $this->persons = $persons;
-    }
+	/**
+	 * @return int
+	 */
+	public function getCompanyType(): int
+	{
+		return $this->companyType;
+	}
 
-    /**
-     * @return Configuration
-     */
-    public function getConfiguration(): Configuration
-    {
-        return $this->configuration;
-    }
+	/**
+	 * @param int $companyType
+	 * @return AccountHolder
+	 */
+	public function setCompanyType(int $companyType): self
+	{
+		$this->companyType = $companyType;
+		return $this;
+	}
 
-    /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
-    }
+	/**
+	 * @return int
+	 */
+	public function getIsCompany(): int
+	{
+		return $this->isCompany;
+	}
 
+	/**
+	 * @param int $isCompany
+	 * @return AccountHolder
+	 */
+	public function setIsCompany(int $isCompany): self
+	{
+		$this->isCompany = $isCompany;
+		return $this;
+	}
 
-    /**
-     * @return int
-     */
-    public function getCompanyType(): int
-    {
-        return $this->companyType;
-    }
+	/**
+	 * @return int
+	 */
+	public function getCheckPendingTransfers(): bool
+	{
+		return $this->checkPendingTransfers;
+	}
 
-    /**
-     * @param int $companyType
-     */
-    public function setCompanyType(int $companyType): void
-    {
-        $this->companyType = $companyType;
-    }
+	/**
+	 * @param int $checkPendingTransfers
+	 */
+	public function setCheckPendingTransfers(bool $checkPendingTransfers): self
+	{
+		$this->checkPendingTransfers = $checkPendingTransfers;
+		return $this;
+	}
 
-    /**
-     * @return int
-     */
-    public function getIsCompany(): int
-    {
-        return $this->isCompany;
-    }
+	/**
+	 * @return string
+	 */
+	public function getCompanyActivity(): string
+	{
+		return $this->companyActivity;
+	}
 
-    /**
-     * @param int $isCompany
-     */
-    public function setIsCompany(int $isCompany): void
-    {
-        $this->isCompany = $isCompany;
-    }
+	/**
+	 * @param string $companyActivity
+	 * @return AccountHolder
+	 */
+	public function setCompanyActivity(string $companyActivity): self
+	{
+		$this->companyActivity = $companyActivity;
+		return $this;
+	}
 
-    /**
-     * @return int
-     */
-    public function getCheckPendingTransfers(): bool
-    {
-        return $this->checkPendingTransfers;
-    }
+	/**
+	 * @return string
+	 */
+	public function getConstitutionDate(): string
+	{
+		return $this->constitutionDate;
+	}
 
-    /**
-     * @param int $checkPendingTransfers
-     */
-    public function setCheckPendingTransfers(bool $checkPendingTransfers): void
-    {
-        $this->checkPendingTransfers = $checkPendingTransfers;
-    }
+	/**
+	 * @param string $constitutionDate
+	 * @return AccountHolder
+	 */
+	public function setConstitutionDate(string $constitutionDate): self
+	{
+		$this->constitutionDate = $constitutionDate;
+		return $this;
+	}
 
-    /**
-     * @return string
-     */
-    public function getCompanyActivity(): string
-    {
-        return $this->companyActivity;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getMonthlyIncome(): ?string
+	{
+		return $this->monthlyIncome;
+	}
 
-    /**
-     * @param string $companyActivity
-     */
-    public function setCompanyActivity(string $companyActivity): void
-    {
-        $this->companyActivity = $companyActivity;
-    }
+	/**
+	 * @param string|null $monthlyIncome
+	 */
+	public function setMonthlyIncome(?string $monthlyIncome): self
+	{
+		$this->monthlyIncome = $monthlyIncome;
+	}
 
-    /**
-     * @return string
-     */
-    public function getConstitutionDate(): string
-    {
-        return $this->constitutionDate;
-    }
+	/**
+	 * @return array
+	 */
+	public function getDocuments(): array
+	{
+		return $this->documents;
+	}
 
-    /**
-     * @param string $constitutionDate
-     */
-    public function setConstitutionDate(string $constitutionDate): void
-    {
-        $this->constitutionDate = $constitutionDate;
-    }
+	/**
+	 * @param array $documents
+	 * @return AccountHolder
+	 */
+	public function setDocuments(array $documents): self
+	{
+		$this->documents = $documents;
+		return $this;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getMonthlyIncome(): ?string
-    {
-        return $this->monthlyIncome;
-    }
+	/**
+	 * @return array
+	 */
+	public function getAddresses(): array
+	{
+		return $this->addresses;
+	}
 
-    /**
-     * @param string|null $monthlyIncome
-     */
-    public function setMonthlyIncome(?string $monthlyIncome): void
-    {
-        $this->monthlyIncome = $monthlyIncome;
-    }
+	/**
+	 * @param array $addresses
+	 * @return AccountHolder
+	 */
+	public function setAddresses(array $addresses): self
+	{
+		$this->addresses = $addresses;
+		return $this;
+	}
 
-    /**
-     * @return array
-     */
-    public function getDocuments(): array
-    {
-        return $this->documents;
-    }
+	/**
+	 * @return array
+	 */
+	public function getPersons(): array
+	{
+		return $this->persons;
+	}
 
-    /**
-     * @param array $documents
-     */
-    public function setDocuments(array $documents): void
-    {
-        $this->documents = $documents;
-    }
+	/**
+	 * @param array $persons
+	 * @return AccountHolder
+	 */
+	public function setPersons(array $persons): self
+	{
+		$this->persons = $persons;
+		return $this;
+	}
 
-    /**
-     * @return array
-     */
-    public function getAddresses(): array
-    {
-        return $this->addresses;
-    }
+	/**
+	 * @return string
+	 */
+	public function getBank(): string
+	{
+		return $this->bank;
+	}
 
-    /**
-     * @param array $addresses
-     */
-    public function setAddresses(array $addresses): void
-    {
-        $this->addresses = $addresses;
-    }
+	/**
+	 * @param string $bank
+	 * @return AccountHolder
+	 */
+	public function setBank(string $bank): self
+	{
+		$this->bank = $bank;
+		return $this;
+	}
 
-    /**
-     * @return array
-     */
-    public function getPersons(): array
-    {
-        return $this->persons;
-    }
+	/**
+	 * @return string
+	 */
+	public function getBankBranch(): string
+	{
+		return $this->bankBranch;
+	}
 
-    /**
-     * @param array $persons
-     */
-    public function setPersons(array $persons): void
-    {
-        $this->persons = $persons;
-    }
+	/**
+	 * @param string $bankBranch
+	 * @return AccountHolder
+	 */
+	public function setBankBranch(string $bankBranch): self
+	{
+		$this->bankBranch = $bankBranch;
+		return $this;
+	}
 
-    /**
-     * @return string
-     */
-    public function getBank(): string
-    {
-        return $this->bank;
-    }
+	/**
+	 * @return string
+	 */
+	public function getBankAccount(): string
+	{
+		return $this->bankAccount;
+	}
 
-    /**
-     * @param string $bank
-     */
-    public function setBank(string $bank): void
-    {
-        $this->bank = $bank;
-    }
+	/**
+	 * @param string $bankAccount
+	 * @return AccountHolder
+	 */
+	public function setBankAccount(string $bankAccount): self
+	{
+		$this->bankAccount = $bankAccount;
+		return $this;
+	}
 
-    /**
-     * @return string
-     */
-    public function getBankBranch(): string
-    {
-        return $this->bankBranch;
-    }
+	/**
+	 * @return string
+	 */
+	public function getBankAccountDigit(): string
+	{
+		return $this->bankAccountDigit;
+	}
 
-    /**
-     * @param string $bankBranch
-     */
-    public function setBankBranch(string $bankBranch): void
-    {
-        $this->bankBranch = $bankBranch;
-    }
+	/**
+	 * @param string $bankAccountDigit
+	 * @return AccountHolder
+	 */
+	public function setBankAccountDigit(string $bankAccountDigit): self
+	{
+		$this->bankAccountDigit = $bankAccountDigit;
+		return $this;
+	}
 
-    /**
-     * @return string
-     */
-    public function getBankAccount(): string
-    {
-        return $this->bankAccount;
-    }
+	/**
+	 * @param Document $document
+	 * @return $this
+	 */
+	public function addDocument(Document $document): self
+	{
+		$this->documents[] = $document;
+		return $this;
+	}
 
-    /**
-     * @param string $bankAccount
-     */
-    public function setBankAccount(string $bankAccount): void
-    {
-        $this->bankAccount = $bankAccount;
-    }
+	/**
+	 * @param Address $address
+	 * @return $this
+	 */
+	public function addAddresse(Address $address): self
+	{
+		$this->addresses[] = $address;
+		return $this;
+	}
 
-    /**
-     * @return string
-     */
-    public function getBankAccountDigit(): string
-    {
-        return $this->bankAccountDigit;
-    }
+	/**
+	 * @param Person $person
+	 * @return $this
+	 */
+	public function addPerson(Person $person): self
+	{
+		$this->persons[] = $person;
+		return $this;
+	}
 
-    /**
-     * @param string $bankAccountDigit
-     */
-    public function setBankAccountDigit(string $bankAccountDigit): void
-    {
-        $this->bankAccountDigit = $bankAccountDigit;
-    }
+	/**
+	 * @return array
+	 */
+	public function toArray(): array
+	{
+		$_addresses = [];
+		$_documents = [];
+		$_persons = [];
 
-    /**
-     * @param Document $document
-     * @return $this
-     */
-    public function addDocument(Document $document): static
-    {
-        $this->documents[] = $document;
-        return $this;
-    }
+		if (isset($this->addresses))
+		{
+			foreach ($this->addresses as $address)
+			{
+				$_addresses[] = $address->toArray();
+			}
+		}
 
-    /**
-     * @param Address $address
-     * @return $this
-     */
-    public function addAddresse(Address $address): static
-    {
-        $this->addresses[] = $address;
-        return $this;
-    }
+		if (isset($this->documents))
+		{
+			foreach ($this->documents as $document)
+			{
+				$_documents[] = $document->toArray();
+			}
+		}
 
-    /**
-     * @param Person $person
-     * @return $this
-     */
-    public function addPerson(Person $person): static
-    {
-        $this->persons[] = $person;
-        return $this;
-    }
+		if (isset($this->persons))
+		{
+			foreach ($this->persons as $person)
+			{
+				$_persons[] = $person->toArray();
+			}
+		}
 
-    /**
-     * @return array
-     */
-    public function toArray(): array
-    {
-        $_addresses = [];
-        $_documents = [];
-        $_persons = [];
-
-        if (isset($this->addresses)) {
-            foreach ($this->addresses as $address) {
-                $_addresses[] = $address->toArray();
-            }
-        }
-
-        if (isset($this->documents)) {
-            foreach ($this->documents as $document) {
-                $_documents[] = $document->toArray();
-            }
-        }
-
-        if (isset($this->persons)) {
-            foreach ($this->persons as $person) {
-                $_persons[] = $person->toArray();
-            }
-        }
-
-        return [
-            "PersonName" => parent::getPersonName(),
-            "PhoneNumber" => parent::getPhoneNumber(),
-            "TaxNumber" => parent::getTaxNumber(),
-            "Mail" => parent::getMail(),
-            "IdentityDocument" => parent::getIdentityDocument(),
-            "MotherFullName" => parent::getMotherFullName(),
-            "FatherFullName" => parent::getFatherFullName(),
-            "Nationality" => parent::getNationality(),
-            "BirthState" => parent::getBirthState(),
-            "Gender" => parent::getGender(),
-            "MaritalStatus" => parent::getMaritalStatus(),
-            "SpouseName" => parent::getSpouseName(),
-            "Occupation" => parent::getOccupation(),
-            "BirthDate" => parent::getBirthDate(),
-            "PubliclyExposedPerson" => parent::getPubliclyExposedPerson(),
-            "CompanyType" => $this->companyType,
-            "IsCompany" => $this->isCompany,
-            "Nickname" => parent::getNickname(),
-            "CheckPendingTransfers" => $this->checkPendingTransfers,
-            "CompanyActivity" => $this->companyActivity,
-            "ConstitutionDate" => $this->constitutionDate,
-            "MonthlyIncome" => $this->monthlyIncome,
-            "Bank" => $this->bank,
-            "BankBranch" => $this->bankBranch,
-            "BankAccount" => $this->bankAccount,
-            "BankAccountDigit" => $this->bankAccountDigit,
-            "Addresses" => array_filter($_addresses),
-            "Documents" => array_filter($_documents),
-            "Persons" => array_filter($_persons)
-        ];
-    }
+		return [
+			"PersonName" => parent::getPersonName(),
+			"PhoneNumber" => parent::getPhoneNumber(),
+			"TaxNumber" => parent::getTaxNumber(),
+			"Mail" => parent::getMail(),
+			"IdentityDocument" => parent::getIdentityDocument(),
+			"MotherFullName" => parent::getMotherFullName(),
+			"FatherFullName" => parent::getFatherFullName(),
+			"Nationality" => parent::getNationality(),
+			"BirthState" => parent::getBirthState(),
+			"Gender" => parent::getGender(),
+			"MaritalStatus" => parent::getMaritalStatus(),
+			"SpouseName" => parent::getSpouseName(),
+			"Occupation" => parent::getOccupation(),
+			"BirthDate" => parent::getBirthDate(),
+			"PubliclyExposedPerson" => parent::getPubliclyExposedPerson(),
+			"CompanyType" => $this->companyType,
+			"IsCompany" => $this->isCompany,
+			"Nickname" => parent::getNickname(),
+			"CheckPendingTransfers" => $this->checkPendingTransfers,
+			"CompanyActivity" => $this->companyActivity,
+			"ConstitutionDate" => $this->constitutionDate,
+			"MonthlyIncome" => $this->monthlyIncome,
+			"Bank" => $this->bank,
+			"BankBranch" => $this->bankBranch,
+			"BankAccount" => $this->bankAccount,
+			"BankAccountDigit" => $this->bankAccountDigit,
+			"Addresses" => array_filter($_addresses),
+			"Documents" => array_filter($_documents),
+			"Persons" => array_filter($_persons)
+		];
+	}
 }

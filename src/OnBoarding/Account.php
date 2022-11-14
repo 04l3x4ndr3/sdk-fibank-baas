@@ -4,258 +4,178 @@ namespace O4l3x4ndr3\SdkFitbank\OnBoarding;
 
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
-use O4l3x4ndr3\SdkFitbank\Common\AccountHolder;
-use O4l3x4ndr3\SdkFitbank\Common\LimitedAccount;
-use O4l3x4ndr3\SdkFitbank\Errors\RequiredError;
+use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Common\LimitedAccount;
+use O4l3x4ndr3\SdkFitbank\Common\FullAccount;
 
-class Account extends AccountHolder
-{
-    public function __construct(
-        ?string $personName = null,
-        ?string $phoneNumber = null,
-        ?string $taxNumber = null,
-        ?string $mail = null,
-        ?string $identityDocument = null,
-        ?string $motherFullName = null,
-        ?string $fatherFullName = null,
-        ?string $nationality = null,
-        ?string $birthState = null,
-        ?int $gender = null,
-        ?int $maritalStatus = null,
-        ?string $spouseName = null,
-        ?string $occupation = null,
-        ?string $birthDate = null,
-        ?bool $publiclyExposedPerson = null,
-        ?int $companyType = null,
-        ?int $isCompany = null,
-        ?string $nickname = null,
-        ?bool $checkPendingTransfers = null,
-        ?string $companyActivity = null,
-        ?string $constitutionDate = null,
-        ?string $monthlyIncome = null,
-        ?string $bank = null,
-        ?string $bankBranch = null,
-        ?string $bankAccount = null,
-        ?string $bankAccountDigit = null,
-        ?array $addresses = null,
-        ?array $documents = null,
-        ?array $persons = null
-    ) {
-        parent::__construct(
-            $personName,
-            $phoneNumber,
-            $taxNumber,
-            $mail,
-            $identityDocument,
-            $motherFullName,
-            $fatherFullName,
-            $nationality,
-            $birthState,
-            $gender,
-            $maritalStatus,
-            $spouseName,
-            $occupation,
-            $birthDate,
-            $publiclyExposedPerson,
-            $companyType,
-            $isCompany,
-            $nickname,
-            $checkPendingTransfers,
-            $companyActivity,
-            $constitutionDate,
-            $monthlyIncome,
-            $bank,
-            $bankBranch,
-            $bankAccount,
-            $bankAccountDigit,
-            $addresses,
-            $documents,
-            $persons
-        );
-    }
+class Account extends CallApi {
 
-    /**
-     * @description Create a new account request for an Individual Person or Company
-     * @document https://dev.fitbank.com.br/reference/92
-     * @param Account|null $account
-     * @return object
-     * @throws GuzzleException
-     */
-    public function newAccount(?Account $account = null): object
-    {
-        $http = new CallApi(parent::getConfiguration());
-        $_ = (isset($account)) ? $account->toArray() : parent::toArray();
-        $data = array_filter($_, function ($v) {
-            return $v !== null;
-        });
-        return $http->call('NewAccount', $data);
-    }
+	public function __construct(?Configuration $configuration = NULL)
+	{
+		parent::__construct($configuration);
+	}
 
-    /**
-     * @description Create a new limited account request for individual person or company.
-     * @document https://dev.fitbank.com.br/reference/259
-     * @param LimitedAccount $limitedAccount
-     * @return object
-     * @throws GuzzleException
-     */
-    public function newLimitedAccount(LimitedAccount $limitedAccount): object
-    {
-        $http = new CallApi(parent::getConfiguration());
-        return $http->call(
-            'LimitedAccount',
-            array_filter($limitedAccount->toArray(), function ($v) {
-                return $v !== null;
-            })
-        );
-    }
+	/**
+	 * @description Create a new account request for an Individual Person or Company
+	 * @document https://dev.fitbank.com.br/reference/92
+	 * @param FullAccount $account
+	 * @return object
+	 * @throws GuzzleException
+	 */
+	public function newAccount(FullAccount $account): object
+	{
+		return $this->call('NewAccount', array_filter($account->toArray(), function ($v) {
+			return $v !== NULL;
+		}));
+	}
 
-    /**
-     * @description Get account information.
-     * @document https://dev.fitbank.com.br/reference/117
-     * @param string|null $identifier
-     * @param string|null $taxNumber
-     * @param string|null $accountKey
-     * @return object
-     * @throws GuzzleException
-     * @throws Exception
-     */
-    public function getAccount(
-        ?string $identifier = null,
-        ?string $taxNumber = null,
-        ?string $accountKey = null
-    ): object {
-        if (!isset($identifier) and !isset($taxNumber) and !isset($accountKey)) {
-            throw new RequiredError('Enter one of the method parameters!');
-        }
-        $http = new CallApi(parent::getConfiguration());
-        $data = array_filter([
-            "Identifier" => $identifier,
-            "TaxNumber" => $taxNumber,
-            "AccountKey" => $accountKey
-        ], function ($v) {
-            return $v !== null;
-        });
+	/**
+	 * @description Create a new limited account request for individual person or company.
+	 * @document https://dev.fitbank.com.br/reference/259
+	 * @param LimitedAccount $limitedAccount
+	 * @return object
+	 * @throws GuzzleException
+	 */
+	public function newLimitedAccount(LimitedAccount $limitedAccount): object
+	{
+		return $this->call('LimitedAccount', array_filter($limitedAccount->toArray(), function ($v) {
+				return $v !== NULL;
+			})
+		);
+	}
 
-        return $http->call('GetAccount', $data);
-    }
+	/**
+	 * @description Get account information.
+	 * @document https://dev.fitbank.com.br/reference/117
+	 * @param string|null $identifier
+	 * @param string|null $taxNumber
+	 * @param string|null $accountKey
+	 * @return object
+	 * @throws GuzzleException
+	 * @throws Exception
+	 */
+	public function getAccount(string $identifier, string $taxNumber, string $accountKey): object
+	{
+		return $this->call('GetAccount', array_filter([
+			"Identifier" => $identifier,
+			"TaxNumber" => $taxNumber,
+			"AccountKey" => $accountKey
+		], function ($v) {
+			return $v !== NULL;
+		}));
+	}
 
-    /**
-     * @description Returns a list of business unit accounts.
-     * @document https://dev.fitbank.com.br/reference/208
-     * @param int $pageSize
-     * @param int $index
-     * @return object
-     * @throws GuzzleException
-     */
-    public function getAccountList(int $pageSize = 5, int $index = 0): object
-    {
-        $http = new CallApi(parent::getConfiguration());
-        $data = [
-            'PageSize' => $pageSize,
-            'Index' => $index
-        ];
-        return $http->call('GetAccountList', $data);
-    }
+	/**
+	 * @description Returns a list of business unit accounts.
+	 * @document https://dev.fitbank.com.br/reference/208
+	 * @param int $pageSize
+	 * @param int $index
+	 * @return object
+	 * @throws GuzzleException
+	 */
+	public function getAccountList(int $pageSize = 5, int $index = 0): object
+	{
+		return $this->call('GetAccountList', [
+			'PageSize' => $pageSize,
+			'Index' => $index
+		]);
+	}
 
-    /**
-     * @description Get Account Entry
-     * @document https://dev.fitbank.com.br/reference/15
-     * @param string $taxNumber
-     * @param string $startDate
-     * @param string $endDate
-     * @param string $bank
-     * @param string $bankBranch
-     * @param string $bankAccount
-     * @param string $bankAccountDigit
-     * @param bool $onlyBalance
-     * @param string $entryClassificationType
-     * @return object
-     * @throws GuzzleException
-     */
-    public function getAccountEntry(
-        string $taxNumber,
-        string $startDate,
-        string $endDate,
-        string $bank = "",
-        string $bankBranch = "",
-        string $bankAccount = "",
-        string $bankAccountDigit = "",
-        bool $onlyBalance = false,
-        string $entryClassificationType = "Debit"
-    ): object {
-        $http = new CallApi(parent::getConfiguration());
-        $data = array_filter([
-            "TaxNumber" => $taxNumber,
-            "StartDate" => $startDate,
-            "EndDate" => $endDate,
-            "Bank" => $bank ?? "",
-            "BankBranch" => $bankBranch ?? "",
-            "BankAccount" => $bankAccount ?? "",
-            "BankAccountDigit" => $bankAccountDigit ?? "",
-            "OnlyBalance" => ($onlyBalance) ? "true" : "false",
-            "EntryClassificationType" => $entryClassificationType
-        ], function ($v) {
-            return $v !== null;
-        });
-        $call = $http->call('GetAccountEntry', $data);
+	/**
+	 * @description Get Account Entry
+	 * @document https://dev.fitbank.com.br/reference/15
+	 * @param string $taxNumber
+	 * @param string $startDate
+	 * @param string $endDate
+	 * @param string $bank
+	 * @param string $bankBranch
+	 * @param string $bankAccount
+	 * @param string $bankAccountDigit
+	 * @param bool $onlyBalance
+	 * @param string $entryClassificationType
+	 * @return object
+	 * @throws GuzzleException
+	 */
+	public function getAccountEntry(string $taxNumber,
+									string $startDate,
+									string $endDate,
+									string $bank = "",
+									string $bankBranch = "",
+									string $bankAccount = "",
+									string $bankAccountDigit = "",
+									bool   $onlyBalance = FALSE,
+									string $entryClassificationType = "Debit"): object
+	{
+		$call = $this->call('GetAccountEntry', array_filter([
+			"TaxNumber" => $taxNumber,
+			"StartDate" => $startDate,
+			"EndDate" => $endDate,
+			"Bank" => $bank ?? "",
+			"BankBranch" => $bankBranch ?? "",
+			"BankAccount" => $bankAccount ?? "",
+			"BankAccountDigit" => $bankAccountDigit ?? "",
+			"OnlyBalance" => ($onlyBalance) ? "true" : "false",
+			"EntryClassificationType" => $entryClassificationType
+		], function ($v) {
+			return $v !== NULL;
+		}));
 
-        # fix api return
-        if (isset($call->Entry)) {
-            $call->Entry = json_decode($call->Entry, false);
-        }
-        return $call;
-    }
+		# fix api return
+		if (isset($call->Entry))
+		{
+			$call->Entry = json_decode($call->Entry, FALSE);
+		}
+		return $call;
+	}
 
-    /**
-     * @description Get account entry informations with a page limit.
-     * @document https://dev.fitbank.com.br/reference/post_-getaccountentrypaged
-     * @param string $taxNumber
-     * @param string $startDate
-     * @param string $endDate
-     * @param string $bank
-     * @param string $bankBranch
-     * @param string $bankAccount
-     * @param string $bankAccountDigit
-     * @param bool $onlyBalance
-     * @param int $pageSize
-     * @param int $pageIndex
-     * @return object
-     * @throws GuzzleException
-     */
-    public function getAccountEntryPaged(
-        string $taxNumber,
-        string $startDate,
-        string $endDate,
-        string $bank = "",
-        string $bankBranch = "",
-        string $bankAccount = "",
-        string $bankAccountDigit = "",
-        bool $onlyBalance = false,
-        int $pageSize = 25,
-        int $pageIndex = 0
-    ): object {
-        $http = new CallApi(parent::getConfiguration());
-        $data = array_filter([
-            "TaxNumber" => $taxNumber,
-            "StartDate" => $startDate,
-            "EndDate" => $endDate,
-            "Bank" => $bank,
-            "BankBranch" => $bankBranch,
-            "BankAccount" => $bankAccount,
-            "BankAccountDigit" => $bankAccountDigit,
-            "OnlyBalance" => $onlyBalance,
-            "PageSize" => $pageSize,
-            "PageIndex" => $pageIndex
-        ], function ($v) {
-            return $v !== null;
-        });
-        $call = $http->call('GetAccountEntryPaged', $data);
+	/**
+	 * @description Get account entry informations with a page limit.
+	 * @document https://dev.fitbank.com.br/reference/post_-getaccountentrypaged
+	 * @param string $taxNumber
+	 * @param string $startDate
+	 * @param string $endDate
+	 * @param string $bank
+	 * @param string $bankBranch
+	 * @param string $bankAccount
+	 * @param string $bankAccountDigit
+	 * @param bool $onlyBalance
+	 * @param int $pageSize
+	 * @param int $pageIndex
+	 * @return object
+	 * @throws GuzzleException
+	 */
+	public function getAccountEntryPaged(string $taxNumber,
+										 string $startDate,
+										 string $endDate,
+										 string $bank = "",
+										 string $bankBranch = "",
+										 string $bankAccount = "",
+										 string $bankAccountDigit = "",
+										 bool   $onlyBalance = FALSE,
+										 int    $pageSize = 25,
+										 int    $pageIndex = 0
+	): object
+	{
+		$call = $this->call('GetAccountEntryPaged', array_filter([
+			"TaxNumber" => $taxNumber,
+			"StartDate" => $startDate,
+			"EndDate" => $endDate,
+			"Bank" => $bank,
+			"BankBranch" => $bankBranch,
+			"BankAccount" => $bankAccount,
+			"BankAccountDigit" => $bankAccountDigit,
+			"OnlyBalance" => $onlyBalance,
+			"PageSize" => $pageSize,
+			"PageIndex" => $pageIndex
+		], function ($v) {
+			return $v !== NULL;
+		}));
 
-        # fix api return
-        if (isset($call->data->Entry)) {
-            $call->data->Entry = json_decode($call->data->Entry);
-        }
-        return $call;
-    }
+		# fix api return
+		if (isset($call->data->Entry)) {
+			$call->data->Entry = json_decode($call->data->Entry);
+		}
+		return $call;
+	}
 }

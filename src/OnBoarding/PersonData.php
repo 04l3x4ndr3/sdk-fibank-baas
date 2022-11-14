@@ -3,86 +3,26 @@
 namespace O4l3x4ndr3\SdkFitbank\OnBoarding;
 
 use GuzzleHttp\Exception\GuzzleException;
-use O4l3x4ndr3\SdkFitbank\Common\AccountHolder;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Common\FullAccount;
 
-class PersonData extends AccountHolder
-{
-    private Configuration $configuration;
+class PersonData extends CallApi {
 
-    public function __construct(
-        ?string $personName = null,
-        ?string $phoneNumber = null,
-        ?string $taxNumber = null,
-        ?string $mail = null,
-        ?string $identityDocument = null,
-        ?string $motherFullName = null,
-        ?string $fatherFullName = null,
-        ?string $nationality = null,
-        ?string $birthState = null,
-        ?int $gender = null,
-        ?int $maritalStatus = null,
-        ?string $spouseName = null,
-        ?string $occupation = null,
-        ?string $birthDate = null,
-        ?bool $publiclyExposedPerson = null,
-        ?int $companyType = null,
-        ?int $isCompany = null,
-        ?string $nickname = null,
-        ?int $checkPendingTransfers = null,
-        ?string $companyActivity = null,
-        ?string $constitutionDate = null,
-        ?string $bank = null,
-        ?string $bankBranch = null,
-        ?string $bankAccount = null,
-        ?string $bankAccountDigit = null,
-        ?array $addresses = null,
-        ?array $documents = null,
-        ?array $persons = null
-    ) {
-        parent::__construct(
-            $personName,
-            $phoneNumber,
-            $taxNumber,
-            $mail,
-            $identityDocument,
-            $motherFullName,
-            $fatherFullName,
-            $nationality,
-            $birthState,
-            $gender,
-            $maritalStatus,
-            $spouseName,
-            $occupation,
-            $birthDate,
-            $publiclyExposedPerson,
-            $companyType,
-            $isCompany,
-            $nickname,
-            $checkPendingTransfers,
-            $companyActivity,
-            $constitutionDate,
-            $bank,
-            $bankBranch,
-            $bankAccount,
-            $bankAccountDigit,
-            $addresses,
-            $documents,
-            $persons
-        );
-        $this->configuration = new Configuration();
-    }
+	public function __construct(?Configuration $configuration = NULL)
+	{
+		parent::__construct($configuration);
+	}
 
-    /**
-     * @param AccountHolder|null $accountHolder
-     * @return object
-     * @throws GuzzleException
-     */
-    public function updatePersonData(?AccountHolder $accountHolder = null): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = (isset($accountHolder)) ? $accountHolder->toArray() : parent::toArray();
-        return $http->call('UpdatePersonData', array_filter($data));
-    }
+	/**
+	 * @param FullAccount $account
+	 * @return object
+	 * @throws GuzzleException
+	 */
+	public function updatePersonData(FullAccount $account): object
+	{
+		return $this->call('UpdatePersonData', array_filter($account->toArray(), function ($v) {
+			return $v !== NULL;
+		}));
+	}
 }

@@ -6,7 +6,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class Document extends CallApi {
+class Documents extends CallApi {
 
 	public function __construct(?Configuration $configuration = NULL)
 	{

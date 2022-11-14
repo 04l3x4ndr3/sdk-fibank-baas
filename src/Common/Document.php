@@ -4,145 +4,159 @@ namespace O4l3x4ndr3\SdkFitbank\Common;
 
 class Document
 {
-    private ?string $documentFile;
-    private ?int $documentFormat;
-    private ?string $documentName;
-    private ?string $documentType;
-    private ?int $description;
-    private ?string $expirationDate;
+	private ?string $documentFile;
+	private ?int $documentFormat;
+	private ?string $documentName;
+	private ?int $documentType;
+	private ?string $description;
+	private ?string $expirationDate;
 
-    /**
-     * @param string|null $documentFile
-     * @param int|null $documentFormat
-     * @param string|null $documentName
-     * @param string|null $documentType
-     * @param int|null $description
-     * @param string|null $expirationDate
-     */
-    public function __construct(
-        ?string $documentFile = null,
-        ?int $documentFormat = null,
-        ?string $documentName = null,
-        ?string $documentType = null,
-        ?int $description = null,
-        ?string $expirationDate = null
-    ) {
-        $this->documentFile = $documentFile;
-        $this->documentFormat = $documentFormat;
-        $this->documentName = $documentName;
-        $this->documentType = $documentType;
-        $this->description = $description;
-        $this->expirationDate = $expirationDate;
-    }
+	/**
+	 * @param string|null $documentFile
+	 * @param int|null $documentFormat
+	 * @param string|null $documentName
+	 * @param int|null $documentType
+	 * @param string|null $description
+	 * @param string|null $expirationDate
+	 */
+	public function __construct(
+		?string $documentFile = null,
+		?int    $documentFormat = null,
+		?string $documentName = null,
+		?int    $documentType = null,
+		?string $description = null,
+		?string $expirationDate = null
+	)
+	{
+		$this->documentFile = $documentFile;
+		$this->documentFormat = $documentFormat;
+		$this->documentName = $documentName;
+		$this->documentType = $documentType;
+		$this->description = $description;
+		$this->expirationDate = $expirationDate;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getDocumentFile(): ?string
-    {
-        return $this->documentFile;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getDocumentFile(): ?string
+	{
+		return $this->documentFile;
+	}
 
-    /**
-     * @param string|null $documentFile
-     */
-    public function setDocumentFile(?string $documentFile): void
-    {
-        $this->documentFile = $documentFile;
-    }
+	/**
+	 * @param string|null $documentFile
+	 * @return Document
+	 */
+	public function setDocumentFile(?string $documentFile): self
+	{
+		$this->documentFile = $documentFile;
+		return $this;
+	}
 
-    /**
-     * @return int|null
-     */
-    public function getDocumentFormat(): ?int
-    {
-        return $this->documentFormat;
-    }
+	/**
+	 * @return int|null
+	 */
+	public function getDocumentFormat(): ?int
+	{
+		return $this->documentFormat;
+	}
 
-    /**
-     * @param int|null $documentFormat
-     */
-    public function setDocumentFormat(?int $documentFormat): void
-    {
-        $this->documentFormat = $documentFormat;
-    }
+	/**
+	 * @param int|null $documentFormat
+	 * @return Document
+	 */
+	public function setDocumentFormat(?int $documentFormat): self
+	{
+		$this->documentFormat = $documentFormat;
+		return $this;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getDocumentName(): ?string
-    {
-        return $this->documentName;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getDocumentName(): ?string
+	{
+		return $this->documentName;
+	}
 
-    /**
-     * @param string|null $documentName
-     */
-    public function setDocumentName(?string $documentName): void
-    {
-        $this->documentName = $documentName;
-    }
+	/**
+	 * @param string|null $documentName
+	 * @return Document
+	 */
+	public function setDocumentName(?string $documentName): self
+	{
+		$this->documentName = $documentName;
+		return $this;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getDocumentType(): ?string
-    {
-        return $this->documentType;
-    }
+	/**
+	 * @return int|null
+	 */
+	public function getDocumentType(): ?int
+	{
+		return $this->documentType;
+	}
 
-    /**
-     * @param string|null $documentType
-     */
-    public function setDocumentType(?string $documentType): void
-    {
-        $this->documentType = $documentType;
-    }
+	/**
+	 * @param int|null $documentType
+	 * @return Document
+	 */
+	public function setDocumentType(?int $documentType): self
+	{
+		$this->documentType = $documentType;
+		return $this;
+	}
 
-    /**
-     * @return int|null
-     */
-    public function getDescription(): ?int
-    {
-        return $this->description;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getDescription(): ?string
+	{
+		return $this->description;
+	}
 
-    /**
-     * @param int|null $description
-     */
-    public function setDescription(?int $description): void
-    {
-        $this->description = $description;
-    }
+	/**
+	 * @param string|null $description
+	 * @return Document
+	 */
+	public function setDescription(?string $description): self
+	{
+		$this->description = $description;
+		return $this;
+	}
 
-    /**
-     * @return string|null
-     */
-    public function getExpirationDate(): ?string
-    {
-        return $this->expirationDate;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getExpirationDate(): ?string
+	{
+		return $this->expirationDate;
+	}
 
-    /**
-     * @param string|null $expirationDate
-     */
-    public function setExpirationDate(?string $expirationDate): void
-    {
-        $this->expirationDate = $expirationDate;
-    }
+	/**
+	 * @param string|null $expirationDate
+	 * @return Document
+	 */
+	public function setExpirationDate(?string $expirationDate): self
+	{
+		$this->expirationDate = $expirationDate;
+		return $this;
+	}
 
-    /**
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return [
-            "DocumentFile" => $this->documentFile,
-            "DocumentFormat" => $this->documentFormat,
-            "DocumentName" => $this->documentName,
-            "DocumentType" => $this->documentType,
-            "Description" => $this->description,
-            "ExpirationDate" => $this->expirationDate
-        ];
-    }
+
+	/**
+	 * @return array
+	 */
+	public function toArray(): array
+	{
+		return [
+			"DocumentFile" => $this->documentFile,
+			"DocumentFormat" => $this->documentFormat,
+			"DocumentName" => $this->documentName,
+			"DocumentType" => $this->documentType,
+			"Description" => $this->description,
+			"ExpirationDate" => $this->expirationDate
+		];
+	}
 }

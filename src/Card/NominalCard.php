@@ -6,8 +6,8 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-use TwoPlug\SdkFitbank\Common\Address;
-use TwoPlug\SdkFitbank\Configuration;
+use O4l3x4ndr3\SdkFitbank\Common\Address;
+use O4l3x4ndr3\SdkFitbank\Configuration;
 
 class NominalCard
 {

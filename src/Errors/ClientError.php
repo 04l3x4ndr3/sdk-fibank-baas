@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoPlug\SdkFitbank\Errors;
+namespace O4l3x4ndr3\SdkFitbank\Errors;
 
 use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\RequestInterface;

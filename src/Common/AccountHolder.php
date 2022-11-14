@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoPlug\SdkFitbank\Common;
+namespace O4l3x4ndr3\SdkFitbank\Common;
 
-use TwoPlug\SdkFitbank\Configuration;
-use TwoPlug\SdkFitbank\OnBoarding\Document;
+use O4l3x4ndr3\SdkFitbank\Configuration;
+use O4l3x4ndr3\SdkFitbank\OnBoarding\Document;
 
 class AccountHolder extends Person
 {

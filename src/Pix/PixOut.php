@@ -6,11 +6,11 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace TwoPlug\SdkFitbank\Pix;
+namespace O4l3x4ndr3\SdkFitbank\Pix;
 
 use GuzzleHttp\Exception\GuzzleException;
-use TwoPlug\SdkFitbank\Configuration;
-use TwoPlug\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Configuration;
+use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
 class PixOut
 {

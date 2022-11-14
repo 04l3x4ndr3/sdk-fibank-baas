@@ -6,7 +6,7 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace TwoPlug\SdkFitbank;
+namespace O4l3x4ndr3\SdkFitbank;
 
 class Configuration
 {

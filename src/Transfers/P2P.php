@@ -6,11 +6,11 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace TwoPlug\SdkFitbank\Transfers;
+namespace O4l3x4ndr3\SdkFitbank\Transfers;
 
 use GuzzleHttp\Exception\GuzzleException;
-use TwoPlug\SdkFitbank\Configuration;
-use TwoPlug\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Configuration;
+use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
 class P2P {
 	private Configuration $configuration;

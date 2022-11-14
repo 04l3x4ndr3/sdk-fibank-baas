@@ -6,12 +6,12 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace TwoPlug\SdkFitbank\Boletos;
+namespace O4l3x4ndr3\SdkFitbank\Boletos;
 
 use GuzzleHttp\Exception\GuzzleException;
-use TwoPlug\SdkFitbank\Common\Product;
-use TwoPlug\SdkFitbank\Configuration;
-use TwoPlug\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Common\Product;
+use O4l3x4ndr3\SdkFitbank\Configuration;
+use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
 class Boleto {
 

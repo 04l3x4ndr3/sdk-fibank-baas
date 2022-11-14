@@ -1,17 +1,17 @@
 <?php
 
-namespace TwoPlug\SdkFitbank\Helpers;
+namespace O4l3x4ndr3\SdkFitbank\Helpers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use TwoPlug\SdkFitbank\Configuration as Config;
-use TwoPlug\SdkFitbank\Errors\ClientError;
+use O4l3x4ndr3\SdkFitbank\Configuration as Config;
+use O4l3x4ndr3\SdkFitbank\Errors\ClientError;
 
 class CallApi
 {
     private Client $client;
     private array $credential;
-    private bool $httpErrors;
+    private bool $O4l3x4ndr3;
     private array $header;
     private array $postData;
 
@@ -30,7 +30,7 @@ class CallApi
         $password = $this->credential['password'];
         $b64 = base64_encode("{$username}:{$password}");
 
-        $this->httpErrors = $configuration->showHttpErrors();
+        $this->O4l3x4ndr3 = $configuration->showO4l3x4ndr3();
 
         $this->header = [
             'User-Agent' => 'SDKFitbank/1.0',
@@ -64,7 +64,7 @@ class CallApi
         ]);
 
         $data = [
-            'http_erros' => $this->httpErrors,
+            'http_erros' => $this->O4l3x4ndr3,
             'headers' => $this->header,
             'json' => $data
         ];

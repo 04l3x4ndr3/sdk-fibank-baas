@@ -6,7 +6,7 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace TwoPlug\SdkFitbank\Common;
+namespace O4l3x4ndr3\SdkFitbank\Common;
 
 class Product {
 	private ?int $sellerPersonType;

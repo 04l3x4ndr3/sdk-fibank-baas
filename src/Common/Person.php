@@ -1,8 +1,8 @@
 <?php
 
-namespace TwoPlug\SdkFitbank\Common;
+namespace O4l3x4ndr3\SdkFitbank\Common;
 
-use TwoPlug\SdkFitbank\Configuration;
+use O4l3x4ndr3\SdkFitbank\Configuration;
 
 class Person
 {

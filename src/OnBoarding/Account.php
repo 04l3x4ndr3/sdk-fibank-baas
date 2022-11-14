@@ -1,13 +1,13 @@
 <?php
 
-namespace TwoPlug\SdkFitbank\OnBoarding;
+namespace O4l3x4ndr3\SdkFitbank\OnBoarding;
 
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
-use TwoPlug\SdkFitbank\Common\AccountHolder;
-use TwoPlug\SdkFitbank\Common\LimitedAccount;
-use TwoPlug\SdkFitbank\Errors\RequiredError;
-use TwoPlug\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Common\AccountHolder;
+use O4l3x4ndr3\SdkFitbank\Common\LimitedAccount;
+use O4l3x4ndr3\SdkFitbank\Errors\RequiredError;
+use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
 class Account extends AccountHolder
 {

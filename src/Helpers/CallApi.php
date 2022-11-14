@@ -10,6 +10,7 @@ class CallApi {
 	private Configuration $config;
 	private ?array $header;
 	private ?array $credential;
+	private $requestBody = '';
 
 	/**
 	 * @param Configuration|null $config
@@ -47,6 +48,8 @@ class CallApi {
 			'json' => $body
 		];
 
+		$this->requestBody = json_encode($body);
+
 		$res = $client->request('POST', $this->config->getUrl(), $options);
 		return json_decode($res->getBody());
 	}
@@ -57,5 +60,9 @@ class CallApi {
 	public function getConfig(): Configuration
 	{
 		return $this->config;
+	}
+
+	public function getRequestBody(): string{
+		return $this->requestBody;
 	}
 }

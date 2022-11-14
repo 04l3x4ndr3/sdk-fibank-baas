@@ -2,7 +2,8 @@
 
 namespace O4l3x4ndr3\SdkFitbank\Common;
 
-class AccountHolder extends Person {
+class AccountHolder extends Person
+{
 
 	private ?int $companyType;
 	private ?int $isCompany;
@@ -304,35 +305,29 @@ class AccountHolder extends Person {
 	 */
 	public function toArray(): array
 	{
-		$_addresses = [];
-		$_documents = [];
-		$_persons = [];
+		$_addresses = null;
+		$_documents = null;
+		$_persons = null;
 
-		if (isset($this->addresses))
-		{
-			foreach ($this->addresses as $address)
-			{
+		if (isset($this->addresses)) {
+			foreach ($this->addresses as $address) {
 				$_addresses[] = $address->toArray();
 			}
 		}
 
-		if (isset($this->documents))
-		{
-			foreach ($this->documents as $document)
-			{
+		if (isset($this->documents)) {
+			foreach ($this->documents as $document) {
 				$_documents[] = $document->toArray();
 			}
 		}
 
-		if (isset($this->persons))
-		{
-			foreach ($this->persons as $person)
-			{
+		if (isset($this->persons)) {
+			foreach ($this->persons as $person) {
 				$_persons[] = $person->toArray();
 			}
 		}
 
-		return [
+		return array_filter([
 			"PersonName" => parent::getPersonName(),
 			"PhoneNumber" => parent::getPhoneNumber(),
 			"TaxNumber" => parent::getTaxNumber(),
@@ -359,9 +354,11 @@ class AccountHolder extends Person {
 			"BankBranch" => $this->bankBranch,
 			"BankAccount" => $this->bankAccount,
 			"BankAccountDigit" => $this->bankAccountDigit,
-			"Addresses" => array_filter($_addresses),
-			"Documents" => array_filter($_documents),
-			"Persons" => array_filter($_persons)
-		];
+			"Addresses" => $_addresses,
+			"Documents" => $_documents,
+			"Persons" => $_persons
+		], function ($v) {
+			return $v !== null;
+		});
 	}
 }

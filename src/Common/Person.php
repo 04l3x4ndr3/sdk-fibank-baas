@@ -2,7 +2,8 @@
 
 namespace O4l3x4ndr3\SdkFitbank\Common;
 
-class Person {
+class Person
+{
 	private ?string $name;
 	private ?string $taxNumber;
 	private ?string $occupation;
@@ -434,15 +435,13 @@ class Person {
 	public function toArray(): array
 	{
 		$_documents = [];
-		if (isset($this->personDocuments))
-		{
-			foreach ($this->personDocuments as $document)
-			{
+		if (isset($this->personDocuments)) {
+			foreach ($this->personDocuments as $document) {
 				$_documents[] = array_filter($document->toArray());
 			}
 		}
 
-		return [
+		return array_filter([
 			"Name" => $this->name,
 			"TaxNumber" => $this->taxNumber,
 			"Mail" => $this->mail,
@@ -464,6 +463,8 @@ class Person {
 			"PersonName" => $this->personName,
 			"PubliclyExposedPerson" => $this->publiclyExposedPerson,
 			"PersonDocuments" => $_documents
-		];
+		], function ($v) {
+			return $v !== null;
+		});
 	}
 }

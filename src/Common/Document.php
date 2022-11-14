@@ -150,13 +150,15 @@ class Document
 	 */
 	public function toArray(): array
 	{
-		return [
+		return array_filter([
 			"DocumentFile" => $this->documentFile,
 			"DocumentFormat" => $this->documentFormat,
 			"DocumentName" => $this->documentName,
 			"DocumentType" => $this->documentType,
 			"Description" => $this->description,
 			"ExpirationDate" => $this->expirationDate
-		];
+		], function ($v) {
+			return $v !== null;
+		});
 	}
 }

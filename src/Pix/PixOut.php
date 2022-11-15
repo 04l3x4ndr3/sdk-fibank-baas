@@ -1,10 +1,4 @@
 <?php
-/*
- * Copyright (c) 2022.
- * @authorAlexandre G R Alves
- * Author Github: https://github.com/04l3x4ndr3
- * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
- */
 
 namespace O4l3x4ndr3\SdkFitbank\Pix;
 
@@ -12,9 +6,11 @@ use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class PixOut
+/**
+ * @description
+ */
+class PixOut extends CallApi
 {
-    private Configuration $configuration;
     private ?string $taxNumber;
     private ?string $bank;
     private ?string $bankBranch;
@@ -42,108 +38,40 @@ class PixOut
     private ?string $transactionDetailsType;
     private ?string $transactionDetailsValue;
 
-    /**
-     * @param string|null $taxNumber
-     * @param string|null $bank
-     * @param string|null $bankBranch
-     * @param string|null $bankAccount
-     * @param string|null $bankAccountDigit
-     * @param string|null $toTaxNumber
-     * @param string|null $toName
-     * @param string|null $toBank
-     * @param string|null $toBankBranch
-     * @param string|null $toBankAccount
-     * @param string|null $toBankAccountDigit
-     * @param string|null $value
-     * @param string|null $pixKey
-     * @param string|null $pixKeyType
-     * @param string|null $toBankAccountType
-     * @param string|null $rateValue
-     * @param string|null $rateValueType
-     * @param string|null $identifier
-     * @param string|null $paymentDate
-     * @param string|null $description
-     * @param string|null $onlineTransfer
-     * @param string|null $searchProtocol
-     * @param string|null $transactionPurpose
-     * @param string|null $agentModality
-     * @param string|null $transactionDetailsType
-     * @param string|null $transactionDetailsValue
-     */
-    public function __construct(?string $taxNumber = null,
-                                ?string $bank = null,
-                                ?string $bankBranch = null,
-                                ?string $bankAccount = null,
-                                ?string $bankAccountDigit = null,
-                                ?string $toTaxNumber = null,
-                                ?string $toName = null,
-                                ?string $toBank = null,
-                                ?string $toBankBranch = null,
-                                ?string $toBankAccount = null,
-                                ?string $toBankAccountDigit = null,
-                                ?string $toBankAccountType = null,
-                                ?string $value = null,
-                                ?string $pixKey = null,
-                                ?string $pixKeyType = null,
-                                ?string $rateValue = null,
-                                ?string $rateValueType = null,
-                                ?string $identifier = null,
-                                ?string $paymentDate = null,
-                                ?string $description = null,
-                                ?string $onlineTransfer = null,
-                                ?string $searchProtocol = null,
-                                ?string $transactionPurpose = null,
-                                ?string $agentModality = null,
-                                ?string $transactionDetailsType = null,
-                                ?string $transactionDetailsValue = null)
+    public function __construct(Configuration $config = null)
     {
-        $this->configuration = new Configuration();
-        $this->taxNumber = $taxNumber;
-        $this->bank = $bank;
-        $this->bankBranch = $bankBranch;
-        $this->bankAccount = $bankAccount;
-        $this->bankAccountDigit = $bankAccountDigit;
-        $this->toTaxNumber = $toTaxNumber;
-        $this->toName = $toName;
-        $this->toBank = $toBank;
-        $this->toBankBranch = $toBankBranch;
-        $this->toBankAccount = $toBankAccount;
-        $this->toBankAccountDigit = $toBankAccountDigit;
-        $this->value = $value;
-        $this->pixKey = $pixKey;
-        $this->pixKeyType = $pixKeyType;
-        $this->toBankAccountType = $toBankAccountType;
-        $this->rateValue = $rateValue;
-        $this->rateValueType = $rateValueType;
-        $this->identifier = $identifier;
-        $this->paymentDate = $paymentDate;
-        $this->description = $description;
-        $this->onlineTransfer = $onlineTransfer;
-        $this->searchProtocol = $searchProtocol;
-        $this->transactionPurpose = $transactionPurpose;
-        $this->agentModality = $agentModality;
-        $this->transactionDetailsType = $transactionDetailsType;
-        $this->transactionDetailsValue = $transactionDetailsValue;
-    }
+        parent::__construct($config);
 
-
-    /**
-     * @return Configuration
-     */
-    public function getConfiguration(): Configuration
-    {
-        return $this->configuration;
+        $this->taxNumber = null;
+        $this->bank = null;
+        $this->bankBranch = null;
+        $this->bankAccount = null;
+        $this->bankAccountDigit = null;
+        $this->toTaxNumber = null;
+        $this->toName = null;
+        $this->toBank = null;
+        $this->toBankBranch = null;
+        $this->toBankAccount = null;
+        $this->toBankAccountDigit = null;
+        $this->value = null;
+        $this->pixKey = null;
+        $this->pixKeyType = null;
+        $this->toBankAccountType = null;
+        $this->rateValue = null;
+        $this->rateValueType = null;
+        $this->identifier = null;
+        $this->paymentDate = null;
+        $this->description = null;
+        $this->onlineTransfer = null;
+        $this->searchProtocol = null;
+        $this->transactionPurpose = null;
+        $this->agentModality = null;
+        $this->transactionDetailsType = null;
+        $this->transactionDetailsValue = null;
     }
 
     /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
-    }
-
-    /**
+     * @description
      * @return string|null
      */
     public function getTaxNumber(): ?string
@@ -152,14 +80,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $taxNumber
+     *
+     * @return PixOut
      */
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): self
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBank(): ?string
@@ -168,14 +102,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $bank
+     *
+     * @return PixOut
      */
-    public function setBank(?string $bank): void
+    public function setBank(?string $bank): self
     {
         $this->bank = $bank;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankBranch(): ?string
@@ -184,14 +124,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankBranch
+     *
+     * @return PixOut
      */
-    public function setBankBranch(?string $bankBranch): void
+    public function setBankBranch(?string $bankBranch): self
     {
         $this->bankBranch = $bankBranch;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankAccount(): ?string
@@ -200,14 +146,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankAccount
+     *
+     * @return PixOut
      */
-    public function setBankAccount(?string $bankAccount): void
+    public function setBankAccount(?string $bankAccount): self
     {
         $this->bankAccount = $bankAccount;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankAccountDigit(): ?string
@@ -216,14 +168,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankAccountDigit
+     *
+     * @return PixOut
      */
-    public function setBankAccountDigit(?string $bankAccountDigit): void
+    public function setBankAccountDigit(?string $bankAccountDigit): self
     {
         $this->bankAccountDigit = $bankAccountDigit;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getToTaxNumber(): ?string
@@ -232,14 +190,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $toTaxNumber
+     *
+     * @return PixOut
      */
-    public function setToTaxNumber(?string $toTaxNumber): void
+    public function setToTaxNumber(?string $toTaxNumber): self
     {
         $this->toTaxNumber = $toTaxNumber;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getToName(): ?string
@@ -248,14 +212,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $toName
+     *
+     * @return PixOut
      */
-    public function setToName(?string $toName): void
+    public function setToName(?string $toName): self
     {
         $this->toName = $toName;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getToBank(): ?string
@@ -264,14 +234,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $toBank
+     *
+     * @return PixOut
      */
-    public function setToBank(?string $toBank): void
+    public function setToBank(?string $toBank): self
     {
         $this->toBank = $toBank;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getToBankBranch(): ?string
@@ -280,14 +256,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $toBankBranch
+     *
+     * @return PixOut
      */
-    public function setToBankBranch(?string $toBankBranch): void
+    public function setToBankBranch(?string $toBankBranch): self
     {
         $this->toBankBranch = $toBankBranch;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getToBankAccount(): ?string
@@ -296,14 +278,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $toBankAccount
+     *
+     * @return PixOut
      */
-    public function setToBankAccount(?string $toBankAccount): void
+    public function setToBankAccount(?string $toBankAccount): self
     {
         $this->toBankAccount = $toBankAccount;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getToBankAccountDigit(): ?string
@@ -312,14 +300,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $toBankAccountDigit
+     *
+     * @return PixOut
      */
-    public function setToBankAccountDigit(?string $toBankAccountDigit): void
+    public function setToBankAccountDigit(?string $toBankAccountDigit): self
     {
         $this->toBankAccountDigit = $toBankAccountDigit;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getValue(): ?string
@@ -328,14 +322,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $value
+     *
+     * @return PixOut
      */
-    public function setValue(?string $value): void
+    public function setValue(?string $value): self
     {
         $this->value = $value;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getPixKey(): ?string
@@ -344,14 +344,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $pixKey
+     *
+     * @return PixOut
      */
-    public function setPixKey(?string $pixKey): void
+    public function setPixKey(?string $pixKey): self
     {
         $this->pixKey = $pixKey;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getPixKeyType(): ?string
@@ -360,14 +366,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $pixKeyType
+     *
+     * @return PixOut
      */
-    public function setPixKeyType(?string $pixKeyType): void
+    public function setPixKeyType(?string $pixKeyType): self
     {
         $this->pixKeyType = $pixKeyType;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getToBankAccountType(): ?string
@@ -376,14 +388,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $toBankAccountType
+     *
+     * @return PixOut
      */
-    public function setToBankAccountType(?string $toBankAccountType): void
+    public function setToBankAccountType(?string $toBankAccountType): self
     {
         $this->toBankAccountType = $toBankAccountType;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getRateValue(): ?string
@@ -392,14 +410,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $rateValue
+     *
+     * @return PixOut
      */
-    public function setRateValue(?string $rateValue): void
+    public function setRateValue(?string $rateValue): self
     {
         $this->rateValue = $rateValue;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getRateValueType(): ?string
@@ -408,14 +432,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $rateValueType
+     *
+     * @return PixOut
      */
-    public function setRateValueType(?string $rateValueType): void
+    public function setRateValueType(?string $rateValueType): self
     {
         $this->rateValueType = $rateValueType;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getIdentifier(): ?string
@@ -424,14 +454,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $identifier
+     *
+     * @return PixOut
      */
-    public function setIdentifier(?string $identifier): void
+    public function setIdentifier(?string $identifier): self
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getPaymentDate(): ?string
@@ -440,14 +476,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $paymentDate
+     *
+     * @return PixOut
      */
-    public function setPaymentDate(?string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): self
     {
         $this->paymentDate = $paymentDate;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getDescription(): ?string
@@ -456,14 +498,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $description
+     *
+     * @return PixOut
      */
-    public function setDescription(?string $description): void
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getOnlineTransfer(): ?string
@@ -472,14 +520,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $onlineTransfer
+     *
+     * @return PixOut
      */
-    public function setOnlineTransfer(?string $onlineTransfer): void
+    public function setOnlineTransfer(?string $onlineTransfer): self
     {
         $this->onlineTransfer = $onlineTransfer;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getSearchProtocol(): ?string
@@ -488,14 +542,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $searchProtocol
+     *
+     * @return PixOut
      */
-    public function setSearchProtocol(?string $searchProtocol): void
+    public function setSearchProtocol(?string $searchProtocol): self
     {
         $this->searchProtocol = $searchProtocol;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getTransactionPurpose(): ?string
@@ -504,14 +564,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $transactionPurpose
+     *
+     * @return PixOut
      */
-    public function setTransactionPurpose(?string $transactionPurpose): void
+    public function setTransactionPurpose(?string $transactionPurpose): self
     {
         $this->transactionPurpose = $transactionPurpose;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getAgentModality(): ?string
@@ -520,14 +586,20 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $agentModality
+     *
+     * @return PixOut
      */
-    public function setAgentModality(?string $agentModality): void
+    public function setAgentModality(?string $agentModality): self
     {
         $this->agentModality = $agentModality;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getTransactionDetailsType(): ?string
@@ -536,14 +608,21 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $transactionDetailsType
+     *
+     * @return PixOut
      */
-    public function setTransactionDetailsType(?string $transactionDetailsType): void
+    public function setTransactionDetailsType(?string $transactionDetailsType
+    ): self
     {
         $this->transactionDetailsType = $transactionDetailsType;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getTransactionDetailsValue(): ?string
@@ -552,14 +631,21 @@ class PixOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $transactionDetailsValue
+     *
+     * @return PixOut
      */
-    public function setTransactionDetailsValue(?string $transactionDetailsValue): void
+    public function setTransactionDetailsValue(?string $transactionDetailsValue
+    ): self
     {
         $this->transactionDetailsValue = $transactionDetailsValue;
+        return $this;
     }
 
     /**
+     * @description
      * @return array
      */
     public function toArray(): array
@@ -597,116 +683,123 @@ class PixOut
     }
 
     /**
-     * @param PixOut $pixOut
+     * @description
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function generatePixOut(?PixOut $pixOut = null): object
+    public function generatePixOut(): object
     {
-        $http = new CallApi($this->configuration);
-        $data = (isset($pixOut)) ? $pixOut->toArray() : $this->toArray();
-        return $http->call('GeneratePixOut', array_filter($data));
+        return $this->call(
+            'GeneratePixOut',
+            array_filter($this->toArray())
+        );
     }
 
     /**
-     * @param string $TaxNumber
-     * @param int $DocumentNumber
-     * @param int $Bank
-     * @param int $BankBranch
-     * @param int $BankAccount
-     * @param int $BankAccountDigit
+     * @description
+     *
+     * @param int $documentNumber
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function getPixOutById(string $TaxNumber, int $DocumentNumber, int $Bank, int $BankBranch, int $BankAccount, int $BankAccountDigit): object
+    public function getById(int $documentNumber): object
     {
-        $http = new CallApi($this->configuration);
         $data = [
-            "TaxNumber" =>  $TaxNumber,
-            "DocumentNumber" => $DocumentNumber,
-            "Bank" => $Bank,
-            "BankBranch" => $BankBranch,
-            "BankAccount" => $BankAccount,
-            "BankAccountDigit" => $BankAccountDigit,
+            "TaxNumber" => $this->taxNumber,
+            "DocumentNumber" => $documentNumber,
+            "Bank" => $this->bank,
+            "BankBranch" => $this->bankBranch,
+            "BankAccount" => $this->bankAccount,
+            "BankAccountDigit" => $this->bankAccountDigit,
         ];
-        return $http->call('GetPixOutById', array_filter($data));
+        return $this->call('GetPixOutById', array_filter($data));
     }
 
     /**
-     * @param string $TaxNumber
-     * @param int $Bank
-     * @param int $BankBranch
-     * @param int $BankAccount
-     * @param int $BankAccountDigit
-     * @param string $StartDate
-     * @param string $EndDate
-     * @param int $PageIndex
-     * @param int $PageSize
+     * @description
+     *
+     * @param string $startDate
+     * @param string $endDate
+     * @param int    $pageIndex
+     * @param int    $pageSize
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function getPixOutByDate(string $TaxNumber, int $Bank, int $BankBranch, int $BankAccount, int $BankAccountDigit, string $StartDate, string $EndDate, int $PageIndex, int $PageSize): object
+    public function getByDate(
+        string $startDate,
+        string $endDate,
+        int $pageIndex,
+        int $pageSize
+    ): object
     {
-        $http = new CallApi($this->configuration);
-        $data = [
-            "TaxNumber" => $TaxNumber,
-            "Bank" => $Bank,
-            "BankBranch" => $BankBranch,
-            "BankAccount" => $BankAccount,
-            "BankAccountDigit" => $BankAccountDigit,
-            "StartDate" => $StartDate,
-            "EndDate" => $EndDate,
-            "PageIndex" => $PageIndex,
-            "PageSize" => $PageSize
-        ];
-        return $http->call('GetPixOutById', array_filter($data));
+        return $this->call(
+            'GetPixOutById',
+            array_filter([
+                "TaxNumber" => $this->taxNumber,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit,
+                "StartDate" => $startDate,
+                "EndDate" => $endDate,
+                "PageIndex" => $pageIndex,
+                "PageSize" => $pageSize
+            ])
+        );
     }
 
     /**
-     * @param string $TaxNumber
-     * @param int $DocumentNumber
-     * @param int $Bank
-     * @param int $BankBranch
-     * @param int $BankAccount
-     * @param int $BankAccountDigit
+     * @description
+     *
+     * @param int $documentNumber
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function cancelPixOut(string $TaxNumber, int $DocumentNumber, int $Bank, int $BankBranch, int $BankAccount, int $BankAccountDigit): object
+    public function cancel(int $documentNumber): object
     {
-        $http = new CallApi($this->configuration);
-        $data = [
-            "TaxNumber" => $TaxNumber,
-            "DocumentNumber" => $DocumentNumber,
-            "Bank" => $Bank,
-            "BankBranch" => $BankBranch,
-            "BankAccount" => $BankAccount,
-            "BankAccountDigit" => $BankAccountDigit,
-        ];
-        return $http->call('CancelPixOut', array_filter($data));
+        return $this->call(
+            'CancelPixOut',
+            array_filter([
+                "DocumentNumber" => $documentNumber,
+                "TaxNumber" => $this->taxNumber,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit,
+            ])
+        );
     }
 
     /**
-     * @param string $TaxNumber
-     * @param int $Bank
-     * @param string $StartDate
-     * @param string $EndDate
-     * @param int $PageIndex
-     * @param int $PageSize
+     * @description
+     *
+     * @param string $startDate
+     * @param string $endDate
+     * @param int    $pageIndex
+     * @param int    $pageSize
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function getRefundPixOutByDate(string $TaxNumber, int $Bank, string $StartDate, string $EndDate, int $PageIndex, int $PageSize): object
+    public function getRefundByDate(
+        string $startDate,
+        string $endDate,
+        int $pageIndex,
+        int $pageSize
+    ): object
     {
-        $http = new CallApi($this->configuration);
         $data = [
-            "TaxNumber" => $TaxNumber,
-            "Bank" => $Bank,
-            "StartDate" => $StartDate,
-            "EndDate" => $EndDate,
-            "PageIndex" => $PageIndex,
-            "PageSize" => $PageSize
+            "TaxNumber" => $this->taxNumber,
+            "Bank" => $this->bank,
+            "StartDate" => $startDate,
+            "EndDate" => $endDate,
+            "PageIndex" => $pageIndex,
+            "PageSize" => $pageSize
         ];
-        return $http->call('GetRefundPixOutByDate', array_filter($data));
+        return $this->call('GetRefundPixOutByDate', array_filter($data));
     }
 }

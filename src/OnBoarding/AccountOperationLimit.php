@@ -1,21 +1,16 @@
 <?php
-/*
- * Copyright (c) 2022.
- * @authorAlexandre G R Alves
- * Author Github: https://github.com/04l3x4ndr3
- * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
- */
 
-namespace O4l3x4ndr3\SdkFitbank\Pix;
+namespace O4l3x4ndr3\SdkFitbank\OnBoarding;
 
 use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class PixLimit
+/**
+ * @description
+ */
+class AccountOperationLimit extends CallApi
 {
-    private Configuration $configuration;
-
     private ?string $taxNumber;
     private ?int $bank;
     private ?string $bankBranch;
@@ -27,52 +22,24 @@ class PixLimit
     private ?float $minLimitValue;
     private ?float $maxLimitValue;
 
-    /**
-     * @param string|null $taxNumber
-     * @param int|null $bank
-     * @param string|null $bankBranch
-     * @param string|null $bankAccount
-     * @param int|null $bankAccountDigit
-     * @param int|null $type
-     * @param int|null $operationType
-     * @param int|null $subType
-     * @param float|null $minLimitValue
-     * @param float|null $maxLimitValue
-     */
-    public function __construct(?string $taxNumber = null,
-                                ?int    $bank = null,
-                                ?string $bankBranch = null,
-                                ?string $bankAccount = null,
-                                ?int    $bankAccountDigit = null,
-                                ?int    $type = null,
-                                ?int    $operationType = null,
-                                ?int    $subType = null,
-                                ?float  $minLimitValue = null,
-                                ?float  $maxLimitValue = null)
+    public function __construct(Configuration $config = null)
     {
-        $this->configuration = new Configuration();
+        parent::__construct($config);
 
-        $this->taxNumber = $taxNumber;
-        $this->bank = $bank;
-        $this->bankBranch = $bankBranch;
-        $this->bankAccount = $bankAccount;
-        $this->bankAccountDigit = $bankAccountDigit;
-        $this->type = $type;
-        $this->operationType = $operationType;
-        $this->subType = $subType;
-        $this->minLimitValue = $minLimitValue;
-        $this->maxLimitValue = $maxLimitValue;
+        $this->taxNumber = null;
+        $this->bank = null;
+        $this->bankBranch = null;
+        $this->bankAccount = null;
+        $this->bankAccountDigit = null;
+        $this->type = null;
+        $this->operationType = null;
+        $this->subType = null;
+        $this->minLimitValue = null;
+        $this->maxLimitValue = null;
     }
 
     /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
-    }
-
-    /**
+     * @description
      * @return string|null
      */
     public function getTaxNumber(): ?string
@@ -81,14 +48,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param string|null $taxNumber
+     *
+     * @return AccountOperationLimit
      */
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): self
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getBank(): ?int
@@ -97,14 +70,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param int|null $bank
+     *
+     * @return AccountOperationLimit
      */
-    public function setBank(?int $bank): void
+    public function setBank(?int $bank): self
     {
         $this->bank = $bank;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankBranch(): ?string
@@ -113,14 +92,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankBranch
+     *
+     * @return AccountOperationLimit
      */
-    public function setBankBranch(?string $bankBranch): void
+    public function setBankBranch(?string $bankBranch): self
     {
         $this->bankBranch = $bankBranch;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankAccount(): ?string
@@ -129,14 +114,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankAccount
+     *
+     * @return AccountOperationLimit
      */
-    public function setBankAccount(?string $bankAccount): void
+    public function setBankAccount(?string $bankAccount): self
     {
         $this->bankAccount = $bankAccount;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getBankAccountDigit(): ?int
@@ -145,14 +136,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param int|null $bankAccountDigit
+     *
+     * @return AccountOperationLimit
      */
-    public function setBankAccountDigit(?int $bankAccountDigit): void
+    public function setBankAccountDigit(?int $bankAccountDigit): self
     {
         $this->bankAccountDigit = $bankAccountDigit;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getType(): ?int
@@ -161,14 +158,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param int|null $type
+     *
+     * @return AccountOperationLimit
      */
-    public function setType(?int $type): void
+    public function setType(?int $type): self
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getOperationType(): ?int
@@ -177,14 +180,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param int|null $operationType
+     *
+     * @return AccountOperationLimit
      */
-    public function setOperationType(?int $operationType): void
+    public function setOperationType(?int $operationType): self
     {
         $this->operationType = $operationType;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getSubType(): ?int
@@ -193,14 +202,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param int|null $subType
+     *
+     * @return AccountOperationLimit
      */
-    public function setSubType(?int $subType): void
+    public function setSubType(?int $subType): self
     {
         $this->subType = $subType;
+        return $this;
     }
 
     /**
+     * @description
      * @return float|null
      */
     public function getMinLimitValue(): ?float
@@ -209,14 +224,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param float|null $minLimitValue
+     *
+     * @return AccountOperationLimit
      */
-    public function setMinLimitValue(?float $minLimitValue): void
+    public function setMinLimitValue(?float $minLimitValue): self
     {
         $this->minLimitValue = $minLimitValue;
+        return $this;
     }
 
     /**
+     * @description
      * @return float|null
      */
     public function getMaxLimitValue(): ?float
@@ -225,14 +246,20 @@ class PixLimit
     }
 
     /**
+     * @description
+     *
      * @param float|null $maxLimitValue
+     *
+     * @return AccountOperationLimit
      */
-    public function setMaxLimitValue(?float $maxLimitValue): void
+    public function setMaxLimitValue(?float $maxLimitValue): self
     {
         $this->maxLimitValue = $maxLimitValue;
+        return $this;
     }
 
     /**
+     * @description
      * @return array
      */
     public function toArray(): array
@@ -252,26 +279,29 @@ class PixLimit
     }
 
     /**
-     * @param PixLimit|null $pixLimit
+     * @description
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function getAccountOperationLimit(?PixLimit $pixLimit = null)
+    public function getAccountOperationLimit(): object
     {
-        $http = new CallApi($this->configuration);
-        $data = (isset($pixLimit)) ? $pixLimit->toArray() : $this->toArray();
-        return $http->call('GetAccountOperationLimit', array_filter($data));
+        return $this->call(
+            'GetAccountOperationLimit',
+            array_filter($this->toArray())
+        );
     }
 
     /**
-     * @param PixLimit|null $pixLimit
+     * @description
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function changeAccountOperationLimit(?PixLimit $pixLimit = null)
+    public function changeAccountOperationLimit(): object
     {
-        $http = new CallApi($this->configuration);
-        $data = (isset($pixLimit)) ? $pixLimit->toArray() : $this->toArray();
-        return $http->call('ChangeAccountOperationLimit', array_filter($data));
+        return $this->call(
+            'ChangeAccountOperationLimit',
+            array_filter($this->toArray()));
     }
 }

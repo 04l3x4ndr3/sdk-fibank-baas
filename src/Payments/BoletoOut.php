@@ -1,10 +1,4 @@
 <?php
-/*
- * Copyright (c) 2022.
- * @authorAlexandre G R Alves
- * Author Github: https://github.com/04l3x4ndr3
- * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
- */
 
 namespace O4l3x4ndr3\SdkFitbank\Payments;
 
@@ -55,53 +49,55 @@ class BoletoOut
      * @param string|null $payerName
      * @param string|null $mailToSend
      * @param string|null $phoneToSend
-     * @param float|null $principalValue
-     * @param float|null $discountValue
-     * @param float|null $extraValue
+     * @param float|null  $principalValue
+     * @param float|null  $discountValue
+     * @param float|null  $extraValue
      * @param string|null $paymentDate
      * @param string|null $dueDate
      * @param string|null $feePayerFullName
      * @param string|null $feePayerTaxNumber
      * @param string|null $feePayerMail
      * @param string|null $feePayerPhone
-     * @param int|null $feePayerBank
+     * @param int|null    $feePayerBank
      * @param string|null $feePayerBankBranch
      * @param string|null $feePayerBankAccount
      * @param string|null $feePayerBankAccountDigit
-     * @param array|null $tags
+     * @param array|null  $tags
      * @param string|null $description
      * @param string|null $identifier
-     * @param int $rateValueType
-     * @param int $rateValue
+     * @param int         $rateValueType
+     * @param int         $rateValue
      */
-    public function __construct(?string $name = null,
-                                ?string $taxNumber = null,
-                                ?string $barcode = null,
-                                ?string $beneficiaryName = null,
-                                ?string $guarantorTaxNumber = null,
-                                ?string $guarantorName = null,
-                                ?string $payerTaxNumber = null,
-                                ?string $payerName = null,
-                                ?string $mailToSend = null,
-                                ?string $phoneToSend = null,
-                                ?float  $principalValue = null,
-                                ?float  $discountValue = null,
-                                ?float  $extraValue = null,
-                                ?string $paymentDate = null,
-                                ?string $dueDate = null,
-                                ?string $feePayerFullName = null,
-                                ?string $feePayerTaxNumber = null,
-                                ?string $feePayerMail = null,
-                                ?string $feePayerPhone = null,
-                                ?int    $feePayerBank = null,
-                                ?string $feePayerBankBranch = null,
-                                ?string $feePayerBankAccount = null,
-                                ?string $feePayerBankAccountDigit = null,
-                                ?array  $tags = [],
-                                ?string $description = null,
-                                ?string $identifier = null,
-                                int     $rateValueType = 0,
-                                int     $rateValue = 0)
+    public function __construct(
+        ?string $name = null,
+        ?string $taxNumber = null,
+        ?string $barcode = null,
+        ?string $beneficiaryName = null,
+        ?string $guarantorTaxNumber = null,
+        ?string $guarantorName = null,
+        ?string $payerTaxNumber = null,
+        ?string $payerName = null,
+        ?string $mailToSend = null,
+        ?string $phoneToSend = null,
+        ?float $principalValue = null,
+        ?float $discountValue = null,
+        ?float $extraValue = null,
+        ?string $paymentDate = null,
+        ?string $dueDate = null,
+        ?string $feePayerFullName = null,
+        ?string $feePayerTaxNumber = null,
+        ?string $feePayerMail = null,
+        ?string $feePayerPhone = null,
+        ?int $feePayerBank = null,
+        ?string $feePayerBankBranch = null,
+        ?string $feePayerBankAccount = null,
+        ?string $feePayerBankAccountDigit = null,
+        ?array $tags = [],
+        ?string $description = null,
+        ?string $identifier = null,
+        int $rateValueType = 0,
+        int $rateValue = 0
+    )
     {
         $this->configuration = new Configuration();
 
@@ -506,7 +502,9 @@ class BoletoOut
     /**
      * @param string|null $feePayerBankAccountDigit
      */
-    public function setFeePayerBankAccountDigit(?string $feePayerBankAccountDigit): void
+    public function setFeePayerBankAccountDigit(
+        ?string $feePayerBankAccountDigit
+    ): void
     {
         $this->feePayerBankAccountDigit = $feePayerBankAccountDigit;
     }
@@ -630,6 +628,7 @@ class BoletoOut
 
     /**
      * @param BoletoOut $boleto
+     *
      * @return object
      * @throws GuzzleException
      */
@@ -642,6 +641,7 @@ class BoletoOut
 
     /**
      * @param string $DocumentNumber
+     *
      * @return object
      * @throws GuzzleException
      */
@@ -654,6 +654,7 @@ class BoletoOut
 
     /**
      * @param string $Barcode
+     *
      * @return object
      * @throws GuzzleException
      */
@@ -666,6 +667,7 @@ class BoletoOut
 
     /**
      * @param string $DocumentNumber
+     *
      * @return object
      * @throws GuzzleException
      */
@@ -678,6 +680,7 @@ class BoletoOut
 
     /**
      * @param string $Barcode
+     *
      * @return object
      * @throws GuzzleException
      */
@@ -691,10 +694,12 @@ class BoletoOut
     /**
      * @param string $TaxNumber
      * @param string $Barcode
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function getInfosCIPByBarcode(string $TaxNumber, string $Barcode): object
+    public function getInfosCIPByBarcode(string $TaxNumber, string $Barcode
+    ): object
     {
         $http = new CallApi($this->configuration);
         $data = [

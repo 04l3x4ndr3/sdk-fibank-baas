@@ -1,10 +1,4 @@
 <?php
-/*
- * Copyright (c) 2022.
- * @authorAlexandre G R Alves
- * Author Github: https://github.com/04l3x4ndr3
- * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
- */
 
 namespace O4l3x4ndr3\SdkFitbank\Pix;
 
@@ -12,47 +6,58 @@ use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class PixIn
+/**
+ * @description
+ */
+class PixIn extends CallApi
 {
 
-    private Configuration $configuration;
+    public function __construct(Configuration $config = null)
+    {
+        parent::__construct($config);
+    }
 
     /**
-     * @param string $TaxNumber
-     * @param string $Bank
-     * @param string $BankBranch
-     * @param string $BankAccount
-     * @param string $BankAccountDigit
-     * @param string $StartDate
-     * @param string $EndDate
-     * @param int $PageIndex
-     * @param int $PageSize
+     * @description
+     *
+     * @param string $taxNumber
+     * @param string $bank
+     * @param string $bankBranch
+     * @param string $bankAccount
+     * @param string $bankAccountDigit
+     * @param string $startDate
+     * @param string $endDate
+     * @param int    $pageIndex
+     * @param int    $pageSize
+     *
      * @return object
      * @throws GuzzleException
      */
     public function getPixInByDate(
-        string $TaxNumber,
-        string $Bank,
-        string $BankBranch,
-        string $BankAccount,
-        string $BankAccountDigit,
-        string $StartDate,
-        string $EndDate,
-        int    $PageIndex,
-        int    $PageSize): object
+        string $taxNumber,
+        string $bank,
+        string $bankBranch,
+        string $bankAccount,
+        string $bankAccountDigit,
+        string $startDate,
+        string $endDate,
+        int $pageIndex,
+        int $pageSize
+    ): object
     {
-        $http = new CallApi($this->configuration);
-        $data = [
-            "TaxNumber" => $TaxNumber,
-            "Bank" => $Bank,
-            "BankBranch," => $BankBranch,
-            "BankAccount" => $BankAccount,
-            "BankAccountDigit" => $BankAccountDigit,
-            "StartDate" => $StartDate,
-            "EndDate" => $EndDate,
-            "PageIndex" => $PageIndex,
-            "PageSize" => $PageSize
-        ];
-        return $http->call('GetPixInByDate', array_filter($data));
+        return $this->call(
+            'GetPixInByDate',
+            array_filter([
+                "TaxNumber" => $taxNumber,
+                "Bank" => $bank,
+                "BankBranch," => $bankBranch,
+                "BankAccount" => $bankAccount,
+                "BankAccountDigit" => $bankAccountDigit,
+                "StartDate" => $startDate,
+                "EndDate" => $endDate,
+                "PageIndex" => $pageIndex,
+                "PageSize" => $pageSize
+            ])
+        );
     }
 }

@@ -1,10 +1,4 @@
 <?php
-/*
- * Copyright (c) 2022.
- * @authorAlexandre G R Alves
- * Author Github: https://github.com/04l3x4ndr3
- * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
- */
 
 namespace O4l3x4ndr3\SdkFitbank\Pix;
 
@@ -12,9 +6,11 @@ use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class PixKey
+/**
+ * @description
+ */
+class PixKey extends CallApi
 {
-    private Configuration $configuration;
     private ?string $pixKeyValue;
     private ?string $taxNumber;
     private ?string $pixKeyType;
@@ -23,43 +19,21 @@ class PixKey
     private ?string $bankAccount;
     private ?string $bankAccountDigit;
 
-    /**
-     * @param string|null $pixKey
-     * @param string|null $taxNumber
-     * @param string|null $pixKeyType
-     * @param string|null $bank
-     * @param string|null $bankBranch
-     * @param string|null $bankAccount
-     * @param string|null $bankAccountDigit
-     */
-    public function __construct(
-        ?string $pixKeyValue = null,
-        ?string $taxNumber = null,
-        ?string $pixKeyType = null,
-        ?string $bank = null,
-        ?string $bankBranch = null,
-        ?string $bankAccount = null,
-        ?string $bankAccountDigit = null
-    ) {
-        $this->configuration = new Configuration();
-        $this->pixKeyValue = $pixKeyValue;
-        $this->taxNumber = $taxNumber;
-        $this->pixKeyType = $pixKeyType;
-        $this->bank = $bank;
-        $this->bankBranch = $bankBranch;
-        $this->bankAccount = $bankAccount;
-        $this->bankAccountDigit = $bankAccountDigit;
-    }
-
-    /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
+    public function __construct(Configuration $config = null)
     {
-        $this->configuration = $configuration;
+        parent::__construct($config);
+
+        $this->pixKeyValue = null;
+        $this->taxNumber = null;
+        $this->pixKeyType = null;
+        $this->bank = null;
+        $this->bankBranch = null;
+        $this->bankAccount = null;
+        $this->bankAccountDigit = null;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getPixKey(): ?string
@@ -68,14 +42,20 @@ class PixKey
     }
 
     /**
-     * @param string|null $pixKey
+     * @description
+     *
+     * @param string|null $pixKeyValue
+     *
+     * @return PixKey
      */
-    public function setPixKeyValue(?string $pixKeyValue): void
+    public function setPixKeyValue(?string $pixKeyValue): self
     {
         $this->pixKeyValue = $pixKeyValue;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getTaxNumber(): ?string
@@ -84,14 +64,20 @@ class PixKey
     }
 
     /**
+     * @description
+     *
      * @param string|null $taxNumber
+     *
+     * @return PixKey
      */
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): self
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getPixKeyType(): ?string
@@ -100,14 +86,20 @@ class PixKey
     }
 
     /**
+     * @description
+     *
      * @param string|null $pixKeyType
+     *
+     * @return PixKey
      */
-    public function setPixKeyType(?string $pixKeyType): void
+    public function setPixKeyType(?string $pixKeyType): self
     {
         $this->pixKeyType = $pixKeyType;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBank(): ?string
@@ -116,14 +108,20 @@ class PixKey
     }
 
     /**
+     * @description
+     *
      * @param string|null $bank
+     *
+     * @return PixKey
      */
-    public function setBank(?string $bank): void
+    public function setBank(?string $bank): self
     {
         $this->bank = $bank;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankBranch(): ?string
@@ -132,14 +130,20 @@ class PixKey
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankBranch
+     *
+     * @return PixKey
      */
-    public function setBankBranch(?string $bankBranch): void
+    public function setBankBranch(?string $bankBranch): self
     {
         $this->bankBranch = $bankBranch;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankAccount(): ?string
@@ -148,14 +152,20 @@ class PixKey
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankAccount
+     *
+     * @return PixKey
      */
-    public function setBankAccount(?string $bankAccount): void
+    public function setBankAccount(?string $bankAccount): self
     {
         $this->bankAccount = $bankAccount;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankAccountDigit(): ?string
@@ -164,14 +174,20 @@ class PixKey
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankAccountDigit
+     *
+     * @return PixKey
      */
-    public function setBankAccountDigit(?string $bankAccountDigit): void
+    public function setBankAccountDigit(?string $bankAccountDigit): self
     {
         $this->bankAccountDigit = $bankAccountDigit;
+        return $this;
     }
 
     /**
+     * @description
      * @return array
      */
     public function toArray(): array
@@ -188,204 +204,220 @@ class PixKey
     }
 
     /**
-     * @description This method can be used to created a PIX key that is registered to an account.
+     * @description This method can be used to create a PIX key that is registered to an account.
      * @document https://dev.fitbank.com.br/reference/217
-     * @param PixKey|null $pixKey
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function createPixKey(?PixKey $pixKey = null): object
+    public function create(): object
     {
-        $http = new CallApi($this->configuration);
-        $_ = $pixKey ?? $this;
-
-        $data = array_filter([
-            "PixKey" => $_->pixKeyValue,
-            "TaxNumber" => $_->taxNumber,
-            "PixKeyType" => $_->pixKeyType,
-            "Bank" => $_->bank,
-            "BankBranch" => $_->bankBranch,
-            "BankAccount" => $_->bankAccount,
-            "BankAccountDigit" => $_->bankAccountDigit
-        ], function ($v) {
-            return $v !== null;
-        });
-
-        return $http->call('CreatePixKey', $data);
+        return $this->call(
+            'CreatePixKey',
+            array_filter([
+                "PixKey" => $this->pixKeyValue,
+                "TaxNumber" => $this->taxNumber,
+                "PixKeyType" => $this->pixKeyType,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
     }
 
     /**
      * @description This method has can be used of Confirming the Validation of Pix Key Ownership.
      * @document https://dev.fitbank.com.br/reference/268
-     * @param PixKey|null $pixKey
-     * @param string $ConfirmationCode
+     *
+     * @param string $confirmationCode
+     * @param string $pixKeyValue
+     * @param int    $pixKeyType
+     * @param string $taxNumber
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function confirmPixKeyHold(string $ConfirmationCode, ?PixKey $pixKey = null): object
+    public function confirmHold(
+        string $confirmationCode,
+        string $pixKeyValue,
+        int $pixKeyType,
+        string $taxNumber
+    ): object
     {
-        $http = new CallApi($this->configuration);
-        $_ = $pixKey ?? $this;
-        $data = array_filter([
-            "PixKey" => $_->pixKeyValue,
-            "PixKeyType" => $_->pixKeyType,
-            "TaxNumber" => $_->taxNumber,
-            "ConfirmationCode" => $ConfirmationCode,
-        ], function ($v) {
-            return $v !== null;
-        });
-        return $http->call('ConfirmPixKeyHold', $data);
+        return $this->call(
+            'ConfirmPixKeyHold',
+            array_filter([
+                "PixKey" => $pixKeyValue,
+                "PixKeyType" => $pixKeyType,
+                "TaxNumber" => $taxNumber,
+                "ConfirmationCode" => $confirmationCode,
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
     }
 
     /**
      * @description This method can be used to code Resend for Pix Key Ownership Validation.
      * @document https://dev.fitbank.com.br/reference/269
-     * @param PixKey|null $pixKey
+     *
+     * @param string $pixKeyValue
+     * @param int    $pixKeyType
+     * @param string $taxNumber
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function resendPixKeyToken(?PixKey $pixKey = null): object
+    public function resendToken(
+        string $pixKeyValue,
+        int $pixKeyType,
+        string $taxNumber
+    ): object
     {
-        $http = new CallApi($this->configuration);
-        $_ = $pixKey ?? $this;
-        $data = array_filter([
-            "PixKey" => $_->pixKeyValue,
-            "PixKeyType" => $_->pixKeyType,
-            "TaxNumber" => $_->taxNumber
-        ], function ($v) {
-            return $v !== null;
-        });
-        return $http->call('ResendPixKeyToken', $data);
+        return $this->call(
+            'ResendPixKeyToken',
+            array_filter([
+                "PixKey" => $pixKeyValue,
+                "PixKeyType" => $pixKeyType,
+                "TaxNumber" => $taxNumber
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
     }
 
     /**
      * @description This method can be used to Get Pix Key Status.
      * @document https://dev.fitbank.com.br/reference/243
-     * @param PixKey|null $pixKey
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function getPixKeyStatus(?PixKey $pixKey = null): object
+    public function getStatus(): object
     {
-        $http = new CallApi($this->configuration);
-        $_ = $pixKey ?? $this;
-        $data = array_filter([
-            "PixKey" => $_->pixKeyValue,
-            "PixKeyType" => $_->pixKeyType,
-            "TaxNumber" => $_->taxNumber,
-            "Bank" => $_->bank,
-            "BankBranch" => $_->bankBranch,
-            "BankAccount" => $_->bankAccount,
-            "BankAccountDigit" => $_->bankAccountDigit
-        ], function ($v) {
-            return $v !== null;
-        });
-        return $http->call('GetPixKeyStatus', $data);
+        return $this->call(
+            'GetPixKeyStatus',
+            array_filter([
+                "PixKey" => $this->pixKeyValue,
+                "PixKeyType" => $this->pixKeyType,
+                "TaxNumber" => $this->taxNumber,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
     }
 
     /**
      * @description This method can be used for Pix Key Lookup.
      * @document https://dev.fitbank.com.br/reference/273
-     * @param PixKey|null $pixKey
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function getInfosPixKey(?PixKey $pixKey = null): object
+    public function getInfos(): object
     {
-        $http = new CallApi($this->configuration);
-        $_ = $pixKey ?? $this;
-        $data = array_filter([
-            "PixKey" => $_->pixKeyValue,
-            "TaxNumber" => $_->taxNumber,
-        ], function ($v) {
-            return $v !== null;
-        });
-        return $http->call('GetInfosPixKey', $data);
+        return $this->call(
+            'GetInfosPixKey',
+            array_filter([
+                "PixKey" => $this->pixKeyValue,
+                "TaxNumber" => $this->taxNumber,
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
     }
 
     /**
      * @description This method can be used to cancel a PIX key that is registered to an account.
      * @document https://dev.fitbank.com.br/reference/cancelpixkey
-     * @param PixKey|null $pixKey
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function cancelPixKey(?PixKey $pixKey = null): object
+    public function cancel(): object
     {
-        $http = new CallApi($this->configuration);
-        $_ = $pixKey ?? $this;
-        $data = array_filter([
-            "PixKey" => $_->pixKeyValue,
-            "TaxNumber" => $_->taxNumber,
-            "PixKeyType" => $_->pixKeyType,
-            "Bank" => $_->bank,
-            "BankBranch" => $_->bankBranch,
-            "BankAccount" => $_->bankAccount,
-            "BankAccountDigit" => $_->bankAccountDigit
-        ], function ($v) {
-            return $v !== null;
-        });
-        return $http->call('CancelPixKey', $data);
+        return $this->call(
+            'CancelPixKey',
+            array_filter([
+                "PixKey" => $this->pixKeyValue,
+                "TaxNumber" => $this->taxNumber,
+                "PixKeyType" => $this->pixKeyType,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
     }
 
     /**
      * @description This method can be used for pix key change.
      * @document https://dev.fitbank.com.br/reference/295
-     * @param string $ToBusinessUnitId
-     * @param string $ToBank
-     * @param string $ToBankBranch
-     * @param string $ToBankAccount
-     * @param string $ToBankAccountDigit
-     * @param PixKey|null $pixKey
+     *
+     * @param string $toBusinessUnitId
+     * @param string $toBank
+     * @param string $toBankBranch
+     * @param string $toBankAccount
+     * @param string $toBankAccountDigit
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function changePixKey(
-        string $ToBusinessUnitId,
-        string $ToBank,
-        string $ToBankBranch,
-        string $ToBankAccount,
-        string $ToBankAccountDigit,
-        ?PixKey $pixKey = null
-    ): object {
-        $http = new CallApi($this->configuration);
-        $_ = $pixKey ?? $this;
-        $data = array_filter([
-            "TaxNumber" => $_->taxNumber,
-            "FromBank" => $_->bank,
-            "FromBankBranch" => $_->bankBranch,
-            "FromBankAccount" => $_->bankAccount,
-            "FromBankAccountDigit" => $_->bankAccountDigit,
-            "PixKey" => $_->pixKeyValue,
-            "ToBusinessUnitId" => $ToBusinessUnitId,
-            "ToBank" => $ToBank,
-            "ToBankBranch" => $ToBankBranch,
-            "ToBankAccount" => $ToBankAccount,
-            "ToBankAccountDigit" => $ToBankAccountDigit,
-        ], function ($v) {
-            return $v !== null;
-        });
-        return $http->call('ChangePixKey', $data);
+    public function change(
+        string $toBusinessUnitId,
+        string $toBank,
+        string $toBankBranch,
+        string $toBankAccount,
+        string $toBankAccountDigit
+    ): object
+    {
+        return $this->call(
+            'ChangePixKey',
+            array_filter([
+                "TaxNumber" => $this->taxNumber,
+                "FromBank" => $this->bank,
+                "FromBankBranch" => $this->bankBranch,
+                "FromBankAccount" => $this->bankAccount,
+                "FromBankAccountDigit" => $this->bankAccountDigit,
+                "PixKey" => $this->pixKeyValue,
+                "ToBusinessUnitId" => $toBusinessUnitId,
+                "ToBank" => $toBank,
+                "ToBankBranch" => $toBankBranch,
+                "ToBankAccount" => $toBankAccount,
+                "ToBankAccountDigit" => $toBankAccountDigit,
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
     }
 
     /**
-     * @param PixKey|null $pixKey
+     * @description
      * @return object
      * @throws GuzzleException
      */
-    public function getPixKeys(PixKey $pixKey = null): object
+    public function getKeys(): object
     {
-        $http = new CallApi($this->configuration);
-        $_ = $pixKey ?? $this;
-        $data = array_filter([
-            "TaxNumber" => $_->taxNumber,
-            "Bank" => $_->bank,
-            "BankBranch" => $_->bankBranch,
-            "BankAccount" => $_->bankAccount,
-            "BankAccountDigit" => $_->bankAccountDigit,
-        ], function ($v) {
-            return $v !== null;
-        });
-        return $http->call('GetPixKeys', $data);
+        return $this->call(
+            'GetPixKeys',
+            array_filter([
+                "TaxNumber" => $this->taxNumber,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit,
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
     }
 }

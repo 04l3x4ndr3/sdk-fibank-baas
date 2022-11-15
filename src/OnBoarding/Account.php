@@ -64,12 +64,11 @@ class Account extends CallApi
      *
      * @return object
      * @throws GuzzleException
-     * @throws Exception
      */
     public function getAccount(
-        string $identifier,
-        string $taxNumber,
-        string $accountKey
+        ?string $identifier = null,
+        ?string $taxNumber = null,
+        ?string $accountKey = null
     ): object
     {
         return $this->call(

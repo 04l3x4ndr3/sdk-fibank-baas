@@ -31,12 +31,10 @@ class PixOut extends CallApi
     private ?string $identifier;
     private ?string $paymentDate;
     private ?string $description;
-    private ?string $onlineTransfer;
+    private ?bool $onlineTransfer;
     private ?string $searchProtocol;
     private ?string $transactionPurpose;
     private ?string $agentModality;
-    private ?string $transactionDetailsType;
-    private ?string $transactionDetailsValue;
 
     public function __construct(Configuration $config = null)
     {
@@ -66,8 +64,6 @@ class PixOut extends CallApi
         $this->searchProtocol = null;
         $this->transactionPurpose = null;
         $this->agentModality = null;
-        $this->transactionDetailsType = null;
-        $this->transactionDetailsValue = null;
     }
 
     /**
@@ -512,9 +508,9 @@ class PixOut extends CallApi
 
     /**
      * @description
-     * @return string|null
+     * @return bool|null
      */
-    public function getOnlineTransfer(): ?string
+    public function getOnlineTransfer(): ?bool
     {
         return $this->onlineTransfer;
     }
@@ -522,11 +518,11 @@ class PixOut extends CallApi
     /**
      * @description
      *
-     * @param string|null $onlineTransfer
+     * @param bool|null $onlineTransfer
      *
      * @return PixOut
      */
-    public function setOnlineTransfer(?string $onlineTransfer): self
+    public function setOnlineTransfer(?bool $onlineTransfer): self
     {
         $this->onlineTransfer = $onlineTransfer;
         return $this;
@@ -600,57 +596,11 @@ class PixOut extends CallApi
 
     /**
      * @description
-     * @return string|null
-     */
-    public function getTransactionDetailsType(): ?string
-    {
-        return $this->transactionDetailsType;
-    }
-
-    /**
-     * @description
-     *
-     * @param string|null $transactionDetailsType
-     *
-     * @return PixOut
-     */
-    public function setTransactionDetailsType(?string $transactionDetailsType
-    ): self
-    {
-        $this->transactionDetailsType = $transactionDetailsType;
-        return $this;
-    }
-
-    /**
-     * @description
-     * @return string|null
-     */
-    public function getTransactionDetailsValue(): ?string
-    {
-        return $this->transactionDetailsValue;
-    }
-
-    /**
-     * @description
-     *
-     * @param string|null $transactionDetailsValue
-     *
-     * @return PixOut
-     */
-    public function setTransactionDetailsValue(?string $transactionDetailsValue
-    ): self
-    {
-        $this->transactionDetailsValue = $transactionDetailsValue;
-        return $this;
-    }
-
-    /**
-     * @description
      * @return array
      */
     public function toArray(): array
     {
-        return [
+        return array_filter([
             "TaxNumber" => $this->taxNumber,
             "Bank" => $this->bank,
             "BankBranch" => $this->bankBranch,
@@ -675,11 +625,9 @@ class PixOut extends CallApi
             "SearchProtocol" => $this->searchProtocol,
             "TransactionPurpose" => $this->transactionPurpose,
             "AgentModality" => $this->agentModality,
-            "TransactionDetails" => [
-                "Type" => $this->transactionDetailsType,
-                "Value" => $this->transactionDetailsValue
-            ]
-        ];
+        ], function ($v) {
+            return !is_null($v);
+        });
     }
 
     /**
@@ -692,7 +640,9 @@ class PixOut extends CallApi
     {
         return $this->call(
             'GeneratePixOut',
-            array_filter($this->toArray())
+            array_filter($this->toArray(), function ($v) {
+                return $v !== null;
+            })
         );
     }
 

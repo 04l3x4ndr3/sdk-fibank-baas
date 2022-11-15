@@ -967,8 +967,6 @@ class Boleto extends CallApi
     /**
      * @description
      *
-     * @param Boleto|null $boleto
-     *
      * @return object
      * @throws GuzzleException
      */
@@ -980,9 +978,8 @@ class Boleto extends CallApi
     /**
      * @description
      *
-     * @param Boleto $boleto
-     * @param int    $installmentsNumber
-     * @param bool   $carnet
+     * @param int  $installmentsNumber
+     * @param bool $carnet
      *
      * @return object
      * @throws GuzzleException

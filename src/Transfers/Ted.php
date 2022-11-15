@@ -1,19 +1,17 @@
 <?php
-/*
- * Copyright (c) 2022.
- * @authorAlexandre G R Alves
- * Author Github: https://github.com/04l3x4ndr3
- * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
+
+namespace O4l3x4ndr3\SdkFitbank\Transfers;
+
+use GuzzleHttp\Exception\GuzzleException;
+use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Common\Product;
+use O4l3x4ndr3\SdkFitbank\Configuration;
+
+/**
+ * @description
  */
-
-namespace TwoPlug\SdkFitbank\Transfers;
-
-use TwoPlug\SdkFitbank\Common\Product;
-use TwoPlug\SdkFitbank\Configuration;
-
-class TED
+class TED extends CallApi
 {
-    private Configuration $configuration;
     private ?string $supplierName;
     private ?string $supplierTaxNumber;
     private ?string $supplierTradingName;
@@ -29,72 +27,28 @@ class TED
     private ?string $fromTaxNumber;
     private ?array $products;
 
-    /**
-     * @param string|null $SupplierName
-     * @param string|null $SupplierTaxNumber
-     * @param string|null $SupplierTradingName
-     * @param string|null $SupplierMail
-     * @param string|null $SupplierPhone
-     * @param string|null $BankNumber
-     * @param string|null $BankBranch
-     * @param string|null $BankAccount
-     * @param string|null $TransferDate
-     * @param float|null $TotalValue
-     * @param float|null $RateValue
-     * @param string|null $FromName
-     * @param string|null $FromTaxNumber
-     * @param array $Products
-     */
-    public function __construct(
-        ?string $SupplierName = null,
-        ?string $SupplierTaxNumber = null,
-        ?string $SupplierTradingName = null,
-        ?string $SupplierMail = null,
-        ?string $SupplierPhone = null,
-        ?string $BankNumber = null,
-        ?string $BankBranch = null,
-        ?string $BankAccount = null,
-        ?string $TransferDate = null,
-        ?float $TotalValue = null,
-        ?float $RateValue = null,
-        ?string $FromName = null,
-        ?string $FromTaxNumber = null,
-        ?array $Products = []
-    ) {
-        $this->configuration = new Configuration();
-        $this->supplierName = $SupplierName;
-        $this->supplierTaxNumber = $SupplierTaxNumber;
-        $this->supplierTradingName = $SupplierTradingName;
-        $this->supplierMail = $SupplierMail;
-        $this->supplierPhone = $SupplierPhone;
-        $this->bankNumber = $BankNumber;
-        $this->bankBranch = $BankBranch;
-        $this->bankAccount = $BankAccount;
-        $this->transferDate = $TransferDate;
-        $this->totalValue = $TotalValue;
-        $this->rateValue = $RateValue;
-        $this->fromName = $FromName;
-        $this->fromTaxNumber = $FromTaxNumber;
-        $this->products = $Products;
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfiguration(): Configuration
+    public function __construct(?Configuration $configuration = null)
     {
-        return $this->configuration;
+        parent::__construct($configuration);
+
+        $this->supplierName = null;
+        $this->supplierTaxNumber = null;
+        $this->supplierTradingName = null;
+        $this->supplierMail = null;
+        $this->supplierPhone = null;
+        $this->bankNumber = null;
+        $this->bankBranch = null;
+        $this->bankAccount = null;
+        $this->transferDate = null;
+        $this->totalValue = null;
+        $this->rateValue = null;
+        $this->fromName = null;
+        $this->fromTaxNumber = null;
+        $this->products = null;
     }
 
     /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
-    }
-
-    /**
+     * @description
      * @return string|null
      */
     public function getSupplierName(): ?string
@@ -103,14 +57,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $supplierName
+     *
+     * @return TED
      */
-    public function setSupplierName(?string $supplierName): void
+    public function setSupplierName(?string $supplierName): self
     {
         $this->supplierName = $supplierName;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getSupplierTaxNumber(): ?string
@@ -119,14 +79,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $supplierTaxNumber
+     *
+     * @return TED
      */
-    public function setSupplierTaxNumber(?string $supplierTaxNumber): void
+    public function setSupplierTaxNumber(?string $supplierTaxNumber): self
     {
         $this->supplierTaxNumber = $supplierTaxNumber;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getSupplierTradingName(): ?string
@@ -135,14 +101,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $supplierTradingName
+     *
+     * @return TED
      */
-    public function setSupplierTradingName(?string $supplierTradingName): void
+    public function setSupplierTradingName(?string $supplierTradingName): self
     {
         $this->supplierTradingName = $supplierTradingName;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getSupplierMail(): ?string
@@ -151,14 +123,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $supplierMail
+     *
+     * @return TED
      */
-    public function setSupplierMail(?string $supplierMail): void
+    public function setSupplierMail(?string $supplierMail): self
     {
         $this->supplierMail = $supplierMail;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getSupplierPhone(): ?string
@@ -167,14 +145,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $supplierPhone
+     *
+     * @return TED
      */
-    public function setSupplierPhone(?string $supplierPhone): void
+    public function setSupplierPhone(?string $supplierPhone): self
     {
         $this->supplierPhone = $supplierPhone;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankNumber(): ?string
@@ -183,14 +167,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankNumber
+     *
+     * @return TED
      */
-    public function setBankNumber(?string $bankNumber): void
+    public function setBankNumber(?string $bankNumber): self
     {
         $this->bankNumber = $bankNumber;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankBranch(): ?string
@@ -199,14 +189,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankBranch
+     *
+     * @return TED
      */
-    public function setBankBranch(?string $bankBranch): void
+    public function setBankBranch(?string $bankBranch): self
     {
         $this->bankBranch = $bankBranch;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getBankAccount(): ?string
@@ -215,14 +211,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $bankAccount
+     *
+     * @return TED
      */
-    public function setBankAccount(?string $bankAccount): void
+    public function setBankAccount(?string $bankAccount): self
     {
         $this->bankAccount = $bankAccount;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getTransferDate(): ?string
@@ -231,14 +233,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $transferDate
+     *
+     * @return TED
      */
-    public function setTransferDate(?string $transferDate): void
+    public function setTransferDate(?string $transferDate): self
     {
         $this->transferDate = $transferDate;
+        return $this;
     }
 
     /**
+     * @description
      * @return float|null
      */
     public function getTotalValue(): ?float
@@ -247,14 +255,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param float|null $totalValue
+     *
+     * @return TED
      */
-    public function setTotalValue(?float $totalValue): void
+    public function setTotalValue(?float $totalValue): self
     {
         $this->totalValue = $totalValue;
+        return $this;
     }
 
     /**
+     * @description
      * @return float|null
      */
     public function getRateValue(): ?float
@@ -263,14 +277,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param float|null $rateValue
+     *
+     * @return TED
      */
-    public function setRateValue(?float $rateValue): void
+    public function setRateValue(?float $rateValue): self
     {
         $this->rateValue = $rateValue;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getFromName(): ?string
@@ -279,14 +299,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $fromName
+     *
+     * @return TED
      */
-    public function setFromName(?string $fromName): void
+    public function setFromName(?string $fromName): self
     {
         $this->fromName = $fromName;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getFromTaxNumber(): ?string
@@ -295,14 +321,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param string|null $fromTaxNumber
+     *
+     * @return TED
      */
-    public function setFromTaxNumber(?string $fromTaxNumber): void
+    public function setFromTaxNumber(?string $fromTaxNumber): self
     {
         $this->fromTaxNumber = $fromTaxNumber;
+        return $this;
     }
 
     /**
+     * @description
      * @return array|null
      */
     public function getProducts(): ?array
@@ -311,14 +343,20 @@ class TED
     }
 
     /**
+     * @description
+     *
      * @param Product|null $product
+     *
+     * @return TED
      */
-    public function addProduct(?Product $product): void
+    public function addProduct(?Product $product): self
     {
         $this->products[] = $product->toArray();
+        return $this;
     }
 
     /**
+     * @description
      * @return array
      */
     public function toArray(): array
@@ -343,39 +381,52 @@ class TED
 
     /**
      * @description Recarrega a conta virtual criada via TED
-     * @param TED|null $ted
+     *
      * @return object
+     * @throws GuzzleException
      */
-    public function moneyTransferIn(?TED $ted = null): object
+    public function moneyTransferIn(): object
     {
-        $http = new CallApi($this->configuration);
-        $data = array_filter($ted->toArray() ?? $this->toArray(), function ($v) {
-            return $v !== null;
-        });
-        return $http->call('MoneyTransferIn', $data);
+        return $this->call(
+            'MoneyTransferIn',
+            array_filter(
+                $this->toArray(),
+                function ($v) {
+                    return $v !== null;
+                }
+            )
+        );
     }
 
     /**
      * @description Consulta de recarga via TED
-     * @param int $DocumentNumber
+     *
+     * @param int $documentNumber
+     *
      * @return object
+     * @throws GuzzleException
      */
-    public function getMoneyTransferInById(int $DocumentNumber): object
+    public function getMoneyTransferInById(int $documentNumber): object
     {
-        $http = new CallApi($this->configuration);
-        $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('GetMoneyTransferInById', $data);
+        return $this->call(
+            'GetMoneyTransferInById',
+            ["DocumentNumber" => $documentNumber]
+        );
     }
 
     /**
      * @description Cancelamento de recarga de conta virtual via TED
-     * @param int $DocumentNumber
+     *
+     * @param int $documentNumber
+     *
      * @return object
+     * @throws GuzzleException
      */
-    public function cancelMoneyTransferIn(int $DocumentNumber): object
+    public function cancelMoneyTransferIn(int $documentNumber): object
     {
-        $http = new CallApi($this->configuration);
-        $data = ["DocumentNumber" => $DocumentNumber];
-        return $http->call('CancelMoneyTransferIn', $data);
+        return $this->call(
+            'CancelMoneyTransferIn',
+            ["DocumentNumber" => $documentNumber]
+        );
     }
 }

@@ -6,11 +6,11 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace TwoPlug\SdkFitbank\Payments;
+namespace O4l3x4ndr3\SdkFitbank\Payments;
 
 use GuzzleHttp\Exception\GuzzleException;
-use TwoPlug\SdkFitbank\Configuration;
-use TwoPlug\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Configuration;
+use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
 class BoletoOut
 {

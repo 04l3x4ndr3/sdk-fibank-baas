@@ -1,6 +1,6 @@
 {
   "name": "o4l3x4ndr3/sdk-fibank-baas",
-  "description": "SDK da API Bank As A Service - FITBANK",
+  "description": "SDK Fitbank API Bank As A Service",
   "minimum-stability": "stable",
   "license": "proprietary",
   "type": "library",

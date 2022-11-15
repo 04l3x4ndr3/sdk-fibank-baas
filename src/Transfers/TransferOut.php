@@ -1,20 +1,16 @@
 <?php
-/*
- * Copyright (c) 2022.
- * @authorAlexandre G R Alves
- * Author Github: https://github.com/04l3x4ndr3
- * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
- */
 
-namespace TwoPlug\SdkFitbank\Transfers;
+namespace O4l3x4ndr3\SdkFitbank\Transfers;
 
 use GuzzleHttp\Exception\GuzzleException;
-use TwoPlug\SdkFitbank\Configuration;
-use TwoPlug\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Configuration;
+use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class TransferOut
+/**
+ * @description
+ */
+class TransferOut extends CallApi
 {
-    private Configuration $configuration;
     private ?string $fromTaxNumber;
     private ?string $toTaxNumber;
     private ?string $toName;
@@ -31,76 +27,29 @@ class TransferOut
     private ?string $description;
     private ?string $paymentDate;
 
-    /**
-     * @param string|null $fromTaxNumber
-     * @param string|null $toTaxNumber
-     * @param string|null $toName
-     * @param int|null $bank
-     * @param int|null $bankBranch
-     * @param int|null $bankAccount
-     * @param int|null $bankAccountDigit
-     * @param int|null $accountType
-     * @param float|null $value
-     * @param float|null $rateValue
-     * @param string|null $identifier
-     * @param int|null $rateValueType
-     * @param array|null $tags
-     * @param string|null $description
-     * @param string|null $paymentDate
-     */
-    public function __construct(
-        ?string $fromTaxNumber = null,
-        ?string $toTaxNumber = null,
-        ?string $toName = null,
-        ?int $bank = null,
-        ?int $bankBranch = null,
-        ?int $bankAccount = null,
-        ?int $bankAccountDigit = null,
-        ?int $accountType = null,
-        ?float $value = null,
-        ?float $rateValue = null,
-        ?string $identifier = null,
-        ?int $rateValueType = null,
-        ?array $tags = null,
-        ?string $description = null,
-        ?string $paymentDate = null
-    ) {
-        $this->configuration = new Configuration();
-
-        $this->fromTaxNumber = $fromTaxNumber;
-        $this->toTaxNumber = $toTaxNumber;
-        $this->toName = $toName;
-        $this->bank = $bank;
-        $this->bankBranch = $bankBranch;
-        $this->bankAccount = $bankAccount;
-        $this->bankAccountDigit = $bankAccountDigit;
-        $this->accountType = $accountType;
-        $this->value = $value;
-        $this->rateValue = $rateValue;
-        $this->identifier = $identifier;
-        $this->rateValueType = $rateValueType;
-        $this->tags = $tags;
-        $this->description = $description;
-        $this->paymentDate = $paymentDate;
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfiguration(): Configuration
+    public function __construct(?Configuration $configuration = null)
     {
-        return $this->configuration;
+        parent::__construct($configuration);
+
+        $this->fromTaxNumber = null;
+        $this->toTaxNumber = null;
+        $this->toName = null;
+        $this->bank = null;
+        $this->bankBranch = null;
+        $this->bankAccount = null;
+        $this->bankAccountDigit = null;
+        $this->accountType = null;
+        $this->value = null;
+        $this->rateValue = null;
+        $this->identifier = null;
+        $this->rateValueType = null;
+        $this->tags = null;
+        $this->description = null;
+        $this->paymentDate = null;
     }
 
     /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
-    }
-
-    /**
+     * @description
      * @return string|null
      */
     public function getFromTaxNumber(): ?string
@@ -109,14 +58,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $fromTaxNumber
+     *
+     * @return TransferOut
      */
-    public function setFromTaxNumber(?string $fromTaxNumber): void
+    public function setFromTaxNumber(?string $fromTaxNumber): self
     {
         $this->fromTaxNumber = $fromTaxNumber;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getToTaxNumber(): ?string
@@ -125,14 +80,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $toTaxNumber
+     *
+     * @return TransferOut
      */
-    public function setToTaxNumber(?string $toTaxNumber): void
+    public function setToTaxNumber(?string $toTaxNumber): self
     {
         $this->toTaxNumber = $toTaxNumber;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getToName(): ?string
@@ -141,14 +102,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $toName
+     *
+     * @return TransferOut
      */
-    public function setToName(?string $toName): void
+    public function setToName(?string $toName): self
     {
         $this->toName = $toName;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getBank(): ?int
@@ -157,14 +124,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param int|null $bank
+     *
+     * @return TransferOut
      */
-    public function setBank(?int $bank): void
+    public function setBank(?int $bank): self
     {
         $this->bank = $bank;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getBankBranch(): ?int
@@ -173,14 +146,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param int|null $bankBranch
+     *
+     * @return TransferOut
      */
-    public function setBankBranch(?int $bankBranch): void
+    public function setBankBranch(?int $bankBranch): self
     {
         $this->bankBranch = $bankBranch;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getBankAccount(): ?int
@@ -189,14 +168,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param int|null $bankAccount
+     *
+     * @return TransferOut
      */
-    public function setBankAccount(?int $bankAccount): void
+    public function setBankAccount(?int $bankAccount): self
     {
         $this->bankAccount = $bankAccount;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getBankAccountDigit(): ?int
@@ -205,14 +190,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param int|null $bankAccountDigit
+     *
+     * @return TransferOut
      */
-    public function setBankAccountDigit(?int $bankAccountDigit): void
+    public function setBankAccountDigit(?int $bankAccountDigit): self
     {
         $this->bankAccountDigit = $bankAccountDigit;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getAccountType(): ?int
@@ -221,14 +212,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param int|null $accountType
+     *
+     * @return TransferOut
      */
-    public function setAccountType(?int $accountType): void
+    public function setAccountType(?int $accountType): self
     {
         $this->accountType = $accountType;
+        return $this;
     }
 
     /**
+     * @description
      * @return float|null
      */
     public function getValue(): ?float
@@ -237,14 +234,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param float|null $value
+     *
+     * @return TransferOut
      */
-    public function setValue(?float $value): void
+    public function setValue(?float $value): self
     {
         $this->value = $value;
+        return $this;
     }
 
     /**
+     * @description
      * @return float|null
      */
     public function getRateValue(): ?float
@@ -253,14 +256,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param float|null $rateValue
+     *
+     * @return TransferOut
      */
-    public function setRateValue(?float $rateValue): void
+    public function setRateValue(?float $rateValue): self
     {
         $this->rateValue = $rateValue;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getIdentifier(): ?string
@@ -269,14 +278,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $identifier
+     *
+     * @return TransferOut
      */
-    public function setIdentifier(?string $identifier): void
+    public function setIdentifier(?string $identifier): self
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
+     * @description
      * @return int|null
      */
     public function getRateValueType(): ?int
@@ -285,14 +300,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param int|null $rateValueType
+     *
+     * @return TransferOut
      */
-    public function setRateValueType(?int $rateValueType): void
+    public function setRateValueType(?int $rateValueType): self
     {
         $this->rateValueType = $rateValueType;
+        return $this;
     }
 
     /**
+     * @description
      * @return array|null
      */
     public function getTags(): ?array
@@ -301,14 +322,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param array|null $tags
+     *
+     * @return TransferOut
      */
-    public function setTags(?array $tags): void
+    public function setTags(?array $tags): self
     {
         $this->tags = $tags;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getDescription(): ?string
@@ -317,14 +344,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $description
+     *
+     * @return TransferOut
      */
-    public function setDescription(?string $description): void
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
+     * @description
      * @return string|null
      */
     public function getPaymentDate(): ?string
@@ -333,14 +366,20 @@ class TransferOut
     }
 
     /**
+     * @description
+     *
      * @param string|null $paymentDate
+     *
+     * @return TransferOut
      */
-    public function setPaymentDate(?string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): self
     {
         $this->paymentDate = $paymentDate;
+        return $this;
     }
 
     /**
+     * @description
      * @return array
      */
     public function toArray(): array
@@ -366,43 +405,52 @@ class TransferOut
 
     /**
      * @description Transferência bancária
-     * @param TransferOut|null $transferOut
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function moneyTransfer(?TransferOut $transferOut = null): object
+    public function moneyTransfer(): object
     {
-        $http = new CallApi($this->configuration);
-        if(!isset($transferOut)) $transferOut = $this;
-        $data = array_filter($transferOut->toArray(), function ($v) {
-            return $v !== null;
-        });
-        return $http->call('MoneyTransfer', $data);
+        return $this->call(
+            'MoneyTransfer',
+            array_filter(
+                $this->toArray(),
+                function ($v) {
+                    return $v !== null;
+                }
+            )
+        );
     }
 
     /**
      * @description Consulta de transferência bancária
-     * @param int $DocumentNumber
+     *
+     * @param int $documentNumber
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function getMoneyTransferOutById(int $DocumentNumber): object
+    public function getMoneyTransferOutById(int $documentNumber): object
     {
-        $http = new CallApi($this->configuration);
-        $data = ["DocumentNumber" => $DocumentNumber,];
-        return $http->call('GetMoneyTransferOutById', $data);
+        return $this->call(
+            'GetMoneyTransferOutById',
+            ["DocumentNumber" => $documentNumber]
+        );
     }
 
     /**
      * @description Cancelamento de transferência bancária
-     * @param int $DocumentNumber
+     *
+     * @param int $documentNumber
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function cancelMoneyTransfer(int $DocumentNumber): object
+    public function cancelMoneyTransfer(int $documentNumber): object
     {
-        $http = new CallApi($this->configuration);
-        $data = ["DocumentNumber" => $DocumentNumber,];
-        return $http->call('CancelMoneyTransfer', $data);
+        return $this->call(
+            'CancelMoneyTransfer',
+            ["DocumentNumber" => $documentNumber]
+        );
     }
 }

@@ -233,28 +233,17 @@ class PixKey extends CallApi
      * @document https://dev.fitbank.com.br/reference/268
      *
      * @param string $confirmationCode
-     * @param string $pixKeyValue
-     * @param int    $pixKeyType
-     * @param string $taxNumber
      *
      * @return object
      * @throws GuzzleException
      */
-    public function confirmHold(
-        string $confirmationCode,
-        string $pixKeyValue,
-        int $pixKeyType,
-        string $taxNumber
-    ): object
+    public function confirmHold(string $confirmationCode): object
     {
+        $data = $this->toArray();
+        $data["ConfirmationCode"] = $confirmationCode;
         return $this->call(
             'ConfirmPixKeyHold',
-            array_filter([
-                "PixKey" => $pixKeyValue,
-                "PixKeyType" => $pixKeyType,
-                "TaxNumber" => $taxNumber,
-                "ConfirmationCode" => $confirmationCode,
-            ], function ($v) {
+            array_filter($data, function ($v) {
                 return $v !== null;
             })
         );
@@ -264,28 +253,18 @@ class PixKey extends CallApi
      * @description This method can be used to code Resend for Pix Key Ownership Validation.
      * @document https://dev.fitbank.com.br/reference/269
      *
-     * @param string $pixKeyValue
-     * @param int    $pixKeyType
-     * @param string $taxNumber
-     *
      * @return object
      * @throws GuzzleException
      */
-    public function resendToken(
-        string $pixKeyValue,
-        int $pixKeyType,
-        string $taxNumber
-    ): object
+    public function resendToken(): object
     {
+        $data = $this->toArray();
         return $this->call(
             'ResendPixKeyToken',
-            array_filter([
-                "PixKey" => $pixKeyValue,
-                "PixKeyType" => $pixKeyType,
-                "TaxNumber" => $taxNumber
-            ], function ($v) {
-                return $v !== null;
-            })
+            array_filter($data,
+                function ($v) {
+                    return $v !== null;
+                })
         );
     }
 

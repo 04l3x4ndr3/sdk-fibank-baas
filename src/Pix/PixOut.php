@@ -35,7 +35,7 @@ class PixOut extends CallApi
     private ?array $tags;
     private ?bool $onlineTransfer;
     private ?string $searchProtocol;
-    private ?string $customMessage;
+    private ?string $customerMessage;
 
     public function __construct(Configuration $config = null)
     {
@@ -65,7 +65,7 @@ class PixOut extends CallApi
         $this->tags = null;
         $this->onlineTransfer = null;
         $this->searchProtocol = null;
-        $this->customMessage = null;
+        $this->customerMessage = null;
     }
 
     /**
@@ -594,21 +594,21 @@ class PixOut extends CallApi
      * @description
      * @return string|null
      */
-    public function getCustomMessage(): ?string
+    public function getCustomerMessage(): ?string
     {
-        return $this->customMessage;
+        return $this->customerMessage;
     }
 
     /**
      * @description
      *
-     * @param string|null $customMessage
+     * @param string|null $customerMessage
      *
      * @return PixOut
      */
-    public function setCustomMessage(?string $customMessage): self
+    public function setCustomerMessage(?string $customerMessage): self
     {
-        $this->customMessage = $customMessage;
+        $this->customerMessage = $customerMessage;
         return $this;
     }
 
@@ -643,7 +643,7 @@ class PixOut extends CallApi
             "Tags," => $this->tags,
             "OnlineTransfer" => $this->onlineTransfer,
             "SearchProtocol" => $this->searchProtocol,
-            "CustomMessage" => $this->customMessage,
+            "CustomerMessage" => $this->customerMessage,
         ], function ($v) {
             return !is_null($v);
         });

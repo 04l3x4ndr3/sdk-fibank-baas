@@ -16,9 +16,10 @@ class PixOut extends CallApi
     private ?string $bankBranch;
     private ?string $bankAccount;
     private ?string $bankAccountDigit;
-    private ?string $toTaxNumber;
     private ?string $toName;
+    private ?string $toTaxNumber;
     private ?string $toBank;
+    private ?string $toISPB;
     private ?string $toBankBranch;
     private ?string $toBankAccount;
     private ?string $toBankAccountDigit;
@@ -31,10 +32,10 @@ class PixOut extends CallApi
     private ?string $identifier;
     private ?string $paymentDate;
     private ?string $description;
+    private ?array $tags;
     private ?bool $onlineTransfer;
     private ?string $searchProtocol;
-    private ?string $transactionPurpose;
-    private ?string $agentModality;
+    private ?string $customMessage;
 
     public function __construct(Configuration $config = null)
     {
@@ -48,6 +49,7 @@ class PixOut extends CallApi
         $this->toTaxNumber = null;
         $this->toName = null;
         $this->toBank = null;
+        $this->toISPB = null;
         $this->toBankBranch = null;
         $this->toBankAccount = null;
         $this->toBankAccountDigit = null;
@@ -60,10 +62,10 @@ class PixOut extends CallApi
         $this->identifier = null;
         $this->paymentDate = null;
         $this->description = null;
+        $this->tags = null;
         $this->onlineTransfer = null;
         $this->searchProtocol = null;
-        $this->transactionPurpose = null;
-        $this->agentModality = null;
+        $this->customMessage = null;
     }
 
     /**
@@ -107,6 +109,25 @@ class PixOut extends CallApi
     public function setBank(?string $bank): self
     {
         $this->bank = $bank;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getToISPB(): ?string
+    {
+        return $this->toISPB;
+    }
+
+    /**
+     * @param string|null $toISPB
+     *
+     * @return PixOut
+     */
+    public function setToISPB(?string $toISPB): self
+    {
+        $this->toISPB = $toISPB;
         return $this;
     }
 
@@ -507,6 +528,25 @@ class PixOut extends CallApi
     }
 
     /**
+     * @return array|null
+     */
+    public function getTags(): ?array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param array|null $tags
+     *
+     * @return PixOut
+     */
+    public function setTags(?array $tags): self
+    {
+        $this->tags = $tags;
+        return $this;
+    }
+
+    /**
      * @description
      * @return bool|null
      */
@@ -554,43 +594,21 @@ class PixOut extends CallApi
      * @description
      * @return string|null
      */
-    public function getTransactionPurpose(): ?string
+    public function getCustomMessage(): ?string
     {
-        return $this->transactionPurpose;
+        return $this->customMessage;
     }
 
     /**
      * @description
      *
-     * @param string|null $transactionPurpose
+     * @param string|null $customMessage
      *
      * @return PixOut
      */
-    public function setTransactionPurpose(?string $transactionPurpose): self
+    public function setCustomMessage(?string $customMessage): self
     {
-        $this->transactionPurpose = $transactionPurpose;
-        return $this;
-    }
-
-    /**
-     * @description
-     * @return string|null
-     */
-    public function getAgentModality(): ?string
-    {
-        return $this->agentModality;
-    }
-
-    /**
-     * @description
-     *
-     * @param string|null $agentModality
-     *
-     * @return PixOut
-     */
-    public function setAgentModality(?string $agentModality): self
-    {
-        $this->agentModality = $agentModality;
+        $this->customMessage = $customMessage;
         return $this;
     }
 
@@ -609,6 +627,7 @@ class PixOut extends CallApi
             "ToTaxNumber" => $this->toTaxNumber,
             "ToName" => $this->toName,
             "ToBank" => $this->toBank,
+            "ToISPB" => $this->toISPB,
             "ToBankBranch" => $this->toBankBranch,
             "ToBankAccount" => $this->toBankAccount,
             "ToBankAccountDigit" => $this->toBankAccountDigit,
@@ -621,10 +640,10 @@ class PixOut extends CallApi
             "Identifier" => $this->identifier,
             "PaymentDate" => $this->paymentDate,
             "Description," => $this->description,
+            "Tags," => $this->tags,
             "OnlineTransfer" => $this->onlineTransfer,
             "SearchProtocol" => $this->searchProtocol,
-            "TransactionPurpose" => $this->transactionPurpose,
-            "AgentModality" => $this->agentModality,
+            "CustomMessage" => $this->customMessage,
         ], function ($v) {
             return !is_null($v);
         });

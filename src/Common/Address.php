@@ -50,9 +50,10 @@ class Address
     /**
      * @param string|null $addressLine
      */
-    public function setAddressLine(?string $addressLine): void
+    public function setAddressLine(?string $addressLine): self
     {
         $this->addressLine = $addressLine;
+        return $this;
     }
 
     /**
@@ -66,9 +67,10 @@ class Address
     /**
      * @param string|null $addressLine2
      */
-    public function setAddressLine2(?string $addressLine2): void
+    public function setAddressLine2(?string $addressLine2): self
     {
         $this->addressLine2 = $addressLine2;
+        return $this;
     }
 
     /**
@@ -82,9 +84,10 @@ class Address
     /**
      * @param string|null $zipCode
      */
-    public function setZipCode(?string $zipCode): void
+    public function setZipCode(?string $zipCode): self
     {
         $this->zipCode = $zipCode;
+        return $this;
     }
 
     /**
@@ -98,9 +101,10 @@ class Address
     /**
      * @param string|null $neighborhood
      */
-    public function setNeighborhood(?string $neighborhood): void
+    public function setNeighborhood(?string $neighborhood): self
     {
         $this->neighborhood = $neighborhood;
+        return $this;
     }
 
     /**
@@ -114,9 +118,10 @@ class Address
     /**
      * @param int|null $cityCode
      */
-    public function setCityCode(?int $cityCode): void
+    public function setCityCode(?int $cityCode): self
     {
         $this->cityCode = $cityCode;
+        return $this;
     }
 
     /**
@@ -130,9 +135,10 @@ class Address
     /**
      * @param string|null $cityName
      */
-    public function setCityName(?string $cityName): void
+    public function setCityName(?string $cityName): self
     {
         $this->cityName = $cityName;
+        return $this;
     }
 
     /**
@@ -146,9 +152,10 @@ class Address
     /**
      * @param string|null $state
      */
-    public function setState(?string $state): void
+    public function setState(?string $state): self
     {
         $this->state = $state;
+        return $this;
     }
 
     /**
@@ -162,9 +169,10 @@ class Address
     /**
      * @param int|null $addressType
      */
-    public function setAddressType(?int $addressType): void
+    public function setAddressType(?int $addressType): self
     {
         $this->addressType = $addressType;
+        return $this;
     }
 
     /**
@@ -178,9 +186,10 @@ class Address
     /**
      * @param string|null $country
      */
-    public function setCountry(?string $country): void
+    public function setCountry(?string $country): self
     {
         $this->country = $country;
+        return $this;
     }
 
     /**
@@ -194,9 +203,10 @@ class Address
     /**
      * @param string|null $complement
      */
-    public function setComplement(?string $complement): void
+    public function setComplement(?string $complement): self
     {
         $this->complement = $complement;
+        return $this;
     }
 
     public function toArray(): array

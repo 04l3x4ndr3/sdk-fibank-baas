@@ -65,11 +65,7 @@ class Account extends CallApi
      * @return object
      * @throws GuzzleException
      */
-    public function getAccount(
-        ?string $identifier = null,
-        ?string $taxNumber = null,
-        ?string $accountKey = null
-    ): object
+    public function getAccount(?string $identifier = null, ?string $taxNumber = null, ?string $accountKey = null): object
     {
         return $this->call(
             'GetAccount',
@@ -98,6 +94,21 @@ class Account extends CallApi
         return $this->call('GetAccountList', [
             'PageSize' => $pageSize,
             'Index' => $index
+        ]);
+    }
+
+
+    /**
+     * Obter endereço de uma determonado CPF/CNPJ
+     * @param srting $taxNumber
+     *
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getAccountAddress(srting $taxNumber): object
+    {
+        return $this->call('GetAccountAddress', [
+            'TaxNumber' => $taxNumber,
         ]);
     }
 

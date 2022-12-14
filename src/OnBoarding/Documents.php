@@ -6,6 +6,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Common\Document;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
+use O4l3x4ndr3\SdkFitbank\Helpers\ListValues;
 
 class Documents extends CallApi
 {
@@ -32,12 +33,12 @@ class Documents extends CallApi
         );
 
         return new Document(
-            $addr->AddressLine ?? null,
-                strtoupper(getDocumentFormatIdByValue(preg_replace('/\W/', '', $addr->Extension ?? null))),
-            $addr->FileName ?? null,
+            $doc->AddressLine ?? null,
+                strtoupper(ListValues::getDocumentFormatIdByValue(preg_replace('/\W/', '', $doc->Extension ?? null))),
+            $doc->FileName ?? null,
                 $documentType,
-            $addr->Description ?? null,
-            $addr->ExpirationDate ?? null
+            $doc->Description ?? null,
+            $doc->ExpirationDate ?? null
         );
     }
 

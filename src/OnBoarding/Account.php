@@ -100,12 +100,12 @@ class Account extends CallApi
 
     /**
      * Obter endereço de uma determonado CPF/CNPJ
-     * @param srting $taxNumber
+     * @param string $taxNumber
      *
      * @return object
      * @throws GuzzleException
      */
-    public function getAccountAddress(srting $taxNumber): object
+    public function getAccountAddress(string $taxNumber): object
     {
         return $this->call('GetAccountAddress', [
             'TaxNumber' => $taxNumber,

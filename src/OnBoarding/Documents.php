@@ -34,7 +34,7 @@ class Documents extends CallApi
 
         return new Document(
             $doc->AddressLine ?? null,
-                strtoupper(ListValues::getDocumentFormatIdByValue(preg_replace('/\W/', '', $doc->Extension ?? null))),
+                ListValues::getDocumentFormatIdByValue(strtoupper(preg_replace('/\W/', '', $doc->Extension ?? null))),
             $doc->FileName ?? null,
                 $documentType,
             $doc->Description ?? null,

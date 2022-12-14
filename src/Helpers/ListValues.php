@@ -51,7 +51,7 @@ class ListValues
         return $arr[$id];
     }
 
-    public static function getDocumentFormatIdByValue(string $value): string
+    public static function getDocumentFormatIdByValue(string $value): ?int
     {
         return array_search($value, self::documentFormats());
     }

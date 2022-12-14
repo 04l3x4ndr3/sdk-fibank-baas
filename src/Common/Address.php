@@ -213,9 +213,9 @@ class Address
     {
         return [
             "AddressLine" => $this->addressLine,
-            "Line" => $this->addressLine,
+            //"Line" => $this->addressLine,
             "AddressLine2" => $this->addressLine2,
-            "Line2" => $this->addressLine2,
+            //"Line2" => $this->addressLine2,
             "ZipCode" => $this->zipCode,
             "Neighborhood" => $this->neighborhood,
             "CityCode" => $this->cityCode,

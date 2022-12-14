@@ -107,24 +107,29 @@ class Account extends CallApi
      * @return object
      * @throws GuzzleException
      */
-    public function getAccountAddress(string $taxNumber): Address
+    public function getAccountAddress(string $taxNumber, ?int $index = null): mixed
     {
         $addr = $this->call('GetAccountAddress', [
             'TaxNumber' => $taxNumber,
         ]);
 
-        return new Address(
-            $addr->AddressLine ?? null,
-            $addr->AddressLine2 ?? null,
-            $addr->ZipCode ?? null,
-            $addr->Neighborhood ?? null,
-            $addr->CityCode ?? null,
-            $addr->CityName ?? null,
-            $addr->State ?? null,
-            $addr->AddressType ?? null,
-            $addr->Country ?? null,
-            $addr->Complement ?? null,
-        );
+        $data = [];
+        foreach ($addr->Message as $addr) {
+            $data[] = new Address(
+                $addr->AddressLine ?? null,
+                $addr->AddressLine2 ?? null,
+                $addr->ZipCode ?? null,
+                $addr->Neighborhood ?? null,
+                $addr->CityCode ?? null,
+                $addr->CityName ?? null,
+                $addr->State ?? null,
+                $addr->AddressType ?? null,
+                $addr->Country ?? null,
+                $addr->Complement ?? null,
+            );
+        };
+
+        return (isset($index)) ? $data[$index] : $data;
     }
 
     /**

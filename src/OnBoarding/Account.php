@@ -114,16 +114,16 @@ class Account extends CallApi
         ]);
 
         return new Address(
-            $addr->addressLine ?? null,
-            $addr->addressLine2 ?? null,
-            $addr->zipCode ?? null,
-            $addr->neighborhood ?? null,
-            $addr->cityCode ?? null,
-            $addr->cityName ?? null,
-            $addr->state ?? null,
-            $addr->addressType ?? null,
-            $addr->country ?? null,
-            $addr->complement ?? null,
+            $addr->AddressLine ?? null,
+            $addr->AddressLine2 ?? null,
+            $addr->ZipCode ?? null,
+            $addr->Neighborhood ?? null,
+            $addr->CityCode ?? null,
+            $addr->CityName ?? null,
+            $addr->State ?? null,
+            $addr->AddressType ?? null,
+            $addr->Country ?? null,
+            $addr->Complement ?? null,
         );
     }
 

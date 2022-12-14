@@ -4,6 +4,7 @@ namespace O4l3x4ndr3\SdkFitbank\OnBoarding;
 
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
+use O4l3x4ndr3\SdkFitbank\Common\Address;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 use O4l3x4ndr3\SdkFitbank\Common\LimitedAccount;
@@ -100,16 +101,30 @@ class Account extends CallApi
 
     /**
      * Obter endereço de uma determonado CPF/CNPJ
+     *
      * @param string $taxNumber
      *
      * @return object
      * @throws GuzzleException
      */
-    public function getAccountAddress(string $taxNumber): object
+    public function getAccountAddress(string $taxNumber): Address
     {
-        return $this->call('GetAccountAddress', [
+        $addr = $this->call('GetAccountAddress', [
             'TaxNumber' => $taxNumber,
         ]);
+
+        return new Address(
+            $addr->addressLine ?? null,
+            $addr->addressLine2 ?? null,
+            $addr->zipCode ?? null,
+            $addr->neighborhood ?? null,
+            $addr->cityCode ?? null,
+            $addr->cityName ?? null,
+            $addr->state ?? null,
+            $addr->addressType ?? null,
+            $addr->country ?? null,
+            $addr->complement ?? null,
+        );
     }
 
     /**

@@ -26,7 +26,8 @@ class Address
         ?int $addressType = null,
         ?string $country = null,
         ?string $complement = null
-    ) {
+    )
+    {
         $this->addressLine = $addressLine;
         $this->addressLine2 = $addressLine2;
         $this->zipCode = $zipCode;
@@ -211,7 +212,7 @@ class Address
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             "AddressLine" => $this->addressLine,
             //"Line" => $this->addressLine,
             "AddressLine2" => $this->addressLine2,
@@ -221,10 +222,12 @@ class Address
             "CityCode" => $this->cityCode,
             "CityName" => $this->cityName,
             "State" => $this->state,
-            "AddressType" => $this->addressType,
-            "Type" => $this->addressType,
+            //"AddressType" => $this->addressType,
+            //"Type" => $this->addressType,
             "Country" => $this->country,
             "Complement" => $this->complement
-        ];
+        ], function ($v) {
+            return $v !== null;
+        });
     }
 }

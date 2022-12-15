@@ -6,7 +6,6 @@ use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Common\Document;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
-use O4l3x4ndr3\SdkFitbank\Helpers\ListValues;
 
 class Documents extends CallApi
 {
@@ -23,22 +22,9 @@ class Documents extends CallApi
      * @return Document
      * @throws GuzzleException
      */
-    public function getDocument(string $taxNumber, int $documentType): Document
+    public function getDocument(string $taxNumber, int $documentType): object
     {
-        $doc = $this->call(
-            'GetDocument', array_filter([
-                'TaxNumber' => $taxNumber,
-                'DocumentType' => $documentType
-            ])
-        );
-
-        return new Document(
-            base64_encode(file_get_contents($doc->Document ?? null)),
-                ListValues::getDocumentFormatIdByValue(strtoupper(preg_replace('/\W/', '', $doc->Extension ?? null))),
-            $doc->FileName ?? null,
-                $documentType,
-            $doc->Description ?? null,
-            $doc->ExpirationDate ?? null
+        return $this->call('GetDocument', array_filter(['TaxNumber' => $taxNumber, 'DocumentType' => $documentType])
         );
     }
 
@@ -56,11 +42,6 @@ class Documents extends CallApi
             $docs[] = $doc->toArray();
         }
 
-        return $this->call(
-            'ResendDocuments', array_filter([
-                'TaxNumber' => $taxNumber,
-                'Documents' => $docs
-            ])
-        );
+        return $this->call('ResendDocuments', array_filter(['TaxNumber' => $taxNumber, 'Documents' => $docs]));
     }
 }

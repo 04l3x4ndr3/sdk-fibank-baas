@@ -37,11 +37,11 @@ class ListValues
     public static function documentFormats(): array
     {
         return [
-            0 => 'PDF',
-            1 => 'JPG',
-            2 => 'JPEG',
-            3 => 'TXT',
-            4 => 'PNG',
+            0 => '.pdf',
+            1 => '.jpg',
+            2 => '.jpeg',
+            3 => '.txt',
+            4 => '.png',
         ];
     }
 

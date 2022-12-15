@@ -10,11 +10,22 @@ class Product
     private ?int $receiverPersonType;
     private ?string $receiverName;
     private ?string $receiverTaxNumber;
+    private ?string $receiverBank;
+    private ?string $receiverBankBranch;
+    private ?string $receiverBankAccount;
+    private ?string $receiverBankAccountDigit;
     private ?string $reference;
     private ?string $productCode;
     private ?string $productName;
-    private ?int $productQty;
+    private ?float $productQty;
     private ?float $productValue;
+    private ?int $automaticType;
+    private ?int $accountType;
+    private ?string $bank;
+    private ?string $bankBranch;
+    private ?string $bankAccount;
+    private ?string $bankAccountDigit;
+    private ?float $productRateValueToTransfer;
 
     public function __construct()
     {
@@ -24,11 +35,11 @@ class Product
         $this->receiverPersonType = null;
         $this->receiverName = null;
         $this->receiverTaxNumber = null;
+        $this->receiverBank = null;
+        $this->receiverBankBranch = null;
+        $this->receiverBankAccount = null;
+        $this->receiverBankAccountDigit = null;
         $this->reference = null;
-        $this->productCode = null;
-        $this->productName = null;
-        $this->productQty = null;
-        $this->productValue = null;
     }
 
     /**
@@ -148,6 +159,82 @@ class Product
     /**
      * @return string|null
      */
+    public function getReceiverBank(): ?string
+    {
+        return $this->receiverBank;
+    }
+
+    /**
+     * @param string|null $receiverBank
+     *
+     * @return Product
+     */
+    public function setReceiverBank(?string $receiverBank): self
+    {
+        $this->receiverBank = $receiverBank;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getReceiverBankBranch(): ?string
+    {
+        return $this->receiverBankBranch;
+    }
+
+    /**
+     * @param string|null $receiverBankBranch
+     *
+     * @return Product
+     */
+    public function setReceiverBankBranch(?string $receiverBankBranch): self
+    {
+        $this->receiverBankBranch = $receiverBankBranch;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getReceiverBankAccount(): ?string
+    {
+        return $this->receiverBankAccount;
+    }
+
+    /**
+     * @param string|null $receiverBankAccount
+     *
+     * @return Product
+     */
+    public function setReceiverBankAccount(?string $receiverBankAccount): self
+    {
+        $this->receiverBankAccount = $receiverBankAccount;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getReceiverBankAccountDigit(): ?string
+    {
+        return $this->receiverBankAccountDigit;
+    }
+
+    /**
+     * @param string|null $receiverBankAccountDigit
+     *
+     * @return Product
+     */
+    public function setReceiverBankAccountDigit(?string $receiverBankAccountDigit): self
+    {
+        $this->receiverBankAccountDigit = $receiverBankAccountDigit;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getReference(): ?string
     {
         return $this->reference;
@@ -165,7 +252,7 @@ class Product
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
     public function getProductCode(): ?string
     {
@@ -173,7 +260,7 @@ class Product
     }
 
     /**
-     * @param int|null $productCode
+     * @param string|null $productCode
      *
      * @return Product
      */
@@ -203,19 +290,19 @@ class Product
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getProductQty(): ?int
+    public function getProductQty(): ?float
     {
         return $this->productQty;
     }
 
     /**
-     * @param int|null $productQty
+     * @param float|null $productQty
      *
      * @return Product
      */
-    public function setProductQty(?int $productQty): self
+    public function setProductQty(?float $productQty): self
     {
         $this->productQty = $productQty;
         return $this;
@@ -240,20 +327,166 @@ class Product
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getAutomaticType(): ?int
+    {
+        return $this->automaticType;
+    }
+
+    /**
+     * @param int|null $automaticType
+     *
+     * @return Product
+     */
+    public function setAutomaticType(?int $automaticType): self
+    {
+        $this->automaticType = $automaticType;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getAccountType(): ?int
+    {
+        return $this->accountType;
+    }
+
+    /**
+     * @param int|null $accountType
+     *
+     * @return Product
+     */
+    public function setAccountType(?int $accountType): self
+    {
+        $this->accountType = $accountType;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBank(): ?string
+    {
+        return $this->bank;
+    }
+
+    /**
+     * @param string|null $bank
+     *
+     * @return Product
+     */
+    public function setBank(?string $bank): self
+    {
+        $this->bank = $bank;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBankBranch(): ?string
+    {
+        return $this->bankBranch;
+    }
+
+    /**
+     * @param string|null $bankBranch
+     *
+     * @return Product
+     */
+    public function setBankBranch(?string $bankBranch): self
+    {
+        $this->bankBranch = $bankBranch;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBankAccount(): ?string
+    {
+        return $this->bankAccount;
+    }
+
+    /**
+     * @param string|null $bankAccount
+     *
+     * @return Product
+     */
+    public function setBankAccount(?string $bankAccount): self
+    {
+        $this->bankAccount = $bankAccount;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBankAccountDigit(): ?string
+    {
+        return $this->bankAccountDigit;
+    }
+
+    /**
+     * @param string|null $bankAccountDigit
+     *
+     * @return Product
+     */
+    public function setBankAccountDigit(?string $bankAccountDigit): self
+    {
+        $this->bankAccountDigit = $bankAccountDigit;
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getProductRateValueToTransfer(): ?float
+    {
+        return $this->productRateValueToTransfer;
+    }
+
+    /**
+     * @param float|null $productRateValueToTransfer
+     *
+     * @return Product
+     */
+    public function setProductRateValueToTransfer(?float $productRateValueToTransfer): self
+    {
+        $this->productRateValueToTransfer = $productRateValueToTransfer;
+        return $this;
+    }
+
     public function toArray(): array
     {
-        return [
+        return array_filter([
             "SellerPersonType" => $this->sellerPersonType,
             "SellerName" => $this->sellerName,
             "SellerTaxNumber" => $this->sellerTaxNumber,
             "ReceiverPersonType" => $this->receiverPersonType,
             "ReceiverName" => $this->receiverName,
             "ReceiverTaxNumber" => $this->receiverTaxNumber,
+            "ReceiverBank" => $this->receiverBank,
+            "ReceiverBankBranch" => $this->receiverBankBranch,
+            "ReceiverBankAccount" => $this->receiverBankAccount,
+            "ReceiverBankAccountDigit" => $this->receiverBankAccountDigit,
             "Reference" => $this->reference,
             "ProductCode" => $this->productCode,
             "ProductName" => $this->productName,
             "ProductQty" => $this->productQty,
-            "ProductValue" => $this->productValue
-        ];
+            "ProductValue" => $this->productValue,
+            "AutomaticType" => $this->automaticType,
+            "AccountType" => $this->accountType,
+            "Bank" => $this->bank,
+            "BankBranch" => $this->bankBranch,
+            "BankAccount" => $this->bankAccount,
+            "BankAccountDigit" => $this->bankAccountDigit,
+            "ProductRateValueToTransfer" => $this->productRateValueToTransfer
+        ], function ($v) {
+            return !is_null($v);
+        });
     }
 }

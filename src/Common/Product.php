@@ -40,6 +40,17 @@ class Product
         $this->receiverBankAccount = null;
         $this->receiverBankAccountDigit = null;
         $this->reference = null;
+        $this->productCode = null;
+        $this->productName = null;
+        $this->productQty = null;
+        $this->productValue = null;
+        $this->automaticType = null;
+        $this->accountType = null;
+        $this->bank = null;
+        $this->bankBranch = null;
+        $this->bankAccount = null;
+        $this->bankAccountDigit = null;
+        $this->productRateValueToTransfer = null;
     }
 
     /**

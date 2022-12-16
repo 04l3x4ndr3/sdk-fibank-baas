@@ -18,7 +18,7 @@ class Account extends CallApi
     }
 
     /**
-     * @description Create a new account request for an Individual Person or Company
+     * Create a new account request for an Individual Person or Company
      * @document https://dev.fitbank.com.br/reference/92
      *
      * @param FullAccount $account
@@ -37,7 +37,7 @@ class Account extends CallApi
     }
 
     /**
-     * @description Create a new limited account request for individual person or company.
+     * Create a new limited account request for individual person or company.
      * @document https://dev.fitbank.com.br/reference/259
      *
      * @param LimitedAccount $limitedAccount
@@ -56,7 +56,7 @@ class Account extends CallApi
     }
 
     /**
-     * @description Get account information.
+     * Get account information.
      * @document https://dev.fitbank.com.br/reference/117
      *
      * @param string|null $identifier
@@ -81,7 +81,7 @@ class Account extends CallApi
     }
 
     /**
-     * @description Returns a list of business unit accounts.
+     * Returns a list of business unit accounts.
      * @document https://dev.fitbank.com.br/reference/208
      *
      * @param int $pageSize
@@ -133,7 +133,7 @@ class Account extends CallApi
     }
 
     /**
-     * @description Get Account Entry
+     * Get Account Entry
      * @document https://dev.fitbank.com.br/reference/15
      *
      * @param string $taxNumber
@@ -186,7 +186,7 @@ class Account extends CallApi
     }
 
     /**
-     * @description Get account entry information with a page limit.
+     * Get account entry information with a page limit.
      * @document https://dev.fitbank.com.br/reference/post_-getaccountentrypaged
      *
      * @param string $taxNumber
@@ -239,5 +239,28 @@ class Account extends CallApi
             $call->data->Entry = json_decode($call->data->Entry);
         }
         return $call;
+    }
+
+    /**
+     * Block Account.
+     * @document https://fitbank.com.br/developer/#api-Account-BlockAccount
+     *
+     * @param string   $taxNumber
+     * @param int|null $identifier
+     *
+     * @return object
+     * @throws GuzzleException
+     */
+    public function blockAccount(string $taxNumber, ?int $identifier = null): object
+    {
+        return $this->call(
+            'BlockAccount',
+            array_filter([
+                "TaxNumber" => $taxNumber,
+                "Identifier" => $identifier
+            ], function ($v) {
+                return !is_null($v);
+            })
+        );
     }
 }

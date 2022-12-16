@@ -47,7 +47,7 @@ class ListValues
 
     public static function getDocumentFormatById(int $id): string
     {
-        $arr = self::documentFormat();
+        $arr = self::documentFormats();
         return $arr[$id];
     }
 
@@ -76,7 +76,6 @@ class ListValues
     {
         return array_search($value, self::genders());
     }
-
 
     public static function maritalStatus(): array
     {
@@ -152,8 +151,12 @@ class ListValues
     public static function accountStatus(): array
     {
         return [
-            'Disabled',
-            'Enabled',
+            'Open',
+            'Limited',
+            'Released',
+            'Overdue KYC',
+            'Blocked',
+            'Closed'
         ];
     }
 

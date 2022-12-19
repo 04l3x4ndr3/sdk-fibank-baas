@@ -62,18 +62,34 @@ class Account extends CallApi
      * @param string|null $identifier
      * @param string|null $taxNumber
      * @param string|null $accountKey
+     * @param string|null $bank
+     * @param string|null $bankBranch
+     * @param string|null $bankAccount
+     * @param string|null $bankAccountDigit
      *
      * @return object
      * @throws GuzzleException
      */
-    public function getAccount(?string $identifier = null, ?string $taxNumber = null, ?string $accountKey = null): object
+    public function getAccount(
+        ?string $identifier = null,
+        ?string $taxNumber = null,
+        ?string $accountKey = null,
+        ?string $bank = null,
+        ?string $bankBranch = null,
+        ?string $bankAccount = null,
+        ?string $bankAccountDigit = null
+    ): object
     {
         return $this->call(
             'GetAccount',
             array_filter([
                 "Identifier" => $identifier,
                 "TaxNumber" => $taxNumber,
-                "AccountKey" => $accountKey
+                "AccountKey" => $accountKey,
+                "Bank" => $bank,
+                "BankBranch" => $bankBranch,
+                "BankAccount" => $bankAccount,
+                "BankAccountDigit" => $bankAccountDigit
             ], function ($v) {
                 return $v !== null;
             })

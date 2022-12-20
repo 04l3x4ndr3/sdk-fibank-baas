@@ -12,10 +12,10 @@ use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 class TransferOut extends CallApi
 {
     private ?string $fromTaxNumber;
-    private ?int $frombank;
-    private ?int $frombankBranch;
-    private ?int $frombankAccount;
-    private ?int $frombankAccountDigit;
+    private ?int $fromBank;
+    private ?int $fromBankBranch;
+    private ?int $fromBankAccount;
+    private ?int $fromBankAccountDigit;
     private ?string $toTaxNumber;
     private ?string $toName;
     private ?int $bank;
@@ -50,10 +50,10 @@ class TransferOut extends CallApi
     {
         parent::__construct($configuration);
         $this->fromTaxNumber = null;
-        $this->frombank = null;
-        $this->frombankBranch = null;
-        $this->frombankAccount = null;
-        $this->frombankAccountDigit = null;
+        $this->fromBank = null;
+        $this->fromBankBranch = null;
+        $this->fromBankAccount = null;
+        $this->fromBankAccountDigit = null;
         $this->toTaxNumber = null;
         $this->toName = null;
         $this->bank = null;
@@ -107,76 +107,76 @@ class TransferOut extends CallApi
     /**
      * @return int|null
      */
-    public function getFrombank(): ?int
+    public function getFromBank(): ?int
     {
-        return $this->frombank;
+        return $this->fromBank;
     }
 
     /**
-     * @param int|null $frombank
+     * @param int|null $fromBank
      *
      * @return TransferOut
      */
-    public function setFrombank(?int $frombank): self
+    public function setFromBank(?int $fromBank): self
     {
-        $this->frombank = $frombank;
+        $this->fromBank = $fromBank;
         return $this;
     }
 
     /**
      * @return int|null
      */
-    public function getFrombankBranch(): ?int
+    public function getFromBankBranch(): ?int
     {
-        return $this->frombankBranch;
+        return $this->fromBankBranch;
     }
 
     /**
-     * @param int|null $frombankBranch
+     * @param int|null $fromBankBranch
      *
      * @return TransferOut
      */
-    public function setFrombankBranch(?int $frombankBranch): self
+    public function setFromBankBranch(?int $fromBankBranch): self
     {
-        $this->frombankBranch = $frombankBranch;
+        $this->fromBankBranch = $fromBankBranch;
         return $this;
     }
 
     /**
      * @return int|null
      */
-    public function getFrombankAccount(): ?int
+    public function getFromBankAccount(): ?int
     {
-        return $this->frombankAccount;
+        return $this->fromBankAccount;
     }
 
     /**
-     * @param int|null $frombankAccount
+     * @param int|null $fromBankAccount
      *
      * @return TransferOut
      */
-    public function setFrombankAccount(?int $frombankAccount): self
+    public function setFromBankAccount(?int $fromBankAccount): self
     {
-        $this->frombankAccount = $frombankAccount;
+        $this->fromBankAccount = $fromBankAccount;
         return $this;
     }
 
     /**
      * @return int|null
      */
-    public function getFrombankAccountDigit(): ?int
+    public function getFromBankAccountDigit(): ?int
     {
-        return $this->frombankAccountDigit;
+        return $this->fromBankAccountDigit;
     }
 
     /**
-     * @param int|null $frombankAccountDigit
+     * @param int|null $fromBankAccountDigit
      *
      * @return TransferOut
      */
-    public function setFrombankAccountDigit(?int $frombankAccountDigit): self
+    public function setFromBankAccountDigit(?int $fromBankAccountDigit): self
     {
-        $this->frombankAccountDigit = $frombankAccountDigit;
+        $this->fromBankAccountDigit = $fromBankAccountDigit;
         return $this;
     }
 
@@ -739,10 +739,10 @@ class TransferOut extends CallApi
     {
         return array_filter([
             "FromTaxNumber" => $this->fromTaxNumber,
-            "Frombank" => $this->frombank,
-            "FrombankBranch" => $this->frombankBranch,
-            "FrombankAccount" => $this->frombankAccount,
-            "FrombankAccountDigit" => $this->frombankAccountDigit,
+            "FromBank" => $this->fromBank,
+            "FromBankBranch" => $this->fromBankBranch,
+            "FromBankAccount" => $this->fromBankAccount,
+            "FromBankAccountDigit" => $this->fromBankAccountDigit,
             "ToTaxNumber" => $this->toTaxNumber,
             "ToName" => $this->toName,
             "Bank" => $this->bank,

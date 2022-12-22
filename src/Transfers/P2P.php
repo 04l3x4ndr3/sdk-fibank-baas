@@ -84,6 +84,7 @@ class P2P extends CallApi
 
     /**
      * @param string|null $fromBank
+     *
      * @return P2P
      */
     public function setFromBank(?string $fromBank): self
@@ -102,6 +103,7 @@ class P2P extends CallApi
 
     /**
      * @param string|null $fromBankBranch
+     *
      * @return P2P
      */
     public function setFromBankBranch(?string $fromBankBranch): self
@@ -120,6 +122,7 @@ class P2P extends CallApi
 
     /**
      * @param string|null $fromBankAccount
+     *
      * @return P2P
      */
     public function setFromBankAccount(?string $fromBankAccount): self
@@ -138,6 +141,7 @@ class P2P extends CallApi
 
     /**
      * @param string|null $fromBankAccountDigit
+     *
      * @return P2P
      */
     public function setFromBankAccountDigit(?string $fromBankAccountDigit): self
@@ -175,6 +179,7 @@ class P2P extends CallApi
 
     /**
      * @param string|null $toBank
+     *
      * @return P2P
      */
     public function setToBank(?string $toBank): self
@@ -193,6 +198,7 @@ class P2P extends CallApi
 
     /**
      * @param string|null $toBankBranch
+     *
      * @return P2P
      */
     public function setToBankBranch(?string $toBankBranch): self
@@ -211,6 +217,7 @@ class P2P extends CallApi
 
     /**
      * @param string|null $toBankAccount
+     *
      * @return P2P
      */
     public function setToBankAccount(?string $toBankAccount): self
@@ -229,6 +236,7 @@ class P2P extends CallApi
 
     /**
      * @param string|null $toBankAccountDigit
+     *
      * @return P2P
      */
     public function setToBankAccountDigit(?string $toBankAccountDigit): self
@@ -266,6 +274,7 @@ class P2P extends CallApi
 
     /**
      * @param int|null $rateValueType
+     *
      * @return P2P
      */
     public function setRateValueType(?int $rateValueType): self
@@ -303,6 +312,7 @@ class P2P extends CallApi
 
     /**
      * @param string|null $category
+     *
      * @return P2P
      */
     public function setCategory(?string $category): self
@@ -378,6 +388,7 @@ class P2P extends CallApi
 
     /**
      * @param array|null $internalTransfers
+     *
      * @return $this
      */
     public function setInternalTransfers(?array $internalTransfers): self
@@ -388,6 +399,7 @@ class P2P extends CallApi
 
     /**
      * @param InternalTransfers $internalTransfers
+     *
      * @return P2P
      */
     public function addInternalTransfers(InternalTransfers $internalTransfers): self
@@ -404,11 +416,13 @@ class P2P extends CallApi
         $internalTransfers = null;
         if (!empty($this->internalTransfers)) {
             foreach ($this->internalTransfers as $internalTransfer) {
-                $internalTransfers[] = array_filter($internalTransfer->toArray());
+                $internalTransfers[] = array_filter($internalTransfer->toArray(), function ($v) {
+                    return !is_null($v);
+                });
             }
         }
 
-        return [
+        return array_filter([
             "FromTaxNumber" => $this->fromTaxNumber,
             "FromBank" => $this->fromBank,
             "FromBankBranch" => $this->fromBankBranch,
@@ -427,7 +441,9 @@ class P2P extends CallApi
             "Identifier" => $this->identifier,
             "Description" => $this->description,
             "InternalTransfers" => $internalTransfers
-        ];
+        ], function ($v) {
+            return !is_null($v);
+        });
     }
 
     /**
@@ -438,15 +454,7 @@ class P2P extends CallApi
      */
     public function internalTransfer(): object
     {
-        return $this->call(
-            'InternalTransfer',
-            array_filter(
-                $this->toArray(),
-                function ($v) {
-                    return $v !== null;
-                }
-            )
-        );
+        return $this->call('InternalTransfer', $this->toArray());
     }
 
     /**
@@ -457,15 +465,7 @@ class P2P extends CallApi
      */
     public function multipleInternalTransfers(): object
     {
-        return $this->call(
-            'MultipleInternalTransfers',
-            array_filter(
-                $this->toArray(),
-                function ($v) {
-                    return $v !== null;
-                }
-            )
-        );
+        return $this->call('MultipleInternalTransfers', $this->toArray(),);
     }
 
     /**
@@ -493,15 +493,9 @@ class P2P extends CallApi
      * @return object
      * @throws GuzzleException
      */
-    public function getInternalTransferByDate(
-        string $taxNumber,
-        string $transferDate
-    ): object
+    public function getInternalTransferByDate(string $taxNumber, string $transferDate): object
     {
-        return $this->call('GetInternalTransferByDate', [
-            "TaxNumber" => $taxNumber,
-            "TransferDate" => $transferDate
-        ]);
+        return $this->call('GetInternalTransferByDate', ["TaxNumber" => $taxNumber, "TransferDate" => $transferDate]);
     }
 
     /**
@@ -514,9 +508,6 @@ class P2P extends CallApi
      */
     public function cancelInternalTransfer(int $documentNumber): object
     {
-        return $this->call(
-            'CancelInternalTransfer',
-            ["DocumentNumber" => $documentNumber]
-        );
+        return $this->call('CancelInternalTransfer', ["DocumentNumber" => $documentNumber]);
     }
 }

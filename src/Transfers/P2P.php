@@ -12,6 +12,11 @@ use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
  */
 class P2P extends CallApi
 {
+    private ?string $taxNumber;
+    private ?string $bank;
+    private ?string $bankBranch;
+    private ?string $bankAccount;
+    private ?string $bankAccountDigit;
     private ?string $fromTaxNumber;
     private ?string $fromBank;
     private ?string $fromBankBranch;
@@ -35,6 +40,11 @@ class P2P extends CallApi
     {
         parent::__construct($configuration);
 
+        $this->taxNumber = null;
+        $this->bank = null;
+        $this->bankBranch = null;
+        $this->bankAccount = null;
+        $this->bankAccountDigit = null;
         $this->fromTaxNumber = null;
         $this->fromBank = null;
         $this->fromBankBranch = null;
@@ -54,6 +64,98 @@ class P2P extends CallApi
         $this->description = null;
         $this->internalTransfers = null;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getTaxNumber(): ?string
+    {
+        return $this->taxNumber;
+    }
+
+    /**
+     * @param string|null $taxNumber
+     *
+     * @return P2P
+     */
+    public function setTaxNumber(?string $taxNumber): self
+    {
+        $this->taxNumber = $taxNumber;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBank(): ?string
+    {
+        return $this->bank;
+    }
+
+    /**
+     * @param string|null $bank
+     * @return P2P
+     */
+    public function setBank(?string $bank): self
+    {
+        $this->bank = $bank;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBankBranch(): ?string
+    {
+        return $this->bankBranch;
+    }
+
+    /**
+     * @param string|null $bankBranch
+     * @return P2P
+     */
+    public function setBankBranch(?string $bankBranch): self
+    {
+        $this->bankBranch = $bankBranch;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBankAccount(): ?string
+    {
+        return $this->bankAccount;
+    }
+
+    /**
+     * @param string|null $bankAccount
+     * @return P2P
+     */
+    public function setBankAccount(?string $bankAccount): self
+    {
+        $this->bankAccount = $bankAccount;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBankAccountDigit(): ?string
+    {
+        return $this->bankAccountDigit;
+    }
+
+    /**
+     * @param string|null $bankAccountDigit
+     * @return P2P
+     */
+    public function setBankAccountDigit(?string $bankAccountDigit): self
+    {
+        $this->bankAccountDigit = $bankAccountDigit;
+        return $this;
+    }
+
 
     /**
      * @return string|null
@@ -423,6 +525,11 @@ class P2P extends CallApi
         }
 
         return array_filter([
+            "TaxNumber" => $this->taxNumber,
+            "Bank" => $this->bank,
+            "BankBranch" => $this->bankBranch,
+            "BankAccount" => $this->bankAccount,
+            "BankAccountDigit" => $this->bankAccountDigit,
             "FromTaxNumber" => $this->fromTaxNumber,
             "FromBank" => $this->fromBank,
             "FromBankBranch" => $this->fromBankBranch,

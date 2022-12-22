@@ -175,14 +175,14 @@ class InternalTransfers
     public function toArray(): array
     {
         return array_filter([
-            "toName" => $this->toName,
-            "toTaxNumber" => $this->toTaxNumber,
-            "toBank" => $this->toBank,
-            "toBankBranch" => $this->toBankBranch,
-            "toBankAccount" => $this->toBankAccount,
-            "toBankAccountDigit" => $this->toBankAccountDigit,
-            "value" => $this->value,
-            "description" => $this->description,
+            "ToName" => $this->toName,
+            "ToTaxNumber" => $this->toTaxNumber,
+            "ToBank" => $this->toBank,
+            "ToBankBranch" => $this->toBankBranch,
+            "ToBankAccount" => $this->toBankAccount,
+            "ToBankAccountDigit" => $this->toBankAccountDigit,
+            "Value" => $this->value,
+            "Description" => $this->description,
         ], function ($v) {
             return $v !== null;
         });

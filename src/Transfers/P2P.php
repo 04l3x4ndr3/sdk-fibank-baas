@@ -465,7 +465,7 @@ class P2P extends CallApi
      */
     public function multipleInternalTransfers(): object
     {
-        return $this->call('MultipleInternalTransfers', $this->toArray(),);
+        return $this->call('MultipleInternalTransfers', $this->toArray());
     }
 
     /**

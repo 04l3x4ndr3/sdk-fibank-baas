@@ -91,7 +91,7 @@ class Account extends CallApi
                 "BankAccount" => $bankAccount,
                 "BankAccountDigit" => $bankAccountDigit
             ], function ($v) {
-                return $v !== null;
+                return !is_null($v);
             })
         );
     }
@@ -169,10 +169,10 @@ class Account extends CallApi
         string $taxNumber,
         string $startDate,
         string $endDate,
-        string $bank = "",
-        string $bankBranch = "",
-        string $bankAccount = "",
-        string $bankAccountDigit = "",
+        ?string $bank = null,
+        ?string $bankBranch = null,
+        ?string $bankAccount = null,
+        ?string $bankAccountDigit = null,
         bool $onlyBalance = false,
         string $entryClassificationType = "Debit"
     ): object
@@ -183,14 +183,14 @@ class Account extends CallApi
                 "TaxNumber" => $taxNumber,
                 "StartDate" => $startDate,
                 "EndDate" => $endDate,
-                "Bank" => $bank ?? "",
-                "BankBranch" => $bankBranch ?? "",
-                "BankAccount" => $bankAccount ?? "",
-                "BankAccountDigit" => $bankAccountDigit ?? "",
+                "Bank" => $bank,
+                "BankBranch" => $bankBranch,
+                "BankAccount" => $bankAccount,
+                "BankAccountDigit" => $bankAccountDigit,
                 "OnlyBalance" => ($onlyBalance) ? "true" : "false",
                 "EntryClassificationType" => $entryClassificationType
             ], function ($v) {
-                return $v !== null;
+                return ! is_null($v);
             })
         );
 
@@ -223,10 +223,10 @@ class Account extends CallApi
         string $taxNumber,
         string $startDate,
         string $endDate,
-        string $bank = "",
-        string $bankBranch = "",
-        string $bankAccount = "",
-        string $bankAccountDigit = "",
+        ?string $bank = null,
+        ?string $bankBranch = null,
+        ?string $bankAccount = null,
+        ?string $bankAccountDigit = null,
         bool $onlyBalance = false,
         int $pageSize = 25,
         int $pageIndex = 0
@@ -246,7 +246,7 @@ class Account extends CallApi
                 "PageSize" => $pageSize,
                 "PageIndex" => $pageIndex
             ], function ($v) {
-                return $v !== null;
+                return !is_null($v);
             })
         );
 
@@ -275,7 +275,7 @@ class Account extends CallApi
                 "TaxNumber" => $taxNumber,
                 "Identifier" => $identifier
             ], function ($v) {
-                return !is_null($v);
+                return ! is_null($v);
             })
         );
     }

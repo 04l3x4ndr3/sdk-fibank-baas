@@ -157,15 +157,15 @@ class Account extends CallApi
      * Get Account Entry
      * @document https://dev.fitbank.com.br/reference/15
      *
-     * @param string $taxNumber
-     * @param string $startDate
-     * @param string $endDate
-     * @param string $bank
-     * @param string $bankBranch
-     * @param string $bankAccount
-     * @param string $bankAccountDigit
-     * @param bool   $onlyBalance
-     * @param string $entryClassificationType
+     * @param string      $taxNumber
+     * @param string      $startDate
+     * @param string      $endDate
+     * @param string|null $bank
+     * @param string|null $bankBranch
+     * @param string|null $bankAccount
+     * @param string|null $bankAccountDigit
+     * @param bool        $onlyBalance
+     * @param string      $entryClassificationType
      *
      * @return object
      * @throws GuzzleException
@@ -210,16 +210,16 @@ class Account extends CallApi
      * Get account entry information with a page limit.
      * @document https://dev.fitbank.com.br/reference/post_-getaccountentrypaged
      *
-     * @param string $taxNumber
-     * @param string $startDate
-     * @param string $endDate
-     * @param string $bank
-     * @param string $bankBranch
-     * @param string $bankAccount
-     * @param string $bankAccountDigit
-     * @param bool   $onlyBalance
-     * @param int    $pageSize
-     * @param int    $pageIndex
+     * @param string      $taxNumber
+     * @param string      $startDate
+     * @param string      $endDate
+     * @param string|null $bank
+     * @param string|null $bankBranch
+     * @param string|null $bankAccount
+     * @param string|null $bankAccountDigit
+     * @param bool        $onlyBalance
+     * @param int         $pageSize
+     * @param int         $pageIndex
      *
      * @return object
      * @throws GuzzleException

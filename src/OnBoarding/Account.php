@@ -4,6 +4,7 @@ namespace O4l3x4ndr3\SdkFitbank\OnBoarding;
 
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\InvalidArgumentException;
 use O4l3x4ndr3\SdkFitbank\Common\Address;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
@@ -114,11 +115,11 @@ class Account extends CallApi
         ]);
     }
 
-
     /**
      * Obter endereço de uma determonado CPF/CNPJ
      *
-     * @param string $taxNumber
+     * @param string   $taxNumber
+     * @param int|null $index
      *
      * @return object
      * @throws GuzzleException
@@ -128,6 +129,10 @@ class Account extends CallApi
         $addr = $this->call('GetAccountAddress', [
             'TaxNumber' => $taxNumber,
         ]);
+
+        if($addr->Success !== "true"){
+            throw new InvalidArgumentException($addr->Message, 200);
+        }
 
         $data = [];
         foreach ($addr->Message as $addr) {

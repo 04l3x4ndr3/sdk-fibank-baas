@@ -12,7 +12,7 @@ class Configuration {
 	public const ENV_SANDBOX = "sandbox";
 	public const ENV_PRODUCTION = "production";
 	public const URL_SANDBOX = "https://sandboxapi.fitbank.com.br/main/execute";
-	public const URL_PRODUCTION = "https://api.fitbank.com.br/main/execute";
+    public const URL_PRODUCTION = "https://apiv2.fitbank.com.br/main/execute";
 
 	private ?string $environment;
 	private ?array $credentials;

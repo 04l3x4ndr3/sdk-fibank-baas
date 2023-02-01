@@ -437,7 +437,9 @@ class Person
 		$_documents = [];
 		if (isset($this->personDocuments)) {
 			foreach ($this->personDocuments as $document) {
-				$_documents[] = array_filter($document->toArray());
+				$_documents[] = array_filter($document->toArray(), function ($v){
+                    return !is_null($v);
+                });
 			}
 		}
 

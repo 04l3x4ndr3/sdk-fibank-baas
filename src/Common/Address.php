@@ -14,6 +14,7 @@ class Address
     private ?int $addressType;
     private ?string $country;
     private ?string $complement;
+    private ?string $reference;
 
     public function __construct(
         ?string $addressLine = null,
@@ -25,7 +26,8 @@ class Address
         ?string $state = null,
         ?int $addressType = null,
         ?string $country = null,
-        ?string $complement = null
+        ?string $complement = null,
+        ?string $reference = null
     )
     {
         $this->addressLine = $addressLine;
@@ -38,6 +40,7 @@ class Address
         $this->addressType = $addressType;
         $this->country = $country;
         $this->complement = $complement;
+        $this->reference = $reference;
     }
 
     /**
@@ -50,6 +53,8 @@ class Address
 
     /**
      * @param string|null $addressLine
+     *
+     * @return Address
      */
     public function setAddressLine(?string $addressLine): self
     {
@@ -67,6 +72,8 @@ class Address
 
     /**
      * @param string|null $addressLine2
+     *
+     * @return Address
      */
     public function setAddressLine2(?string $addressLine2): self
     {
@@ -84,6 +91,8 @@ class Address
 
     /**
      * @param string|null $zipCode
+     *
+     * @return Address
      */
     public function setZipCode(?string $zipCode): self
     {
@@ -101,6 +110,8 @@ class Address
 
     /**
      * @param string|null $neighborhood
+     *
+     * @return Address
      */
     public function setNeighborhood(?string $neighborhood): self
     {
@@ -118,6 +129,8 @@ class Address
 
     /**
      * @param int|null $cityCode
+     *
+     * @return Address
      */
     public function setCityCode(?int $cityCode): self
     {
@@ -152,6 +165,8 @@ class Address
 
     /**
      * @param string|null $state
+     *
+     * @return Address
      */
     public function setState(?string $state): self
     {
@@ -169,6 +184,8 @@ class Address
 
     /**
      * @param int|null $addressType
+     *
+     * @return Address
      */
     public function setAddressType(?int $addressType): self
     {
@@ -186,6 +203,8 @@ class Address
 
     /**
      * @param string|null $country
+     *
+     * @return Address
      */
     public function setCountry(?string $country): self
     {
@@ -203,10 +222,31 @@ class Address
 
     /**
      * @param string|null $complement
+     *
+     * @return Address
      */
     public function setComplement(?string $complement): self
     {
         $this->complement = $complement;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    /**
+     * @param string|null $reference
+     *
+     * @return Address
+     */
+    public function setReference(?string $reference): self
+    {
+        $this->reference = $reference;
         return $this;
     }
 
@@ -225,7 +265,8 @@ class Address
             //"AddressType" => $this->addressType,
             //"Type" => $this->addressType,
             "Country" => $this->country,
-            "Complement" => $this->complement
+            "Complement" => $this->complement,
+            "Reference" => $this->reference
         ], function ($v) {
             return $v !== null;
         });

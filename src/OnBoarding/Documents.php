@@ -21,15 +21,15 @@ class Documents extends CallApi
      * @param string $taxNumber
      * @param int    $documentType
      *
-     * @return Document
+     * @return Document|bool
      * @throws GuzzleException
      */
-    public function getDocument(string $taxNumber, int $documentType): object
+    public function getDocument(string $taxNumber, int $documentType): Document|bool
     {
         $resp = $this->call('GetDocument', array_filter(['TaxNumber' => $taxNumber, 'DocumentType' => $documentType]));
 
         if ($resp->Success !== "true") {
-            throw new InvalidArgumentException($resp->Message, 200);
+            return false;
         }
 
         return new Document(

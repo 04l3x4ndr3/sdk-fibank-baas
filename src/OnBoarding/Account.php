@@ -126,16 +126,16 @@ class Account extends CallApi
      */
     public function getAccountAddress(string $taxNumber, ?int $index = null): mixed
     {
-        $addr = $this->call('GetAccountAddress', [
+        $resp = $this->call('GetAccountAddress', [
             'TaxNumber' => $taxNumber,
         ]);
 
-        if($addr->Success !== "true"){
-            throw new InvalidArgumentException($addr->Message, 200);
+        if ($resp->Success !== "true") {
+            return false;
         }
 
         $data = [];
-        foreach ($addr->Message as $addr) {
+        foreach ($resp->Message as $addr) {
             $data[] = new Address(
                 $addr->AddressLine ?? null,
                 $addr->AddressLine2 ?? null,
@@ -195,7 +195,7 @@ class Account extends CallApi
                 "OnlyBalance" => ($onlyBalance) ? "true" : "false",
                 "EntryClassificationType" => $entryClassificationType
             ], function ($v) {
-                return ! is_null($v);
+                return !is_null($v);
             })
         );
 
@@ -280,7 +280,7 @@ class Account extends CallApi
                 "TaxNumber" => $taxNumber,
                 "Identifier" => $identifier
             ], function ($v) {
-                return ! is_null($v);
+                return !is_null($v);
             })
         );
     }

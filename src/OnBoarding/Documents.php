@@ -38,7 +38,8 @@ class Documents extends CallApi
             $resp->FileName,
             $documentType,
             $resp->Description,
-            $resp->ExpirationDate
+            $resp->ExpirationDate,
+            $resp->DocumentStatus
         );
     }
 

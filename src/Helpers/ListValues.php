@@ -4,192 +4,398 @@ namespace O4l3x4ndr3\SdkFitbank\Helpers;
 
 class ListValues
 {
-    # API LIST VALUES
+    # API SET LIST VALUES
 
-    public static function documentTypes(): array
+    public static function personRoleTypes(?int $key = null): string|array|null
     {
-        return [
-            0 => 'Identity Document Front',
-            1 => 'TaxNumber',
-            2 => 'Proof Address',
-            3 => 'CNH',
-            4 => 'CNPJ',
-            5 => 'Contract',
-            6 => 'Letter Of Attorne',
-            7 => 'Identity Document Verse',
-            10 => 'Identity Document',
-            11 => 'Minute Of Constitution',
+        $values = [
+            0 => 'Titular',
+            1 => 'Procurador',
+            2 => 'O portador',
+            3 => 'Associado'
         ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
     }
 
-    public static function getDocumentTypeById(int $id): string
+    public static function getPersonRoleTypeKey(string $value): false|string|int
     {
-        $docTypes = self::documentTypes();
-        return $docTypes[$id];
+        return array_search($value, self::personRoleTypes());
     }
 
-    public static function getDocumentTypeIdByValue(string $value): string
+
+    public static function brazilianStates(?int $key = null): string|array|null
+    {
+        $values = [
+            0 => 'AC',
+            1 => 'AL',
+            2 => 'AP',
+            3 => 'AM',
+            4 => 'BA',
+            5 => 'CE',
+            6 => 'DF',
+            7 => 'ES',
+            8 => 'GO',
+            9 => 'MA',
+            10 => 'MT',
+            11 => 'MS',
+            12 => 'MG',
+            13 => 'PA',
+            14 => 'PB',
+            15 => 'PR',
+            16 => 'PE',
+            17 => 'PI',
+            18 => 'RJ',
+            19 => 'RN',
+            20 => 'RS',
+            21 => 'RO',
+            22 => 'RR',
+            23 => 'SC',
+            24 => 'SP',
+            25 => 'SE',
+            26 => 'TO'
+        ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
+    }
+
+    public static function getBrazilianStatesKey(string $value): false|string|int
+    {
+        return array_search($value, self::brazilianStates());
+    }
+
+    public static function documentTypes(?int $key = null): string|array|null
+    {
+        $values = [
+            0 => 'RG (Frente)',
+            1 => 'CPF',
+            2 => 'Comprovante de domicílio',
+            3 => 'CNH (Frente)',
+            4 => 'CNPJ',
+            5 => 'Contrato Social',
+            6 => 'Procuração',
+            7 => 'RG (Verso)',
+            10 => 'RG',
+            11 => 'Ata de Constituição',
+            16 => 'CNH (Verso)'
+        ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
+    }
+
+    public static function getDocumentTypeKey(string $value): false|string|int
     {
         return array_search($value, self::documentTypes());
     }
 
 
-    public static function documentFormats(): array
+    public static function documentFormats(?int $key = null): string|array|null
     {
-        return [
+        $values = [
             0 => '.pdf',
             1 => '.jpg',
             2 => '.jpeg',
             3 => '.txt',
             4 => '.png',
         ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
     }
 
-    public static function getDocumentFormatById(int $id): string
-    {
-        $arr = self::documentFormats();
-        return $arr[$id];
-    }
-
-    public static function getDocumentFormatIdByValue(string $value): ?int
+    public static function getDocumentFormatKey(string $value): false|string|int
     {
         return array_search($value, self::documentFormats());
     }
 
 
-    public static function genders(): array
+    public static function genders(?int $key = null): string|array|null
     {
-        return [
-            0 => 'Male',
-            1 => 'Famale',
-            2 => 'Other',
+        $values = [
+            0 => 'Masculino',
+            1 => 'Feminino',
+            2 => 'Outros'
         ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
     }
 
-    public static function getGenderById(int $id): string
-    {
-        $genders = self::genders();
-        return $genders[$id];
-    }
-
-    public static function getGenderIdByValue(string $value): string
+    public static function getGenderKey(string $value): false|string|int
     {
         return array_search($value, self::genders());
     }
 
-    public static function maritalStatus(): array
+
+    public static function maritalStatus(?int $key = null): string|array|null
     {
-        return [
-            'NotMarried',
-            'Married',
-            'Divorced',
-            'Separate',
-            'Widower',
-            'Single',
-            'Other'
+        $values = [
+            0 => 'Solteiro(a)',
+            1 => 'Casado(a)',
+            2 => 'Divorciado(a)',
+            3 => 'Separado(a)',
+            4 => 'Viúvo(a)',
+            5 => 'Solteiro(a)',
+            6 => 'Outros'
         ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
     }
 
-    public static function getMaritalStatusById(int $id): string
-    {
-        $maritalStatus = self::maritalStatus();
-        return $maritalStatus[$id];
-    }
-
-    public static function getMaritalStatusIdByValue(string $value): string
+    public static function getMaritalStatusKey(string $value): false|string|int
     {
         return array_search($value, self::maritalStatus());
     }
 
 
-    public static function companyTypes(): array
+    public static function companyTypes(?int $key = null): string|array|null
     {
-        return [
-            'SA',
-            'LTDA',
-            'MEI',
+        $values = [
+            0 => 'SA',
+            1 => 'LTDA',
+            2 => 'MEI',
+            3 => 'ME',
+            4 => 'EIRELI',
+            5 => 'Condomínio',
+            6 => 'SA Fechada',
+            7 => 'EIRELI Simples',
+            8 => 'Outros'
         ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
     }
 
-    public static function getCompanyTypeById(int $id): string
-    {
-        $companyTypes = self::companyTypes();
-        return $companyTypes[$id];
-    }
-
-    public static function getCompanyTypeIdByValue(string $value): string
+    public static function getCompanyTypesKey(string $value): false|string|int
     {
         return array_search($value, self::companyTypes());
     }
 
 
-    # WEBHOOK LIST VALUES
-
-    public static function accountConditionsTypes(): array
+    public static function pixKeyTypes(?int $key = null): string|array|null
     {
-        return [
-            'Created',
-            'Limited',
-            'Verified',
-            'Blocked',
-            'Terminated',
+        $values = [
+            0 => 'CPF',
+            1 => 'CNPJ',
+            2 => 'E-mail',
+            3 => 'Celular',
+            4 => 'Chave aleatória',
         ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
     }
 
-    public static function getAccountConditionTypeById(int $id): string
+    public static function getPixKeyTypesKey(string $value): false|string|int
     {
-        $companyTypes = self::accountConditionsTypes();
-        return $companyTypes[$id];
-    }
-
-    public static function getAccountConditionTypeIdByValue(string $value): string
-    {
-        return array_search($value, self::accountConditionsTypes());
+        return array_search($value, self::pixKeyTypes());
     }
 
 
-    public static function accountStatus(): array
+    public static function pixInitiatonTypes(?int $key = null): string|array|null
     {
-        return [
-            'Open',
-            'Limited',
-            'Released',
-            'Overdue KYC',
-            'Blocked',
-            'Closed'
+        $values = [
+            0 => 'Manual',
+            1 => 'Chave Pix',
+            2 => 'QR Code stático',
+            3 => 'QR Code dinâmico',
         ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
     }
 
-    public static function getAccountStatusById(int $id): string
+    public static function getPixInitiatonTypesKey(string $value): false|string|int
     {
-        $companyTypes = self::accountStatus();
-        return $companyTypes[$id];
+        return array_search($value, self::pixInitiatonTypes());
     }
 
-    public static function getAccountStatusIdByValue(string $value): string
+
+    public static function boletoStatus(?int $key = null): string|array|null
+    {
+        $values = [
+            3 => 'Registrado',
+            5 => 'Pago',
+            7 => 'Cancelado',
+        ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
+    }
+
+    public static function getBoletoStatusKey(string $value): false|string|int
+    {
+        return array_search($value, self::boletoStatus());
+    }
+
+
+    public static function rateValuesType(?int $key = null): string|array|null
+    {
+        $values = [
+            0 => 'Padrão',
+            1 => 'Personalizado',
+        ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
+    }
+
+    public static function getRateValueTypeKey(string $value): false|string|int
+    {
+        return array_search($value, self::rateValuesType());
+    }
+
+
+    # WEBHOOK RETURN LIST VALUES
+
+    public static function accountConditionsTypes(?int $key = null): string|array|null
+    {
+        $values = [
+            0 => 'Criada',
+            1 => 'Limitada',
+            2 => 'Verificada',
+            3 => 'Bloqueada',
+            4 => 'Encerrada'
+        ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
+    }
+
+    public static function getAccountConditionsTypes(string $value): false|string|int
+    {
+        return array_search($value, self::genders());
+    }
+
+
+    public static function accountStatus(?int $key = null): string|array|null
+    {
+        $values = [
+            0 => 'Desativada',
+            1 => 'Ativada',
+        ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
+    }
+
+    public static function getAccountStatusKey(string $value): false|string|int
     {
         return array_search($value, self::accountStatus());
     }
 
 
-    public static function personRoleTypes(): array
+    public static function documentStatus(?int $key = null): string|array|null
     {
-        return [
-            'Holder',
-            'Procurator',
-            'Bearer',
-            'Associate',
+        $values = [
+            0 => 'Esperando Validação',
+            1 => 'Validado',
+            3 => 'Inválido',
+            4 => 'Expirado',
+            5 => 'Envieado',
+            6 => 'Reenviado',
+            7 => 'Reprovado',
+            8 => 'Erro',
+            9 => 'Inexistente',
+            10 => 'Suspenso',
+            11 => 'Tipificação de resultado',
         ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
     }
 
-    public static function getPersonRoleTypesById(int $id): string
+    public static function getDocumentStatusKey(string $value): false|string|int
     {
-        $companyTypes = self::personRoleTypes();
-        return $companyTypes[$id];
+        return array_search($value, self::documentStatus());
     }
 
-    public static function getPersonRoleTypesIdByValue(string $value): string
-    {
-        return array_search($value, self::personRoleTypes());
-    }
 }

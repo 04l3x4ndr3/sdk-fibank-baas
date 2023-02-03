@@ -34,7 +34,7 @@ class Documents extends CallApi
 
         return new Document(
             $resp->Document,
-            ListValues::getDocumentFormatIdByValue($resp->Extension),
+            ListValues::getDocumentFormatKey($resp->Extension),
             $resp->FileName,
             $documentType,
             $resp->Description,

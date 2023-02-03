@@ -19,6 +19,7 @@ class Document
      * @param int|null    $documentType
      * @param string|null $description
      * @param string|null $expirationDate
+     * @param int|null    $documentStatus
      */
     public function __construct(
         ?string $documentFile = null,
@@ -36,6 +37,7 @@ class Document
         $this->documentType = $documentType;
         $this->description = $description;
         $this->expirationDate = $expirationDate;
+        $this->documentStatus = $documentStatus;
     }
 
     /**

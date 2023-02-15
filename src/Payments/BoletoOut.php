@@ -2,13 +2,11 @@
 
 namespace O4l3x4ndr3\SdkFitbank\Payments;
 
-use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class BoletoOut
+class BoletoOut extends CallApi
 {
-    private Configuration $configuration;
     private ?string $name;
     private ?string $taxNumber;
     private ?string $barcode;
@@ -38,105 +36,38 @@ class BoletoOut
     private ?int $rateValueType;
     private ?int $rateValue;
 
-    /**
-     * @param string|null $name
-     * @param string|null $taxNumber
-     * @param string|null $barcode
-     * @param string|null $beneficiaryName
-     * @param string|null $guarantorTaxNumber
-     * @param string|null $guarantorName
-     * @param string|null $payerTaxNumber
-     * @param string|null $payerName
-     * @param string|null $mailToSend
-     * @param string|null $phoneToSend
-     * @param float|null  $principalValue
-     * @param float|null  $discountValue
-     * @param float|null  $extraValue
-     * @param string|null $paymentDate
-     * @param string|null $dueDate
-     * @param string|null $feePayerFullName
-     * @param string|null $feePayerTaxNumber
-     * @param string|null $feePayerMail
-     * @param string|null $feePayerPhone
-     * @param int|null    $feePayerBank
-     * @param string|null $feePayerBankBranch
-     * @param string|null $feePayerBankAccount
-     * @param string|null $feePayerBankAccountDigit
-     * @param array|null  $tags
-     * @param string|null $description
-     * @param string|null $identifier
-     * @param int         $rateValueType
-     * @param int         $rateValue
-     */
-    public function __construct(
-        ?string $name = null,
-        ?string $taxNumber = null,
-        ?string $barcode = null,
-        ?string $beneficiaryName = null,
-        ?string $guarantorTaxNumber = null,
-        ?string $guarantorName = null,
-        ?string $payerTaxNumber = null,
-        ?string $payerName = null,
-        ?string $mailToSend = null,
-        ?string $phoneToSend = null,
-        ?float $principalValue = null,
-        ?float $discountValue = null,
-        ?float $extraValue = null,
-        ?string $paymentDate = null,
-        ?string $dueDate = null,
-        ?string $feePayerFullName = null,
-        ?string $feePayerTaxNumber = null,
-        ?string $feePayerMail = null,
-        ?string $feePayerPhone = null,
-        ?int $feePayerBank = null,
-        ?string $feePayerBankBranch = null,
-        ?string $feePayerBankAccount = null,
-        ?string $feePayerBankAccountDigit = null,
-        ?array $tags = [],
-        ?string $description = null,
-        ?string $identifier = null,
-        int $rateValueType = 0,
-        int $rateValue = 0
-    )
+    public function __construct(?Configuration $configuration = null)
     {
-        $this->configuration = new Configuration();
+        parent::__construct($configuration);
 
-        $this->name = $name;
-        $this->taxNumber = $taxNumber;
-        $this->barcode = $barcode;
-        $this->beneficiaryName = $beneficiaryName;
-        $this->guarantorTaxNumber = $guarantorTaxNumber;
-        $this->guarantorName = $guarantorName;
-        $this->payerTaxNumber = $payerTaxNumber;
-        $this->payerName = $payerName;
-        $this->mailToSend = $mailToSend;
-        $this->phoneToSend = $phoneToSend;
-        $this->principalValue = $principalValue;
-        $this->discountValue = $discountValue;
-        $this->extraValue = $extraValue;
-        $this->paymentDate = $paymentDate;
-        $this->dueDate = $dueDate;
-        $this->feePayerFullName = $feePayerFullName;
-        $this->feePayerTaxNumber = $feePayerTaxNumber;
-        $this->feePayerMail = $feePayerMail;
-        $this->feePayerPhone = $feePayerPhone;
-        $this->feePayerBank = $feePayerBank;
-        $this->feePayerBankBranch = $feePayerBankBranch;
-        $this->feePayerBankAccount = $feePayerBankAccount;
-        $this->feePayerBankAccountDigit = $feePayerBankAccountDigit;
-        $this->tags = $tags;
-        $this->description = $description;
-        $this->identifier = $identifier;
-        $this->rateValueType = $rateValueType;
-        $this->rateValue = $rateValue;
-    }
-
-    /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
+        $this->name = null;
+        $this->taxNumber = null;
+        $this->barcode = null;
+        $this->beneficiaryName = null;
+        $this->guarantorTaxNumber = null;
+        $this->guarantorName = null;
+        $this->payerTaxNumber = null;
+        $this->payerName = null;
+        $this->mailToSend = null;
+        $this->phoneToSend = null;
+        $this->principalValue = null;
+        $this->discountValue = null;
+        $this->extraValue = null;
+        $this->paymentDate = null;
+        $this->dueDate = null;
+        $this->feePayerFullName = null;
+        $this->feePayerTaxNumber = null;
+        $this->feePayerMail = null;
+        $this->feePayerPhone = null;
+        $this->feePayerBank = null;
+        $this->feePayerBankBranch = null;
+        $this->feePayerBankAccount = null;
+        $this->feePayerBankAccountDigit = null;
+        $this->tags = null;
+        $this->description = null;
+        $this->identifier = null;
+        $this->rateValueType = null;
+        $this->rateValue = null;
     }
 
     /**
@@ -149,10 +80,13 @@ class BoletoOut
 
     /**
      * @param string|null $name
+     *
+     * @return BoletoOut
      */
-    public function setName(?string $name): void
+    public function setName(?string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -165,10 +99,13 @@ class BoletoOut
 
     /**
      * @param string|null $taxNumber
+     *
+     * @return BoletoOut
      */
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): self
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     /**
@@ -181,10 +118,13 @@ class BoletoOut
 
     /**
      * @param string|null $barcode
+     *
+     * @return BoletoOut
      */
-    public function setBarcode(?string $barcode): void
+    public function setBarcode(?string $barcode): self
     {
         $this->barcode = $barcode;
+        return $this;
     }
 
     /**
@@ -197,10 +137,13 @@ class BoletoOut
 
     /**
      * @param string|null $beneficiaryName
+     *
+     * @return BoletoOut
      */
-    public function setBeneficiaryName(?string $beneficiaryName): void
+    public function setBeneficiaryName(?string $beneficiaryName): self
     {
         $this->beneficiaryName = $beneficiaryName;
+        return $this;
     }
 
     /**
@@ -213,10 +156,13 @@ class BoletoOut
 
     /**
      * @param string|null $guarantorTaxNumber
+     *
+     * @return BoletoOut
      */
-    public function setGuarantorTaxNumber(?string $guarantorTaxNumber): void
+    public function setGuarantorTaxNumber(?string $guarantorTaxNumber): self
     {
         $this->guarantorTaxNumber = $guarantorTaxNumber;
+        return $this;
     }
 
     /**
@@ -229,10 +175,13 @@ class BoletoOut
 
     /**
      * @param string|null $guarantorName
+     *
+     * @return BoletoOut
      */
-    public function setGuarantorName(?string $guarantorName): void
+    public function setGuarantorName(?string $guarantorName): self
     {
         $this->guarantorName = $guarantorName;
+        return $this;
     }
 
     /**
@@ -245,10 +194,13 @@ class BoletoOut
 
     /**
      * @param string|null $payerTaxNumber
+     *
+     * @return BoletoOut
      */
-    public function setPayerTaxNumber(?string $payerTaxNumber): void
+    public function setPayerTaxNumber(?string $payerTaxNumber): self
     {
         $this->payerTaxNumber = $payerTaxNumber;
+        return $this;
     }
 
     /**
@@ -261,10 +213,13 @@ class BoletoOut
 
     /**
      * @param string|null $payerName
+     *
+     * @return BoletoOut
      */
-    public function setPayerName(?string $payerName): void
+    public function setPayerName(?string $payerName): self
     {
         $this->payerName = $payerName;
+        return $this;
     }
 
     /**
@@ -277,10 +232,13 @@ class BoletoOut
 
     /**
      * @param string|null $mailToSend
+     *
+     * @return BoletoOut
      */
-    public function setMailToSend(?string $mailToSend): void
+    public function setMailToSend(?string $mailToSend): self
     {
         $this->mailToSend = $mailToSend;
+        return $this;
     }
 
     /**
@@ -293,10 +251,13 @@ class BoletoOut
 
     /**
      * @param string|null $phoneToSend
+     *
+     * @return BoletoOut
      */
-    public function setPhoneToSend(?string $phoneToSend): void
+    public function setPhoneToSend(?string $phoneToSend): self
     {
         $this->phoneToSend = $phoneToSend;
+        return $this;
     }
 
     /**
@@ -309,10 +270,13 @@ class BoletoOut
 
     /**
      * @param float|null $principalValue
+     *
+     * @return BoletoOut
      */
-    public function setPrincipalValue(?float $principalValue): void
+    public function setPrincipalValue(?float $principalValue): self
     {
         $this->principalValue = $principalValue;
+        return $this;
     }
 
     /**
@@ -325,10 +289,13 @@ class BoletoOut
 
     /**
      * @param float|null $discountValue
+     *
+     * @return BoletoOut
      */
-    public function setDiscountValue(?float $discountValue): void
+    public function setDiscountValue(?float $discountValue): self
     {
         $this->discountValue = $discountValue;
+        return $this;
     }
 
     /**
@@ -341,10 +308,13 @@ class BoletoOut
 
     /**
      * @param float|null $extraValue
+     *
+     * @return BoletoOut
      */
-    public function setExtraValue(?float $extraValue): void
+    public function setExtraValue(?float $extraValue): self
     {
         $this->extraValue = $extraValue;
+        return $this;
     }
 
     /**
@@ -357,10 +327,13 @@ class BoletoOut
 
     /**
      * @param string|null $paymentDate
+     *
+     * @return BoletoOut
      */
-    public function setPaymentDate(?string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): self
     {
         $this->paymentDate = $paymentDate;
+        return $this;
     }
 
     /**
@@ -373,10 +346,13 @@ class BoletoOut
 
     /**
      * @param string|null $dueDate
+     *
+     * @return BoletoOut
      */
-    public function setDueDate(?string $dueDate): void
+    public function setDueDate(?string $dueDate): self
     {
         $this->dueDate = $dueDate;
+        return $this;
     }
 
     /**
@@ -389,10 +365,13 @@ class BoletoOut
 
     /**
      * @param string|null $feePayerFullName
+     *
+     * @return BoletoOut
      */
-    public function setFeePayerFullName(?string $feePayerFullName): void
+    public function setFeePayerFullName(?string $feePayerFullName): self
     {
         $this->feePayerFullName = $feePayerFullName;
+        return $this;
     }
 
     /**
@@ -405,10 +384,13 @@ class BoletoOut
 
     /**
      * @param string|null $feePayerTaxNumber
+     *
+     * @return BoletoOut
      */
-    public function setFeePayerTaxNumber(?string $feePayerTaxNumber): void
+    public function setFeePayerTaxNumber(?string $feePayerTaxNumber): self
     {
         $this->feePayerTaxNumber = $feePayerTaxNumber;
+        return $this;
     }
 
     /**
@@ -421,10 +403,13 @@ class BoletoOut
 
     /**
      * @param string|null $feePayerMail
+     *
+     * @return BoletoOut
      */
-    public function setFeePayerMail(?string $feePayerMail): void
+    public function setFeePayerMail(?string $feePayerMail): self
     {
         $this->feePayerMail = $feePayerMail;
+        return $this;
     }
 
     /**
@@ -437,10 +422,13 @@ class BoletoOut
 
     /**
      * @param string|null $feePayerPhone
+     *
+     * @return BoletoOut
      */
-    public function setFeePayerPhone(?string $feePayerPhone): void
+    public function setFeePayerPhone(?string $feePayerPhone): self
     {
         $this->feePayerPhone = $feePayerPhone;
+        return $this;
     }
 
     /**
@@ -453,10 +441,13 @@ class BoletoOut
 
     /**
      * @param int|null $feePayerBank
+     *
+     * @return BoletoOut
      */
-    public function setFeePayerBank(?int $feePayerBank): void
+    public function setFeePayerBank(?int $feePayerBank): self
     {
         $this->feePayerBank = $feePayerBank;
+        return $this;
     }
 
     /**
@@ -469,10 +460,13 @@ class BoletoOut
 
     /**
      * @param string|null $feePayerBankBranch
+     *
+     * @return BoletoOut
      */
-    public function setFeePayerBankBranch(?string $feePayerBankBranch): void
+    public function setFeePayerBankBranch(?string $feePayerBankBranch): self
     {
         $this->feePayerBankBranch = $feePayerBankBranch;
+        return $this;
     }
 
     /**
@@ -485,10 +479,13 @@ class BoletoOut
 
     /**
      * @param string|null $feePayerBankAccount
+     *
+     * @return BoletoOut
      */
-    public function setFeePayerBankAccount(?string $feePayerBankAccount): void
+    public function setFeePayerBankAccount(?string $feePayerBankAccount): self
     {
         $this->feePayerBankAccount = $feePayerBankAccount;
+        return $this;
     }
 
     /**
@@ -501,12 +498,15 @@ class BoletoOut
 
     /**
      * @param string|null $feePayerBankAccountDigit
+     *
+     * @return BoletoOut
      */
     public function setFeePayerBankAccountDigit(
         ?string $feePayerBankAccountDigit
-    ): void
+    ): self
     {
         $this->feePayerBankAccountDigit = $feePayerBankAccountDigit;
+        return $this;
     }
 
     /**
@@ -519,10 +519,13 @@ class BoletoOut
 
     /**
      * @param array|null $tags
+     *
+     * @return BoletoOut
      */
-    public function setTags(?array $tags): void
+    public function setTags(?array $tags): self
     {
         $this->tags = $tags;
+        return $this;
     }
 
     /**
@@ -535,10 +538,13 @@ class BoletoOut
 
     /**
      * @param string|null $description
+     *
+     * @return BoletoOut
      */
-    public function setDescription(?string $description): void
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -551,10 +557,13 @@ class BoletoOut
 
     /**
      * @param string|null $identifier
+     *
+     * @return BoletoOut
      */
-    public function setIdentifier(?string $identifier): void
+    public function setIdentifier(?string $identifier): self
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
@@ -567,10 +576,13 @@ class BoletoOut
 
     /**
      * @param int $rateValueType
+     *
+     * @return BoletoOut
      */
-    public function setRateValueType(int $rateValueType): void
+    public function setRateValueType(int $rateValueType): self
     {
         $this->rateValueType = $rateValueType;
+        return $this;
     }
 
     /**
@@ -583,10 +595,13 @@ class BoletoOut
 
     /**
      * @param int $rateValue
+     *
+     * @return BoletoOut
      */
-    public function setRateValue(int $rateValue): void
+    public function setRateValue(int $rateValue): self
     {
         $this->rateValue = $rateValue;
+        return $this;
     }
 
     /**
@@ -627,86 +642,90 @@ class BoletoOut
     }
 
     /**
-     * @param BoletoOut $boleto
-     *
      * @return object
-     * @throws GuzzleException
      */
-    public function generateBoletoOut(?BoletoOut $boleto = null): object
+    public function generateBoletoOut(): object
     {
-        $http = new CallApi($this->configuration);
-        $data = (isset($boleto)) ? $boleto->toArray() : $this->toArray();
-        return $http->call('GenerateBoletoOut', array_filter($data));
+        return $this->call('GenerateBoletoOut', $this->toArray());
     }
 
     /**
-     * @param string $DocumentNumber
+     * @param int $documentNumber
      *
      * @return object
-     * @throws GuzzleException
      */
-    public function getBoletoOutById(string $DocumentNumber): object
+    public function getBoletoOutById(int $documentNumber): object
     {
-        $http = new CallApi($this->configuration);
-        $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('GetBoletoOutById', array_filter($data));
+        return $this->call(
+            'GetBoletoOutById',
+            array_filter(['DocumentNumber' => $documentNumber], function ($v) {
+                return !is_null($v);
+            })
+        );
     }
 
     /**
-     * @param string $Barcode
+     * @param string $barcode
      *
      * @return object
-     * @throws GuzzleException
      */
-    public function getBoletoOutByBarcode(string $Barcode): object
+    public function getBoletoOutByBarcode(string $barcode): object
     {
-        $http = new CallApi($this->configuration);
-        $data = ['Barcode' => $Barcode];
-        return $http->call('GetBoletoOutByBarcode', array_filter($data));
+        return $this->call(
+            'GetBoletoOutByBarcode',
+            array_filter(['Barcode' => $barcode], function ($v) {
+                return !is_null($v);
+            })
+        );
     }
 
     /**
-     * @param string $DocumentNumber
+     * @param int $documentNumber
      *
      * @return object
-     * @throws GuzzleException
      */
-    public function cancelBoletoOut(string $DocumentNumber): object
+    public function cancelBoletoOut(int $documentNumber): object
     {
-        $http = new CallApi($this->configuration);
-        $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('CancelBoletoOut', array_filter($data));
+        return $this->call(
+            'CancelBoletoOut',
+            array_filter(['DocumentNumber' => $documentNumber], function ($v) {
+                return !is_null($v);
+            })
+        );
     }
 
     /**
-     * @param string $Barcode
+     * @param string $barcode
      *
      * @return object
-     * @throws GuzzleException
      */
-    public function getInfosByBarcode(string $Barcode): object
+    public function getInfosByBarcode(string $barcode): object
     {
-        $http = new CallApi($this->configuration);
-        $data = ['Barcode' => $Barcode];
-        return $http->call('GetInfosByBarcode', array_filter($data));
+        return $this->call(
+            'GetInfosByBarcode',
+            array_filter(['Barcode' => $barcode], function ($v) {
+                return !is_null($v);
+            })
+        );
     }
 
     /**
-     * @param string $TaxNumber
-     * @param string $Barcode
+     * @param string $taxNumber
+     * @param string $barcode
      *
      * @return object
-     * @throws GuzzleException
      */
-    public function getInfosCIPByBarcode(string $TaxNumber, string $Barcode
-    ): object
+    public function getInfosCIPByBarcode(string $taxNumber, string $barcode): object
     {
-        $http = new CallApi($this->configuration);
-        $data = [
-            "TaxNumber" => $TaxNumber,
-            "Barcode" => $Barcode
-        ];
-        return $http->call('GetInfosCIPByBarcode', array_filter($data));
+        return $this->call(
+            'GetInfosCIPByBarcode',
+            array_filter([
+                "TaxNumber" => $taxNumber,
+                "Barcode" => $barcode
+            ], function ($v) {
+                return !is_null($v);
+            })
+        );
 
     }
 }

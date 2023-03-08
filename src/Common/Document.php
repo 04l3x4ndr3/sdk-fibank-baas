@@ -186,7 +186,7 @@ class Document
             "DocumentType" => $this->documentType,
             "Description" => $this->description,
             "ExpirationDate" => $this->expirationDate,
-            "DocumentStatus" => $this->DocumentStatus,
+            "DocumentStatus" => $this->documentStatus,
         ], function ($v) {
             return $v !== null;
         });

@@ -11,6 +11,8 @@ use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
  */
 class PixQRCode extends CallApi
 {
+    private const CONTEXT = "payments";
+
     public function __construct(Configuration $config = null)
     {
         parent::__construct($config);
@@ -27,11 +29,12 @@ class PixQRCode extends CallApi
     {
         return $this->call(
             'GetInfosPixHashCode', array_filter([
-                'TaxNumber' => $taxNumber,
-                'Hash' => $hash
-            ], function ($v) {
-                return !is_null($v);
-            })
+            'TaxNumber' => $taxNumber,
+            'Hash' => $hash
+        ], function ($v) {
+            return !is_null($v);
+        }),
+            self::CONTEXT
         );
     }
 

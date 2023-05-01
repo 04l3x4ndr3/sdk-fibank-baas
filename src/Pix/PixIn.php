@@ -12,6 +12,8 @@ use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 class PixIn extends CallApi
 {
 
+    private const CONTEXT = "payments";
+
     public function __construct(Configuration $config = null)
     {
         parent::__construct($config);
@@ -57,7 +59,8 @@ class PixIn extends CallApi
                 "EndDate" => $endDate,
                 "PageIndex" => $pageIndex,
                 "PageSize" => $pageSize
-            ])
+            ],
+                self::CONTEXT)
         );
     }
 }

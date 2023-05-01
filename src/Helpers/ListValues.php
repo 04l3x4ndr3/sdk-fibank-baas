@@ -91,7 +91,11 @@ class ListValues
             7 => 'RG (Verso)',
             10 => 'RG',
             11 => 'Ata de Constituição',
-            16 => 'CNH (Verso)'
+            13 => 'Outros',
+            14 => 'Selfie',
+            15 => 'Ata de eleição',
+            16 => 'CNH (Verso)',
+            17 => 'Faturamento anual'
         ];
 
         if (!isset($key)) {

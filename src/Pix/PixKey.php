@@ -11,6 +11,8 @@ use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
  */
 class PixKey extends CallApi
 {
+    private const CONTEXT = "payments";
+
     private ?string $pixKeyValue;
     private ?string $taxNumber;
     private ?string $pixKeyType;
@@ -18,6 +20,7 @@ class PixKey extends CallApi
     private ?string $bankBranch;
     private ?string $bankAccount;
     private ?string $bankAccountDigit;
+
 
     public function __construct(Configuration $config = null)
     {
@@ -224,7 +227,7 @@ class PixKey extends CallApi
                 "BankAccountDigit" => $this->bankAccountDigit
             ], function ($v) {
                 return $v !== null;
-            })
+            }, self::CONTEXT)
         );
     }
 
@@ -245,7 +248,8 @@ class PixKey extends CallApi
             'ConfirmPixKeyHold',
             array_filter($data, function ($v) {
                 return $v !== null;
-            })
+            }),
+            self::CONTEXT
         );
     }
 
@@ -261,10 +265,13 @@ class PixKey extends CallApi
         $data = $this->toArray();
         return $this->call(
             'ResendPixKeyToken',
-            array_filter($data,
+            array_filter(
+                $data,
                 function ($v) {
                     return $v !== null;
-                })
+                }
+            ),
+            self::CONTEXT
         );
     }
 
@@ -289,7 +296,8 @@ class PixKey extends CallApi
                 "BankAccountDigit" => $this->bankAccountDigit
             ], function ($v) {
                 return $v !== null;
-            })
+            }),
+            self::CONTEXT
         );
     }
 
@@ -309,7 +317,8 @@ class PixKey extends CallApi
                 "TaxNumber" => $this->taxNumber,
             ], function ($v) {
                 return $v !== null;
-            })
+            }),
+            self::CONTEXT
         );
     }
 
@@ -334,7 +343,8 @@ class PixKey extends CallApi
                 "BankAccountDigit" => $this->bankAccountDigit
             ], function ($v) {
                 return $v !== null;
-            })
+            }),
+            self::CONTEXT
         );
     }
 
@@ -375,7 +385,8 @@ class PixKey extends CallApi
                 "ToBankAccountDigit" => $toBankAccountDigit,
             ], function ($v) {
                 return $v !== null;
-            })
+            }),
+            self::CONTEXT
         );
     }
 
@@ -396,7 +407,8 @@ class PixKey extends CallApi
                 "BankAccountDigit" => $this->bankAccountDigit,
             ], function ($v) {
                 return $v !== null;
-            })
+            }),
+            self::CONTEXT
         );
     }
 }

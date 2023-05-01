@@ -11,8 +11,7 @@ class CallApi
     private Configuration $config;
     private ?array $header;
     private ?array $credential;
-    private $requestBody = '';
-
+    private string $requestBody = '';
     private mixed $message;
     private mixed $validation;
 
@@ -26,7 +25,7 @@ class CallApi
         $this->credential = $this->config->getCredential();
         $b64 = base64_encode("{$this->credential['username']}:{$this->credential['password']}");
         $this->header = [
-            'User-Agent' => 'SDKFitbank/1.0',
+            'User-Agent' => 'SDKFitbank/1.2',
             'Accept' => 'Application/json',
             'Authorization' => "Basic {$b64}"
         ];
@@ -57,7 +56,7 @@ class CallApi
      * @return object
      * @throws GuzzleException
      */
-    public function call(string $method, array $data): object
+    public function call(string $method, array $data, string $context = 'default'): object
     {
         $body = array_merge($data, [
             'Method' => $method,
@@ -74,7 +73,7 @@ class CallApi
 
         $this->requestBody = json_encode($body);
 
-        $res = $client->request('POST', $this->config->getUrl(), $options);
+        $res = $client->request('POST', $this->config->getUrl($context), $options);
 
         $body = json_decode($res->getBody());
 

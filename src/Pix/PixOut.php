@@ -11,6 +11,8 @@ use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
  */
 class PixOut extends CallApi
 {
+    private const CONTEXT = "payments";
+
     private ?string $taxNumber;
     private ?string $bank;
     private ?string $bankBranch;
@@ -661,7 +663,8 @@ class PixOut extends CallApi
             'GeneratePixOut',
             array_filter($this->toArray(), function ($v) {
                 return $v !== null;
-            })
+            }),
+            self::CONTEXT
         );
     }
 
@@ -683,7 +686,7 @@ class PixOut extends CallApi
             "BankAccount" => $this->bankAccount,
             "BankAccountDigit" => $this->bankAccountDigit,
         ];
-        return $this->call('GetPixOutById', array_filter($data));
+        return $this->call('GetPixOutById', array_filter($data), self::CONTEXT);
     }
 
     /**
@@ -716,7 +719,8 @@ class PixOut extends CallApi
                 "EndDate" => $endDate,
                 "PageIndex" => $pageIndex,
                 "PageSize" => $pageSize
-            ])
+            ]),
+            self::CONTEXT
         );
     }
 
@@ -739,7 +743,8 @@ class PixOut extends CallApi
                 "BankBranch" => $this->bankBranch,
                 "BankAccount" => $this->bankAccount,
                 "BankAccountDigit" => $this->bankAccountDigit,
-            ])
+            ]),
+            self::CONTEXT
         );
     }
 
@@ -769,6 +774,6 @@ class PixOut extends CallApi
             "PageIndex" => $pageIndex,
             "PageSize" => $pageSize
         ];
-        return $this->call('GetRefundPixOutByDate', array_filter($data));
+        return $this->call('GetRefundPixOutByDate', array_filter($data), self::CONTEXT);
     }
 }

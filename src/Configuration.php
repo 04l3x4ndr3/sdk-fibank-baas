@@ -8,100 +8,129 @@
 
 namespace O4l3x4ndr3\SdkFitbank;
 
-class Configuration {
-	public const ENV_SANDBOX = "sandbox";
-	public const ENV_PRODUCTION = "production";
-	public const URL_SANDBOX = "https://sandboxapi.fitbank.com.br/main/execute";
+class Configuration
+{
+
+    public const ENV_SANDBOX = "sandbox";
+    public const ENV_PRODUCTION = "production";
+
+    /**
+     * @deprecated
+     */
+    public const URL_SANDBOX = "https://sandboxapi.fitbank.com.br/main/execute";
+
+    /**
+     * @deprecated
+     */
     public const URL_PRODUCTION = "https://apiv2.fitbank.com.br/main/execute";
 
-	private ?string $environment;
-	private ?array $credentials;
-	private ?array $httpHeader;
+    private array $URL_PRODUCTION
+        = [
+            "default" => 'https://apiv2.fitbank.com.br/main/execute',
+            "payments" => "https://apiv2.payments.fitbank.com.br/main/execute"
+        ];
 
-	public function __construct(?string $username = NULL, ?string $password = NULL, ?string $patternId = NULL, ?string $bussinesUnitId = NULL, ?string $mktPlaceId = NULL)
-	{
-		$this->environment = $_SERVER['FITBANK_ENVIRONMENT'] ?? self::ENV_SANDBOX;
-		$this->credentials = [
-			'username' => $_SERVER['FITBANK_API_USERNAME'] ?? $username,
-			'password' => $_SERVER['FITBANK_API_PASSWORD'] ?? $password,
-			'patternId' => $_SERVER['FITBANK_PATTERN_ID'] ?? $patternId,
-			'businessUnitId' => $_SERVER['FITBANK_BUSINESS_UNIT_ID'] ?? $bussinesUnitId,
-			'mktPlaceId' => $_SERVER['FITBANK_MKT_PLACE_ID'] ?? $mktPlaceId
-		];
-		$this->httpHeader = [];
-	}
+    private array $URL_SANDBOX
+        = [
+            "default" => 'https://sandboxapi.fitbank.com.br/main/execute',
+            "payments" => "https://sandboxapi.fitbank.com.br/main/execute"
+        ];
 
-	/**
-	 * @return array
-	 */
-	public function getCredential(): array
-	{
-		return $this->credentials;
-	}
+    private ?string $environment;
+    private ?array $credentials;
+    private ?array $httpHeader;
 
-	/**
-	 * @param string $username
-	 * @param string $password
-	 * @param string $patternId
-	 * @param string $bussinesUnitId
-	 * @param string $mktPlaceId
-	 * @return void
-	 */
-	public function setCredential(string $username, string $password, string $patternId, string $bussinesUnitId, string $mktPlaceId): void
-	{
-		$credentials = array_merge($this->credentials, [
-			'username' => $username,
-			'password' => $password,
-			'patternId' => $patternId,
-			'bussinesUnitId' => $bussinesUnitId,
-			'mktPlaceId' => $mktPlaceId
-		]);
-		$this->credentials = $credentials;
-	}
+    public function __construct(
+        ?string $username = null, ?string $password = null, ?string $patternId = null, ?string $bussinesUnitId = null, ?string $mktPlaceId = null
+    )
+    {
+        $this->environment = $_SERVER['FITBANK_ENVIRONMENT'] ?? self::ENV_SANDBOX;
+        $this->credentials = [
+            'username' => $_SERVER['FITBANK_API_USERNAME'] ?? $username,
+            'password' => $_SERVER['FITBANK_API_PASSWORD'] ?? $password,
+            'patternId' => $_SERVER['FITBANK_PATTERN_ID'] ?? $patternId,
+            'businessUnitId' => $_SERVER['FITBANK_BUSINESS_UNIT_ID'] ?? $bussinesUnitId,
+            'mktPlaceId' => $_SERVER['FITBANK_MKT_PLACE_ID'] ?? $mktPlaceId
+        ];
+        $this->httpHeader = [];
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getEnvironment(): string
-	{
-		return $this->environment;
-	}
+    /**
+     * @return array
+     */
+    public function getCredential(): array
+    {
+        return $this->credentials;
+    }
 
-	/**
-	 * @param string $environment
-	 * @return void
-	 */
-	public function setEnvironment(string $environment): void
-	{
-		$this->environment = $environment;
-	}
+    /**
+     * @param string $username
+     * @param string $password
+     * @param string $patternId
+     * @param string $bussinesUnitId
+     * @param string $mktPlaceId
+     *
+     * @return void
+     */
+    public function setCredential(string $username, string $password, string $patternId, string $bussinesUnitId, string $mktPlaceId): void
+    {
+        $credentials = array_merge($this->credentials, [
+            'username' => $username,
+            'password' => $password,
+            'patternId' => $patternId,
+            'bussinesUnitId' => $bussinesUnitId,
+            'mktPlaceId' => $mktPlaceId
+        ]);
+        $this->credentials = $credentials;
+    }
 
-	/**
-	 * @return array|null
-	 */
-	public function getHttpHeader(): ?array
-	{
-		return $this->httpHeader;
-	}
+    /**
+     * @return string
+     */
+    public function getEnvironment(): string
+    {
+        return $this->environment;
+    }
 
-	/**
-	 * @param array $httpHeader
-	 */
-	public function setHttpHeader(array $httpHeader): void
-	{
-		$this->httpHeader = $httpHeader;
-	}
+    /**
+     * @param string $environment
+     *
+     * @return void
+     */
+    public function setEnvironment(string $environment): void
+    {
+        $this->environment = $environment;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getUrl(): string
-	{
-		if ($this->getEnvironment() === self::ENV_PRODUCTION)
-		{
-			return self::URL_PRODUCTION;
-		}
+    /**
+     * @return array|null
+     */
+    public function getHttpHeader(): ?array
+    {
+        return $this->httpHeader;
+    }
 
-		return self::URL_SANDBOX;
-	}
+    /**
+     * @param array $httpHeader
+     */
+    public function setHttpHeader(array $httpHeader): void
+    {
+        $this->httpHeader = $httpHeader;
+    }
+
+    /**
+     * @param string $context
+     *
+     * @return string
+     */
+    public function getUrl(string $context = 'default'): string
+    {
+        if ($this->getEnvironment() === self::ENV_PRODUCTION) {
+            return $this->URL_PRODUCTION[$context];
+            // return self::URL_PRODUCTION; <-- deprecated
+        }
+
+        return $this->URL_SANDBOX[$context];
+        // return self::URL_SANDBOX; <-- deprecated
+    }
 }

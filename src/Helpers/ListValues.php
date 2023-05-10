@@ -96,7 +96,6 @@ class ListValues
             15 => 'Ata de eleição',
             16 => 'CNH (Verso)',
             17 => 'Faturamento anual',
-            20 => 'Alteração contratual'
         ];
 
         if (!isset($key)) {

@@ -273,7 +273,7 @@ class Person
     }
 
     /**
-     * @param int|null $birthState
+     * @param string |null $birthState
      *
      * @return Person
      */

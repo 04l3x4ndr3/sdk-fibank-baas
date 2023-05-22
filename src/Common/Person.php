@@ -15,7 +15,7 @@ class Person
     private ?string $fatherFullName;
     private ?string $nationality;
     private ?string $birthCity;
-    private ?int $birthState;
+    private ?string $birthState;
     private ?string $birthDate;
     private ?int $gender;
     private ?int $maritalStatus;
@@ -278,7 +278,7 @@ class Person
      *
      * @return Person
      */
-    public function setBirthState(?int $birthState):Person
+    public function setBirthState(?string $birthState):Person
     {
         $this->birthState = $birthState;
         return $this;

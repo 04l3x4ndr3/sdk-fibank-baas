@@ -4,7 +4,6 @@ namespace O4l3x4ndr3\SdkFitbank\OnBoarding;
 
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\InvalidArgumentException;
 use O4l3x4ndr3\SdkFitbank\Common\Address;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;

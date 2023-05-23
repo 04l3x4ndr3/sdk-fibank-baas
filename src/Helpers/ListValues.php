@@ -344,7 +344,7 @@ class ListValues
 
     public static function getAccountConditionsTypes(string $value): false|string|int
     {
-        return array_search($value, self::genders());
+        return array_search($value, self::accountConditionsTypes());
     }
 
 

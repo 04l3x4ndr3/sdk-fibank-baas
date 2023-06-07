@@ -227,7 +227,8 @@ class PixKey extends CallApi
                 "BankAccountDigit" => $this->bankAccountDigit
             ], function ($v) {
                 return $v !== null;
-            }, self::CONTEXT)
+            }),
+            self::CONTEXT
         );
     }
 

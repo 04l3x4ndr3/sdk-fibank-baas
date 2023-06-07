@@ -221,7 +221,6 @@ class ListValues
         return array_search($value, self::companyTypes());
     }
 
-
     public static function pixKeyTypes(?int $key = null): string|array|null
     {
         $values = [

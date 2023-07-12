@@ -1,4 +1,5 @@
 <?php
+
 namespace O4l3x4ndr3\SdkFitbank\Common;
 
 class Person
@@ -25,9 +26,6 @@ class Person
     private ?bool $publiclyExposedPerson;
     private ?array $personDocuments;
 
-    private ?bool $wasSigned;
-    private ?string $signatureDate;
-
     public function __construct()
     {
         $this->name = null;
@@ -51,8 +49,6 @@ class Person
         $this->nickname = null;
         $this->publiclyExposedPerson = null;
         $this->personDocuments = null;
-        $this->wasSigned = true;
-        $this->signatureDate = date('Y-m-d\TH:i:s');
     }
 
     /**
@@ -68,7 +64,7 @@ class Person
      *
      * @return Person
      */
-    public function setName(?string $name):Person
+    public function setName(?string $name): Person
     {
         $this->name = $name;
         return $this;
@@ -87,7 +83,7 @@ class Person
      *
      * @return Person
      */
-    public function setTaxNumber(?string $taxNumber):Person
+    public function setTaxNumber(?string $taxNumber): Person
     {
         $this->taxNumber = $taxNumber;
         return $this;
@@ -106,7 +102,7 @@ class Person
      *
      * @return Person
      */
-    public function setOccupation(?string $occupation):Person
+    public function setOccupation(?string $occupation): Person
     {
         $this->occupation = $occupation;
         return $this;
@@ -125,7 +121,7 @@ class Person
      *
      * @return Person
      */
-    public function setMail(?string $mail):Person
+    public function setMail(?string $mail): Person
     {
         $this->mail = $mail;
         return $this;
@@ -144,7 +140,7 @@ class Person
      *
      * @return Person
      */
-    public function setPhone(?string $phone):Person
+    public function setPhone(?string $phone): Person
     {
         $this->phone = $phone;
         return $this;
@@ -163,7 +159,7 @@ class Person
      *
      * @return Person
      */
-    public function setPhoneNumber(?string $phoneNumber):Person
+    public function setPhoneNumber(?string $phoneNumber): Person
     {
         $this->phoneNumber = $phoneNumber;
         return $this;
@@ -182,7 +178,7 @@ class Person
      *
      * @return Person
      */
-    public function setPersonRoleType(?int $personRoleType):Person
+    public function setPersonRoleType(?int $personRoleType): Person
     {
         $this->personRoleType = $personRoleType;
         return $this;
@@ -201,7 +197,7 @@ class Person
      *
      * @return Person
      */
-    public function setMotherFullName(?string $motherFullName):Person
+    public function setMotherFullName(?string $motherFullName): Person
     {
         $this->motherFullName = $motherFullName;
         return $this;
@@ -220,7 +216,7 @@ class Person
      *
      * @return Person
      */
-    public function setFatherFullName(?string $fatherFullName):Person
+    public function setFatherFullName(?string $fatherFullName): Person
     {
         $this->fatherFullName = $fatherFullName;
         return $this;
@@ -239,7 +235,7 @@ class Person
      *
      * @return Person
      */
-    public function setNationality(?string $nationality):Person
+    public function setNationality(?string $nationality): Person
     {
         $this->nationality = $nationality;
         return $this;
@@ -258,7 +254,7 @@ class Person
      *
      * @return Person
      */
-    public function setBirthCity(?string $birthCity):Person
+    public function setBirthCity(?string $birthCity): Person
     {
         $this->birthCity = $birthCity;
         return $this;
@@ -277,7 +273,7 @@ class Person
      *
      * @return Person
      */
-    public function setBirthState(?string $birthState):Person
+    public function setBirthState(?string $birthState): Person
     {
         $this->birthState = $birthState;
         return $this;
@@ -296,7 +292,7 @@ class Person
      *
      * @return Person
      */
-    public function setBirthDate(?string $birthDate):Person
+    public function setBirthDate(?string $birthDate): Person
     {
         $this->birthDate = $birthDate;
         return $this;
@@ -315,7 +311,7 @@ class Person
      *
      * @return Person
      */
-    public function setGender(?int $gender):Person
+    public function setGender(?int $gender): Person
     {
         $this->gender = $gender;
         return $this;
@@ -334,7 +330,7 @@ class Person
      *
      * @return Person
      */
-    public function setMaritalStatus(?int $maritalStatus):Person
+    public function setMaritalStatus(?int $maritalStatus): Person
     {
         $this->maritalStatus = $maritalStatus;
         return $this;
@@ -353,7 +349,7 @@ class Person
      *
      * @return Person
      */
-    public function setSpouseName(?string $spouseName):Person
+    public function setSpouseName(?string $spouseName): Person
     {
         $this->spouseName = $spouseName;
         return $this;
@@ -372,7 +368,7 @@ class Person
      *
      * @return Person
      */
-    public function setIdentityDocument(?string $identityDocument):Person
+    public function setIdentityDocument(?string $identityDocument): Person
     {
         $this->identityDocument = $identityDocument;
         return $this;
@@ -391,7 +387,7 @@ class Person
      *
      * @return Person
      */
-    public function setPersonName(?string $personName):Person
+    public function setPersonName(?string $personName): Person
     {
         $this->personName = $personName;
         return $this;
@@ -410,7 +406,7 @@ class Person
      *
      * @return Person
      */
-    public function setNickname(?string $nickname):Person
+    public function setNickname(?string $nickname): Person
     {
         $this->nickname = $nickname;
         return $this;
@@ -429,7 +425,7 @@ class Person
      *
      * @return Person
      */
-    public function setPubliclyExposedPerson(?bool $publiclyExposedPerson):Person
+    public function setPubliclyExposedPerson(?bool $publiclyExposedPerson): Person
     {
         $this->publiclyExposedPerson = $publiclyExposedPerson;
         return $this;
@@ -448,47 +444,9 @@ class Person
      *
      * @return Person
      */
-    public function addPersonDocuments(Document $document):Person
+    public function addPersonDocuments(Document $document): Person
     {
         $this->personDocuments[] = $document;
-        return $this;
-    }
-
-    /**
-     * @return bool|null
-     */
-    public function getWasSigned(): ?bool
-    {
-        return $this->wasSigned;
-    }
-
-    /**
-     * @param bool|null $wasSigned
-     *
-     * @return Person
-     */
-    public function setWasSigned(?bool $wasSigned): Person
-    {
-        $this->wasSigned = $wasSigned;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getSignatureDate(): ?string
-    {
-        return $this->signatureDate;
-    }
-
-    /**
-     * @param string|null $signatureDate
-     *
-     * @return Person
-     */
-    public function setSignatureDate(?string $signatureDate): Person
-    {
-        $this->signatureDate = $signatureDate;
         return $this;
     }
 

@@ -37,7 +37,7 @@ class AccountHolder extends Person
         $this->addresses = null;
         $this->persons = null;
         $this->wasSigned = true;
-        $this->signatureDate = date('Y-m-d\TH:i:s');
+        $this->signatureDate = date('c');
     }
 
     /**

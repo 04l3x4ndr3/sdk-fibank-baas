@@ -5,6 +5,7 @@ namespace O4l3x4ndr3\SdkFitbank\Common;
 class InternalTransfers
 {
     private ?string $toName;
+    private ?string $toPhone;
     private ?string $toTaxNumber;
     private ?string $toBank;
     private ?string $toBankBranch;
@@ -12,10 +13,12 @@ class InternalTransfers
     private ?string $toBankAccountDigit;
     private ?float $value;
     private ?string $description;
+    private ?string $identifier;
 
     public function __construct()
     {
         $this->toName = null;
+        $this->toPhone = null;
         $this->toTaxNumber = null;
         $this->toBank = null;
         $this->toBankBranch = null;
@@ -23,6 +26,7 @@ class InternalTransfers
         $this->toBankAccountDigit = null;
         $this->value = null;
         $this->description = null;
+        $this->identifier = null;
     }
 
     /**
@@ -40,6 +44,25 @@ class InternalTransfers
     public function setToName(?string $toName): self
     {
         $this->toName = $toName;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getToPhone(): ?string
+    {
+        return $this->toPhone;
+    }
+
+    /**
+     * @param string|null $toPhone
+     *
+     * @return InternalTransfers
+     */
+    public function setToPhone(?string $toPhone): InternalTransfers
+    {
+        $this->toPhone = $toPhone;
         return $this;
     }
 
@@ -170,12 +193,32 @@ class InternalTransfers
     }
 
     /**
+     * @return string|null
+     */
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * @param string|null $identifier
+     *
+     * @return InternalTransfers
+     */
+    public function setIdentifier(?string $identifier): InternalTransfers
+    {
+        $this->identifier = $identifier;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray(): array
     {
         return array_filter([
             "ToName" => $this->toName,
+            "ToPhone" => $this->toPhone,
             "ToTaxNumber" => $this->toTaxNumber,
             "ToBank" => $this->toBank,
             "ToBankBranch" => $this->toBankBranch,
@@ -183,6 +226,7 @@ class InternalTransfers
             "ToBankAccountDigit" => $this->toBankAccountDigit,
             "Value" => $this->value,
             "Description" => $this->description,
+            "Identifier" => $this->identifier,
         ], function ($v) {
             return $v !== null;
         });

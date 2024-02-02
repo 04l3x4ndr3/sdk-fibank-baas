@@ -682,7 +682,7 @@ class P2P extends CallApi
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function toArraySingle(): ?array
     {
@@ -734,6 +734,7 @@ class P2P extends CallApi
         }
 
         return array_filter([
+            "TaxNumber" => $this->taxNumber,
             "Bank" => $this->bank,
             "BankBranch" => $this->bankBranch,
             "BankAccount" => $this->bankAccount,

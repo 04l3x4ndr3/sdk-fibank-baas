@@ -270,8 +270,8 @@ class AccountOperationLimit extends CallApi
             "BankBranch" => $this->bankBranch,
             "BankAccount" => $this->bankAccount,
             "BankAccountDigit" => $this->bankAccountDigit,
-            "Type" => $this->type,
             "OperationType" => $this->operationType,
+            "Type" => $this->type,
             "SubType" => $this->subType,
             "MinLimitValue" => $this->minLimitValue,
             "MaxLimitValue" => $this->maxLimitValue,
@@ -288,7 +288,11 @@ class AccountOperationLimit extends CallApi
     {
         return $this->call(
             'GetAccountOperationLimit',
-            array_filter($this->toArray())
+            array_filter(
+                $this->toArray(),
+                function ($v) {
+                    return !is_null($v);
+                })
         );
     }
 
@@ -302,6 +306,10 @@ class AccountOperationLimit extends CallApi
     {
         return $this->call(
             'ChangeAccountOperationLimit',
-            array_filter($this->toArray()));
+            array_filter(
+                $this->toArray(),
+                function ($v) {
+                    return !is_null($v);
+                }));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace O4l3x4ndr3\SdkFitbank\FITBANKSLC;
+namespace O4l3x4ndr3\SdkFitbank\FitbankSLC;
 
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
@@ -60,19 +60,13 @@ class Queries extends CallApi
             })
         );
     }
+
     /**
      * @param int $taxNumber
      * @param int $bank
      * @param int $bankBranch
      * @param int $bankAccount
      * @param int $bankAccountDigit
-     * @param int $acquirerTaxNumber
-     * @param int $type
-     * @param int $arragmenteCode
-     * @param string $startDate
-     * @param string $endDate
-     * @param int $pageIndex
-     * @param int $pageSize
      * @return object
      */
     public function getSLCScheduled(

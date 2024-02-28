@@ -76,7 +76,7 @@ class Payer
             "BankAccountDigit" => $this->bankAccountDigit,
             "BankBranch" => $this->bankBranch
         ], function ($v) {
-            return $v !== null;
+            return !empty($v);
         });
     }
 }

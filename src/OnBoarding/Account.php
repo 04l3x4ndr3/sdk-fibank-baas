@@ -287,8 +287,8 @@ class Account extends CallApi
     /**
      * @param string $taxNumber
      * @param string $justification
-     * @param array|null $AccountKeys
-     * @param array|null $Accounts
+     * @param array|null $accountKeys
+     * @param array|null $accounts
      * @return object
      */
     public function closeAccount(

@@ -267,9 +267,9 @@ class Account extends CallApi
      *
      * @param string   $taxNumber
      * @param int|null $identifier
-     *
      * @return object
      * @throws GuzzleException
+     * @deprecated
      */
     public function blockAccount(string $taxNumber, ?int $identifier = null): object
     {
@@ -280,6 +280,32 @@ class Account extends CallApi
                 "Identifier" => $identifier
             ], function ($v) {
                 return !is_null($v);
+            })
+        );
+    }
+
+    /**
+     * @param string $taxNumber
+     * @param string $justification
+     * @param array|null $AccountKeys
+     * @param array|null $Accounts
+     * @return object
+     */
+    public function closeAccount(
+        string $taxNumber,
+        string $justification = "Encerramento de contas",
+        ?array $accountKeys = [],
+        ?array $accounts = []
+    ): object {
+        return $this->call(
+            'CloseAccount',
+            array_filter([
+                "TaxNumber" => $taxNumber,
+                "Justification" => $justification,
+                "AccountKeys" => $accountKeys,
+                "Accounts" => $accounts
+            ], function ($v) {
+                return !empty($v);
             })
         );
     }

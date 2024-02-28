@@ -30,4 +30,45 @@ class PersonData extends CallApi
             })
         );
     }
+    /**
+     * @param string $taxNumber
+     * @param array $personInfos
+     * @param string|null $holderTaxNumber
+     * @return object
+     */
+    public function changePersonInfo (
+        string $taxNumber,
+        array $personInfos,
+        ?string $holderTaxNumber
+    ) : object {
+        if (empty($holderTaxNumber)) {
+            $holderTaxNumber = $taxNumber;
+        }
+        return $this->call(
+            'ChangePersonInfo',
+            array_filter([
+                "TaxNumber" => $taxNumber,
+                "HolderTaxNumber" => $holderTaxNumber,
+                "PersonInfos" => $personInfos
+            ], function ($v) {
+                return !empty($v);
+            })
+        );
+    }
+    /**
+     * @param string $usn
+     * @return object
+     */
+    public function getChangeInfo (
+        string $usn
+    ) : object {
+        return $this->call(
+            'GetChangeInfo',
+            array_filter([
+                "USN" => $usn
+            ], function ($v) {
+                return !empty($v);
+            })
+        );
+    }
 }

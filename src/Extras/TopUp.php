@@ -401,6 +401,26 @@ class TopUp extends CallApi
     }
 
     /**
+     * @param string|null $phone
+     * @param string|null $productSubType
+     * @return object
+     */
+    public function getTopUpProductsByPhone(
+        ?string $phone,
+        ?string $productSubType,
+    ): object {
+        return $this->call(
+            'GetTopUpProductsByPhone',
+            array_filter([
+                'Phone' => $phone,
+                'ProductSubType' => $productSubType,
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
+    }
+
+    /**
      * @param string $documentNumber
      * @param string $originNSU
      *

@@ -6,6 +6,9 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
+use O4l3x4ndr3\SdkFitbank\Common\CardOwner;
+use O4l3x4ndr3\SdkFitbank\Common\ContactInfo;
+use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 use O4l3x4ndr3\SdkFitbank\Common\Address;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 
@@ -550,5 +553,656 @@ class NominalCard
             "ReasonCode" => $ReasonCode
         ];
         return $http->call('InactivateAndReissueCard', array_filter($data));
+    }
+
+    /**
+     * @param string $identifierProduct
+     * @param string $usageType
+     * @param string $consumeType
+     * @param float $amount
+     * @param Address $address
+     * @return object
+     */
+    public function requestCardBatch(
+        string $identifierProduct,
+        string $usageType,
+        string $consumeType,
+        float $amount,
+        Address $address,
+    ): object {
+        return (new CallApi())->call('RequestCardBatch', array_filter(
+            [
+                "IdentifierProduct" => $identifierProduct,
+                "UsageType" => $usageType,
+                "ConsumeType" => $consumeType,
+                "Amount" => $amount,
+                "Address" => [
+                    "Line" => $address->getAddressLine(),
+                    "Number" => $address->getAddressLine2(),
+                    "Complement" => $address->getComplement(),
+                    "Reference" => $address->getReference(),
+                    "Neighborhood" => $address->getNeighborhood(),
+                    "ZipCode" => $address->getZipCode(),
+                    "City" => $address->getCityName(),
+                    "State" => $address->getState(),
+                    "Country" => $address->getCountry(),
+                ],
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param CardOwner $cardOwner
+     * @param Address $cardDeliveryAddress
+     * @param string $identifierProduct
+     * @param string|null $usageType
+     * @param string|null $consumeType
+     * @return object
+     */
+    public function requestUnnamedCard(
+        CardOwner $cardOwner,
+        Address $cardDeliveryAddress,
+        string $identifierProduct,
+        ?string $usageType,
+        ?string $consumeType
+    ): object {
+        return (new CallApi())->call('RequestUnnamedCard', array_filter(
+            [
+                "CardOwner" => $cardOwner->ownerToArray(),
+                "CardDeliveryAddress" => [
+                    "Line" => $cardDeliveryAddress->getAddressLine(),
+                    "Number" => $cardDeliveryAddress->getAddressLine2(),
+                    "Complement" => $cardDeliveryAddress->getComplement(),
+                    "Reference" => $cardDeliveryAddress->getReference(),
+                    "Neighborhood" => $cardDeliveryAddress->getNeighborhood(),
+                    "ZipCode" => $cardDeliveryAddress->getZipCode(),
+                    "City" => $cardDeliveryAddress->getCityName(),
+                    "State" => $cardDeliveryAddress->getState(),
+                    "Country" => $cardDeliveryAddress->getCountry(),
+                ],
+                "IdentifierProduct" => $identifierProduct,
+                "UsageType" => $usageType,
+                "ConsumeType" => $consumeType
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param CardOwner $cardHolder
+     * @param ContactInfo $cardHolderContact
+     * @param string $identifierCard
+     * @param CardOwner|null $cardOwner
+     * @param string|null $usageType
+     * @return object
+     */
+    public function bindUnnamedCard(
+        CardOwner $cardHolder,
+        ContactInfo $cardHolderContact,
+        string $identifierCard,
+        ?CardOwner $cardOwner,
+        ?string $usageType
+    ): object {
+        return (new CallApi())->call('BindUnnamedCard', array_filter(
+            [
+                "CardOwner" => $cardOwner->ownerToArray(),
+                "CardHolder" => $cardHolder->holderToArray(),
+                "CardHolderContact" => $cardHolderContact->toArray(),
+                "IdentifierCard" => $identifierCard,
+                "UsageType" => $usageType
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $identifierCard
+     * @return object
+     */
+    public function cancelCardRequest(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('CancelCardRequest', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Cancela um cartão
+     * @param string $identifierCard
+     * @param string $pin
+     * @return object
+     */
+    public function cancelCard(
+        string $identifierCard,
+        string $pin,
+    ): object {
+        return (new CallApi())->call('CancelCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "Pin" => $pin
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna informações de um Lote
+     * @param string $cardBatchId
+     * @param int $pageSize
+     * @param int $index
+     * @return object
+     */
+    public function getCardBatchById(
+        string $cardBatchId,
+        int $pageSize,
+        int $index
+    ): object {
+        return (new CallApi())->call('GetCardBatchById', array_filter(
+            [
+                "CardBatchId" => $cardBatchId,
+                "PageSize" => $pageSize,
+                "Index" => $index
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Consultar saldo do cartão
+     * @param string $identifierCard
+     * @return object
+     */
+    public function getCardBalance(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('GetCardBalance', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna uma lista de cartões
+     * @param int $pageSize
+     * @param int $index
+     * @return object
+     */
+    public function listCards(
+        int $pageSize,
+        int $index
+    ): object {
+        return (new CallApi())->call('ListCards', array_filter(
+            [
+                "PageSize" => $pageSize,
+                "Index" => $index
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna uma lista de cartões vinculados a um CPF
+     * @param string $taxNumber
+     * @return object
+     */
+    public function getCardList(
+        string $taxNumber
+    ): object {
+        return (new CallApi())->call('GetCardList', array_filter(
+            [
+                "TaxNumber" => $taxNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Consulta movimentações do cartão
+     * @param string $identifierCard
+     * @param string $initialDate
+     * @param string $finalDate
+     * @return object
+     */
+    public function getCardEntry(
+        string $identifierCard,
+        string $initialDate,
+        string $finalDate
+    ): object {
+        return (new CallApi())->call('GetCardEntry', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "InitialDate" => $initialDate,
+                "FinalDate" => $finalDate
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param bool $allow
+     * @param string $identifierCard
+     * @return object
+     */
+    public function updateCardContactless(
+        bool $allow,
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('UpdateCardContactless', array_filter(
+            [
+                "Allow" => $allow,
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string|null $tdentifier
+     * @return object
+     */
+    public function getCardTrackingByIdentifier(
+        ?string $identifier
+    ): object {
+        return (new CallApi())->call('GetCardTrackingByIdentifier', array_filter(
+            [
+                "Identifier" => $identifier
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Cadastra um portador
+     * @param NominalCard $cardHolder
+     * @return object
+     */
+    public function createCardHolder(
+        NominalCard $cardHolder
+    ): object {
+        return (new CallApi())->call('CreateCardHolder', array_filter(
+            [
+                "HolderTaxNumber" => $cardHolder->getCardHolderTaxNumber(),
+                "FullName" => $cardHolder->getCardHolderFullName(),
+                "MotherName" => $cardHolder->getCardHolderMotherName(),
+                "BirthDate" => $cardHolder->getCardHolderBirthDate(),
+                "Gender" => $cardHolder->getCardHolderGender(),
+                "Nationality" => $cardHolder->getCardHolderNationality(),
+                "MaritalStatus" => $cardHolder->getCardHolderMaritalStatus(),
+                "Phone" => $cardHolder->getCardHolderContactPhone(),
+                "Mail" => $cardHolder->getCardHolderContactMail()
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Atualiza as informações do portador do cartão
+     * @param NominalCard $cardHolder
+     * @return object
+     */
+    public function updateCardHolder(
+        NominalCard $cardHolder
+    ): object {
+        return (new CallApi())->call('UpdateCardHolder', array_filter(
+            [
+                "HolderTaxNumber" => $cardHolder->getCardHolderTaxNumber(),
+                "FullName" => $cardHolder->getCardHolderFullName(),
+                "MotherName" => $cardHolder->getCardHolderMotherName(),
+                "BirthDate" => $cardHolder->getCardHolderBirthDate(),
+                "Gender" => $cardHolder->getCardHolderGender(),
+                "Nationality" => $cardHolder->getCardHolderNationality(),
+                "MaritalStatus" => $cardHolder->getCardHolderMaritalStatus(),
+                "Phone" => $cardHolder->getCardHolderContactPhone(),
+                "Mail" => $cardHolder->getCardHolderContactMail()
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @return object
+     */
+    public function getCardHolders(): object {
+        return (new CallApi())->call('GetCardHolders', []);
+    }
+
+    /**
+     * @param string $prepaidCardId
+     * @param string $taxNumber
+     * @param float $rechargeValue
+     * @param string $identifier
+     * @param string $description
+     * @return object
+     */
+    public function rechargeCard(
+        string $prepaidCardId,
+        string $taxNumber,
+        float $rechargeValue,
+        string $identifier,
+        string $description
+    ): object {
+        return (new CallApi())->call('RechargeCard', array_filter(
+            [
+                "PrepaidCardId" => $prepaidCardId,
+                "TaxNumber" => $taxNumber,
+                "RechargeValue" => $rechargeValue,
+                "Identifier" => $identifier,
+                "Description" => $description
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $identifier
+     * @param string $prepaidCardId
+     * @param string|null $taxNumber
+     * @param float|null $dischargeValue
+     * @return object
+     */
+    public function dischargeCard(
+        string $identifier,
+        string $prepaidCardId,
+        ?string $taxNumber,
+        ?float $dischargeValue
+    ): object {
+        return (new CallApi())->call('DischargeCard', array_filter(
+            [
+                "Identifier" => $identifier,
+                "PrepaidCardId" => $prepaidCardId,
+                "TaxNumber" => $taxNumber,
+                "DischargeValue" => $dischargeValue
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $identifierCard
+     * @param int $documentNumber
+     * @return object
+     */
+    public function getRechargeCard(
+        string $identifierCard,
+        int $documentNumber
+    ): object {
+        return (new CallApi())->call('GetRechargeCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "DocumentNumber" => $documentNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $identifierCard
+     * @param int $documentNumber
+     * @return object
+     */
+    public function getDischargeCard(
+        string $identifierCard,
+        int $documentNumber
+    ): object {
+        return (new CallApi())->call('GetDischargeCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "DocumentNumber" => $documentNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $identifierCard
+     * @param string $taxNumber
+     * @return object
+     */
+    public function getCardOwner(
+        string $identifierCard,
+        string $taxNumber
+    ): object {
+        return (new CallApi())->call('GetCardOwner', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "TaxNumber" => $taxNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $identifierCard
+     * @param int $purchaseRuleId
+     * @return object
+     */
+    public function createCardPurchaseRule(
+        string $identifierCard,
+        int $purchaseRuleId
+    ): object {
+        return (new CallApi())->call('CreateCardPurchaseRule', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "PurchaseRuleId" => $purchaseRuleId
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $identifierCard
+     * @param int $purchaseRuleId
+     * @return object
+     */
+    public function unbindCardPurchaseRule(
+        string $identifierCard,
+        int $purchaseRuleId
+    ): object {
+        return (new CallApi())->call('UnbindCardPurchaseRule', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "PurchaseRuleId" => $purchaseRuleId
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $identifierCard
+     * @param float $benefitFrom
+     * @param float $benefitTo
+     * @param float $value
+     * @param string $identifier
+     * @return object
+     */
+    public function cardBenefitTransfer(
+        string $identifierCard,
+        float $benefitFrom,
+        float $benefitTo,
+        float $value,
+        string $identifier
+    ): object {
+        return (new CallApi())->call('CardBenefitTransfer', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "BenefitFrom" => $benefitFrom,
+                "BenefitTo" => $benefitTo,
+                "Value" => $value,
+                "Identifier" => $identifier
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @return object
+     */
+    public function getPurchaseRules(): object {
+        return (new CallApi())->call('GetPurchaseRules', []);
+    }
+
+    /**
+     * @description Solicita um cartão virtual
+     * @param string $embossingName
+     * @param CardOwner $cardHolder
+     * @param CardOwner|null $cardOwner
+     * @return object
+     */
+    public function requestVirtualCard(
+        string $embossingName,
+        CardOwner $cardHolder,
+        ?CardOwner $cardOwner
+    ): object {
+        return (new CallApi())->call('RequestVirtualCard', array_filter(
+            [
+                "EmbossingName" => $embossingName,
+                "CardOwner" => $cardOwner->ownerToArray(),
+                "CardHolder" => $cardHolder->holderToArray()
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicita bloqueio de cartão
+     * @param string $identifierCard
+     * @return object
+     */
+    public function blockVirtualCard(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('BlockVirtualCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicita desbloqueio um cartão virtual
+     * @param string $identifierCard
+     * @return object
+     */
+    public function unblockVirtualCard(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('UnblockVirtualCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicita o cancelamento de um cartão virtual
+     * @param string $identifierCard
+     * @return object
+     */
+    public function cancelVirtualCard(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('CancelVirtualCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicita um cartão virtual
+     * @param string $identifierCard
+     * @return object
+     */
+    public function getVirtualCardById(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('GetVirtualCardById', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna uma lista de estabelecimentos permitidos
+     * @param string $identifierCard
+     * @return object
+     */
+    public function getEstablishmentsInWhitelist(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('GetEstablishmentsInWhitelist', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
     }
 }

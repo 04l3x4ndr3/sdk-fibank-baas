@@ -1177,4 +1177,74 @@ class Boleto extends CallApi
             ])
         );
     }
+
+    /**
+     * @param int $documentNumber
+     * @return object
+     */
+    public function getBoletoInById(int $documentNumber): object
+    {
+        return $this->call('GetBoletoInById', ['DocumentNumber' => $documentNumber]);
+    }
+
+    /**
+     * @param string $initialDate
+     * @param string $finalDate
+     * @param string $pageIndex
+     * @param string $pageSize
+     * @param int|null $status
+     * @param string|null $customerTaxNumber
+     * @param string|null $supplierTaxNumber
+     * @param string|null $supplierBank
+     * @param string|null $supplierBankBranch
+     * @param string|null $supplierBankAccount
+     * @param string|null $supplierBankAccountDigit
+     * @return object
+     */
+    public function getListBoletoByDate(
+        string $initialDate,
+        string $finalDate,
+        string $pageIndex,
+        string $pageSize,
+        ?int $status,
+        ?string $customerTaxNumber,
+        ?string $supplierTaxNumber,
+        ?string $supplierBank,
+        ?string $supplierBankBranch,
+        ?string $supplierBankAccount,
+        ?string $supplierBankAccountDigit
+    ): object {
+        return $this->call('GetListBoletoByDate', array_filter(
+            [
+                "InitialDate" => $initialDate,
+                "FinalDate" => $finalDate,
+                "PageIndex" => $pageIndex,
+                "PageSize" => $pageSize,
+                "Status" => $status,
+                "CustomerTaxNumber" => $customerTaxNumber,
+                "SupplierTaxNumber" => $supplierTaxNumber,
+                "SupplierBank" => $supplierBank,
+                "SupplierBankBranch" => $supplierBankBranch,
+                "SupplierBankAccount" => $supplierBankAccount,
+                "SupplierBankAccountDigit" => $supplierBankAccountDigit
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+    public function getChangeBoleto(
+        string $taxNumber,
+        string $protocolNumber
+    ): object {
+        return $this->call('GetChangeBoleto', array_filter(
+            [
+                "TaxNumber" => $taxNumber,
+                "ProtocolNumber" => $protocolNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
 }

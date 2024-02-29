@@ -435,4 +435,33 @@ class DARF
         return $http->call('CancelPaymentDARF', array_filter($data));
     }
 
+    /**
+     * @param string $dueDate
+     * @param string $principalValue
+     * @param string $taxContributor
+     * @param string $referenceNumber
+     * @param string $calculationPeriod
+     * @return object
+     */
+    public function getDARFOutByInformations(
+        string $dueDate,
+        string $principalValue,
+        string $taxContributor,
+        string $referenceNumber,
+        string $calculationPeriod,
+    ): object {
+        return (new CallApi($this->configuration))
+            ->call('GetDARFOutByInformations', array_filter(
+            [
+                "DueDate" => $dueDate,
+                "PrincipalValue" => $principalValue,
+                "TaxContributor" => $taxContributor,
+                "ReferenceNumber" => $referenceNumber,
+                "CalculationPeriod" => $calculationPeriod
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
 }

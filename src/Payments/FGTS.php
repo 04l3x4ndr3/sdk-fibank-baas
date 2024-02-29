@@ -295,12 +295,19 @@ class FGTS
      * @param FGTS $fgts
      * @return object
      * @throws GuzzleException
+     * @deprecated
      */
     public function generatePaymentFGTS(?FGTS $fgts = null): object
     {
         $http = new CallApi($this->configuration);
         $data = (isset($fgts)) ? $fgts->toArray() : $this->toArray();
         return $http->call('GeneratePaymentFGTS', array_filter($data));
+    }
+    public function generatePaymentsFGTS(?FGTS $fgts = null): object
+    {
+        $http = new CallApi($this->configuration);
+        $data = (isset($fgts)) ? $fgts->toArray() : $this->toArray();
+        return $http->call('GeneratePaymentsFGTS', array_filter($data));
     }
 
     /**

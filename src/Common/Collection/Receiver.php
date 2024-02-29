@@ -35,7 +35,7 @@ class Receiver extends Beneficiary
             "CollectionOrderProductType" => $this->collectionOrderProductType,
             "Receiver" => $this->receivers
         ], function ($v) {
-            return !empty($v);
+            return !is_null($v);
         });
     }
 }

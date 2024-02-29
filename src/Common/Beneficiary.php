@@ -205,7 +205,7 @@ class Beneficiary
             "ContactInfo" => $this->contactInfo->toArray(),
             "AccountInfo" => $this->accountInfo->toArray()
         ], function ($v) {
-            return !empty($v);
+            return !is_null($v);
         });
     }
 }

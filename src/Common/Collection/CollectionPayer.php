@@ -133,7 +133,7 @@ class CollectionPayer extends Beneficiary
             "ReceiverContactInfo" => $this->contactInfo->toArray(),
             "ReceiverAccountInfo" => $this->accountInfo->toArray()
         ], function ($v) {
-            return !empty($v);
+            return !is_null($v);
         });
     }
 }

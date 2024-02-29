@@ -40,7 +40,7 @@ class CollectionCustomer
             "Name" => $this->getName(),
             "CustomerAccountInfo" => $this->getAccountInfo()->toArray()
         ], function ($v) {
-            return !empty($v);
+            return !is_null($v);
         });
     }
 }

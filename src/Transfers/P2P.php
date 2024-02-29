@@ -811,4 +811,127 @@ class P2P extends CallApi
     {
         return $this->call('CancelInternalTransfer', ["DocumentNumber" => $documentNumber]);
     }
+
+    /**
+     * @param string $name
+     * @param string $taxNumber
+     * @param string $verificationCode
+     * @param string $phoneNumber
+     * @return object
+     */
+    public function getPendingInternalTransfer(
+        string $name,
+        string $taxNumber,
+        string $verificationCode,
+        string $phoneNumber
+    ): object {
+        return $this->call('GetPendingInternalTransfer', array_filter([
+            "Name" => $name,
+            "TaxNumber" => $taxNumber,
+            "VerificationCode" => $verificationCode,
+            "PhoneNumber" => $phoneNumber
+        ], function ($v) {
+            return !is_null($v);
+        }));
+    }
+    public function getPendingInternalTransferByPhoneNumber(
+        string $countryCode,
+        string $phoneNumber
+    ): object {
+        return $this->call('GetPendingInternalTransferByPhoneNumber', array_filter([
+            "CountryCode" => $countryCode,
+            "PhoneNumber" => $phoneNumber
+        ], function ($v) {
+            return !is_null($v);
+        }));
+    }
+    /**
+     * @param string $identifier
+     * @return object
+     */
+    public function getPendingInternalTransferByIdentifier(
+        string $identifier
+    ): object {
+        return $this->call('GetPendingInternalTransferByIdentifier', array_filter([
+            "Identifier" => $identifier
+        ], function ($v) {
+            return !is_null($v);
+        }));
+    }
+
+    /**
+     * @param string $phoneNumber
+     * @param string $countryCode
+     * @param float $value
+     * @param string $identifier
+     * @param string $fromTaxNumber
+     * @param string $fromBank
+     * @param string $fromBankBranch
+     * @param string $fromBankAccount
+     * @param string $fromBankAccountDigit
+     * @return object
+     */
+    public function generatePendingInternalTransferBySMS(
+        string $phoneNumber,
+        string $countryCode,
+        float $value,
+        string $identifier,
+        string $fromTaxNumber,
+        string $fromBank,
+        string $fromBankBranch,
+        string $fromBankAccount,
+        string $fromBankAccountDigit
+    ): object {
+        return $this->call('GeneratePendingInternalTransferBySMS', array_filter([
+            "PhoneNumber" => $phoneNumber,
+            "CountryCode" => $countryCode,
+            "Value" => $value,
+            "Identifier" => $identifier,
+            "FromTaxNumber" => $fromTaxNumber,
+            "FromBank" => $fromBank,
+            "FromBankBranch" => $fromBankBranch,
+            "FromBankAccount" => $fromBankAccount,
+            "FromBankAccountDigit" => $fromBankAccountDigit
+        ], function ($v) {
+            return !is_null($v);
+        }));
+    }
+
+    /**
+     * @param string $phoneNumber
+     * @param string $countryCode
+     * @param float $value
+     * @param string $identifier
+     * @param string $fromTaxNumber
+     * @param string $fromBank
+     * @param string $fromBankBranch
+     * @param string $fromBankAccount
+     * @param string $fromBankAccountDigit
+     * @return object
+     */
+    public function generatePendingInternalTransfer(
+        string $phoneNumber,
+        string $countryCode,
+        float $value,
+        string $identifier,
+        string $fromTaxNumber,
+        string $fromBank,
+        string $fromBankBranch,
+        string $fromBankAccount,
+        string $fromBankAccountDigit
+    ): object {
+        return $this->call('GeneratePendingInternalTransfer', array_filter([
+            "PhoneNumber" => $phoneNumber,
+            "CountryCode" => $countryCode,
+            "Value" => $value,
+            "Identifier" => $identifier,
+            "FromTaxNumber" => $fromTaxNumber,
+            "FromBank" => $fromBank,
+            "FromBankBranch" => $fromBankBranch,
+            "FromBankAccount" => $fromBankAccount,
+            "FromBankAccountDigit" => $fromBankAccountDigit
+        ], function ($v) {
+            return !is_null($v);
+        }));
+    }
 }

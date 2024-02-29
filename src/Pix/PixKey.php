@@ -412,4 +412,89 @@ class PixKey extends CallApi
             self::CONTEXT
         );
     }
+
+    /**
+     * @param string $pixKey
+     * @param int $pixKeyType
+     * @param string $taxNumber
+     * @param bool $confirmation
+     * @return object
+     */
+    public function replyExternalPixKeyClaim(
+        string $pixKey,
+        int $pixKeyType,
+        string $taxNumber,
+        bool $confirmation
+    ): object {
+        return $this->call('ReplyExternalPixKeyClaim', array_filter(
+            [
+                "PixKey" => $pixKey,
+                "PixKeyType" => $pixKeyType,
+                "TaxNumber" => $taxNumber,
+                "Confirmation" => $confirmation
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+    public function cancelPixKeyClaim(
+        string $pixKey,
+        string $taxNumber,
+        int $pixKeyType,
+        string $bank,
+        string $bankBranch,
+        string $bankAccount,
+        string $bankAccountDigit
+    ): object {
+        return $this->call('CancelPixKeyClaim', array_filter(
+            [
+                "PixKey" => $pixKey,
+                "TaxNumber" => $taxNumber,
+                "PixKeyType" => $pixKeyType,
+                "Bank" => $bank,
+                "BankBranch" => $bankBranch,
+                "BankAccount" => $bankAccount,
+                "BankAccountDigit" => $bankAccountDigit
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $pixKey
+     * @param string $taxNumber
+     * @param int $pixKeyType
+     * @param string $bank
+     * @param string $bankBranch
+     * @param string $bankAccount
+     * @param string $bankAccountDigit
+     * @return object
+     */
+    public function claimPixKey(
+        string $pixKey,
+        string $taxNumber,
+        int $pixKeyType,
+        string $bank,
+        string $bankBranch,
+        string $bankAccount,
+        string $bankAccountDigit
+    ): object {
+        return $this->call('ClaimPixKey', array_filter(
+            [
+                "PixKey" => $pixKey,
+                "TaxNumber" => $taxNumber,
+                "PixKeyType" => $pixKeyType,
+                "Bank" => $bank,
+                "BankBranch" => $bankBranch,
+                "BankAccount" => $bankAccount,
+                "BankAccountDigit" => $bankAccountDigit
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
 }

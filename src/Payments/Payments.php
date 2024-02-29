@@ -93,4 +93,18 @@ class Payments extends CallApi
             }
         ));
     }
+    public function expectedDatePayment(
+        string $actualDatePayment,
+        ?string $barCode
+    ): object {
+        return $this->call('ExpectedDatePayment', array_filter(
+            [
+                "ActualDatePayment" => $actualDatePayment,
+                "BarCode" => $barCode
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
 }

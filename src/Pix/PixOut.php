@@ -776,4 +776,61 @@ class PixOut extends CallApi
         ];
         return $this->call('GetRefundPixOutByDate', array_filter($data), self::CONTEXT);
     }
+    public function getPixOutByDate(
+        string $taxNumber,
+        string $startDate,
+        string $endDate,
+        string $bank,
+        string $bankBranch,
+        string $bankAccount,
+        string $bankAccountDigit,
+        int $pageIndex,
+        int $pageSize
+    ): object {
+        return $this->call('GetPixOutByDate', array_filter(
+            [
+                "TaxNumber" => $taxNumber,
+                "StartDate" => $startDate,
+                "EndDate" => $endDate,
+                "Bank" => $bank,
+                "BankBranch" => $bankBranch,
+                "BankAccount" => $bankAccount,
+                "BankAccountDigit" => $bankAccountDigit,
+                "PageIndex" => $pageIndex,
+                "PageSize" => $pageSize
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @param string $taxNumber
+     * @param string $startDate
+     * @param string $endDate
+     * @param int|null $pageIndex
+     * @param int|null $pageSize
+     * @return object
+     */
+    public function getRefundPixOutByDate(
+        string $taxNumber,
+        string $startDate,
+        string $endDate,
+        ?int $pageIndex,
+        ?int $pageSize
+    ): object {
+        return $this->call('GetRefundPixOutByDate', array_filter(
+            [
+                "TaxNumber" => $taxNumber,
+                "StartDate" => $startDate,
+                "EndDate" => $endDate,
+                "PageIndex" => $pageIndex,
+                "PageSize" => $pageSize
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
 }

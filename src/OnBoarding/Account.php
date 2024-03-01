@@ -370,11 +370,11 @@ class Account extends CallApi
         string $taxNumber,
         string $mail,
         string $cellphone,
+        string $profileType,
         array $accountsTaxNumber,
         ?string $name,
         ?string $birthDate,
-        ?string $userParameterType,
-        string $profileType
+        ?string $userParameterType
     ): object {
         return $this->call(
             'CreateUser',

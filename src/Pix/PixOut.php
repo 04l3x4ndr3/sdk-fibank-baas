@@ -809,33 +809,4 @@ class PixOut extends CallApi
             }
         ));
     }
-
-    /**
-     * @description This method can be used to consult a PIX Payment refund by date.
-     * @document https://dev.fitbank.com.br/reference/337
-     * @param string $startDate
-     * @param string $endDate
-     * @param int|null $pageIndex
-     * @param int|null $pageSize
-     * @return object
-     */
-    public function getRefundPixOutByDate(
-        string $startDate,
-        string $endDate,
-        ?int $pageIndex,
-        ?int $pageSize
-    ): object {
-        return $this->call('GetRefundPixOutByDate', array_filter(
-            [
-                "TaxNumber" => $this->taxNumber,
-                "StartDate" => $startDate,
-                "EndDate" => $endDate,
-                "PageIndex" => $pageIndex,
-                "PageSize" => $pageSize
-            ],
-            function ($v) {
-                return !is_null($v);
-            }
-        ));
-    }
 }

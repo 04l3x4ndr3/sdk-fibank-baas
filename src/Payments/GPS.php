@@ -326,7 +326,7 @@ class GPS
      * @return object
      * @throws GuzzleException
      */
-    public function generatePaymentFGTS(?GPS $gps = null): object
+    public function generatePaymentGPS(?GPS $gps = null): object
     {
         $http = new CallApi($this->configuration);
         $data = (isset($gps)) ? $gps->toArray() : $this->toArray();

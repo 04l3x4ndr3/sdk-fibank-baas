@@ -460,33 +460,18 @@ class PixKey extends CallApi
     /**
      * @description This method can be used to claim a pix key ownership or to request portability of a pix key.
      * @document https://dev.fitbank.com.br/reference/267
-     * @param string $pixKey
-     * @param string $taxNumber
-     * @param int $pixKeyType
-     * @param string $bank
-     * @param string $bankBranch
-     * @param string $bankAccount
-     * @param string $bankAccountDigit
      * @return object
      */
-    public function claimPixKey(
-        string $pixKey,
-        string $taxNumber,
-        int $pixKeyType,
-        string $bank,
-        string $bankBranch,
-        string $bankAccount,
-        string $bankAccountDigit
-    ): object {
+    public function claimPixKey(): object {
         return $this->call('ClaimPixKey', array_filter(
             [
-                "PixKey" => $pixKey,
-                "TaxNumber" => $taxNumber,
-                "PixKeyType" => $pixKeyType,
-                "Bank" => $bank,
-                "BankBranch" => $bankBranch,
-                "BankAccount" => $bankAccount,
-                "BankAccountDigit" => $bankAccountDigit
+                "PixKey" => $this->pixKeyValue,
+                "TaxNumber" => $this->taxNumber,
+                "PixKeyType" => $this->pixKeyType,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit
             ],
             function ($v) {
                 return !is_null($v);

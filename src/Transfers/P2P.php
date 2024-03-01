@@ -760,7 +760,8 @@ class P2P extends CallApi
 
     /**
      * Transferir valores entre contas várias contas
-     *
+     * @description This method can be used to generate multiple Internal Transfer.
+     * @document https://dev.fitbank.com.br/reference/multipleinternaltransfers
      * @return object
      * @throws GuzzleException
      */
@@ -771,7 +772,8 @@ class P2P extends CallApi
 
     /**
      * Recuperar os dados da Transferência entre contas
-     *
+     * @description This method can be used to Get Internal Transfer By Id
+     * @document https://dev.fitbank.com.br/reference/getinternaltransferbyid
      * @param int $documentNumber
      *
      * @return object
@@ -787,7 +789,8 @@ class P2P extends CallApi
 
     /**
      * Consulta de Status por conta virtual
-     *
+     * @description This method can be used to Get Internal Transfer By Date.
+     * @document https://dev.fitbank.com.br/reference/getinternaltransferbydate
      * @param string $taxNumber
      * @param string $transferDate
      *
@@ -801,7 +804,8 @@ class P2P extends CallApi
 
     /**
      * Cancelamento de Transferência Interna
-     *
+     * @description This method can be used to cancel a Interna Transfer.
+     * @document https://dev.fitbank.com.br/reference/cancelinternaltransfer
      * @param int $documentNumber
      *
      * @return object
@@ -813,6 +817,8 @@ class P2P extends CallApi
     }
 
     /**
+     * @description This method can be used to get peding Internal Transfer.
+     * @document https://dev.fitbank.com.br/reference/getpendinginternaltransfer
      * @param string $name
      * @param string $taxNumber
      * @param string $verificationCode
@@ -834,6 +840,14 @@ class P2P extends CallApi
             return !is_null($v);
         }));
     }
+
+    /**
+     * @description This method can be used to get peding Internal Transfer by phone number.
+     * @document https://dev.fitbank.com.br/reference/getpendinginternaltransferbyphonenumber
+     * @param string $countryCode
+     * @param string $phoneNumber
+     * @return object
+     */
     public function getPendingInternalTransferByPhoneNumber(
         string $countryCode,
         string $phoneNumber
@@ -846,6 +860,8 @@ class P2P extends CallApi
         }));
     }
     /**
+     * @description This method can be used to get peding Internal Transfer by ID
+     * @document https://dev.fitbank.com.br/reference/getpendinginternaltransferbyidentifier
      * @param string $identifier
      * @return object
      */
@@ -860,6 +876,8 @@ class P2P extends CallApi
     }
 
     /**
+     * @description This method can be used to get peding Internal Transfer by SMS.
+     * @document https://dev.fitbank.com.br/reference/generatependinginternaltransferbysms
      * @param string $phoneNumber
      * @param string $countryCode
      * @param float $value
@@ -898,6 +916,8 @@ class P2P extends CallApi
     }
 
     /**
+     * @description This method can be used to generate pending Interna Transfer.
+     * @document https://dev.fitbank.com.br/reference/generatependinginternaltransfer
      * @param string $phoneNumber
      * @param string $countryCode
      * @param float $value

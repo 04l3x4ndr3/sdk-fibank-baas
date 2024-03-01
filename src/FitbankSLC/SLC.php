@@ -5,13 +5,15 @@ namespace O4l3x4ndr3\SdkFitbank\FitbankSLC;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class Queries extends CallApi
+class SLC extends CallApi
 {
     public function __construct(?Configuration $configuration = null)
     {
         parent::__construct($configuration);
     }
     /**
+     * @description Retorna uma lista de pagamentos agendados
+     * @document https://dev.fitbank.com.br/reference/post_getslconciliationbydate
      * @param int $taxNumber
      * @param int $bank
      * @param int $bankBranch
@@ -62,6 +64,8 @@ class Queries extends CallApi
     }
 
     /**
+     * @description GetSLCScheduled
+     * @document https://dev.fitbank.com.br/reference/post_getslcscheduled
      * @param int $taxNumber
      * @param int $bank
      * @param int $bankBranch

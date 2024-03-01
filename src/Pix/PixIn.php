@@ -20,8 +20,8 @@ class PixIn extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description This method can be used to consult a Pix In (pix receipt) by date.
+     * @document https://dev.fitbank.com.br/reference/365
      * @param string $taxNumber
      * @param string $bank
      * @param string $bankBranch
@@ -63,6 +63,28 @@ class PixIn extends CallApi
                 self::CONTEXT)
         );
     }
+
+    /**
+     * @description This method can be used to generate a refund of a pix transaction
+     * @document https://dev.fitbank.com.br/reference/240
+     * @param float $refundValue
+     * @param int $documentNumber
+     * @param string $taxNumber
+     * @param string $bank
+     * @param string $bankBranch
+     * @param string $bankAccount
+     * @param string $bankAccountDigit
+     * @param string $identifier
+     * @param string|null $toTaxNumber
+     * @param string|null $toName
+     * @param string|null $toBank
+     * @param string|null $toBankBranch
+     * @param string|null $toBankAccount
+     * @param string|null $toBankAccountDigit
+     * @param string|null $customerMessage
+     * @param array|null $tags
+     * @return object
+     */
     public function generateRefundPixIn(
         float $refundValue,
         int $documentNumber,
@@ -107,6 +129,8 @@ class PixIn extends CallApi
     }
 
     /**
+     * @description This method can be used to consult a refund pix in transaction by date.
+     * @document https://dev.fitbank.com.br/reference/368
      * @param string $taxNumber
      * @param string $startDate
      * @param string $endDate
@@ -148,6 +172,8 @@ class PixIn extends CallApi
     }
 
     /**
+     * @description This method can be used to consult a PIX Receipt by its ID (DocumentNumber).
+     * @document https://dev.fitbank.com.br/reference/480
      * @param string $taxNumber
      * @param string $bank
      * @param string $bankBranch
@@ -178,6 +204,43 @@ class PixIn extends CallApi
                 "BankAccountDigit" => $bankAccountDigit,
                 "EndToEndId" => $endToEndId,
                 "ConciliationId" => $conciliationId,
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description This method can be used to consult a refund pix in transaction by its identifier (DocumentNumber).
+     * @document https://dev.fitbank.com.br/reference/335
+     * @param string $taxNumber
+     * @param string $bank
+     * @param string $bankBranch
+     * @param string $bankAccount
+     * @param string $bankAccountDigit
+     * @param int|null $documentNumber
+     * @param string|null $identifier
+     * @return object
+     */
+    public function getRefundPixInById(
+        string $taxNumber,
+        string $bank,
+        string $bankBranch,
+        string $bankAccount,
+        string $bankAccountDigit,
+        ?int $documentNumber,
+        ?string $identifier
+    ): object {
+        return $this->call('GetRefundPixInById', array_filter(
+            [
+                "DocumentNumber" => $documentNumber,
+                "TaxNumber" => $taxNumber,
+                "Bank" => $bank,
+                "BankBranch" => $bankBranch,
+                "BankAccount" => $bankAccount,
+                "BankAccountDigit" => $bankAccountDigit,
+                "Identifier" => $identifier
             ],
             function ($v) {
                 return !is_null($v);

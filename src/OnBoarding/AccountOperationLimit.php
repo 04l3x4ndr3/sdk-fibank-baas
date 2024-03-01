@@ -279,8 +279,8 @@ class AccountOperationLimit extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description API method to query the pix limits configured for an account.
+     * @document https://dev.fitbank.com.br/reference/260
      * @return object
      * @throws GuzzleException
      */
@@ -297,8 +297,8 @@ class AccountOperationLimit extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description API method to configure (reduce or enlarge) pix limits according to the parameters of the business unit.
+     * @document https://dev.fitbank.com.br/reference/261
      * @return object
      * @throws GuzzleException
      */

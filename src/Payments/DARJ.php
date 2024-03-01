@@ -14,6 +14,8 @@ class DARJ extends CallApi
     }
 
     /**
+     * @description Generates a DARJ payment.
+     * @document https://dev.fitbank.com.br/reference/59-1
      * @param O4l3x4ndr3\SdkFitbank\Common\Pagadoria\DARJ|null $jsonOperationDARJs
      * @return object
      */
@@ -29,13 +31,15 @@ class DARJ extends CallApi
     }
 
     /**
+     * @description Returns a DARJ payment by document number.
+     * @document https://dev.fitbank.com.br/reference/61-1
      * @param string $documentNumber
      * @return object
      */
-    public function getGAREOutById(
+    public function getDARJOutById(
         string $documentNumber
     ): object {
-        return $this->call('GetGAREOutById', array_filter(
+        return $this->call('GetDARJOutById', array_filter(
             [
                 "DocumentNumber" => $documentNumber
             ],
@@ -46,6 +50,8 @@ class DARJ extends CallApi
     }
 
     /**
+     * @description Cancels DARJ payment by document number.
+     * @document https://dev.fitbank.com.br/reference/60-1
      * @param string $documentNumber
      * @return object
      */

@@ -16,6 +16,8 @@ class PersonData extends CallApi
     }
 
     /**
+     * @description Update individual person or company.
+     * @document https://dev.fitbank.com.br/reference/262
      * @param FullAccount $account
      *
      * @return object
@@ -31,6 +33,8 @@ class PersonData extends CallApi
         );
     }
     /**
+     * @description Requests information change for individual person or company.
+     * @document https://dev.fitbank.com.br/reference/607
      * @param string $taxNumber
      * @param array $personInfos
      * @param string|null $holderTaxNumber
@@ -56,6 +60,8 @@ class PersonData extends CallApi
         );
     }
     /**
+     * @description Get a person's registration update request.
+     * @document https://dev.fitbank.com.br/reference/621
      * @param string $usn
      * @return object
      */

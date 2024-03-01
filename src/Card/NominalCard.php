@@ -414,6 +414,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitação de cartão
+     * @document https://dev.fitbank.com.br/reference/post_requestcard
      * @param NominalCard $card
      * @return object
      */
@@ -425,6 +427,8 @@ class NominalCard
     }
 
     /**
+     * @description Confirmar solicitação
+     * @document https://dev.fitbank.com.br/reference/post_confirmcardrequest
      * @param string $IdentifierCard
      * @return object
      */
@@ -436,6 +440,8 @@ class NominalCard
     }
 
     /**
+     * @description Find
+     * @document https://dev.fitbank.com.br/reference/post_getcardbyidentifiercard
      * @param string $IdentifierCard
      * @return object
      */
@@ -447,6 +453,8 @@ class NominalCard
     }
 
     /**
+     * @description
+     * @document https://dev.fitbank.com.br/reference/post_getcardactionstatus
      * @param string $IdentifierCard
      * @param int $Action
      * @return object
@@ -462,6 +470,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitação de ativação
+     * @document https://dev.fitbank.com.br/reference/post_activatecard
      * @param string $IdentifierCard
      * @return object
      */
@@ -473,6 +483,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitar de bloqueio
+     * @document https://dev.fitbank.com.br/reference/post_blockcard
      * @param string $IdentifierCard
      * @param string $Pin
      * @param int $Reason
@@ -490,6 +502,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitar de desbloqueio
+     * @document https://dev.fitbank.com.br/reference/post_unblockcard
      * @param string $IdentifierCard
      * @param string $Pin
      * @return object
@@ -505,6 +519,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitar de alteração de senha
+     * @document https://dev.fitbank.com.br/reference/post_changepincard
      * @param string $IdentifierCard
      * @param string $CurrentPin
      * @param string $Pin
@@ -539,6 +555,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitação de reemisão de cartão
+     * @document https://dev.fitbank.com.br/reference/post_inactivateandreissuecard
      * @param string $IdentifierCard
      * @param string $Pin
      * @param int $ReasonCode
@@ -556,6 +574,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicita lote de cartões
+     * @document https://dev.fitbank.com.br/reference/post_requestcardbatch
      * @param string $identifierProduct
      * @param string $usageType
      * @param string $consumeType
@@ -564,17 +584,17 @@ class NominalCard
      * @return object
      */
     public function requestCardBatch(
-        string $identifierProduct,
         string $usageType,
         string $consumeType,
+        string $identifierProduct,
         float $amount,
         Address $address,
     ): object {
         return (new CallApi())->call('RequestCardBatch', array_filter(
             [
-                "IdentifierProduct" => $identifierProduct,
                 "UsageType" => $usageType,
                 "ConsumeType" => $consumeType,
+                "IdentifierProduct" => $identifierProduct,
                 "Amount" => $amount,
                 "Address" => [
                     "Line" => $address->getAddressLine(),
@@ -595,7 +615,9 @@ class NominalCard
     }
 
     /**
-     * @param CardOwner $cardOwner
+     * @description Solicitação de cartão
+     * @document https://dev.fitbank.com.br/reference/post_requestunnamedcard
+     * @param CardOwner|null $cardOwner
      * @param Address $cardDeliveryAddress
      * @param string $identifierProduct
      * @param string|null $usageType
@@ -603,9 +625,9 @@ class NominalCard
      * @return object
      */
     public function requestUnnamedCard(
-        CardOwner $cardOwner,
         Address $cardDeliveryAddress,
         string $identifierProduct,
+        ?CardOwner $cardOwner,
         ?string $usageType,
         ?string $consumeType
     ): object {
@@ -634,6 +656,8 @@ class NominalCard
     }
 
     /**
+     * @description Vincular cartão
+     * @document https://dev.fitbank.com.br/reference/post_bindunnamedcard
      * @param CardOwner $cardHolder
      * @param ContactInfo $cardHolderContact
      * @param string $identifierCard
@@ -663,6 +687,8 @@ class NominalCard
     }
 
     /**
+     * @description Cancela solicitação
+     * @document https://dev.fitbank.com.br/reference/post_cancelcardrequest
      * @param string $identifierCard
      * @return object
      */
@@ -681,13 +707,14 @@ class NominalCard
 
     /**
      * @description Cancela um cartão
+     * @document https://dev.fitbank.com.br/reference/post_cancelcard
      * @param string $identifierCard
-     * @param string $pin
+     * @param string|null $pin
      * @return object
      */
     public function cancelCard(
         string $identifierCard,
-        string $pin,
+        ?string $pin,
     ): object {
         return (new CallApi())->call('CancelCard', array_filter(
             [
@@ -702,6 +729,7 @@ class NominalCard
 
     /**
      * @description Retorna informações de um Lote
+     * @document https://dev.fitbank.com.br/reference/post_getcardbatchbyid
      * @param string $cardBatchId
      * @param int $pageSize
      * @param int $index
@@ -726,6 +754,7 @@ class NominalCard
 
     /**
      * @description Consultar saldo do cartão
+     * @document https://dev.fitbank.com.br/reference/post_getcardbalance
      * @param string $identifierCard
      * @return object
      */
@@ -744,13 +773,14 @@ class NominalCard
 
     /**
      * @description Retorna uma lista de cartões
-     * @param int $pageSize
-     * @param int $index
+     * @document https://dev.fitbank.com.br/reference/post_listcards
+     * @param int|null $pageSize
+     * @param int|null $index
      * @return object
      */
     public function listCards(
-        int $pageSize,
-        int $index
+        ?int $pageSize,
+        ?int $index
     ): object {
         return (new CallApi())->call('ListCards', array_filter(
             [
@@ -765,6 +795,7 @@ class NominalCard
 
     /**
      * @description Retorna uma lista de cartões vinculados a um CPF
+     * @document https://dev.fitbank.com.br/reference/post_getcardlist
      * @param string $taxNumber
      * @return object
      */
@@ -783,6 +814,7 @@ class NominalCard
 
     /**
      * @description Consulta movimentações do cartão
+     * @document https://dev.fitbank.com.br/reference/post_getcardentry
      * @param string $identifierCard
      * @param string $initialDate
      * @param string $finalDate
@@ -806,6 +838,8 @@ class NominalCard
     }
 
     /**
+     * @description Atualiza status de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_updatecardcontactless
      * @param bool $allow
      * @param string $identifierCard
      * @return object
@@ -826,7 +860,9 @@ class NominalCard
     }
 
     /**
-     * @param string|null $tdentifier
+     * @description Retorna um conjuto de informações para rastreio.
+     * @document https://dev.fitbank.com.br/reference/post_getcardtrackingbyidentifier
+     * @param string|null $identifier
      * @return object
      */
     public function getCardTrackingByIdentifier(
@@ -844,6 +880,7 @@ class NominalCard
 
     /**
      * @description Cadastra um portador
+     * @description https://dev.fitbank.com.br/reference/post_createcardholder
      * @param NominalCard $cardHolder
      * @return object
      */
@@ -870,6 +907,7 @@ class NominalCard
 
     /**
      * @description Atualiza as informações do portador do cartão
+     * @document https://dev.fitbank.com.br/reference/post_updatecardholder
      * @param NominalCard $cardHolder
      * @return object
      */
@@ -895,6 +933,8 @@ class NominalCard
     }
 
     /**
+     * @description Retorna uma lista de titulares de cartões
+     * @document https://dev.fitbank.com.br/reference/post_getcardholders
      * @return object
      */
     public function getCardHolders(): object {
@@ -902,6 +942,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicita recarga de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_rechargecard
      * @param string $prepaidCardId
      * @param string $taxNumber
      * @param float $rechargeValue
@@ -931,6 +973,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicita descarga
+     * @document https://dev.fitbank.com.br/reference/post_dischargecard
      * @param string $identifier
      * @param string $prepaidCardId
      * @param string|null $taxNumber
@@ -957,6 +1001,8 @@ class NominalCard
     }
 
     /**
+     * @description
+     * @document https://dev.fitbank.com.br/reference/post_getrechargecard
      * @param string $identifierCard
      * @param int $documentNumber
      * @return object
@@ -977,6 +1023,8 @@ class NominalCard
     }
 
     /**
+     * @description
+     * @document https://dev.fitbank.com.br/reference/post_getdischargecard
      * @param string $identifierCard
      * @param int $documentNumber
      * @return object
@@ -997,6 +1045,8 @@ class NominalCard
     }
 
     /**
+     * @description Retorna dados de posse de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_getcardowner
      * @param string $identifierCard
      * @param string $taxNumber
      * @return object
@@ -1017,6 +1067,8 @@ class NominalCard
     }
 
     /**
+     * @description Adiciona regras de compra de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_createcardpurchaserule
      * @param string $identifierCard
      * @param int $purchaseRuleId
      * @return object
@@ -1037,6 +1089,8 @@ class NominalCard
     }
 
     /**
+     * @description Remove regras de compra de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_unbindcardpurchaserule
      * @param string $identifierCard
      * @param int $purchaseRuleId
      * @return object
@@ -1057,6 +1111,8 @@ class NominalCard
     }
 
     /**
+     * @description Tranfere valores entre dois beneficiários
+     * @document https://dev.fitbank.com.br/reference/post_cardbenefittransfer
      * @param string $identifierCard
      * @param float $benefitFrom
      * @param float $benefitTo
@@ -1086,6 +1142,8 @@ class NominalCard
     }
 
     /**
+     * @description Retorna uma lista de regras de compra
+     * @document https://dev.fitbank.com.br/reference/post_getpurchaserules
      * @return object
      */
     public function getPurchaseRules(): object {
@@ -1094,6 +1152,7 @@ class NominalCard
 
     /**
      * @description Solicita um cartão virtual
+     * @document https://dev.fitbank.com.br/reference/post_requestvirtualcard
      * @param string $embossingName
      * @param CardOwner $cardHolder
      * @param CardOwner|null $cardOwner
@@ -1118,6 +1177,7 @@ class NominalCard
 
     /**
      * @description Solicita bloqueio de cartão
+     * @document https://dev.fitbank.com.br/reference/post_blockvirtualcard
      * @param string $identifierCard
      * @return object
      */
@@ -1136,6 +1196,7 @@ class NominalCard
 
     /**
      * @description Solicita desbloqueio um cartão virtual
+     * @document https://dev.fitbank.com.br/reference/post_unblockvirtualcard
      * @param string $identifierCard
      * @return object
      */
@@ -1154,6 +1215,7 @@ class NominalCard
 
     /**
      * @description Solicita o cancelamento de um cartão virtual
+     * @document https://dev.fitbank.com.br/reference/post_cancelvirtualcard
      * @param string $identifierCard
      * @return object
      */
@@ -1172,6 +1234,7 @@ class NominalCard
 
     /**
      * @description Solicita um cartão virtual
+     * @document https://dev.fitbank.com.br/reference/post_getvirtualcardbyid
      * @param string $identifierCard
      * @return object
      */
@@ -1190,6 +1253,7 @@ class NominalCard
 
     /**
      * @description Retorna uma lista de estabelecimentos permitidos
+     * @document https://dev.fitbank.com.br/reference/post_getestablishmentsinwhitelist
      * @param string $identifierCard
      * @return object
      */

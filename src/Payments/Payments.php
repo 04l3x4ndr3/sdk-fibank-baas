@@ -19,6 +19,8 @@ class Payments extends CallApi
     }
 
     /**
+     * @description Generate Payments.
+     * @document https://dev.fitbank.com.br/reference/45-1
      * @param BoletoOut|null $jsonOperationBoletoOuts
      * @param DARF|null $jsonOperationDARFs
      * @param GPS|null $jsonOperationGPSs
@@ -51,6 +53,8 @@ class Payments extends CallApi
     }
 
     /**
+     * @description Returns payments infos.
+     * @document https://dev.fitbank.com.br/reference/62-1
      * @param string|null $initialDate
      * @param string|null $finalDate
      * @param string|null $initialPaymentDate
@@ -93,6 +97,14 @@ class Payments extends CallApi
             }
         ));
     }
+
+    /**
+     * @description Returns the next valid date for payment.
+     * @document https://dev.fitbank.com.br/reference/41-1
+     * @param string $actualDatePayment
+     * @param string|null $barCode
+     * @return object
+     */
     public function expectedDatePayment(
         string $actualDatePayment,
         ?string $barCode

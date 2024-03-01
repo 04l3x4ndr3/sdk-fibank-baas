@@ -400,6 +400,8 @@ class DARF
     }
 
     /**
+     * @description Generates a DARF payment.
+     * @document https://dev.fitbank.com.br/reference/26-1
      * @param DARF $darf
      * @return object
      * @throws GuzzleException
@@ -412,6 +414,8 @@ class DARF
     }
 
     /**
+     * @description Returns a DARF payment by document number.
+     * @document https://dev.fitbank.com.br/reference/35-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException
@@ -424,6 +428,8 @@ class DARF
     }
 
     /**
+     * @description Cancels DARF payment by document number.
+     * @document https://dev.fitbank.com.br/reference/27-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException
@@ -436,6 +442,8 @@ class DARF
     }
 
     /**
+     * @description Returns a DARF payment by informations.
+     * @document https://dev.fitbank.com.br/reference/47-1
      * @param string $dueDate
      * @param string $principalValue
      * @param string $taxContributor

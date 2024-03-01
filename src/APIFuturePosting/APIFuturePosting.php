@@ -13,6 +13,8 @@ class APIFuturePosting extends CallApi
         parent::__construct($configuration);
     }
     /**
+     * @description This method can be used to generate a new Future Posting
+     * @document https://dev.fitbank.com.br/reference/generatefutureposting
      * @param string $taxNumber
      * @param string $identifier
      * @param string $receiverName
@@ -89,6 +91,8 @@ class APIFuturePosting extends CallApi
         }));
     }
     /**
+     * @description This method can be used to cancel a new Future Posting
+     * @document https://dev.fitbank.com.br/reference/cancelfutureposting
      * @param int $documentNumber
      * @return object
      */
@@ -100,6 +104,8 @@ class APIFuturePosting extends CallApi
         ]);
     }
     /**
+     * @description This method can be used to change a Future Posting
+     * @document https://dev.fitbank.com.br/reference/changefutureposting
      * @param int $documentNumber
      * @param float|null $value
      * @param string|null $dueDate
@@ -119,6 +125,8 @@ class APIFuturePosting extends CallApi
         }));
     }
     /**
+     * @description This method can be used to get Future Posting by id
+     * @document https://dev.fitbank.com.br/reference/getfuturepostingbyid
      * @param int $documentNumber
      * @param string $taxNumber
      * @return object
@@ -133,6 +141,8 @@ class APIFuturePosting extends CallApi
         ]);
     }
     /**
+     * @description This method can be used to get Future Posting
+     * @document https://dev.fitbank.com.br/reference/getfutureposting
      * @param string $initialDate
      * @param string $finalDate
      * @param int|null $documentNumber

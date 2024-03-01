@@ -16,13 +16,15 @@ class CollectionOrder extends CallApi
     }
 
     /**
-     * @param int $documentNumber
-     * @param string $identifier
+     * @description Get Collection Order
+     * @document https://dev.fitbank.com.br/reference/post_getcollectionorder
+     * @param int|null $documentNumber
+     * @param string|null $identifier
      * @return object
      */
     public function getCollectionOrder(
-        int $documentNumber,
-        string $identifier,
+        ?int $documentNumber,
+        ?string $identifier,
     ): object {
         return $this->call(
             'GetCollectionOrder',
@@ -35,6 +37,8 @@ class CollectionOrder extends CallApi
         );
     }
     /**
+     * @description Generate Collection Order
+     * @document https://dev.fitbank.com.br/reference/post_generatecollectionorder
      * @param string $identifier
      * @param float $principalValue
      * @param float $finePercent
@@ -91,6 +95,8 @@ class CollectionOrder extends CallApi
     }
 
     /**
+     * @description Cancel Collection Order
+     * @document https://dev.fitbank.com.br/reference/post_cancelcollectionorder
      * @param int $documentNumber
      * @return object
      */

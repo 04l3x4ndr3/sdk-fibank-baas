@@ -20,6 +20,8 @@ class PixQRCode extends CallApi
     }
 
     /**
+     * @description This method can be used to consult a Pix QrCode information, by decoding its HashCode.
+     * @document https://dev.fitbank.com.br/reference/274
      * @param string $taxNumber
      * @param string $hash
      *
@@ -40,6 +42,8 @@ class PixQRCode extends CallApi
     }
 
     /**
+     * @description This method can be used to generate a static Pix QRCode transaction.
+     * @document https://dev.fitbank.com.br/reference/255
      * @param float $principalValue
      * @param string $taxNumber
      * @param string $pixKey
@@ -87,6 +91,8 @@ class PixQRCode extends CallApi
     }
 
     /**
+     * @description This method can be used to generate a dynamic Pix QRCode transaction.
+     * @document https://dev.fitbank.com.br/reference/256
      * @param string $pixKey
      * @param string $taxNumber
      * @param float $principalValue
@@ -158,6 +164,8 @@ class PixQRCode extends CallApi
     }
 
     /**
+     * @description This method can be used to generate a dynamic Pix QRCode transactyion with due date.
+     * @document https://dev.fitbank.com.br/reference/275
      * @param string $pixKey
      * @param string $taxNumber
      * @param string $payerTaxNumber
@@ -226,6 +234,8 @@ class PixQRCode extends CallApi
     }
 
     /**
+     * @description This method can be used to modify a dynamic Pix QRCode data.
+     * @document https://dev.fitbank.com.br/reference/310
      * @param string $pixKey
      * @param float $principalValue
      * @param int $changeType
@@ -263,16 +273,16 @@ class PixQRCode extends CallApi
         return $this->call('ChangeDynamicPixQRCode', array_filter(
             [
                 "PixKey" => $pixKey,
-                "PrincipalValue" => $principalValue,
-                "ChangeType" => $changeType,
-                "DocumentNumber" => $documentNumber,
                 "TaxNumber" => $taxNumber,
                 "PayerTaxNumber" => $payerTaxNumber,
                 "PayerName" => $payerName,
+                "PrincipalValue" => $principalValue,
                 "ExpirationDate" => $expirationDate,
                 "Address" => $address,
+                "ChangeType" => $changeType,
                 "AdditionalData" => $additionalData,
                 "PayerRequest" => $payerRequest,
+                "DocumentNumber" => $documentNumber,
                 "TransactionPurpose" => $transactionPurpose,
                 "TransactionValue" => $transactionValue,
                 "TransactionChangeType" => $transactionChangeType,
@@ -285,6 +295,8 @@ class PixQRCode extends CallApi
     }
 
     /**
+     * @description This method can be used to modify dynamic a Pix QRCode Due Date information.
+     * @document https://dev.fitbank.com.br/reference/320
      * @param string $taxNumber
      * @param string $payerTaxNumber
      * @param string $payerName
@@ -320,19 +332,19 @@ class PixQRCode extends CallApi
         return $this->call('ChangeDynamicPixQRCodeDueDate', array_filter(
             [
                 "TaxNumber" => $taxNumber,
+                "PayerRequest" => $payerRequest,
                 "PayerTaxNumber" => $payerTaxNumber,
                 "PayerName" => $payerName,
                 "PrincipalValue" => $principalValue,
                 "PixKey" => $pixKey,
-                "DocumentNumber" => $documentNumber,
-                "PayerRequest" => $payerRequest,
                 "Address" => $address,
                 "DueDate" => $dueDate,
                 "ExpirationDate" => $expirationDate,
                 "RebateValue" => $rebateValue,
                 "InterestValue" => $interestValue,
                 "FineValue" => $fineValue,
-                "AdditionalData" => $additionalData
+                "AdditionalData" => $additionalData,
+                "DocumentNumber" => $documentNumber
             ],
             function ($v) {
                 return !is_null($v);
@@ -341,6 +353,8 @@ class PixQRCode extends CallApi
     }
 
     /**
+     * @description This method can be used to cancel Pix QRCode transaction.
+     * @document https://dev.fitbank.com.br/reference/344
      * @param string $taxNumber
      * @param int $documentNumber
      * @return object
@@ -361,6 +375,8 @@ class PixQRCode extends CallApi
     }
 
     /**
+     * @description This method can be used to consult a Pix QRCode by its identifier (DocumentNumber).
+     * @document https://dev.fitbank.com.br/reference/336
      * @param string $taxNumber
      * @param int $documentNumber
      * @return object
@@ -381,6 +397,8 @@ class PixQRCode extends CallApi
     }
 
     /**
+     * @description This method can be used to consult a pix payment by its identifier (DocumentNumber).
+     * @document https://dev.fitbank.com.br/reference/555
      * @param string|null $taxNumber
      * @param int|null $documentNumber
      * @param string|null $identifier

@@ -15,6 +15,8 @@ class PaymentOrder extends CallApi
     }
 
     /**
+     * @description Gera ordem de pagamento
+     * @document https://dev.fitbank.com.br/reference/post_generatepaymentorder
      * @param float $value
      * @param string $identifier
      * @param string $paymentDate
@@ -29,7 +31,7 @@ class PaymentOrder extends CallApi
         string $paymentDate,
         Beneficiary $beneficiary,
         Payer $payer,
-        ?array $tags = []
+        ?array $tags
     ): object {
         return $this->call(
             'GeneratePaymentOrder',
@@ -46,6 +48,8 @@ class PaymentOrder extends CallApi
         );
     }
     /**
+     * @description Retorna uma lista de ordem de pagamento
+     * @document https://dev.fitbank.com.br/reference/post_getpaymentorder
      * @param string|null $taxNumber
      * @param string|null $paymentDate
      * @param string|null $paymentOrderStatus
@@ -80,13 +84,15 @@ class PaymentOrder extends CallApi
         );
     }
     /**
-     * @param string|null $taxNumber
-     * @param int|null $paymentOrderId
+     * @description Cancela ordem de pagamento
+     * @document https://dev.fitbank.com.br/reference/post_cancelpaymentorder
+     * @param string $taxNumber
+     * @param int $paymentOrderId
      * @return object
      */
     public function cancelPaymentOrder(
-        ?string $taxNumber,
-        ?int $paymentOrderId
+        string $taxNumber,
+        int $paymentOrderId
     ): object {
         return $this->call(
             'CancelPaymentOrder',
@@ -98,23 +104,28 @@ class PaymentOrder extends CallApi
             })
         );
     }
+
     /**
-     * @param string|null $taxNumber
+     * @description Retorna informações de um beneficiário
+     * @document https://dev.fitbank.com.br/reference/post_getbeneficiary
+     * @param string $beneficiaryTaxNumber
      * @return object
      */
     public function getBeneficiary(
-        ?string $taxNumber
+        string $beneficiaryTaxNumber
     ): object {
         return $this->call(
             'GetBeneficiary',
             array_filter([
-                "TaxNumber" => $taxNumber
+                "BeneficiaryTaxNumber" => $beneficiaryTaxNumber
             ], function ($v) {
                 return !empty($v);
             })
         );
     }
     /**
+     * @description Retorna informações de câmbio
+     * @document https://dev.fitbank.com.br/reference/post_getfxforecast
      * @return object
      */
     public function getFXforecast(): object {

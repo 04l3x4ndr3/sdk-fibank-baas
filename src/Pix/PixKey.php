@@ -414,48 +414,20 @@ class PixKey extends CallApi
     }
 
     /**
-     * @param string $pixKey
-     * @param int $pixKeyType
-     * @param string $taxNumber
+     * @description This method can be used to respond to a pix key claim or pix key portability request.
+     * @document https://dev.fitbank.com.br/reference/271
      * @param bool $confirmation
      * @return object
      */
     public function replyExternalPixKeyClaim(
-        string $pixKey,
-        int $pixKeyType,
-        string $taxNumber,
         bool $confirmation
     ): object {
         return $this->call('ReplyExternalPixKeyClaim', array_filter(
             [
-                "PixKey" => $pixKey,
-                "PixKeyType" => $pixKeyType,
-                "TaxNumber" => $taxNumber,
+                "PixKey" => $this->pixKeyValue,
+                "PixKeyType" => $this->pixKeyType,
+                "TaxNumber" => $this->taxNumber,
                 "Confirmation" => $confirmation
-            ],
-            function ($v) {
-                return !is_null($v);
-            }
-        ));
-    }
-    public function cancelPixKeyClaim(
-        string $pixKey,
-        string $taxNumber,
-        int $pixKeyType,
-        string $bank,
-        string $bankBranch,
-        string $bankAccount,
-        string $bankAccountDigit
-    ): object {
-        return $this->call('CancelPixKeyClaim', array_filter(
-            [
-                "PixKey" => $pixKey,
-                "TaxNumber" => $taxNumber,
-                "PixKeyType" => $pixKeyType,
-                "Bank" => $bank,
-                "BankBranch" => $bankBranch,
-                "BankAccount" => $bankAccount,
-                "BankAccountDigit" => $bankAccountDigit
             ],
             function ($v) {
                 return !is_null($v);
@@ -464,6 +436,30 @@ class PixKey extends CallApi
     }
 
     /**
+     * @description This method can be used to cancel a request for pix key claim or pix key portability.
+     * @document https://dev.fitbank.com.br/reference/279
+     * @return object
+     */
+    public function cancelPixKeyClaim(): object {
+        return $this->call('CancelPixKeyClaim', array_filter(
+            [
+                "PixKey" => $this->pixKeyValue,
+                "TaxNumber" => $this->taxNumber,
+                "PixKeyType" => $this->pixKeyType,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description This method can be used to claim a pix key ownership or to request portability of a pix key.
+     * @document https://dev.fitbank.com.br/reference/267
      * @param string $pixKey
      * @param string $taxNumber
      * @param int $pixKeyType

@@ -17,6 +17,8 @@ class Documents extends CallApi
     }
 
     /**
+     * @description Get document account
+     * @document https://dev.fitbank.com.br/reference/413
      * @param string $taxNumber
      * @param int    $documentType
      *
@@ -43,11 +45,12 @@ class Documents extends CallApi
     }
 
     /**
+     * @description Resend of documents.
+     * @document https://dev.fitbank.com.br/reference/220
      * @param string $taxNumber
-     * @param array  $documents
-     *
+     * @param array $documents
+     * @param string|null $holderTaxNumber
      * @return object
-     * @throws GuzzleException
      */
     public function resendDocuments(string $taxNumber, array $documents, ?string $holderTaxNumber = null): object
     {

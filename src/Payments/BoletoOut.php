@@ -842,6 +842,8 @@ class BoletoOut extends CallApi
     }
 
     /**
+     * @description Generates a boleto out.
+     * @document https://dev.fitbank.com.br/reference/22-1
      * @return object
      * @throws GuzzleException
      */
@@ -851,6 +853,8 @@ class BoletoOut extends CallApi
     }
 
     /**
+     * @description Returns a boleto out by document number.
+     * @document https://dev.fitbank.com.br/reference/34-1
      * @param int $documentNumber
      *
      * @return object
@@ -862,6 +866,8 @@ class BoletoOut extends CallApi
     }
 
     /**
+     * @descriptionReturns boleto out infos.
+     * @document https://dev.fitbank.com.br/reference/46-1
      * @param string $barcode
      *
      * @return object
@@ -873,6 +879,8 @@ class BoletoOut extends CallApi
     }
 
     /**
+     * @description Cancel a boleto out by document number.
+     * @document https://dev.fitbank.com.br/reference/24-1
      * @param int $documentNumber
      *
      * @return object
@@ -883,4 +891,30 @@ class BoletoOut extends CallApi
         return $this->call('CancelBoletoOut', ['DocumentNumber' => $documentNumber]);
     }
 
+    /**
+     * @description Returns infos by barcode.
+     * @document https://dev.fitbank.com.br/reference/63-1
+     * @param string $barcode
+     *
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getInfosByBarcode(string $barcode): object
+    {
+        return $this->call('GetInfosByBarcode',['Barcode' => $barcode]);
+    }
+
+    /**
+     * @description Returns infos CIP by barcode.
+     * @document https://dev.fitbank.com.br/reference/80-1
+     * @param string $taxNumber
+     * @param string $barcode
+     *
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getInfosCIPByBarcode(string $taxNumber, string $barcode): object
+    {
+        return $this->call('GetInfosCIPByBarcode',["TaxNumber" => $taxNumber, "Barcode" => $barcode]);
+    }
 }

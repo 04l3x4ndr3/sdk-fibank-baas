@@ -153,6 +153,28 @@ class Account extends CallApi
     }
 
     /**
+     * @document https://dev.fitbank.com.br/reference/637
+     * @description Register address for individual person or company.
+     * @param string $taxNumber
+     * @param Address $address
+     * @return object
+     */
+    public function registerAddress(
+        string $taxNumber,
+        Address $address
+    ): object {
+        return $this->call(
+            'RegisterAddress',
+            array_filter([
+                "TaxNumber" => $taxNumber,
+                "Addresses" => $address->toArray()
+            ], function ($v) {
+                return !is_null($v);
+            })
+        );
+    }
+
+    /**
      * Get Account Entry
      * @document https://dev.fitbank.com.br/reference/15
      *
@@ -269,7 +291,7 @@ class Account extends CallApi
      * @param int|null $identifier
      * @return object
      * @throws GuzzleException
-     * @deprecated
+     * @removed
      */
     public function blockAccount(string $taxNumber, ?int $identifier = null): object
     {
@@ -285,6 +307,27 @@ class Account extends CallApi
     }
 
     /**
+     * @document https://dev.fitbank.com.br/reference/670
+     * @description Get all the signers related to a Person.
+     * @param string $taxNumber
+     * @return object
+     */
+    public function getSigners(
+        string $taxNumber
+    ): object {
+        return $this->call(
+            'GetSigners',
+            array_filter([
+                "TaxNumber" => $taxNumber
+            ], function ($v) {
+                return !is_null($v);
+            })
+        );
+    }
+
+    /**
+     * @description Create a request to close an account.
+     * @document https://dev.fitbank.com.br/reference/457
      * @param string $taxNumber
      * @param string $justification
      * @param array|null $accountKeys
@@ -305,7 +348,47 @@ class Account extends CallApi
                 "AccountKeys" => $accountKeys,
                 "Accounts" => $accounts
             ], function ($v) {
-                return !empty($v);
+                return !is_null($v);
+            })
+        );
+    }
+
+    /**
+     * @description Create a user or update an existing one.
+     * @document https://dev.fitbank.com.br/reference/105
+     * @param string $taxNumber
+     * @param string $mail
+     * @param string $cellphone
+     * @param array $accountsTaxNumber
+     * @param string|null $name
+     * @param string|null $birthDate
+     * @param string|null $userParameterType
+     * @param string $profileType
+     * @return object
+     */
+    public function createUser(
+        string $taxNumber,
+        string $mail,
+        string $cellphone,
+        array $accountsTaxNumber,
+        ?string $name,
+        ?string $birthDate,
+        ?string $userParameterType,
+        string $profileType
+    ): object {
+        return $this->call(
+            'CreateUser',
+            array_filter([
+                "TaxNumber" => $taxNumber,
+                "Mail" => $mail,
+                "Name" => $name,
+                "Cellphone" => $cellphone,
+                "BirthDate" => $birthDate,
+                "AccountsTaxNumber" => $accountsTaxNumber,
+                "UserParameterType" => $userParameterType,
+                "ProfileType" => $profileType
+            ], function ($v) {
+                return !is_null($v);
             })
         );
     }

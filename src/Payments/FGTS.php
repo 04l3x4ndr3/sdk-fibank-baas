@@ -303,6 +303,13 @@ class FGTS
         $data = (isset($fgts)) ? $fgts->toArray() : $this->toArray();
         return $http->call('GeneratePaymentFGTS', array_filter($data));
     }
+
+    /**
+     * @description Generates a FGTS payment.
+     * @document https://dev.fitbank.com.br/reference/56-1
+     * @param FGTS|null $fgts
+     * @return object
+     */
     public function generatePaymentsFGTS(?FGTS $fgts = null): object
     {
         $http = new CallApi($this->configuration);
@@ -311,6 +318,8 @@ class FGTS
     }
 
     /**
+     * @description Returns a FGTS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/57-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException
@@ -323,6 +332,8 @@ class FGTS
     }
 
     /**
+     * @description Cancels FGTS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/58-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException

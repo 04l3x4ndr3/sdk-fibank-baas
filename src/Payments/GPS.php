@@ -320,6 +320,8 @@ class GPS
     }
 
     /**
+     * @description Generates a GPS payment.
+     * @document https://dev.fitbank.com.br/reference/50-1
      * @param GPS $gps
      * @return object
      * @throws GuzzleException
@@ -332,6 +334,8 @@ class GPS
     }
 
     /**
+     * @description Returns a GPS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/53-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException
@@ -344,6 +348,8 @@ class GPS
     }
 
     /**
+     * @description Cancels GPS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/55-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException

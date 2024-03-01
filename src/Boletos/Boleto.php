@@ -1020,6 +1020,7 @@ class Boleto extends CallApi
 
     /**
      * @description
+     * @document https://dev.fitbank.com.br/reference/0
      *
      * @return object
      * @throws GuzzleException
@@ -1031,6 +1032,7 @@ class Boleto extends CallApi
 
     /**
      * @description
+     * @document https://dev.fitbank.com.br/reference/1
      *
      * @param int  $installmentsNumber
      * @param bool $carnet
@@ -1051,8 +1053,8 @@ class Boleto extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description Method used to cancel boletos using DocumentNumber.
+     * @document https://dev.fitbank.com.br/reference/post_cancelboleto
      * @param int $documentNumber
      *
      * @return object
@@ -1068,8 +1070,8 @@ class Boleto extends CallApi
 
 
     /**
-     * @description
-     *
+     * @description Method used to send change instructions.
+     * @document https://dev.fitbank.com.br/reference/post_changeboleto
      * @param int         $documentNumber
      * @param string      $taxNumber
      * @param float|null  $rebateValue
@@ -1113,8 +1115,8 @@ class Boleto extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description Get boleto by DocumentNumber.
+     * @document https://dev.fitbank.com.br/reference/20-1
      * @param int $documentNumber
      *
      * @return object
@@ -1179,6 +1181,8 @@ class Boleto extends CallApi
     }
 
     /**
+     * @description More performant version than GetBoletoById. Use to get a boleto by DocumentNumber.
+     * @document https://dev.fitbank.com.br/reference/780
      * @param int $documentNumber
      * @return object
      */
@@ -1188,17 +1192,13 @@ class Boleto extends CallApi
     }
 
     /**
+     * @description More performant version than GetBoletoByDate. Use to get boletos by range of dates.
+     * @document https://dev.fitbank.com.br/reference/775
      * @param string $initialDate
      * @param string $finalDate
      * @param string $pageIndex
      * @param string $pageSize
      * @param int|null $status
-     * @param string|null $customerTaxNumber
-     * @param string|null $supplierTaxNumber
-     * @param string|null $supplierBank
-     * @param string|null $supplierBankBranch
-     * @param string|null $supplierBankAccount
-     * @param string|null $supplierBankAccountDigit
      * @return object
      */
     public function getListBoletoByDate(
@@ -1206,13 +1206,7 @@ class Boleto extends CallApi
         string $finalDate,
         string $pageIndex,
         string $pageSize,
-        ?int $status,
-        ?string $customerTaxNumber,
-        ?string $supplierTaxNumber,
-        ?string $supplierBank,
-        ?string $supplierBankBranch,
-        ?string $supplierBankAccount,
-        ?string $supplierBankAccountDigit
+        ?int $status
     ): object {
         return $this->call('GetListBoletoByDate', array_filter(
             [
@@ -1221,18 +1215,26 @@ class Boleto extends CallApi
                 "PageIndex" => $pageIndex,
                 "PageSize" => $pageSize,
                 "Status" => $status,
-                "CustomerTaxNumber" => $customerTaxNumber,
-                "SupplierTaxNumber" => $supplierTaxNumber,
-                "SupplierBank" => $supplierBank,
-                "SupplierBankBranch" => $supplierBankBranch,
-                "SupplierBankAccount" => $supplierBankAccount,
-                "SupplierBankAccountDigit" => $supplierBankAccountDigit
+                "CustomerTaxNumber" => $this->customerTaxNumber,
+                "SupplierTaxNumber" => $this->supplierTaxNumber,
+                "SupplierBank" => $this->supplierBank,
+                "SupplierBankBranch" => $this->supplierBankBranch,
+                "SupplierBankAccount" => $this->supplierBankAccount,
+                "SupplierBankAccountDigit" => $this->supplierBankAccountDigit
             ],
             function ($v) {
                 return !is_null($v);
             }
         ));
     }
+
+    /**
+     * @description Method for viewing the change instructions via Protocol Number.
+     * @document https://dev.fitbank.com.br/reference/19
+     * @param string $taxNumber
+     * @param string $protocolNumber
+     * @return object
+     */
     public function getChangeBoleto(
         string $taxNumber,
         string $protocolNumber

@@ -360,10 +360,10 @@ class Account extends CallApi
      * @param string $mail
      * @param string $cellphone
      * @param array $accountsTaxNumber
+     * @param string $profileType
      * @param string|null $name
      * @param string|null $birthDate
      * @param string|null $userParameterType
-     * @param string $profileType
      * @return object
      */
     public function createUser(

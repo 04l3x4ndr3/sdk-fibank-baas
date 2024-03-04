@@ -11,10 +11,11 @@ class SLC extends CallApi
     {
         parent::__construct($configuration);
     }
+
     /**
      * @description Retorna uma lista de pagamentos agendados
      * @document https://dev.fitbank.com.br/reference/post_getslconciliationbydate
-     * @param int $taxNumber
+     * @param string $taxNumber
      * @param int $bank
      * @param int $bankBranch
      * @param int $bankAccount
@@ -29,7 +30,7 @@ class SLC extends CallApi
      * @return object
      */
     public function getSLConciliationByDate(
-        int $taxNumber,
+        string $taxNumber,
         int $bank,
         int $bankBranch,
         int $bankAccount,
@@ -66,7 +67,7 @@ class SLC extends CallApi
     /**
      * @description GetSLCScheduled
      * @document https://dev.fitbank.com.br/reference/post_getslcscheduled
-     * @param int $taxNumber
+     * @param string $taxNumber
      * @param int $bank
      * @param int $bankBranch
      * @param int $bankAccount
@@ -74,7 +75,7 @@ class SLC extends CallApi
      * @return object
      */
     public function getSLCScheduled(
-        int $taxNumber,
+        string $taxNumber,
         int $bank,
         int $bankBranch,
         int $bankAccount,

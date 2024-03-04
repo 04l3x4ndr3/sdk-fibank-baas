@@ -23,8 +23,8 @@ class CollectionOrder extends CallApi
      * @return object
      */
     public function getCollectionOrder(
-        ?int $documentNumber,
-        ?string $identifier,
+        ?int $documentNumber = null,
+        ?string $identifier = null
     ): object {
         return $this->call(
             'GetCollectionOrder',
@@ -64,12 +64,12 @@ class CollectionOrder extends CallApi
         CollectionPayer $payer,
         CollectionCustomer $customer,
         Receivers $receivers,
-        ?string $collectionOrderType,
-        ?float $rebateValue,
-        ?float $interestValue,
-        ?float $fineValue,
-        ?string $fineDate,
-        ?string $dueDate
+        ?string $collectionOrderType = null,
+        ?float $rebateValue = null,
+        ?float $interestValue = null,
+        ?float $fineValue = null,
+        ?string $fineDate = null,
+        ?string $dueDate = null
     ): object {
         return $this->call(
             'GenerateCollectionOrder',

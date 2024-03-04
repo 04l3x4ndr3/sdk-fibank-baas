@@ -43,7 +43,7 @@ class PersonData extends CallApi
     public function changePersonInfo (
         string $taxNumber,
         array $personInfos,
-        ?string $holderTaxNumber
+        ?string $holderTaxNumber = null
     ) : object {
         if (empty($holderTaxNumber)) {
             $holderTaxNumber = $taxNumber;

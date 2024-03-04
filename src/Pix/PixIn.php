@@ -94,14 +94,14 @@ class PixIn extends CallApi
         string $bankAccount,
         string $bankAccountDigit,
         string $identifier,
-        ?string $toTaxNumber,
-        ?string $toName,
-        ?string $toBank,
-        ?string $toBankBranch,
-        ?string $toBankAccount,
-        ?string $toBankAccountDigit,
-        ?string $customerMessage,
-        ?array $tags,
+        ?string $toTaxNumber = null,
+        ?string $toName = null,
+        ?string $toBank = null,
+        ?string $toBankBranch = null,
+        ?string $toBankAccount = null,
+        ?string $toBankAccountDigit = null,
+        ?string $customerMessage = null,
+        ?array $tags = null
     ): object {
         return $this->call('GenerateRefundPixIn', array_filter(
             [
@@ -150,8 +150,8 @@ class PixIn extends CallApi
         string $bankBranch,
         string $bankAccount,
         string $bankAccountDigit,
-        ?int $pageIndex,
-        ?int $pageSize
+        ?int $pageIndex = null,
+        ?int $pageSize = null
     ): object {
         return $this->call('GetRefundPixInByDate', array_filter(
             [
@@ -190,9 +190,9 @@ class PixIn extends CallApi
         string $bankBranch,
         string $bankAccount,
         string $bankAccountDigit,
-        ?int $documentNumber,
-        ?string $endToEndId,
-        ?string $conciliationId
+        ?int $documentNumber = null,
+        ?string $endToEndId = null,
+        ?string $conciliationId = null
     ): object {
         return $this->call('GetPixInById', array_filter(
             [
@@ -229,8 +229,8 @@ class PixIn extends CallApi
         string $bankBranch,
         string $bankAccount,
         string $bankAccountDigit,
-        ?int $documentNumber,
-        ?string $identifier
+        ?int $documentNumber = null,
+        ?string $identifier = null
     ): object {
         return $this->call('GetRefundPixInById', array_filter(
             [

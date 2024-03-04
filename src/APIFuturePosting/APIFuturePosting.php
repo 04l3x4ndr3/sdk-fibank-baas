@@ -45,23 +45,23 @@ class APIFuturePosting extends CallApi
         string $receiverName,
         string $receiverTaxNumber,
         int $debitType,
-        ?string $initialDate,
-        ?string $dueDate,
-        ?string $bank,
-        ?string $bankBranch,
-        ?string $bankAccount,
-        ?string $bankAccountDigit,
-        ?string $receiverBank,
-        ?string $receiverBankBranch,
-        ?string $receiverBankAccount,
-        ?string $receiverBankAccountDigit,
-        ?float $value,
-        ?int $automaticType,
-        ?AccountInfo $receiverBankingData,
-        ?int $rateValueType,
-        ?float $rateValue,
-        ?string $description,
-        ?array $tags
+        ?string $initialDate = null,
+        ?string $dueDate = null,
+        ?string $bank = null,
+        ?string $bankBranch = null,
+        ?string $bankAccount = null,
+        ?string $bankAccountDigit = null,
+        ?string $receiverBank = null,
+        ?string $receiverBankBranch = null,
+        ?string $receiverBankAccount = null,
+        ?string $receiverBankAccountDigit = null,
+        ?float $value = null,
+        ?int $automaticType = null,
+        ?AccountInfo $receiverBankingData = null,
+        ?int $rateValueType = null,
+        ?float $rateValue = null,
+        ?string $description = null,
+        ?array $tags = null
     ): object {
         return $this->call('GenerateFuturePosting', array_filter([
             "InitialDate" => $initialDate,
@@ -113,8 +113,8 @@ class APIFuturePosting extends CallApi
      */
     public function changeFuturePosting(
         int $documentNumber,
-        ?float $value,
-        ?string $dueDate
+        ?float $value = null,
+        ?string $dueDate = null
     ): object {
         return $this->call('ChangeFuturePosting', array_filter([
             "DocumentNumber" => $documentNumber,
@@ -152,8 +152,8 @@ class APIFuturePosting extends CallApi
     public function getFuturePosting(
         string $initialDate,
         string $finalDate,
-        ?int $documentNumber,
-        ?AccountInfo $accountInfo
+        ?int $documentNumber = null,
+        ?AccountInfo $accountInfo = null
     ): object {
         return $this->call('GetFuturePosting', array_filter(
             array_merge(

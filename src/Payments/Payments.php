@@ -30,12 +30,12 @@ class Payments extends CallApi
      * @return object
      */
     public function generatePayments(
-        ?BoletoOut $jsonOperationBoletoOuts,
-        ?DARF $jsonOperationDARFs,
-        ?GPS $jsonOperationGPSs,
-        ?GARE $jsonOperationGAREs,
-        ?FGTS $jsonOperationFGTSs,
-        ?DARJ $jsonOperationDARJs,
+        ?BoletoOut $jsonOperationBoletoOuts = null,
+        ?DARF $jsonOperationDARFs = null,
+        ?GPS $jsonOperationGPSs = null,
+        ?GARE $jsonOperationGAREs = null,
+        ?FGTS $jsonOperationFGTSs = null,
+        ?DARJ $jsonOperationDARJs = null
     ): object {
         return $this->call('GeneratePayments', array_filter(
             [
@@ -68,16 +68,16 @@ class Payments extends CallApi
      * @return object
      */
     public function getPayments(
-        ?string $initialDate,
-        ?string $finalDate,
-        ?string $initialPaymentDate,
-        ?string $finalPaymentDate,
-        ?string $taxNumber,
-        ?string $inicialDate,
-        ?string $bank,
-        ?string $bankBranch,
-        ?string $bankAccount,
-        ?string $bankAccountDigit,
+        ?string $initialDate = null,
+        ?string $finalDate = null,
+        ?string $initialPaymentDate = null,
+        ?string $finalPaymentDate = null,
+        ?string $taxNumber = null,
+        ?string $inicialDate = null,
+        ?string $bank = null,
+        ?string $bankBranch = null,
+        ?string $bankAccount = null,
+        ?string $bankAccountDigit = null
     ): object {
         return $this->call('GetPayments', array_filter(
             [
@@ -107,7 +107,7 @@ class Payments extends CallApi
      */
     public function expectedDatePayment(
         string $actualDatePayment,
-        ?string $barCode
+        ?string $barCode = null
     ): object {
         return $this->call('ExpectedDatePayment', array_filter(
             [

@@ -27,10 +27,10 @@ class DDA extends CallApi
         string $electronicPayerTaxNumber,
         int $pageSize,
         int $pageIndex,
-        ?string $initialDueDate,
-        ?string $finalDueDate,
-        ?string $beneficiaryName,
-        ?string $beneficiaryTaxNumber
+        ?string $initialDueDate = null,
+        ?string $finalDueDate = null,
+        ?string $beneficiaryName = null,
+        ?string $beneficiaryTaxNumber = null
     ): object {
         return $this->call(
             'GetBoletosDDA',
@@ -75,7 +75,7 @@ class DDA extends CallApi
      * @param array|null $accounts
      * @return object
      */
-    public function addElectronicPayer(string $taxNumber, ?array $accounts): object
+    public function addElectronicPayer(string $taxNumber, ?array $accounts = null): object
     {
         return $this->call(
             'AddElectronicPayer',

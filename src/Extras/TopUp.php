@@ -416,8 +416,8 @@ class TopUp extends CallApi
      * @return object
      */
     public function getTopUpProductsByPhone(
-        ?string $phone,
-        ?string $productSubType,
+        ?string $phone = null,
+        ?string $productSubType = null
     ): object {
         return $this->call(
             'GetTopUpProductsByPhone',

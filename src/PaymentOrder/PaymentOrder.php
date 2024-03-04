@@ -31,7 +31,7 @@ class PaymentOrder extends CallApi
         string $paymentDate,
         Beneficiary $beneficiary,
         Payer $payer,
-        ?array $tags
+        ?array $tags = null
     ): object {
         return $this->call(
             'GeneratePaymentOrder',
@@ -60,13 +60,13 @@ class PaymentOrder extends CallApi
      * @return object
      */
     public function getPaymentOrder(
-        ?string $taxNumber,
-        ?string $paymentDate,
-        ?string $paymentOrderStatus,
-        ?int $paymentOrderId,
-        ?string $identifier,
-        ?int $pageSize,
-        ?int $index
+        ?string $taxNumber = null,
+        ?string $paymentDate = null,
+        ?string $paymentOrderStatus = null,
+        ?int $paymentOrderId = null,
+        ?string $identifier = null,
+        ?int $pageSize = null,
+        ?int $index = null
     ): object {
         return $this->call(
             'GetPaymentOrder',

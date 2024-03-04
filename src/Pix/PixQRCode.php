@@ -66,9 +66,9 @@ class PixQRCode extends CallApi
         string $bankBranch,
         string $bankAccount,
         string $bankAccountDigit,
-        ?array $additionalData,
-        ?int $transactionPurpose,
-        ?string $identifier
+        ?array $additionalData = null,
+        ?int $transactionPurpose = null,
+        ?string $identifier = null
     ): object {
         return $this->call('GenerateStaticPixQRCode', array_filter(
             [
@@ -124,16 +124,16 @@ class PixQRCode extends CallApi
         string $bankAccount,
         string $bankAccountDigit,
         int $changeType,
-        ?string $payerTaxNumber,
-        ?string $payerName,
-        ?string $expirationDate,
-        ?array $additionalData,
-        ?string $payerRequest,
-        ?int $transactionPurpose,
-        ?float $transactionValue,
-        ?int $agentModality,
-        ?int $transactionChangeType,
-        ?string $identifier
+        ?string $payerTaxNumber = null,
+        ?string $payerName = null,
+        ?string $expirationDate = null,
+        ?array $additionalData = null,
+        ?string $payerRequest = null,
+        ?int $transactionPurpose = null,
+        ?float $transactionValue = null,
+        ?int $agentModality = null,
+        ?int $transactionChangeType = null,
+        ?string $identifier = null
     ): object {
         return $this->call('GenerateDynamicPixQRCode', array_filter(
             [
@@ -198,13 +198,13 @@ class PixQRCode extends CallApi
         string $bankBranch,
         string $bankAccount,
         string $bankAccountDigit,
-        ?string $expirationDate,
-        ?float $RebateValue,
-        ?float $interestValue,
-        ?float $fineValue,
-        ?array $additionalData,
-        ?string $payerRequest,
-        ?string $identifier
+        ?string $expirationDate = null,
+        ?float $RebateValue = null,
+        ?float $interestValue = null,
+        ?float $fineValue = null,
+        ?array $additionalData = null,
+        ?string $payerRequest = null,
+        ?string $identifier = null
     ): object {
         return $this->call('GenerateDynamicPixQRCodeDueDate', array_filter(
             [
@@ -258,17 +258,17 @@ class PixQRCode extends CallApi
         float $principalValue,
         int $changeType,
         int $documentNumber,
-        ?string $taxNumber,
-        ?string $payerTaxNumber,
-        ?string $payerName,
-        ?string $expirationDate,
-        ?Address $address,
-        ?array $additionalData,
-        ?string $payerRequest,
-        ?int $transactionPurpose,
-        ?float $transactionValue,
-        ?int $transactionChangeType,
-        ?int $agentModality
+        ?string $taxNumber = null,
+        ?string $payerTaxNumber = null,
+        ?string $payerName = null,
+        ?string $expirationDate = null,
+        ?Address $address = null,
+        ?array $additionalData = null,
+        ?string $payerRequest = null,
+        ?int $transactionPurpose = null,
+        ?float $transactionValue = null,
+        ?int $transactionChangeType = null,
+        ?int $agentModality = null
     ): object {
         return $this->call('ChangeDynamicPixQRCode', array_filter(
             [
@@ -320,14 +320,14 @@ class PixQRCode extends CallApi
         float $principalValue,
         string $pixKey,
         int $documentNumber,
-        ?string $payerRequest,
-        ?Address $address,
-        ?string $dueDate,
-        ?string $expirationDate,
-        ?float $rebateValue,
-        ?float $interestValue,
-        ?float $fineValue,
-        ?array $additionalData
+        ?string $payerRequest = null,
+        ?Address $address = null,
+        ?string $dueDate = null,
+        ?string $expirationDate = null,
+        ?float $rebateValue = null,
+        ?float $interestValue = null,
+        ?float $fineValue = null,
+        ?array $additionalData = null
     ): object {
         return $this->call('ChangeDynamicPixQRCodeDueDate', array_filter(
             [
@@ -405,9 +405,9 @@ class PixQRCode extends CallApi
      * @return object
      */
     public function getPixQRCodeByIdentifier(
-        ?string $taxNumber,
-        ?int $documentNumber,
-        ?string $identifier,
+        ?string $taxNumber = null,
+        ?int $documentNumber = null,
+        ?string $identifier = null
     ): object {
         return $this->call('GetPixQRCodeByIdentifier', array_filter(
             [

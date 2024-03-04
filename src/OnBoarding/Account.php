@@ -337,8 +337,8 @@ class Account extends CallApi
     public function closeAccount(
         string $taxNumber,
         string $justification = "Encerramento de contas",
-        ?array $accountKeys = [],
-        ?array $accounts = []
+        ?array $accountKeys = null,
+        ?array $accounts = null
     ): object {
         return $this->call(
             'CloseAccount',
@@ -372,9 +372,9 @@ class Account extends CallApi
         string $cellphone,
         string $profileType,
         array $accountsTaxNumber,
-        ?string $name,
-        ?string $birthDate,
-        ?string $userParameterType
+        ?string $name = null,
+        ?string $birthDate = null,
+        ?string $userParameterType = null
     ): object {
         return $this->call(
             'CreateUser',

@@ -627,9 +627,9 @@ class NominalCard
     public function requestUnnamedCard(
         Address $cardDeliveryAddress,
         string $identifierProduct,
-        ?CardOwner $cardOwner,
-        ?string $usageType,
-        ?string $consumeType
+        ?CardOwner $cardOwner = null,
+        ?string $usageType = null,
+        ?string $consumeType = null
     ): object {
         return (new CallApi())->call('RequestUnnamedCard', array_filter(
             [
@@ -669,8 +669,8 @@ class NominalCard
         CardOwner $cardHolder,
         ContactInfo $cardHolderContact,
         string $identifierCard,
-        ?CardOwner $cardOwner,
-        ?string $usageType
+        ?CardOwner $cardOwner = null,
+        ?string $usageType = null
     ): object {
         return (new CallApi())->call('BindUnnamedCard', array_filter(
             [
@@ -714,7 +714,7 @@ class NominalCard
      */
     public function cancelCard(
         string $identifierCard,
-        ?string $pin,
+        ?string $pin = null
     ): object {
         return (new CallApi())->call('CancelCard', array_filter(
             [
@@ -779,8 +779,8 @@ class NominalCard
      * @return object
      */
     public function listCards(
-        ?int $pageSize,
-        ?int $index
+        ?int $pageSize = null,
+        ?int $index = null
     ): object {
         return (new CallApi())->call('ListCards', array_filter(
             [
@@ -866,7 +866,7 @@ class NominalCard
      * @return object
      */
     public function getCardTrackingByIdentifier(
-        ?string $identifier
+        ?string $identifier = null
     ): object {
         return (new CallApi())->call('GetCardTrackingByIdentifier', array_filter(
             [
@@ -984,8 +984,8 @@ class NominalCard
     public function dischargeCard(
         string $identifier,
         string $prepaidCardId,
-        ?string $taxNumber,
-        ?float $dischargeValue
+        ?string $taxNumber = null,
+        ?float $dischargeValue = null
     ): object {
         return (new CallApi())->call('DischargeCard', array_filter(
             [
@@ -1161,7 +1161,7 @@ class NominalCard
     public function requestVirtualCard(
         string $embossingName,
         CardOwner $cardHolder,
-        ?CardOwner $cardOwner
+        ?CardOwner $cardOwner = null
     ): object {
         return (new CallApi())->call('RequestVirtualCard', array_filter(
             [

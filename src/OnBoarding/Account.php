@@ -122,6 +122,7 @@ class Account extends CallApi
      *
      * @return object
      * @throws GuzzleException
+     * @deprecated
      */
     public function getAccountAddress(string $taxNumber, ?int $index = null): mixed
     {
@@ -135,6 +136,44 @@ class Account extends CallApi
 
         $data = [];
         foreach ($resp->Message as $addr) {
+            $data[] = new Address(
+                $addr->AddressLine ?? null,
+                $addr->AddressLine2 ?? null,
+                $addr->ZipCode ?? null,
+                $addr->Neighborhood ?? null,
+                $addr->CityCode ?? null,
+                $addr->CityName ?? null,
+                $addr->State ?? null,
+                $addr->AddressType ?? null,
+                $addr->Country ?? null,
+                $addr->Complement ?? null,
+            );
+        };
+
+        return (isset($index)) ? $data[$index] : $data;
+    }
+
+    /**
+     * @description Get Account Address
+     * @document https://dev.fitbank.com.br/reference/473
+     *
+     * @param string   $taxNumber
+     * @param int|null $index
+     *
+     * @return object
+     */
+    public function getAccountAddresses(string $taxNumber, ?int $index = null): mixed
+    {
+        $resp = $this->call('GetAccountAddress', [
+            'TaxNumber' => $taxNumber,
+        ]);
+
+        if ($resp->Success !== "true") {
+            return false;
+        }
+
+        $data = [];
+        foreach ($resp->Addresses as $addr) {
             $data[] = new Address(
                 $addr->AddressLine ?? null,
                 $addr->AddressLine2 ?? null,

@@ -29,7 +29,7 @@ class Documents extends CallApi
     {
         $resp = $this->call('GetDocument', array_filter(['TaxNumber' => $taxNumber, 'DocumentType' => $documentType]));
 
-        if ($resp->Success !== "true") {
+        if (strtolower($resp->Success) !== "true") {
             return false;
         }
 

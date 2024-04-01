@@ -39,6 +39,7 @@ class Boleto extends CallApi
     private ?string $addressLine1;
     private ?string $addressLine2;
     private ?string $externalNumber;
+    private ?string $ourNumber;
     private ?string $identifier;
     private ?string $comments;
     private ?array $products;
@@ -87,6 +88,7 @@ class Boleto extends CallApi
         $this->addressLine1 = null;
         $this->addressLine2 = null;
         $this->externalNumber = null;
+        $this->ourNumber = null;
         $this->identifier = null;
         $this->comments = null;
         $this->products = null;
@@ -604,6 +606,23 @@ class Boleto extends CallApi
     /**
      * @return string|null
      */
+    public function getOurNumber(): ?string
+    {
+        return $this->ourNumber;
+    }
+
+    /**
+     * @param string|null $ourNumber
+     * @return void
+     */
+    public function setOurNumber(?string $ourNumber): void
+    {
+        $this->ourNumber = $ourNumber;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getIdentifier(): ?string
     {
         return $this->identifier;
@@ -993,6 +1012,7 @@ class Boleto extends CallApi
             "AddressLine1" => $this->addressLine1,
             "AddressLine2" => $this->addressLine2,
             "ExternalNumber" => $this->externalNumber,
+            "OurNumber" => $this->ourNumber,
             "Identifier" => $this->identifier,
             "Comments" => $this->comments,
             "Products" => array_filter($arrProducts, function ($v) {

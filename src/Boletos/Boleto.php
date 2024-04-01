@@ -613,11 +613,12 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $ourNumber
-     * @return void
+     * @return Boleto
      */
-    public function setOurNumber(?string $ourNumber): void
+    public function setOurNumber(?string $ourNumber): Boleto
     {
         $this->ourNumber = $ourNumber;
+        return $this;
     }
 
     /**

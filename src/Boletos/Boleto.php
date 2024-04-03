@@ -58,6 +58,13 @@ class Boleto extends CallApi
     private ?float $discountValue3;
     private ?float $rebateValue;
     private ?string $tags;
+    private ?array $operationVars;
+    private ?int $divergentPaymentType;
+    private ?float $minPaymentValue;
+    private ?float $maxPaymentValue;
+    private ?int $expirationDays;
+    private ?int $interestType;
+    private ?string $interestDate;
 
     public function __construct(?Configuration $configuration = null)
     {
@@ -107,7 +114,13 @@ class Boleto extends CallApi
         $this->discountValue3 = null;
         $this->rebateValue = null;
         $this->tags = null;
-
+        $this->operationVars = null;
+        $this->divergentPaymentType = null;
+        $this->minPaymentValue = null;
+        $this->maxPaymentValue = null;
+        $this->expirationDays = null;
+        $this->interestType = null;
+        $this->interestDate = null;
     }
 
     /**
@@ -969,6 +982,81 @@ class Boleto extends CallApi
         return $this;
     }
 
+    public function getOperationVars(): ?array
+    {
+        return $this->operationVars;
+    }
+
+    public function setOperationVars(?array $operationVars): void
+    {
+        $this->operationVars = $operationVars;
+    }
+
+    public function addOperationVars(?array $operationVar): Boleto
+    {
+        $this->operationVars[] = $operationVar;
+        return $this;
+    }
+
+    public function getDivergentPaymentType(): ?int
+    {
+        return $this->divergentPaymentType;
+    }
+
+    public function setDivergentPaymentType(?int $divergentPaymentType): void
+    {
+        $this->divergentPaymentType = $divergentPaymentType;
+    }
+
+    public function getMinPaymentValue(): ?float
+    {
+        return $this->minPaymentValue;
+    }
+
+    public function setMinPaymentValue(?float $minPaymentValue): void
+    {
+        $this->minPaymentValue = $minPaymentValue;
+    }
+
+    public function getMaxPaymentValue(): ?float
+    {
+        return $this->maxPaymentValue;
+    }
+
+    public function setMaxPaymentValue(?float $maxPaymentValue): void
+    {
+        $this->maxPaymentValue = $maxPaymentValue;
+    }
+
+    public function getExpirationDays(): ?int
+    {
+        return $this->expirationDays;
+    }
+
+    public function setExpirationDays(?int $expirationDays): void
+    {
+        $this->expirationDays = $expirationDays;
+    }
+
+    public function getInterestType(): ?int
+    {
+        return $this->interestType;
+    }
+
+    public function setInterestType(?int $interestType): void
+    {
+        $this->interestType = $interestType;
+    }
+
+    public function getInterestDate(): ?string
+    {
+        return $this->interestDate;
+    }
+
+    public function setInterestDate(?string $interestDate): void
+    {
+        $this->interestDate = $interestDate;
+    }
 
     /**
      * @description
@@ -1034,6 +1122,13 @@ class Boleto extends CallApi
             "DiscountValue3" => $this->discountValue3,
             "RebateValue" => $this->rebateValue,
             "Tags" => $this->tags,
+            "OperationVars" => $this->operationVars,
+            "DivergentPaymentType" => $this->divergentPaymentType,
+            "MinPaymentValue" => $this->minPaymentValue,
+            "MaxPaymentValue" => $this->maxPaymentValue,
+            "ExpirationDays" => $this->expirationDays,
+            "InterestType" => $this->interestType,
+            "InterestDate" => $this->interestDate
         ], function ($v) {
             return !is_null($v);
         });

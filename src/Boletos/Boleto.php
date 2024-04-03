@@ -987,9 +987,10 @@ class Boleto extends CallApi
         return $this->operationVars;
     }
 
-    public function setOperationVars(?array $operationVars): void
+    public function setOperationVars(?array $operationVars): Boleto
     {
         $this->operationVars = $operationVars;
+        return $this;
     }
 
     public function addOperationVars(?array $operationVar): Boleto
@@ -1003,9 +1004,10 @@ class Boleto extends CallApi
         return $this->divergentPaymentType;
     }
 
-    public function setDivergentPaymentType(?int $divergentPaymentType): void
+    public function setDivergentPaymentType(?int $divergentPaymentType): Boleto
     {
         $this->divergentPaymentType = $divergentPaymentType;
+        return $this;
     }
 
     public function getMinPaymentValue(): ?float
@@ -1013,9 +1015,10 @@ class Boleto extends CallApi
         return $this->minPaymentValue;
     }
 
-    public function setMinPaymentValue(?float $minPaymentValue): void
+    public function setMinPaymentValue(?float $minPaymentValue): Boleto
     {
         $this->minPaymentValue = $minPaymentValue;
+        return $this;
     }
 
     public function getMaxPaymentValue(): ?float
@@ -1023,9 +1026,10 @@ class Boleto extends CallApi
         return $this->maxPaymentValue;
     }
 
-    public function setMaxPaymentValue(?float $maxPaymentValue): void
+    public function setMaxPaymentValue(?float $maxPaymentValue): Boleto
     {
         $this->maxPaymentValue = $maxPaymentValue;
+        return $this;
     }
 
     public function getExpirationDays(): ?int
@@ -1033,9 +1037,10 @@ class Boleto extends CallApi
         return $this->expirationDays;
     }
 
-    public function setExpirationDays(?int $expirationDays): void
+    public function setExpirationDays(?int $expirationDays): Boleto
     {
         $this->expirationDays = $expirationDays;
+        return $this;
     }
 
     public function getInterestType(): ?int
@@ -1043,9 +1048,10 @@ class Boleto extends CallApi
         return $this->interestType;
     }
 
-    public function setInterestType(?int $interestType): void
+    public function setInterestType(?int $interestType): Boleto
     {
         $this->interestType = $interestType;
+        return $this;
     }
 
     public function getInterestDate(): ?string
@@ -1053,9 +1059,10 @@ class Boleto extends CallApi
         return $this->interestDate;
     }
 
-    public function setInterestDate(?string $interestDate): void
+    public function setInterestDate(?string $interestDate): Boleto
     {
         $this->interestDate = $interestDate;
+        return $this;
     }
 
     /**

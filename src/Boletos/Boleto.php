@@ -1205,7 +1205,7 @@ class Boleto extends CallApi
      * @throws GuzzleException
      * @throws GuzzleException
      */
-    public function changeBoleto(int $documentNumber, string $taxNumber, ?float $rebateValue, ?string $dueDateBoleto, ?float $principalValue, ?float $fineDate): object
+    public function changeBoleto(int $documentNumber, string $taxNumber, ?float $rebateValue, ?string $dueDateBoleto, ?float $principalValue, ?string $fineDate): object
     {
         $charges = [];
         if (isset($rebateValue)) {

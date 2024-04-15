@@ -65,6 +65,52 @@ class PixIn extends CallApi
     }
 
     /**
+     * @description This method can be used to consult a Pix In (pix receipt) by date.
+     * @document https://dev.fitbank.com.br/reference/365
+     * @param string $taxNumber
+     * @param string $bank
+     * @param string $bankBranch
+     * @param string $bankAccount
+     * @param string $bankAccountDigit
+     * @param string $startDate
+     * @param string $endDate
+     * @param int    $pageIndex
+     * @param int    $pageSize
+     *
+     * @return object
+     */
+    public function getPixInByDate2(
+        string $taxNumber,
+        string $bank,
+        string $bankBranch,
+        string $bankAccount,
+        string $bankAccountDigit,
+        string $startDate,
+        string $endDate,
+        ?int $pageIndex,
+        ?int $pageSize
+    ): object
+    {
+        return $this->call(
+            'GetPixInByDate',
+            array_filter([
+                "TaxNumber" => $taxNumber,
+                "Bank" => $bank,
+                "BankBranch," => $bankBranch,
+                "BankAccount" => $bankAccount,
+                "BankAccountDigit" => $bankAccountDigit,
+                "StartDate" => $startDate,
+                "EndDate" => $endDate,
+                "PageIndex" => $pageIndex,
+                "PageSize" => $pageSize
+            ],
+            function ($v) {
+                return !is_null($v);
+            })
+        );
+    }
+
+    /**
      * @description This method can be used to generate a refund of a pix transaction
      * @document https://dev.fitbank.com.br/reference/240
      * @param float $refundValue

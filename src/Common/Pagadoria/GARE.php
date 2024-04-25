@@ -61,9 +61,10 @@ class GARE
         return $this->taxNumber;
     }
 
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): GARE
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     public function getContributorTaxNumber(): ?string
@@ -71,9 +72,10 @@ class GARE
         return $this->contributorTaxNumber;
     }
 
-    public function setContributorTaxNumber(?string $contributorTaxNumber): void
+    public function setContributorTaxNumber(?string $contributorTaxNumber): GARE
     {
         $this->contributorTaxNumber = $contributorTaxNumber;
+        return $this;
     }
 
     public function getReferenceNumber(): ?string
@@ -81,9 +83,10 @@ class GARE
         return $this->referenceNumber;
     }
 
-    public function setReferenceNumber(?string $referenceNumber): void
+    public function setReferenceNumber(?string $referenceNumber): GARE
     {
         $this->referenceNumber = $referenceNumber;
+        return $this;
     }
 
     public function getPrincipalValue(): ?float
@@ -91,9 +94,10 @@ class GARE
         return $this->principalValue;
     }
 
-    public function setPrincipalValue(?float $principalValue): void
+    public function setPrincipalValue(?float $principalValue): GARE
     {
         $this->principalValue = $principalValue;
+        return $this;
     }
 
     public function getFineValue(): ?float
@@ -101,9 +105,10 @@ class GARE
         return $this->fineValue;
     }
 
-    public function setFineValue(?float $fineValue): void
+    public function setFineValue(?float $fineValue): GARE
     {
         $this->fineValue = $fineValue;
+        return $this;
     }
 
     public function getInterestValue(): ?float
@@ -111,9 +116,10 @@ class GARE
         return $this->interestValue;
     }
 
-    public function setInterestValue(?float $interestValue): void
+    public function setInterestValue(?float $interestValue): GARE
     {
         $this->interestValue = $interestValue;
+        return $this;
     }
 
     public function getTotalValue(): ?float
@@ -121,9 +127,10 @@ class GARE
         return $this->totalValue;
     }
 
-    public function setTotalValue(?float $totalValue): void
+    public function setTotalValue(?float $totalValue): GARE
     {
         $this->totalValue = $totalValue;
+        return $this;
     }
 
     public function getRateValue(): ?float
@@ -131,9 +138,10 @@ class GARE
         return $this->rateValue;
     }
 
-    public function setRateValue(?float $rateValue): void
+    public function setRateValue(?float $rateValue): GARE
     {
         $this->rateValue = $rateValue;
+        return $this;
     }
 
     public function getDueDate(): ?string
@@ -141,9 +149,10 @@ class GARE
         return $this->dueDate;
     }
 
-    public function setDueDate(?string $dueDate): void
+    public function setDueDate(?string $dueDate): GARE
     {
         $this->dueDate = $dueDate;
+        return $this;
     }
 
     public function getPaymentDate(): ?string
@@ -151,9 +160,10 @@ class GARE
         return $this->paymentDate;
     }
 
-    public function setPaymentDate(?string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): GARE
     {
         $this->paymentDate = $paymentDate;
+        return $this;
     }
 
     public function getTags(): ?array
@@ -161,9 +171,153 @@ class GARE
         return $this->tags;
     }
 
-    public function setTags(?array $tags): void
+    public function setTags(?array $tags): GARE
     {
         $this->tags = $tags;
+        return $this;
+    }
+
+    public function getCodeRevenue(): ?string
+    {
+        return $this->codeRevenue;
+    }
+
+    public function setCodeRevenue(?string $codeRevenue): GARE
+    {
+        $this->codeRevenue = $codeRevenue;
+        return $this;
+    }
+
+    public function getStateRegistration(): ?string
+    {
+        return $this->stateRegistration;
+    }
+
+    public function setStateRegistration(?string $stateRegistration): GARE
+    {
+        $this->stateRegistration = $stateRegistration;
+        return $this;
+    }
+
+    public function getActiveDebit(): ?string
+    {
+        return $this->activeDebit;
+    }
+
+    public function setActiveDebit(?string $activeDebit): GARE
+    {
+        $this->activeDebit = $activeDebit;
+        return $this;
+    }
+
+    public function getQuoteNumberNotification(): ?string
+    {
+        return $this->quoteNumberNotification;
+    }
+
+    public function setQuoteNumberNotification(?string $quoteNumberNotification): GARE
+    {
+        $this->quoteNumberNotification = $quoteNumberNotification;
+        return $this;
+    }
+
+    public function getRateValueType(): ?int
+    {
+        return $this->rateValueType;
+    }
+
+    public function setRateValueType(?int $rateValueType): GARE
+    {
+        $this->rateValueType = $rateValueType;
+        return $this;
+    }
+
+    public function getCalculationPeriod(): ?string
+    {
+        return $this->calculationPeriod;
+    }
+
+    public function setCalculationPeriod(?string $calculationPeriod): GARE
+    {
+        $this->calculationPeriod = $calculationPeriod;
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): GARE
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    public function setIdentifier(?string $identifier): GARE
+    {
+        $this->identifier = $identifier;
+        return $this;
+    }
+
+    public function getGareType(): ?int
+    {
+        return $this->gareType;
+    }
+
+    public function setGareType(?int $gareType): GARE
+    {
+        $this->gareType = $gareType;
+        return $this;
+    }
+
+    public function getFromBank(): ?string
+    {
+        return $this->fromBank;
+    }
+
+    public function setFromBank(?string $fromBank): GARE
+    {
+        $this->fromBank = $fromBank;
+        return $this;
+    }
+
+    public function getFromBankBranch(): ?string
+    {
+        return $this->fromBankBranch;
+    }
+
+    public function setFromBankBranch(?string $fromBankBranch): GARE
+    {
+        $this->fromBankBranch = $fromBankBranch;
+        return $this;
+    }
+
+    public function getFromBankAccount(): ?string
+    {
+        return $this->fromBankAccount;
+    }
+
+    public function setFromBankAccount(?string $fromBankAccount): GARE
+    {
+        $this->fromBankAccount = $fromBankAccount;
+        return $this;
+    }
+
+    public function getFromBankDigit(): ?string
+    {
+        return $this->fromBankDigit;
+    }
+
+    public function setFromBankDigit(?string $fromBankDigit): GARE
+    {
+        $this->fromBankDigit = $fromBankDigit;
+        return $this;
     }
 
     public function addTag(?string $tag): array
@@ -175,135 +329,6 @@ class GARE
         return $this->tags;
     }
 
-    public function getCodeRevenue(): ?string
-    {
-        return $this->codeRevenue;
-    }
-
-    public function setCodeRevenue(?string $codeRevenue): void
-    {
-        $this->codeRevenue = $codeRevenue;
-    }
-
-    public function getStateRegistration(): ?string
-    {
-        return $this->stateRegistration;
-    }
-
-    public function setStateRegistration(?string $stateRegistration): void
-    {
-        $this->stateRegistration = $stateRegistration;
-    }
-
-    public function getActiveDebit(): ?string
-    {
-        return $this->activeDebit;
-    }
-
-    public function setActiveDebit(?string $activeDebit): void
-    {
-        $this->activeDebit = $activeDebit;
-    }
-
-    public function getQuoteNumberNotification(): ?string
-    {
-        return $this->quoteNumberNotification;
-    }
-
-    public function setQuoteNumberNotification(?string $quoteNumberNotification): void
-    {
-        $this->quoteNumberNotification = $quoteNumberNotification;
-    }
-
-    public function getRateValueType(): ?int
-    {
-        return $this->rateValueType;
-    }
-
-    public function setRateValueType(?int $rateValueType): void
-    {
-        $this->rateValueType = $rateValueType;
-    }
-
-    public function getCalculationPeriod(): ?string
-    {
-        return $this->calculationPeriod;
-    }
-
-    public function setCalculationPeriod(?string $calculationPeriod): void
-    {
-        $this->calculationPeriod = $calculationPeriod;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): void
-    {
-        $this->description = $description;
-    }
-
-    public function getIdentifier(): ?string
-    {
-        return $this->identifier;
-    }
-
-    public function setIdentifier(?string $identifier): void
-    {
-        $this->identifier = $identifier;
-    }
-
-    public function getGareType(): ?int
-    {
-        return $this->gareType;
-    }
-
-    public function setGareType(?int $gareType): void
-    {
-        $this->gareType = $gareType;
-    }
-
-    public function getFromBank(): ?string
-    {
-        return $this->fromBank;
-    }
-
-    public function setFromBank(?string $fromBank): void
-    {
-        $this->fromBank = $fromBank;
-    }
-
-    public function getFromBankBranch(): ?string
-    {
-        return $this->fromBankBranch;
-    }
-
-    public function setFromBankBranch(?string $fromBankBranch): void
-    {
-        $this->fromBankBranch = $fromBankBranch;
-    }
-
-    public function getFromBankAccount(): ?string
-    {
-        return $this->fromBankAccount;
-    }
-
-    public function setFromBankAccount(?string $fromBankAccount): void
-    {
-        $this->fromBankAccount = $fromBankAccount;
-    }
-
-    public function getFromBankDigit(): ?string
-    {
-        return $this->fromBankDigit;
-    }
-
-    public function setFromBankDigit(?string $fromBankDigit): void
-    {
-        $this->fromBankDigit = $fromBankDigit;
-    }
     public function toArray(): array
     {
         return array_filter([

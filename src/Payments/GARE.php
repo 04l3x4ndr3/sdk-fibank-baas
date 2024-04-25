@@ -1,5 +1,7 @@
 <?php
 
+namespace O4l3x4ndr3\SdkFitbank\Payments;
+
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
@@ -17,7 +19,7 @@ class GARE extends CallApi
      * @return object
      */
     public function generatePaymentGARE(
-        ?O4l3x4ndr3\SdkFitbank\Common\Pagadoria\GARE $jsonOperationGAREs,
+        ?\O4l3x4ndr3\SdkFitbank\Common\Pagadoria\GARE $jsonOperationGAREs,
     ): object {
         return $this->call('GeneratePaymentGARE', array_filter(
             $jsonOperationGAREs->toArray(),

@@ -23,16 +23,16 @@ class DARF
     private string $contributorTaxNumber;
     private string $referenceNumber;
     private string $dueDate;
+    private float $totalValue;
+    private float $rateValue;
     private float $principalValue;
     private float $fineValue;
     private float $interestValue;
-    private float $totalValue;
     private string $paymentDate;
+    private array $tags;
     private string $description;
     private string $identifier;
     private int $rateValueType;
-    private float $rateValue;
-    private array $tags;
 
     /**
      * @param string|null $taxNumber
@@ -411,6 +411,18 @@ class DARF
         $http = new CallApi($this->configuration);
         $data = (isset($darf)) ? $darf->toArray() : $this->toArray();
         return $http->call('GeneratePaymentDARF', array_filter($data));
+    }
+
+    /**
+     * @description New version for generates a DARF payment.
+     * @document https://dev.fitbank.com.br/reference/26-1
+     * @param \O4l3x4ndr3\SdkFitbank\Common\Pagadoria\DARF $darf
+     * @return object
+     */
+    public function generatePaymentDARF2(\O4l3x4ndr3\SdkFitbank\Common\Pagadoria\DARF $darf): object
+    {
+        $http = new CallApi($this->configuration);
+        return $http->call('GeneratePaymentDARF', array_filter($darf->toArray()));
     }
 
     /**

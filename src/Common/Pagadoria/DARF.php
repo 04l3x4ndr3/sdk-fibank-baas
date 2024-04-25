@@ -49,9 +49,10 @@ class DARF
         return $this->payer;
     }
 
-    public function setPayer(?Payer $payer): void
+    public function setPayer(?Payer $payer): DARF
     {
         $this->payer = $payer;
+        return $this;
     }
 
     public function getDarfType(): ?int
@@ -59,9 +60,10 @@ class DARF
         return $this->darfType;
     }
 
-    public function setDarfType(?int $darfType): void
+    public function setDarfType(?int $darfType): DARF
     {
         $this->darfType = $darfType;
+        return $this;
     }
 
     public function getCalculationPeriod(): ?string
@@ -69,9 +71,10 @@ class DARF
         return $this->calculationPeriod;
     }
 
-    public function setCalculationPeriod(?string $calculationPeriod): void
+    public function setCalculationPeriod(?string $calculationPeriod): DARF
     {
         $this->calculationPeriod = $calculationPeriod;
+        return $this;
     }
 
     public function getCodeRevenue(): ?string
@@ -79,9 +82,10 @@ class DARF
         return $this->codeRevenue;
     }
 
-    public function setCodeRevenue(?string $codeRevenue): void
+    public function setCodeRevenue(?string $codeRevenue): DARF
     {
         $this->codeRevenue = $codeRevenue;
+        return $this;
     }
 
     public function getContributorTaxNumber(): ?string
@@ -89,9 +93,10 @@ class DARF
         return $this->contributorTaxNumber;
     }
 
-    public function setContributorTaxNumber(?string $contributorTaxNumber): void
+    public function setContributorTaxNumber(?string $contributorTaxNumber): DARF
     {
         $this->contributorTaxNumber = $contributorTaxNumber;
+        return $this;
     }
 
     public function getReferenceNumber(): ?string
@@ -99,9 +104,10 @@ class DARF
         return $this->referenceNumber;
     }
 
-    public function setReferenceNumber(?string $referenceNumber): void
+    public function setReferenceNumber(?string $referenceNumber): DARF
     {
         $this->referenceNumber = $referenceNumber;
+        return $this;
     }
 
     public function getDueDate(): ?string
@@ -109,9 +115,10 @@ class DARF
         return $this->dueDate;
     }
 
-    public function setDueDate(?string $dueDate): void
+    public function setDueDate(?string $dueDate): DARF
     {
         $this->dueDate = $dueDate;
+        return $this;
     }
 
     public function getGrossRevenueValue(): ?float
@@ -119,9 +126,10 @@ class DARF
         return $this->grossRevenueValue;
     }
 
-    public function setGrossRevenueValue(?float $grossRevenueValue): void
+    public function setGrossRevenueValue(?float $grossRevenueValue): DARF
     {
         $this->grossRevenueValue = $grossRevenueValue;
+        return $this;
     }
 
     public function getGrossRevenuePercentage(): ?float
@@ -129,9 +137,10 @@ class DARF
         return $this->grossRevenuePercentage;
     }
 
-    public function setGrossRevenuePercentage(?float $grossRevenuePercentage): void
+    public function setGrossRevenuePercentage(?float $grossRevenuePercentage): DARF
     {
         $this->grossRevenuePercentage = $grossRevenuePercentage;
+        return $this;
     }
 
     public function getPrincipalValue(): ?float
@@ -139,9 +148,10 @@ class DARF
         return $this->principalValue;
     }
 
-    public function setPrincipalValue(?float $principalValue): void
+    public function setPrincipalValue(?float $principalValue): DARF
     {
         $this->principalValue = $principalValue;
+        return $this;
     }
 
     public function getFineValue(): ?float
@@ -149,9 +159,10 @@ class DARF
         return $this->fineValue;
     }
 
-    public function setFineValue(?float $fineValue): void
+    public function setFineValue(?float $fineValue): DARF
     {
         $this->fineValue = $fineValue;
+        return $this;
     }
 
     public function getInterestValue(): ?float
@@ -159,9 +170,10 @@ class DARF
         return $this->interestValue;
     }
 
-    public function setInterestValue(?float $interestValue): void
+    public function setInterestValue(?float $interestValue): DARF
     {
         $this->interestValue = $interestValue;
+        return $this;
     }
 
     public function getPaymentDate(): ?string
@@ -169,9 +181,10 @@ class DARF
         return $this->paymentDate;
     }
 
-    public function setPaymentDate(?string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): DARF
     {
         $this->paymentDate = $paymentDate;
+        return $this;
     }
 
     public function getTags(): ?array
@@ -179,18 +192,10 @@ class DARF
         return $this->tags;
     }
 
-    public function setTags(?array $tags): void
+    public function setTags(?array $tags): DARF
     {
         $this->tags = $tags;
-    }
-
-    public function addTag(?string $tag): array
-    {
-        if (!isset($this->tags)) {
-            $this->tags = [];
-        }
-        $this->tags[] = $tag;
-        return $this->tags;
+        return $this;
     }
 
     public function getDescription(): ?string
@@ -198,9 +203,10 @@ class DARF
         return $this->description;
     }
 
-    public function setDescription(?string $description): void
+    public function setDescription(?string $description): DARF
     {
         $this->description = $description;
+        return $this;
     }
 
     public function getIdentifier(): ?string
@@ -208,9 +214,10 @@ class DARF
         return $this->identifier;
     }
 
-    public function setIdentifier(?string $identifier): void
+    public function setIdentifier(?string $identifier): DARF
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     public function getRateValueType(): ?int
@@ -218,10 +225,12 @@ class DARF
         return $this->rateValueType;
     }
 
-    public function setRateValueType(?int $rateValueType): void
+    public function setRateValueType(?int $rateValueType): DARF
     {
         $this->rateValueType = $rateValueType;
+        return $this;
     }
+
     public function toArray(): array
     {
         return array_filter([

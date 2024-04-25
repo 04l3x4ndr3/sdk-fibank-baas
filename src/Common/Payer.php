@@ -23,9 +23,10 @@ class Payer
         return $this->taxNumber;
     }
 
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): Payer
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     public function getBank(): ?string
@@ -33,9 +34,10 @@ class Payer
         return $this->bank;
     }
 
-    public function setBank(?string $bank): void
+    public function setBank(?string $bank): Payer
     {
         $this->bank = $bank;
+        return $this;
     }
 
     public function getBankBranch(): ?string
@@ -43,9 +45,10 @@ class Payer
         return $this->bankBranch;
     }
 
-    public function setBankBranch(?string $bankBranch): void
+    public function setBankBranch(?string $bankBranch): Payer
     {
         $this->bankBranch = $bankBranch;
+        return $this;
     }
 
     public function getBankAccount(): ?string
@@ -53,9 +56,10 @@ class Payer
         return $this->bankAccount;
     }
 
-    public function setBankAccount(?string $bankAccount): void
+    public function setBankAccount(?string $bankAccount): Payer
     {
         $this->bankAccount = $bankAccount;
+        return $this;
     }
 
     public function getBankAccountDigit(): ?string
@@ -63,10 +67,12 @@ class Payer
         return $this->bankAccountDigit;
     }
 
-    public function setBankAccountDigit(?string $bankAccountDigit): void
+    public function setBankAccountDigit(?string $bankAccountDigit): Payer
     {
         $this->bankAccountDigit = $bankAccountDigit;
+        return $this;
     }
+
     public function toArray(): array
     {
         return array_filter([

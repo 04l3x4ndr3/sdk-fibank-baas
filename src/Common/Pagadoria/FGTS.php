@@ -47,9 +47,10 @@ class FGTS
         return $this->taxNumber;
     }
 
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): FGTS
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     public function getContributorTaxNumber(): ?string
@@ -57,9 +58,10 @@ class FGTS
         return $this->contributorTaxNumber;
     }
 
-    public function setContributorTaxNumber(?string $contributorTaxNumber): void
+    public function setContributorTaxNumber(?string $contributorTaxNumber): FGTS
     {
         $this->contributorTaxNumber = $contributorTaxNumber;
+        return $this;
     }
 
     public function getPrincipalValue(): ?float
@@ -67,9 +69,10 @@ class FGTS
         return $this->principalValue;
     }
 
-    public function setPrincipalValue(?float $principalValue): void
+    public function setPrincipalValue(?float $principalValue): FGTS
     {
         $this->principalValue = $principalValue;
+        return $this;
     }
 
     public function getCodeRevenue(): ?string
@@ -77,9 +80,10 @@ class FGTS
         return $this->codeRevenue;
     }
 
-    public function setCodeRevenue(?string $codeRevenue): void
+    public function setCodeRevenue(?string $codeRevenue): FGTS
     {
         $this->codeRevenue = $codeRevenue;
+        return $this;
     }
 
     public function getBarcode(): ?string
@@ -87,9 +91,10 @@ class FGTS
         return $this->barcode;
     }
 
-    public function setBarcode(?string $barcode): void
+    public function setBarcode(?string $barcode): FGTS
     {
         $this->barcode = $barcode;
+        return $this;
     }
 
     public function getFgtsIdentifier(): ?string
@@ -97,9 +102,10 @@ class FGTS
         return $this->fgtsIdentifier;
     }
 
-    public function setFgtsIdentifier(?string $fgtsIdentifier): void
+    public function setFgtsIdentifier(?string $fgtsIdentifier): FGTS
     {
         $this->fgtsIdentifier = $fgtsIdentifier;
+        return $this;
     }
 
     public function getSocialConnectivityCode(): ?int
@@ -107,9 +113,10 @@ class FGTS
         return $this->socialConnectivityCode;
     }
 
-    public function setSocialConnectivityCode(?int $socialConnectivityCode): void
+    public function setSocialConnectivityCode(?int $socialConnectivityCode): FGTS
     {
         $this->socialConnectivityCode = $socialConnectivityCode;
+        return $this;
     }
 
     public function getSocialConnectivityDigit(): ?int
@@ -117,9 +124,10 @@ class FGTS
         return $this->socialConnectivityDigit;
     }
 
-    public function setSocialConnectivityDigit(?int $socialConnectivityDigit): void
+    public function setSocialConnectivityDigit(?int $socialConnectivityDigit): FGTS
     {
         $this->socialConnectivityDigit = $socialConnectivityDigit;
+        return $this;
     }
 
     public function getPaymentDate(): ?string
@@ -127,9 +135,10 @@ class FGTS
         return $this->paymentDate;
     }
 
-    public function setPaymentDate(?string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): FGTS
     {
         $this->paymentDate = $paymentDate;
+        return $this;
     }
 
     public function getTags(): ?array
@@ -137,17 +146,10 @@ class FGTS
         return $this->tags;
     }
 
-    public function setTags(?array $tags): void
+    public function setTags(?array $tags): FGTS
     {
         $this->tags = $tags;
-    }
-    public function addTag(?string $tag): array
-    {
-        if (!isset($this->tags)) {
-            $this->tags = [];
-        }
-        $this->tags[] = $tag;
-        return $this->tags;
+        return $this;
     }
 
     public function getRateValueType(): ?int
@@ -155,9 +157,10 @@ class FGTS
         return $this->rateValueType;
     }
 
-    public function setRateValueType(?int $rateValueType): void
+    public function setRateValueType(?int $rateValueType): FGTS
     {
         $this->rateValueType = $rateValueType;
+        return $this;
     }
 
     public function getDescription(): ?string
@@ -165,9 +168,10 @@ class FGTS
         return $this->description;
     }
 
-    public function setDescription(?string $description): void
+    public function setDescription(?string $description): FGTS
     {
         $this->description = $description;
+        return $this;
     }
 
     public function getIdentifier(): ?string
@@ -175,9 +179,10 @@ class FGTS
         return $this->identifier;
     }
 
-    public function setIdentifier(?string $identifier): void
+    public function setIdentifier(?string $identifier): FGTS
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     public function getFromBank(): ?string
@@ -185,9 +190,10 @@ class FGTS
         return $this->fromBank;
     }
 
-    public function setFromBank(?string $fromBank): void
+    public function setFromBank(?string $fromBank): FGTS
     {
         $this->fromBank = $fromBank;
+        return $this;
     }
 
     public function getFromBankBranch(): ?string
@@ -195,9 +201,10 @@ class FGTS
         return $this->fromBankBranch;
     }
 
-    public function setFromBankBranch(?string $fromBankBranch): void
+    public function setFromBankBranch(?string $fromBankBranch): FGTS
     {
         $this->fromBankBranch = $fromBankBranch;
+        return $this;
     }
 
     public function getFromBankAccount(): ?string
@@ -205,9 +212,10 @@ class FGTS
         return $this->fromBankAccount;
     }
 
-    public function setFromBankAccount(?string $fromBankAccount): void
+    public function setFromBankAccount(?string $fromBankAccount): FGTS
     {
         $this->fromBankAccount = $fromBankAccount;
+        return $this;
     }
 
     public function getFromBankDigit(): ?string
@@ -215,9 +223,19 @@ class FGTS
         return $this->fromBankDigit;
     }
 
-    public function setFromBankDigit(?string $fromBankDigit): void
+    public function setFromBankDigit(?string $fromBankDigit): FGTS
     {
         $this->fromBankDigit = $fromBankDigit;
+        return $this;
+    }
+
+    public function addTag(?string $tag): array
+    {
+        if (!isset($this->tags)) {
+            $this->tags = [];
+        }
+        $this->tags[] = $tag;
+        return $this->tags;
     }
 
     public function toArray(): array

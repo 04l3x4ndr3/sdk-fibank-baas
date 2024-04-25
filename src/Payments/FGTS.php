@@ -318,6 +318,18 @@ class FGTS
     }
 
     /**
+     * @description New version, generates a FGTS payment.
+     * @document https://dev.fitbank.com.br/reference/56-1
+     * @param \O4l3x4ndr3\SdkFitbank\Common\Pagadoria\FGTS|null $fgts
+     * @return object
+     */
+    public function generatePaymentsFGTS2(?\O4l3x4ndr3\SdkFitbank\Common\Pagadoria\FGTS $fgts = null): object
+    {
+        $http = new CallApi(new Configuration());
+        return $http->call('GeneratePaymentsFGTS', array_filter($fgts->toArray()));
+    }
+
+    /**
      * @description Returns a FGTS payment by document number.
      * @document https://dev.fitbank.com.br/reference/57-1
      * @param string $DocumentNumber

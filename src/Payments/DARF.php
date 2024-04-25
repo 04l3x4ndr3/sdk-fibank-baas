@@ -16,23 +16,23 @@ class DARF
 {
     private Configuration $configuration;
 
-    private string $taxNumber;
-    private int $DARFType;
-    private string $calculationPeriod;
-    private int $codeRevenue;
-    private string $contributorTaxNumber;
-    private string $referenceNumber;
-    private string $dueDate;
-    private float $totalValue;
-    private float $rateValue;
-    private float $principalValue;
-    private float $fineValue;
-    private float $interestValue;
-    private string $paymentDate;
-    private array $tags;
-    private string $description;
-    private string $identifier;
-    private int $rateValueType;
+    private ?string $taxNumber;
+    private ?int $DARFType;
+    private ?string $calculationPeriod;
+    private ?int $codeRevenue;
+    private ?string $contributorTaxNumber;
+    private ?string $referenceNumber;
+    private ?string $dueDate;
+    private ?float $totalValue;
+    private ?float $rateValue;
+    private ?float $principalValue;
+    private ?float $fineValue;
+    private ?float $interestValue;
+    private ?string $paymentDate;
+    private ?array $tags;
+    private ?string $description;
+    private ?string $identifier;
+    private ?int $rateValueType;
 
     /**
      * @param string|null $taxNumber

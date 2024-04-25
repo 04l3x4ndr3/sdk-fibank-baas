@@ -41,6 +41,7 @@ class GPS
         $this->paymentCode = null;
         $this->referenceNumber = null;
         $this->jurisdictionDate = null;
+        $this->fromBank = null;
         $this->fromBankBranch = null;
         $this->fromBankAccount = null;
         $this->fromBankDigit = null;
@@ -52,9 +53,10 @@ class GPS
         return $this->taxNumber;
     }
 
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): GPS
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     public function getContributorTaxNumber(): ?string
@@ -62,9 +64,10 @@ class GPS
         return $this->contributorTaxNumber;
     }
 
-    public function setContributorTaxNumber(?string $contributorTaxNumber): void
+    public function setContributorTaxNumber(?string $contributorTaxNumber): GPS
     {
         $this->contributorTaxNumber = $contributorTaxNumber;
+        return $this;
     }
 
     public function getPrincipalValue(): ?float
@@ -72,9 +75,10 @@ class GPS
         return $this->principalValue;
     }
 
-    public function setPrincipalValue(?float $principalValue): void
+    public function setPrincipalValue(?float $principalValue): GPS
     {
         $this->principalValue = $principalValue;
+        return $this;
     }
 
     public function getFineInterestValue(): ?float
@@ -82,9 +86,10 @@ class GPS
         return $this->fineInterestValue;
     }
 
-    public function setFineInterestValue(?float $fineInterestValue): void
+    public function setFineInterestValue(?float $fineInterestValue): GPS
     {
         $this->fineInterestValue = $fineInterestValue;
+        return $this;
     }
 
     public function getOtherValues(): ?float
@@ -92,9 +97,10 @@ class GPS
         return $this->otherValues;
     }
 
-    public function setOtherValues(?float $otherValues): void
+    public function setOtherValues(?float $otherValues): GPS
     {
         $this->otherValues = $otherValues;
+        return $this;
     }
 
     public function getRateValue(): ?float
@@ -102,9 +108,10 @@ class GPS
         return $this->rateValue;
     }
 
-    public function setRateValue(?float $rateValue): void
+    public function setRateValue(?float $rateValue): GPS
     {
         $this->rateValue = $rateValue;
+        return $this;
     }
 
     public function getPaymentDate(): ?string
@@ -112,9 +119,10 @@ class GPS
         return $this->paymentDate;
     }
 
-    public function setPaymentDate(?string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): GPS
     {
         $this->paymentDate = $paymentDate;
+        return $this;
     }
 
     public function getDueDate(): ?string
@@ -122,9 +130,10 @@ class GPS
         return $this->dueDate;
     }
 
-    public function setDueDate(?string $dueDate): void
+    public function setDueDate(?string $dueDate): GPS
     {
         $this->dueDate = $dueDate;
+        return $this;
     }
 
     public function getTags(): ?array
@@ -132,9 +141,131 @@ class GPS
         return $this->tags;
     }
 
-    public function setTags(?array $tags): void
+    public function setTags(?array $tags): GPS
     {
         $this->tags = $tags;
+        return $this;
+    }
+
+    public function getRateValueType(): ?int
+    {
+        return $this->rateValueType;
+    }
+
+    public function setRateValueType(?int $rateValueType): GPS
+    {
+        $this->rateValueType = $rateValueType;
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): GPS
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    public function setIdentifier(?string $identifier): GPS
+    {
+        $this->identifier = $identifier;
+        return $this;
+    }
+
+    public function getPaymentCode(): ?string
+    {
+        return $this->paymentCode;
+    }
+
+    public function setPaymentCode(?string $paymentCode): GPS
+    {
+        $this->paymentCode = $paymentCode;
+        return $this;
+    }
+
+    public function getReferenceNumber(): ?string
+    {
+        return $this->referenceNumber;
+    }
+
+    public function setReferenceNumber(?string $referenceNumber): GPS
+    {
+        $this->referenceNumber = $referenceNumber;
+        return $this;
+    }
+
+    public function getJurisdictionDate(): ?string
+    {
+        return $this->jurisdictionDate;
+    }
+
+    public function setJurisdictionDate(?string $jurisdictionDate): GPS
+    {
+        $this->jurisdictionDate = $jurisdictionDate;
+        return $this;
+    }
+
+    public function getFromBank(): ?string
+    {
+        return $this->fromBank;
+    }
+
+    public function setFromBank(?string $fromBank): GPS
+    {
+        $this->fromBank = $fromBank;
+        return $this;
+    }
+
+    public function getFromBankBranch(): ?string
+    {
+        return $this->fromBankBranch;
+    }
+
+    public function setFromBankBranch(?string $fromBankBranch): GPS
+    {
+        $this->fromBankBranch = $fromBankBranch;
+        return $this;
+    }
+
+    public function getFromBankAccount(): ?string
+    {
+        return $this->fromBankAccount;
+    }
+
+    public function setFromBankAccount(?string $fromBankAccount): GPS
+    {
+        $this->fromBankAccount = $fromBankAccount;
+        return $this;
+    }
+
+    public function getFromBankDigit(): ?string
+    {
+        return $this->fromBankDigit;
+    }
+
+    public function setFromBankDigit(?string $fromBankDigit): GPS
+    {
+        $this->fromBankDigit = $fromBankDigit;
+        return $this;
+    }
+
+    public function getContributorDocumentType(): ?int
+    {
+        return $this->contributorDocumentType;
+    }
+
+    public function setContributorDocumentType(?int $contributorDocumentType): GPS
+    {
+        $this->contributorDocumentType = $contributorDocumentType;
+        return $this;
     }
 
     public function addTags(?string $tag): array
@@ -144,116 +275,6 @@ class GPS
         }
         $this->tags[] = $tag;
         return $this->tags;
-    }
-
-    public function getRateValueType(): ?int
-    {
-        return $this->rateValueType;
-    }
-
-    public function setRateValueType(?int $rateValueType): void
-    {
-        $this->rateValueType = $rateValueType;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): void
-    {
-        $this->description = $description;
-    }
-
-    public function getIdentifier(): ?string
-    {
-        return $this->identifier;
-    }
-
-    public function setIdentifier(?string $identifier): void
-    {
-        $this->identifier = $identifier;
-    }
-
-    public function getPaymentCode(): ?string
-    {
-        return $this->paymentCode;
-    }
-
-    public function setPaymentCode(?string $paymentCode): void
-    {
-        $this->paymentCode = $paymentCode;
-    }
-
-    public function getReferenceNumber(): ?string
-    {
-        return $this->referenceNumber;
-    }
-
-    public function setReferenceNumber(?string $referenceNumber): void
-    {
-        $this->referenceNumber = $referenceNumber;
-    }
-
-    public function getJurisdictionDate(): ?string
-    {
-        return $this->jurisdictionDate;
-    }
-
-    public function setJurisdictionDate(?string $jurisdictionDate): void
-    {
-        $this->jurisdictionDate = $jurisdictionDate;
-    }
-
-    public function getFromBank(): ?string
-    {
-        return $this->fromBank;
-    }
-
-    public function setFromBank(?string $fromBank): void
-    {
-        $this->fromBank = $fromBank;
-    }
-
-    public function getFromBankBranch(): ?string
-    {
-        return $this->fromBankBranch;
-    }
-
-    public function setFromBankBranch(?string $fromBankBranch): void
-    {
-        $this->fromBankBranch = $fromBankBranch;
-    }
-
-    public function getFromBankAccount(): ?string
-    {
-        return $this->fromBankAccount;
-    }
-
-    public function setFromBankAccount(?string $fromBankAccount): void
-    {
-        $this->fromBankAccount = $fromBankAccount;
-    }
-
-    public function getFromBankDigit(): ?string
-    {
-        return $this->fromBankDigit;
-    }
-
-    public function setFromBankDigit(?string $fromBankDigit): void
-    {
-        $this->fromBankDigit = $fromBankDigit;
-    }
-
-    public function getContributorDocumentType(): ?int
-    {
-        return $this->contributorDocumentType;
-    }
-
-    public function setContributorDocumentType(?int $contributorDocumentType): void
-    {
-        $this->contributorDocumentType = $contributorDocumentType;
     }
 
     public function toArray(): array

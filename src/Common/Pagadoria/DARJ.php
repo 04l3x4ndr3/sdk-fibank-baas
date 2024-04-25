@@ -57,9 +57,10 @@ class DARJ
         return $this->taxNumber;
     }
 
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): DARJ
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     public function getContributorTaxNumber(): ?string
@@ -67,9 +68,10 @@ class DARJ
         return $this->contributorTaxNumber;
     }
 
-    public function setContributorTaxNumber(?string $contributorTaxNumber): void
+    public function setContributorTaxNumber(?string $contributorTaxNumber): DARJ
     {
         $this->contributorTaxNumber = $contributorTaxNumber;
+        return $this;
     }
 
     public function getReferenceNumber(): ?string
@@ -77,9 +79,10 @@ class DARJ
         return $this->referenceNumber;
     }
 
-    public function setReferenceNumber(?string $referenceNumber): void
+    public function setReferenceNumber(?string $referenceNumber): DARJ
     {
         $this->referenceNumber = $referenceNumber;
+        return $this;
     }
 
     public function getPrincipalValue(): ?float
@@ -87,9 +90,10 @@ class DARJ
         return $this->principalValue;
     }
 
-    public function setPrincipalValue(?float $principalValue): void
+    public function setPrincipalValue(?float $principalValue): DARJ
     {
         $this->principalValue = $principalValue;
+        return $this;
     }
 
     public function getFineValue(): ?float
@@ -97,9 +101,10 @@ class DARJ
         return $this->fineValue;
     }
 
-    public function setFineValue(?float $fineValue): void
+    public function setFineValue(?float $fineValue): DARJ
     {
         $this->fineValue = $fineValue;
+        return $this;
     }
 
     public function getInterestValue(): ?float
@@ -107,9 +112,10 @@ class DARJ
         return $this->interestValue;
     }
 
-    public function setInterestValue(?float $interestValue): void
+    public function setInterestValue(?float $interestValue): DARJ
     {
         $this->interestValue = $interestValue;
+        return $this;
     }
 
     public function getMonetaryValue(): ?float
@@ -117,9 +123,10 @@ class DARJ
         return $this->monetaryValue;
     }
 
-    public function setMonetaryValue(?float $monetaryValue): void
+    public function setMonetaryValue(?float $monetaryValue): DARJ
     {
         $this->monetaryValue = $monetaryValue;
+        return $this;
     }
 
     public function getTotalValue(): ?float
@@ -127,9 +134,10 @@ class DARJ
         return $this->totalValue;
     }
 
-    public function setTotalValue(?float $totalValue): void
+    public function setTotalValue(?float $totalValue): DARJ
     {
         $this->totalValue = $totalValue;
+        return $this;
     }
 
     public function getRateValue(): ?float
@@ -137,9 +145,10 @@ class DARJ
         return $this->rateValue;
     }
 
-    public function setRateValue(?float $rateValue): void
+    public function setRateValue(?float $rateValue): DARJ
     {
         $this->rateValue = $rateValue;
+        return $this;
     }
 
     public function getDueDate(): ?string
@@ -147,9 +156,10 @@ class DARJ
         return $this->dueDate;
     }
 
-    public function setDueDate(?string $dueDate): void
+    public function setDueDate(?string $dueDate): DARJ
     {
         $this->dueDate = $dueDate;
+        return $this;
     }
 
     public function getPaymentDate(): ?string
@@ -157,9 +167,10 @@ class DARJ
         return $this->paymentDate;
     }
 
-    public function setPaymentDate(?string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): DARJ
     {
         $this->paymentDate = $paymentDate;
+        return $this;
     }
 
     public function getTags(): ?array
@@ -167,9 +178,120 @@ class DARJ
         return $this->tags;
     }
 
-    public function setTags(?array $tags): void
+    public function setTags(?array $tags): DARJ
     {
         $this->tags = $tags;
+        return $this;
+    }
+
+    public function getCodeRevenue(): ?string
+    {
+        return $this->codeRevenue;
+    }
+
+    public function setCodeRevenue(?string $codeRevenue): DARJ
+    {
+        $this->codeRevenue = $codeRevenue;
+        return $this;
+    }
+
+    public function getStateRegistration(): ?string
+    {
+        return $this->stateRegistration;
+    }
+
+    public function setStateRegistration(?string $stateRegistration): DARJ
+    {
+        $this->stateRegistration = $stateRegistration;
+        return $this;
+    }
+
+    public function getOriginDocument(): ?int
+    {
+        return $this->originDocument;
+    }
+
+    public function setOriginDocument(?int $originDocument): DARJ
+    {
+        $this->originDocument = $originDocument;
+        return $this;
+    }
+
+    public function getRateValueType(): ?int
+    {
+        return $this->rateValueType;
+    }
+
+    public function setRateValueType(?int $rateValueType): DARJ
+    {
+        $this->rateValueType = $rateValueType;
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): DARJ
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    public function setIdentifier(?string $identifier): DARJ
+    {
+        $this->identifier = $identifier;
+        return $this;
+    }
+
+    public function getFromBank(): ?string
+    {
+        return $this->fromBank;
+    }
+
+    public function setFromBank(?string $fromBank): DARJ
+    {
+        $this->fromBank = $fromBank;
+        return $this;
+    }
+
+    public function getFromBankBranch(): ?string
+    {
+        return $this->fromBankBranch;
+    }
+
+    public function setFromBankBranch(?string $fromBankBranch): DARJ
+    {
+        $this->fromBankBranch = $fromBankBranch;
+        return $this;
+    }
+
+    public function getFromBankAccount(): ?string
+    {
+        return $this->fromBankAccount;
+    }
+
+    public function setFromBankAccount(?string $fromBankAccount): DARJ
+    {
+        $this->fromBankAccount = $fromBankAccount;
+        return $this;
+    }
+
+    public function getFromBankDigit(): ?string
+    {
+        return $this->fromBankDigit;
+    }
+
+    public function setFromBankDigit(?string $fromBankDigit): DARJ
+    {
+        $this->fromBankDigit = $fromBankDigit;
+        return $this;
     }
 
     public function addTag(?string $tag): array
@@ -179,106 +301,6 @@ class DARJ
         }
         $this->tags[] = $tag;
         return $this->tags;
-    }
-
-    public function getCodeRevenue(): ?string
-    {
-        return $this->codeRevenue;
-    }
-
-    public function setCodeRevenue(?string $codeRevenue): void
-    {
-        $this->codeRevenue = $codeRevenue;
-    }
-
-    public function getStateRegistration(): ?string
-    {
-        return $this->stateRegistration;
-    }
-
-    public function setStateRegistration(?string $stateRegistration): void
-    {
-        $this->stateRegistration = $stateRegistration;
-    }
-
-    public function getOriginDocument(): ?int
-    {
-        return $this->originDocument;
-    }
-
-    public function setOriginDocument(?int $originDocument): void
-    {
-        $this->originDocument = $originDocument;
-    }
-
-    public function getRateValueType(): ?int
-    {
-        return $this->rateValueType;
-    }
-
-    public function setRateValueType(?int $rateValueType): void
-    {
-        $this->rateValueType = $rateValueType;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): void
-    {
-        $this->description = $description;
-    }
-
-    public function getIdentifier(): ?string
-    {
-        return $this->identifier;
-    }
-
-    public function setIdentifier(?string $identifier): void
-    {
-        $this->identifier = $identifier;
-    }
-
-    public function getFromBank(): ?string
-    {
-        return $this->fromBank;
-    }
-
-    public function setFromBank(?string $fromBank): void
-    {
-        $this->fromBank = $fromBank;
-    }
-
-    public function getFromBankBranch(): ?string
-    {
-        return $this->fromBankBranch;
-    }
-
-    public function setFromBankBranch(?string $fromBankBranch): void
-    {
-        $this->fromBankBranch = $fromBankBranch;
-    }
-
-    public function getFromBankAccount(): ?string
-    {
-        return $this->fromBankAccount;
-    }
-
-    public function setFromBankAccount(?string $fromBankAccount): void
-    {
-        $this->fromBankAccount = $fromBankAccount;
-    }
-
-    public function getFromBankDigit(): ?string
-    {
-        return $this->fromBankDigit;
-    }
-
-    public function setFromBankDigit(?string $fromBankDigit): void
-    {
-        $this->fromBankDigit = $fromBankDigit;
     }
 
     public function toArray(): array

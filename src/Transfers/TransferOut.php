@@ -779,7 +779,8 @@ class TransferOut extends CallApi
 
     /**
      *Transferência bancária
-     *
+     * @description External Transfer
+     * @document https://dev.fitbank.com.br/reference/8
      * @return object
      * @throws GuzzleException
      */
@@ -798,7 +799,8 @@ class TransferOut extends CallApi
 
     /**
      *Consulta de transferência bancária
-     *
+     * @description Seeks an external transfer by id
+     * @document https://dev.fitbank.com.br/reference/20
      * @param int $documentNumber
      *
      * @return object
@@ -814,7 +816,8 @@ class TransferOut extends CallApi
 
     /**
      * Consulta transferencias
-     *
+     * @description https://dev.fitbank.com.br/reference/101
+     * @document Seeks an external transfer
      * @param string      $taxNumber
      * @param string|null $initialDate
      * @param string|null $finalDate
@@ -854,7 +857,8 @@ class TransferOut extends CallApi
 
     /**
      *Cancelamento de transferência bancária
-     *
+     * @description Cancel External Transfer
+     * @document https://dev.fitbank.com.br/reference/9
      * @param int $documentNumber
      *
      * @return object

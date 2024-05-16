@@ -6,6 +6,9 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
+use O4l3x4ndr3\SdkFitbank\Common\CardOwner;
+use O4l3x4ndr3\SdkFitbank\Common\ContactInfo;
+use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 use O4l3x4ndr3\SdkFitbank\Common\Address;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 
@@ -411,6 +414,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitação de cartão
+     * @document https://dev.fitbank.com.br/reference/post_requestcard
      * @param NominalCard $card
      * @return object
      */
@@ -422,6 +427,8 @@ class NominalCard
     }
 
     /**
+     * @description Confirmar solicitação
+     * @document https://dev.fitbank.com.br/reference/post_confirmcardrequest
      * @param string $IdentifierCard
      * @return object
      */
@@ -433,6 +440,8 @@ class NominalCard
     }
 
     /**
+     * @description Find
+     * @document https://dev.fitbank.com.br/reference/post_getcardbyidentifiercard
      * @param string $IdentifierCard
      * @return object
      */
@@ -444,6 +453,8 @@ class NominalCard
     }
 
     /**
+     * @description
+     * @document https://dev.fitbank.com.br/reference/post_getcardactionstatus
      * @param string $IdentifierCard
      * @param int $Action
      * @return object
@@ -459,6 +470,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitação de ativação
+     * @document https://dev.fitbank.com.br/reference/post_activatecard
      * @param string $IdentifierCard
      * @return object
      */
@@ -470,6 +483,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitar de bloqueio
+     * @document https://dev.fitbank.com.br/reference/post_blockcard
      * @param string $IdentifierCard
      * @param string $Pin
      * @param int $Reason
@@ -487,6 +502,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitar de desbloqueio
+     * @document https://dev.fitbank.com.br/reference/post_unblockcard
      * @param string $IdentifierCard
      * @param string $Pin
      * @return object
@@ -502,6 +519,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitar de alteração de senha
+     * @document https://dev.fitbank.com.br/reference/post_changepincard
      * @param string $IdentifierCard
      * @param string $CurrentPin
      * @param string $Pin
@@ -536,6 +555,8 @@ class NominalCard
     }
 
     /**
+     * @description Solicitação de reemisão de cartão
+     * @document https://dev.fitbank.com.br/reference/post_inactivateandreissuecard
      * @param string $IdentifierCard
      * @param string $Pin
      * @param int $ReasonCode
@@ -550,5 +571,702 @@ class NominalCard
             "ReasonCode" => $ReasonCode
         ];
         return $http->call('InactivateAndReissueCard', array_filter($data));
+    }
+
+    /**
+     * @description Solicita lote de cartões
+     * @document https://dev.fitbank.com.br/reference/post_requestcardbatch
+     * @param string $identifierProduct
+     * @param string $usageType
+     * @param string $consumeType
+     * @param float $amount
+     * @param Address $address
+     * @return object
+     */
+    public function requestCardBatch(
+        string $usageType,
+        string $consumeType,
+        string $identifierProduct,
+        float $amount,
+        Address $address,
+    ): object {
+        return (new CallApi())->call('RequestCardBatch', array_filter(
+            [
+                "UsageType" => $usageType,
+                "ConsumeType" => $consumeType,
+                "IdentifierProduct" => $identifierProduct,
+                "Amount" => $amount,
+                "Address" => [
+                    "Line" => $address->getAddressLine(),
+                    "Number" => $address->getAddressLine2(),
+                    "Complement" => $address->getComplement(),
+                    "Reference" => $address->getReference(),
+                    "Neighborhood" => $address->getNeighborhood(),
+                    "ZipCode" => $address->getZipCode(),
+                    "City" => $address->getCityName(),
+                    "State" => $address->getState(),
+                    "Country" => $address->getCountry(),
+                ],
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicitação de cartão
+     * @document https://dev.fitbank.com.br/reference/post_requestunnamedcard
+     * @param CardOwner|null $cardOwner
+     * @param Address $cardDeliveryAddress
+     * @param string $identifierProduct
+     * @param string|null $usageType
+     * @param string|null $consumeType
+     * @return object
+     */
+    public function requestUnnamedCard(
+        Address $cardDeliveryAddress,
+        string $identifierProduct,
+        ?CardOwner $cardOwner = null,
+        ?string $usageType = null,
+        ?string $consumeType = null
+    ): object {
+        return (new CallApi())->call('RequestUnnamedCard', array_filter(
+            [
+                "CardOwner" => $cardOwner->ownerToArray(),
+                "CardDeliveryAddress" => [
+                    "Line" => $cardDeliveryAddress->getAddressLine(),
+                    "Number" => $cardDeliveryAddress->getAddressLine2(),
+                    "Complement" => $cardDeliveryAddress->getComplement(),
+                    "Reference" => $cardDeliveryAddress->getReference(),
+                    "Neighborhood" => $cardDeliveryAddress->getNeighborhood(),
+                    "ZipCode" => $cardDeliveryAddress->getZipCode(),
+                    "City" => $cardDeliveryAddress->getCityName(),
+                    "State" => $cardDeliveryAddress->getState(),
+                    "Country" => $cardDeliveryAddress->getCountry(),
+                ],
+                "IdentifierProduct" => $identifierProduct,
+                "UsageType" => $usageType,
+                "ConsumeType" => $consumeType
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Vincular cartão
+     * @document https://dev.fitbank.com.br/reference/post_bindunnamedcard
+     * @param CardOwner $cardHolder
+     * @param ContactInfo $cardHolderContact
+     * @param string $identifierCard
+     * @param CardOwner|null $cardOwner
+     * @param string|null $usageType
+     * @return object
+     */
+    public function bindUnnamedCard(
+        CardOwner $cardHolder,
+        ContactInfo $cardHolderContact,
+        string $identifierCard,
+        ?CardOwner $cardOwner = null,
+        ?string $usageType = null
+    ): object {
+        return (new CallApi())->call('BindUnnamedCard', array_filter(
+            [
+                "CardOwner" => $cardOwner->ownerToArray(),
+                "CardHolder" => $cardHolder->holderToArray(),
+                "CardHolderContact" => $cardHolderContact->toArray(),
+                "IdentifierCard" => $identifierCard,
+                "UsageType" => $usageType
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Cancela solicitação
+     * @document https://dev.fitbank.com.br/reference/post_cancelcardrequest
+     * @param string $identifierCard
+     * @return object
+     */
+    public function cancelCardRequest(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('CancelCardRequest', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Cancela um cartão
+     * @document https://dev.fitbank.com.br/reference/post_cancelcard
+     * @param string $identifierCard
+     * @param string|null $pin
+     * @return object
+     */
+    public function cancelCard(
+        string $identifierCard,
+        ?string $pin = null
+    ): object {
+        return (new CallApi())->call('CancelCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "Pin" => $pin
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna informações de um Lote
+     * @document https://dev.fitbank.com.br/reference/post_getcardbatchbyid
+     * @param string $cardBatchId
+     * @param int $pageSize
+     * @param int $index
+     * @return object
+     */
+    public function getCardBatchById(
+        string $cardBatchId,
+        int $pageSize,
+        int $index
+    ): object {
+        return (new CallApi())->call('GetCardBatchById', array_filter(
+            [
+                "CardBatchId" => $cardBatchId,
+                "PageSize" => $pageSize,
+                "Index" => $index
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Consultar saldo do cartão
+     * @document https://dev.fitbank.com.br/reference/post_getcardbalance
+     * @param string $identifierCard
+     * @return object
+     */
+    public function getCardBalance(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('GetCardBalance', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna uma lista de cartões
+     * @document https://dev.fitbank.com.br/reference/post_listcards
+     * @param int|null $pageSize
+     * @param int|null $index
+     * @return object
+     */
+    public function listCards(
+        ?int $pageSize = null,
+        ?int $index = null
+    ): object {
+        return (new CallApi())->call('ListCards', array_filter(
+            [
+                "PageSize" => $pageSize,
+                "Index" => $index
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna uma lista de cartões vinculados a um CPF
+     * @document https://dev.fitbank.com.br/reference/post_getcardlist
+     * @param string $taxNumber
+     * @return object
+     */
+    public function getCardList(
+        string $taxNumber
+    ): object {
+        return (new CallApi())->call('GetCardList', array_filter(
+            [
+                "TaxNumber" => $taxNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Consulta movimentações do cartão
+     * @document https://dev.fitbank.com.br/reference/post_getcardentry
+     * @param string $identifierCard
+     * @param string $initialDate
+     * @param string $finalDate
+     * @return object
+     */
+    public function getCardEntry(
+        string $identifierCard,
+        string $initialDate,
+        string $finalDate
+    ): object {
+        return (new CallApi())->call('GetCardEntry', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "InitialDate" => $initialDate,
+                "FinalDate" => $finalDate
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Atualiza status de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_updatecardcontactless
+     * @param bool $allow
+     * @param string $identifierCard
+     * @return object
+     */
+    public function updateCardContactless(
+        bool $allow,
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('UpdateCardContactless', array_filter(
+            [
+                "Allow" => $allow,
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna um conjuto de informações para rastreio.
+     * @document https://dev.fitbank.com.br/reference/post_getcardtrackingbyidentifier
+     * @param string|null $identifier
+     * @return object
+     */
+    public function getCardTrackingByIdentifier(
+        ?string $identifier = null
+    ): object {
+        return (new CallApi())->call('GetCardTrackingByIdentifier', array_filter(
+            [
+                "Identifier" => $identifier
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Cadastra um portador
+     * @description https://dev.fitbank.com.br/reference/post_createcardholder
+     * @param NominalCard $cardHolder
+     * @return object
+     */
+    public function createCardHolder(
+        NominalCard $cardHolder
+    ): object {
+        return (new CallApi())->call('CreateCardHolder', array_filter(
+            [
+                "HolderTaxNumber" => $cardHolder->getCardHolderTaxNumber(),
+                "FullName" => $cardHolder->getCardHolderFullName(),
+                "MotherName" => $cardHolder->getCardHolderMotherName(),
+                "BirthDate" => $cardHolder->getCardHolderBirthDate(),
+                "Gender" => $cardHolder->getCardHolderGender(),
+                "Nationality" => $cardHolder->getCardHolderNationality(),
+                "MaritalStatus" => $cardHolder->getCardHolderMaritalStatus(),
+                "Phone" => $cardHolder->getCardHolderContactPhone(),
+                "Mail" => $cardHolder->getCardHolderContactMail()
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Atualiza as informações do portador do cartão
+     * @document https://dev.fitbank.com.br/reference/post_updatecardholder
+     * @param NominalCard $cardHolder
+     * @return object
+     */
+    public function updateCardHolder(
+        NominalCard $cardHolder
+    ): object {
+        return (new CallApi())->call('UpdateCardHolder', array_filter(
+            [
+                "HolderTaxNumber" => $cardHolder->getCardHolderTaxNumber(),
+                "FullName" => $cardHolder->getCardHolderFullName(),
+                "MotherName" => $cardHolder->getCardHolderMotherName(),
+                "BirthDate" => $cardHolder->getCardHolderBirthDate(),
+                "Gender" => $cardHolder->getCardHolderGender(),
+                "Nationality" => $cardHolder->getCardHolderNationality(),
+                "MaritalStatus" => $cardHolder->getCardHolderMaritalStatus(),
+                "Phone" => $cardHolder->getCardHolderContactPhone(),
+                "Mail" => $cardHolder->getCardHolderContactMail()
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna uma lista de titulares de cartões
+     * @document https://dev.fitbank.com.br/reference/post_getcardholders
+     * @return object
+     */
+    public function getCardHolders(): object {
+        return (new CallApi())->call('GetCardHolders', []);
+    }
+
+    /**
+     * @description Solicita recarga de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_rechargecard
+     * @param string $prepaidCardId
+     * @param string $taxNumber
+     * @param float $rechargeValue
+     * @param string $identifier
+     * @param string $description
+     * @return object
+     */
+    public function rechargeCard(
+        string $prepaidCardId,
+        string $taxNumber,
+        float $rechargeValue,
+        string $identifier,
+        string $description
+    ): object {
+        return (new CallApi())->call('RechargeCard', array_filter(
+            [
+                "PrepaidCardId" => $prepaidCardId,
+                "TaxNumber" => $taxNumber,
+                "RechargeValue" => $rechargeValue,
+                "Identifier" => $identifier,
+                "Description" => $description
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicita descarga
+     * @document https://dev.fitbank.com.br/reference/post_dischargecard
+     * @param string $identifier
+     * @param string $prepaidCardId
+     * @param string|null $taxNumber
+     * @param float|null $dischargeValue
+     * @return object
+     */
+    public function dischargeCard(
+        string $identifier,
+        string $prepaidCardId,
+        ?string $taxNumber = null,
+        ?float $dischargeValue = null
+    ): object {
+        return (new CallApi())->call('DischargeCard', array_filter(
+            [
+                "Identifier" => $identifier,
+                "PrepaidCardId" => $prepaidCardId,
+                "TaxNumber" => $taxNumber,
+                "DischargeValue" => $dischargeValue
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description
+     * @document https://dev.fitbank.com.br/reference/post_getrechargecard
+     * @param string $identifierCard
+     * @param int $documentNumber
+     * @return object
+     */
+    public function getRechargeCard(
+        string $identifierCard,
+        int $documentNumber
+    ): object {
+        return (new CallApi())->call('GetRechargeCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "DocumentNumber" => $documentNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description
+     * @document https://dev.fitbank.com.br/reference/post_getdischargecard
+     * @param string $identifierCard
+     * @param int $documentNumber
+     * @return object
+     */
+    public function getDischargeCard(
+        string $identifierCard,
+        int $documentNumber
+    ): object {
+        return (new CallApi())->call('GetDischargeCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "DocumentNumber" => $documentNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna dados de posse de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_getcardowner
+     * @param string $identifierCard
+     * @param string $taxNumber
+     * @return object
+     */
+    public function getCardOwner(
+        string $identifierCard,
+        string $taxNumber
+    ): object {
+        return (new CallApi())->call('GetCardOwner', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "TaxNumber" => $taxNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Adiciona regras de compra de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_createcardpurchaserule
+     * @param string $identifierCard
+     * @param int $purchaseRuleId
+     * @return object
+     */
+    public function createCardPurchaseRule(
+        string $identifierCard,
+        int $purchaseRuleId
+    ): object {
+        return (new CallApi())->call('CreateCardPurchaseRule', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "PurchaseRuleId" => $purchaseRuleId
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Remove regras de compra de um cartão
+     * @document https://dev.fitbank.com.br/reference/post_unbindcardpurchaserule
+     * @param string $identifierCard
+     * @param int $purchaseRuleId
+     * @return object
+     */
+    public function unbindCardPurchaseRule(
+        string $identifierCard,
+        int $purchaseRuleId
+    ): object {
+        return (new CallApi())->call('UnbindCardPurchaseRule', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "PurchaseRuleId" => $purchaseRuleId
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Tranfere valores entre dois beneficiários
+     * @document https://dev.fitbank.com.br/reference/post_cardbenefittransfer
+     * @param string $identifierCard
+     * @param float $benefitFrom
+     * @param float $benefitTo
+     * @param float $value
+     * @param string $identifier
+     * @return object
+     */
+    public function cardBenefitTransfer(
+        string $identifierCard,
+        float $benefitFrom,
+        float $benefitTo,
+        float $value,
+        string $identifier
+    ): object {
+        return (new CallApi())->call('CardBenefitTransfer', array_filter(
+            [
+                "IdentifierCard" => $identifierCard,
+                "BenefitFrom" => $benefitFrom,
+                "BenefitTo" => $benefitTo,
+                "Value" => $value,
+                "Identifier" => $identifier
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna uma lista de regras de compra
+     * @document https://dev.fitbank.com.br/reference/post_getpurchaserules
+     * @return object
+     */
+    public function getPurchaseRules(): object {
+        return (new CallApi())->call('GetPurchaseRules', []);
+    }
+
+    /**
+     * @description Solicita um cartão virtual
+     * @document https://dev.fitbank.com.br/reference/post_requestvirtualcard
+     * @param string $embossingName
+     * @param CardOwner $cardHolder
+     * @param CardOwner|null $cardOwner
+     * @return object
+     */
+    public function requestVirtualCard(
+        string $embossingName,
+        CardOwner $cardHolder,
+        ?CardOwner $cardOwner = null
+    ): object {
+        return (new CallApi())->call('RequestVirtualCard', array_filter(
+            [
+                "EmbossingName" => $embossingName,
+                "CardOwner" => $cardOwner->ownerToArray(),
+                "CardHolder" => $cardHolder->holderToArray()
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicita bloqueio de cartão
+     * @document https://dev.fitbank.com.br/reference/post_blockvirtualcard
+     * @param string $identifierCard
+     * @return object
+     */
+    public function blockVirtualCard(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('BlockVirtualCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicita desbloqueio um cartão virtual
+     * @document https://dev.fitbank.com.br/reference/post_unblockvirtualcard
+     * @param string $identifierCard
+     * @return object
+     */
+    public function unblockVirtualCard(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('UnblockVirtualCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicita o cancelamento de um cartão virtual
+     * @document https://dev.fitbank.com.br/reference/post_cancelvirtualcard
+     * @param string $identifierCard
+     * @return object
+     */
+    public function cancelVirtualCard(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('CancelVirtualCard', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Solicita um cartão virtual
+     * @document https://dev.fitbank.com.br/reference/post_getvirtualcardbyid
+     * @param string $identifierCard
+     * @return object
+     */
+    public function getVirtualCardById(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('GetVirtualCardById', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Retorna uma lista de estabelecimentos permitidos
+     * @document https://dev.fitbank.com.br/reference/post_getestablishmentsinwhitelist
+     * @param string $identifierCard
+     * @return object
+     */
+    public function getEstablishmentsInWhitelist(
+        string $identifierCard
+    ): object {
+        return (new CallApi())->call('GetEstablishmentsInWhitelist', array_filter(
+            [
+                "IdentifierCard" => $identifierCard
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
     }
 }

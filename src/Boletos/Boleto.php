@@ -39,6 +39,7 @@ class Boleto extends CallApi
     private ?string $addressLine1;
     private ?string $addressLine2;
     private ?string $externalNumber;
+    private ?string $ourNumber;
     private ?string $identifier;
     private ?string $comments;
     private ?array $products;
@@ -57,6 +58,13 @@ class Boleto extends CallApi
     private ?float $discountValue3;
     private ?float $rebateValue;
     private ?string $tags;
+    private ?array $operationVars;
+    private ?int $divergentPaymentType;
+    private ?float $minPaymentValue;
+    private ?float $maxPaymentValue;
+    private ?int $expirationDays;
+    private ?int $interestType;
+    private ?string $interestDate;
 
     public function __construct(?Configuration $configuration = null)
     {
@@ -87,6 +95,7 @@ class Boleto extends CallApi
         $this->addressLine1 = null;
         $this->addressLine2 = null;
         $this->externalNumber = null;
+        $this->ourNumber = null;
         $this->identifier = null;
         $this->comments = null;
         $this->products = null;
@@ -105,7 +114,13 @@ class Boleto extends CallApi
         $this->discountValue3 = null;
         $this->rebateValue = null;
         $this->tags = null;
-
+        $this->operationVars = null;
+        $this->divergentPaymentType = null;
+        $this->minPaymentValue = null;
+        $this->maxPaymentValue = null;
+        $this->expirationDays = null;
+        $this->interestType = null;
+        $this->interestDate = null;
     }
 
     /**
@@ -604,6 +619,24 @@ class Boleto extends CallApi
     /**
      * @return string|null
      */
+    public function getOurNumber(): ?string
+    {
+        return $this->ourNumber;
+    }
+
+    /**
+     * @param string|null $ourNumber
+     * @return Boleto
+     */
+    public function setOurNumber(?string $ourNumber): Boleto
+    {
+        $this->ourNumber = $ourNumber;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getIdentifier(): ?string
     {
         return $this->identifier;
@@ -949,6 +982,88 @@ class Boleto extends CallApi
         return $this;
     }
 
+    public function getOperationVars(): ?array
+    {
+        return $this->operationVars;
+    }
+
+    public function setOperationVars(?array $operationVars): Boleto
+    {
+        $this->operationVars = $operationVars;
+        return $this;
+    }
+
+    public function addOperationVars(?array $operationVar): Boleto
+    {
+        $this->operationVars[] = $operationVar;
+        return $this;
+    }
+
+    public function getDivergentPaymentType(): ?int
+    {
+        return $this->divergentPaymentType;
+    }
+
+    public function setDivergentPaymentType(?int $divergentPaymentType): Boleto
+    {
+        $this->divergentPaymentType = $divergentPaymentType;
+        return $this;
+    }
+
+    public function getMinPaymentValue(): ?float
+    {
+        return $this->minPaymentValue;
+    }
+
+    public function setMinPaymentValue(?float $minPaymentValue): Boleto
+    {
+        $this->minPaymentValue = $minPaymentValue;
+        return $this;
+    }
+
+    public function getMaxPaymentValue(): ?float
+    {
+        return $this->maxPaymentValue;
+    }
+
+    public function setMaxPaymentValue(?float $maxPaymentValue): Boleto
+    {
+        $this->maxPaymentValue = $maxPaymentValue;
+        return $this;
+    }
+
+    public function getExpirationDays(): ?int
+    {
+        return $this->expirationDays;
+    }
+
+    public function setExpirationDays(?int $expirationDays): Boleto
+    {
+        $this->expirationDays = $expirationDays;
+        return $this;
+    }
+
+    public function getInterestType(): ?int
+    {
+        return $this->interestType;
+    }
+
+    public function setInterestType(?int $interestType): Boleto
+    {
+        $this->interestType = $interestType;
+        return $this;
+    }
+
+    public function getInterestDate(): ?string
+    {
+        return $this->interestDate;
+    }
+
+    public function setInterestDate(?string $interestDate): Boleto
+    {
+        $this->interestDate = $interestDate;
+        return $this;
+    }
 
     /**
      * @description
@@ -993,6 +1108,7 @@ class Boleto extends CallApi
             "AddressLine1" => $this->addressLine1,
             "AddressLine2" => $this->addressLine2,
             "ExternalNumber" => $this->externalNumber,
+            "OurNumber" => $this->ourNumber,
             "Identifier" => $this->identifier,
             "Comments" => $this->comments,
             "Products" => array_filter($arrProducts, function ($v) {
@@ -1013,6 +1129,13 @@ class Boleto extends CallApi
             "DiscountValue3" => $this->discountValue3,
             "RebateValue" => $this->rebateValue,
             "Tags" => $this->tags,
+            "OperationVars" => $this->operationVars,
+            "DivergentPaymentType" => $this->divergentPaymentType,
+            "MinPaymentValue" => $this->minPaymentValue,
+            "MaxPaymentValue" => $this->maxPaymentValue,
+            "ExpirationDays" => $this->expirationDays,
+            "InterestType" => $this->interestType,
+            "InterestDate" => $this->interestDate
         ], function ($v) {
             return !is_null($v);
         });
@@ -1020,6 +1143,7 @@ class Boleto extends CallApi
 
     /**
      * @description
+     * @document https://dev.fitbank.com.br/reference/0
      *
      * @return object
      * @throws GuzzleException
@@ -1031,6 +1155,7 @@ class Boleto extends CallApi
 
     /**
      * @description
+     * @document https://dev.fitbank.com.br/reference/1
      *
      * @param int  $installmentsNumber
      * @param bool $carnet
@@ -1051,8 +1176,8 @@ class Boleto extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description Method used to cancel boletos using DocumentNumber.
+     * @document https://dev.fitbank.com.br/reference/post_cancelboleto
      * @param int $documentNumber
      *
      * @return object
@@ -1068,8 +1193,8 @@ class Boleto extends CallApi
 
 
     /**
-     * @description
-     *
+     * @description Method used to send change instructions.
+     * @document https://dev.fitbank.com.br/reference/post_changeboleto
      * @param int         $documentNumber
      * @param string      $taxNumber
      * @param float|null  $rebateValue
@@ -1080,7 +1205,7 @@ class Boleto extends CallApi
      * @throws GuzzleException
      * @throws GuzzleException
      */
-    public function changeBoleto(int $documentNumber, string $taxNumber, ?float $rebateValue, ?string $dueDateBoleto, ?float $principalValue): object
+    public function changeBoleto(int $documentNumber, string $taxNumber, ?float $rebateValue, ?string $dueDateBoleto, ?float $principalValue, ?string $fineDate): object
     {
         $charges = [];
         if (isset($rebateValue)) {
@@ -1102,6 +1227,13 @@ class Boleto extends CallApi
             ];
         }
 
+        if (isset($fineDate)) {
+            $charges[] = [
+                "Type" => "ChangeFineDateBoleto",
+                "Values" => $fineDate
+            ];
+        }
+
         return $this->call(
             'CancelBoleto',
             array_filter([
@@ -1113,8 +1245,8 @@ class Boleto extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description Get boleto by DocumentNumber.
+     * @document https://dev.fitbank.com.br/reference/20-1
      * @param int $documentNumber
      *
      * @return object
@@ -1176,5 +1308,75 @@ class Boleto extends CallApi
                 "SupplierTaxNumber" => $supplierTaxNumber,
             ])
         );
+    }
+
+    /**
+     * @description More performant version than GetBoletoById. Use to get a boleto by DocumentNumber.
+     * @document https://dev.fitbank.com.br/reference/780
+     * @param int $documentNumber
+     * @return object
+     */
+    public function getBoletoInById(int $documentNumber): object
+    {
+        return $this->call('GetBoletoInById', ['DocumentNumber' => $documentNumber]);
+    }
+
+    /**
+     * @description More performant version than GetBoletoByDate. Use to get boletos by range of dates.
+     * @document https://dev.fitbank.com.br/reference/775
+     * @param string $initialDate
+     * @param string $finalDate
+     * @param string $pageIndex
+     * @param string $pageSize
+     * @param int|null $status
+     * @return object
+     */
+    public function getListBoletoByDate(
+        string $initialDate,
+        string $finalDate,
+        string $pageIndex,
+        string $pageSize,
+        ?int $status
+    ): object {
+        return $this->call('GetListBoletoByDate', array_filter(
+            [
+                "InitialDate" => $initialDate,
+                "FinalDate" => $finalDate,
+                "PageIndex" => $pageIndex,
+                "PageSize" => $pageSize,
+                "Status" => $status,
+                "CustomerTaxNumber" => $this->customerTaxNumber,
+                "SupplierTaxNumber" => $this->supplierTaxNumber,
+                "SupplierBank" => $this->supplierBank,
+                "SupplierBankBranch" => $this->supplierBankBranch,
+                "SupplierBankAccount" => $this->supplierBankAccount,
+                "SupplierBankAccountDigit" => $this->supplierBankAccountDigit
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description Method for viewing the change instructions via Protocol Number.
+     * @document https://dev.fitbank.com.br/reference/19
+     * @param string $taxNumber
+     * @param string $protocolNumber
+     * @return object
+     */
+    public function getChangeBoleto(
+        string $taxNumber,
+        string $protocolNumber
+    ): object {
+        return $this->call('GetChangeBoleto', array_filter(
+            [
+                "TaxNumber" => $taxNumber,
+                "ProtocolNumber" => $protocolNumber
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
     }
 }

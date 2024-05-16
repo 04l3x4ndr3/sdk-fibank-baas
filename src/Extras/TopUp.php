@@ -334,6 +334,8 @@ class TopUp extends CallApi
     }
 
     /**
+     * @description Gera
+     * @document https://dev.fitbank.com.br/reference/post_generatetopup
      * @return object
      */
     public function generateTopUp(): object
@@ -342,6 +344,8 @@ class TopUp extends CallApi
     }
 
     /**
+     * @description
+     * @document https://dev.fitbank.com.br/reference/post_authorizetopup
      * @param int    $documentNumber
      * @param string $originNSU
      *
@@ -361,6 +365,8 @@ class TopUp extends CallApi
     }
 
     /**
+     * @description
+     * @document https://dev.fitbank.com.br/reference/post_canceltopup
      * @param int    $documentNumber
      * @param string $originNSU
      *
@@ -380,6 +386,8 @@ class TopUp extends CallApi
     }
 
     /**
+     * @description Retorna informações de produtos
+     * @document https://dev.fitbank.com.br/reference/post_gettopupproducts
      * @param int|null   $productType
      * @param int|null   $productSubType
      * @param float|null $productValue
@@ -401,6 +409,30 @@ class TopUp extends CallApi
     }
 
     /**
+     * @description Retorna informações de produtos
+     * @document https://dev.fitbank.com.br/reference/post_gettopupproductsbyphone
+     * @param string|null $phone
+     * @param string|null $productSubType
+     * @return object
+     */
+    public function getTopUpProductsByPhone(
+        ?string $phone = null,
+        ?string $productSubType = null
+    ): object {
+        return $this->call(
+            'GetTopUpProductsByPhone',
+            array_filter([
+                'Phone' => $phone,
+                'ProductSubType' => $productSubType,
+            ], function ($v) {
+                return $v !== null;
+            })
+        );
+    }
+
+    /**
+     * @description Retorna informações de um produto
+     * @document https://dev.fitbank.com.br/reference/post_gettopupbyid
      * @param string $documentNumber
      * @param string $originNSU
      *

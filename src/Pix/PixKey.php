@@ -412,4 +412,70 @@ class PixKey extends CallApi
             self::CONTEXT
         );
     }
+
+    /**
+     * @description This method can be used to respond to a pix key claim or pix key portability request.
+     * @document https://dev.fitbank.com.br/reference/271
+     * @param bool $confirmation
+     * @return object
+     */
+    public function replyExternalPixKeyClaim(
+        bool $confirmation
+    ): object {
+        return $this->call('ReplyExternalPixKeyClaim', array_filter(
+            [
+                "PixKey" => $this->pixKeyValue,
+                "PixKeyType" => $this->pixKeyType,
+                "TaxNumber" => $this->taxNumber,
+                "Confirmation" => $confirmation
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description This method can be used to cancel a request for pix key claim or pix key portability.
+     * @document https://dev.fitbank.com.br/reference/279
+     * @return object
+     */
+    public function cancelPixKeyClaim(): object {
+        return $this->call('CancelPixKeyClaim', array_filter(
+            [
+                "PixKey" => $this->pixKeyValue,
+                "TaxNumber" => $this->taxNumber,
+                "PixKeyType" => $this->pixKeyType,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
+
+    /**
+     * @description This method can be used to claim a pix key ownership or to request portability of a pix key.
+     * @document https://dev.fitbank.com.br/reference/267
+     * @return object
+     */
+    public function claimPixKey(): object {
+        return $this->call('ClaimPixKey', array_filter(
+            [
+                "PixKey" => $this->pixKeyValue,
+                "TaxNumber" => $this->taxNumber,
+                "PixKeyType" => $this->pixKeyType,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
 }

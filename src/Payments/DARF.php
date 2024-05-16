@@ -16,23 +16,23 @@ class DARF
 {
     private Configuration $configuration;
 
-    private string $taxNumber;
-    private int $DARFType;
-    private string $calculationPeriod;
-    private int $codeRevenue;
-    private string $contributorTaxNumber;
-    private string $referenceNumber;
-    private string $dueDate;
-    private float $principalValue;
-    private float $fineValue;
-    private float $interestValue;
-    private float $totalValue;
-    private string $paymentDate;
-    private string $description;
-    private string $identifier;
-    private int $rateValueType;
-    private float $rateValue;
-    private array $tags;
+    private ?string $taxNumber;
+    private ?int $DARFType;
+    private ?string $calculationPeriod;
+    private ?int $codeRevenue;
+    private ?string $contributorTaxNumber;
+    private ?string $referenceNumber;
+    private ?string $dueDate;
+    private ?float $totalValue;
+    private ?float $rateValue;
+    private ?float $principalValue;
+    private ?float $fineValue;
+    private ?float $interestValue;
+    private ?string $paymentDate;
+    private ?array $tags;
+    private ?string $description;
+    private ?string $identifier;
+    private ?int $rateValueType;
 
     /**
      * @param string|null $taxNumber
@@ -400,6 +400,8 @@ class DARF
     }
 
     /**
+     * @description Generates a DARF payment.
+     * @document https://dev.fitbank.com.br/reference/26-1
      * @param DARF $darf
      * @return object
      * @throws GuzzleException
@@ -412,6 +414,20 @@ class DARF
     }
 
     /**
+     * @description New version for generates a DARF payment.
+     * @document https://dev.fitbank.com.br/reference/26-1
+     * @param \O4l3x4ndr3\SdkFitbank\Common\Pagadoria\DARF $darf
+     * @return object
+     */
+    public function generatePaymentDARF2(\O4l3x4ndr3\SdkFitbank\Common\Pagadoria\DARF $darf): object
+    {
+        $http = new CallApi($this->configuration);
+        return $http->call('GeneratePaymentDARF', array_filter($darf->toArray()));
+    }
+
+    /**
+     * @description Returns a DARF payment by document number.
+     * @document https://dev.fitbank.com.br/reference/35-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException
@@ -424,6 +440,8 @@ class DARF
     }
 
     /**
+     * @description Cancels DARF payment by document number.
+     * @document https://dev.fitbank.com.br/reference/27-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException
@@ -435,4 +453,35 @@ class DARF
         return $http->call('CancelPaymentDARF', array_filter($data));
     }
 
+    /**
+     * @description Returns a DARF payment by informations.
+     * @document https://dev.fitbank.com.br/reference/47-1
+     * @param string $dueDate
+     * @param string $principalValue
+     * @param string $taxContributor
+     * @param string $referenceNumber
+     * @param string $calculationPeriod
+     * @return object
+     */
+    public function getDARFOutByInformations(
+        string $dueDate,
+        string $principalValue,
+        string $taxContributor,
+        string $referenceNumber,
+        string $calculationPeriod,
+    ): object {
+        return (new CallApi($this->configuration))
+            ->call('GetDARFOutByInformations', array_filter(
+            [
+                "DueDate" => $dueDate,
+                "PrincipalValue" => $principalValue,
+                "TaxContributor" => $taxContributor,
+                "ReferenceNumber" => $referenceNumber,
+                "CalculationPeriod" => $calculationPeriod
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
+    }
 }

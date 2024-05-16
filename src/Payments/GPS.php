@@ -6,7 +6,7 @@
  * Project Github:  https://github.com/04l3x4ndr3/sdk-fibank-baas
  */
 
-namespace O4l3x4ndr3\SdkFitbank\Payments\WithoutBarcode;
+namespace O4l3x4ndr3\SdkFitbank\Payments;
 
 use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
@@ -320,11 +320,13 @@ class GPS
     }
 
     /**
+     * @description Generates a GPS payment.
+     * @document https://dev.fitbank.com.br/reference/50-1
      * @param GPS $gps
      * @return object
      * @throws GuzzleException
      */
-    public function generatePaymentFGTS(?GPS $gps = null): object
+    public function generatePaymentGPS(?GPS $gps = null): object
     {
         $http = new CallApi($this->configuration);
         $data = (isset($gps)) ? $gps->toArray() : $this->toArray();
@@ -332,6 +334,21 @@ class GPS
     }
 
     /**
+     * @description Second version generates a GPS payment.
+     * @document https://dev.fitbank.com.br/reference/50-1
+     * @param \O4l3x4ndr3\SdkFitbank\Common\Pagadoria\GPS|null $gps
+     * @return object
+     * @throws GuzzleException
+     */
+    public function generatePaymentGPS2(?\O4l3x4ndr3\SdkFitbank\Common\Pagadoria\GPS $gps = null): object
+    {
+        $http = new CallApi(new Configuration());
+        return $http->call('GeneratePaymentGPS', array_filter($gps->toArray()));
+    }
+
+    /**
+     * @description Returns a GPS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/53-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException
@@ -344,6 +361,8 @@ class GPS
     }
 
     /**
+     * @description Cancels GPS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/55-1
      * @param string $DocumentNumber
      * @return object
      * @throws GuzzleException

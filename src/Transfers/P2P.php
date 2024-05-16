@@ -760,7 +760,8 @@ class P2P extends CallApi
 
     /**
      * Transferir valores entre contas várias contas
-     *
+     * @description This method can be used to generate multiple Internal Transfer.
+     * @document https://dev.fitbank.com.br/reference/multipleinternaltransfers
      * @return object
      * @throws GuzzleException
      */
@@ -771,7 +772,8 @@ class P2P extends CallApi
 
     /**
      * Recuperar os dados da Transferência entre contas
-     *
+     * @description This method can be used to Get Internal Transfer By Id
+     * @document https://dev.fitbank.com.br/reference/getinternaltransferbyid
      * @param int $documentNumber
      *
      * @return object
@@ -787,7 +789,8 @@ class P2P extends CallApi
 
     /**
      * Consulta de Status por conta virtual
-     *
+     * @description This method can be used to Get Internal Transfer By Date.
+     * @document https://dev.fitbank.com.br/reference/getinternaltransferbydate
      * @param string $taxNumber
      * @param string $transferDate
      *
@@ -801,7 +804,8 @@ class P2P extends CallApi
 
     /**
      * Cancelamento de Transferência Interna
-     *
+     * @description This method can be used to cancel a Interna Transfer.
+     * @document https://dev.fitbank.com.br/reference/cancelinternaltransfer
      * @param int $documentNumber
      *
      * @return object
@@ -810,5 +814,144 @@ class P2P extends CallApi
     public function cancelInternalTransfer(int $documentNumber): object
     {
         return $this->call('CancelInternalTransfer', ["DocumentNumber" => $documentNumber]);
+    }
+
+    /**
+     * @description This method can be used to get peding Internal Transfer.
+     * @document https://dev.fitbank.com.br/reference/getpendinginternaltransfer
+     * @param string $name
+     * @param string $taxNumber
+     * @param string $verificationCode
+     * @param string $phoneNumber
+     * @return object
+     */
+    public function getPendingInternalTransfer(
+        string $name,
+        string $taxNumber,
+        string $verificationCode,
+        string $phoneNumber
+    ): object {
+        return $this->call('GetPendingInternalTransfer', array_filter([
+            "Name" => $name,
+            "TaxNumber" => $taxNumber,
+            "VerificationCode" => $verificationCode,
+            "PhoneNumber" => $phoneNumber
+        ], function ($v) {
+            return !is_null($v);
+        }));
+    }
+
+    /**
+     * @description This method can be used to get peding Internal Transfer by phone number.
+     * @document https://dev.fitbank.com.br/reference/getpendinginternaltransferbyphonenumber
+     * @param string $countryCode
+     * @param string $phoneNumber
+     * @return object
+     */
+    public function getPendingInternalTransferByPhoneNumber(
+        string $countryCode,
+        string $phoneNumber
+    ): object {
+        return $this->call('GetPendingInternalTransferByPhoneNumber', array_filter([
+            "CountryCode" => $countryCode,
+            "PhoneNumber" => $phoneNumber
+        ], function ($v) {
+            return !is_null($v);
+        }));
+    }
+    /**
+     * @description This method can be used to get peding Internal Transfer by ID
+     * @document https://dev.fitbank.com.br/reference/getpendinginternaltransferbyidentifier
+     * @param string $identifier
+     * @return object
+     */
+    public function getPendingInternalTransferByIdentifier(
+        string $identifier
+    ): object {
+        return $this->call('GetPendingInternalTransferByIdentifier', array_filter([
+            "Identifier" => $identifier
+        ], function ($v) {
+            return !is_null($v);
+        }));
+    }
+
+    /**
+     * @description This method can be used to get peding Internal Transfer by SMS.
+     * @document https://dev.fitbank.com.br/reference/generatependinginternaltransferbysms
+     * @param string $phoneNumber
+     * @param string $countryCode
+     * @param float $value
+     * @param string $identifier
+     * @param string $fromTaxNumber
+     * @param string $fromBank
+     * @param string $fromBankBranch
+     * @param string $fromBankAccount
+     * @param string $fromBankAccountDigit
+     * @return object
+     */
+    public function generatePendingInternalTransferBySMS(
+        string $phoneNumber,
+        string $countryCode,
+        float $value,
+        string $identifier,
+        string $fromTaxNumber,
+        string $fromBank,
+        string $fromBankBranch,
+        string $fromBankAccount,
+        string $fromBankAccountDigit
+    ): object {
+        return $this->call('GeneratePendingInternalTransferBySMS', array_filter([
+            "PhoneNumber" => $phoneNumber,
+            "CountryCode" => $countryCode,
+            "Value" => $value,
+            "Identifier" => $identifier,
+            "FromTaxNumber" => $fromTaxNumber,
+            "FromBank" => $fromBank,
+            "FromBankBranch" => $fromBankBranch,
+            "FromBankAccount" => $fromBankAccount,
+            "FromBankAccountDigit" => $fromBankAccountDigit
+        ], function ($v) {
+            return !is_null($v);
+        }));
+    }
+
+    /**
+     * @description This method can be used to generate pending Interna Transfer.
+     * @document https://dev.fitbank.com.br/reference/generatependinginternaltransfer
+     * @param string $phoneNumber
+     * @param string $countryCode
+     * @param float $value
+     * @param string $identifier
+     * @param string $fromTaxNumber
+     * @param string $fromBank
+     * @param string $fromBankBranch
+     * @param string $fromBankAccount
+     * @param string $fromBankAccountDigit
+     * @return object
+     */
+    public function generatePendingInternalTransfer(
+        string $phoneNumber,
+        string $countryCode,
+        float $value,
+        string $identifier,
+        string $fromTaxNumber,
+        string $fromBank,
+        string $fromBankBranch,
+        string $fromBankAccount,
+        string $fromBankAccountDigit
+    ): object {
+        return $this->call('GeneratePendingInternalTransfer', array_filter([
+            "PhoneNumber" => $phoneNumber,
+            "CountryCode" => $countryCode,
+            "Value" => $value,
+            "Identifier" => $identifier,
+            "FromTaxNumber" => $fromTaxNumber,
+            "FromBank" => $fromBank,
+            "FromBankBranch" => $fromBankBranch,
+            "FromBankAccount" => $fromBankAccount,
+            "FromBankAccountDigit" => $fromBankAccountDigit
+        ], function ($v) {
+            return !is_null($v);
+        }));
     }
 }

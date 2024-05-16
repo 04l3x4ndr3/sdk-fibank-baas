@@ -652,8 +652,8 @@ class PixOut extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description This method can be used to generate a pix payment.
+     * @document https://dev.fitbank.com.br/reference/234
      * @return object
      * @throws GuzzleException
      */
@@ -669,8 +669,8 @@ class PixOut extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description This method can be used to consult a pix payment by its identifier (DocumentNumber).
+     * @document https://dev.fitbank.com.br/reference/340
      * @param int $documentNumber
      *
      * @return object
@@ -725,8 +725,8 @@ class PixOut extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description This method can be used to cancel a scheduled pix out transaction.
+     * @document https://dev.fitbank.com.br/reference/276
      * @param int $documentNumber
      *
      * @return object
@@ -749,8 +749,8 @@ class PixOut extends CallApi
     }
 
     /**
-     * @description
-     *
+     * @description This method can be used to consult a PIX Payment refund by date.
+     * @document https://dev.fitbank.com.br/reference/337
      * @param string $startDate
      * @param string $endDate
      * @param int    $pageIndex
@@ -775,5 +775,38 @@ class PixOut extends CallApi
             "PageSize" => $pageSize
         ];
         return $this->call('GetRefundPixOutByDate', array_filter($data), self::CONTEXT);
+    }
+
+    /**
+     * @description This method can be used to consult a Pix Out transaction by date.
+     * @document https://dev.fitbank.com.br/reference/338
+     * @param string $startDate
+     * @param string $endDate
+     * @param int $pageIndex
+     * @param int $pageSize
+     * @return object
+     */
+    public function getPixOutByDate(
+        string $startDate,
+        string $endDate,
+        int $pageIndex,
+        int $pageSize
+    ): object {
+        return $this->call('GetPixOutByDate', array_filter(
+            [
+                "TaxNumber" => $this->taxNumber,
+                "Bank" => $this->bank,
+                "BankBranch" => $this->bankBranch,
+                "BankAccount" => $this->bankAccount,
+                "BankAccountDigit" => $this->bankAccountDigit,
+                "StartDate" => $startDate,
+                "EndDate" => $endDate,
+                "PageIndex" => $pageIndex,
+                "PageSize" => $pageSize
+            ],
+            function ($v) {
+                return !is_null($v);
+            }
+        ));
     }
 }

@@ -383,7 +383,7 @@ class ListValues
             7 => 'Erro',
             8 => 'Inexistente',
             9 => 'Suspenso',
-            10 => 'Tipificação de resultado',
+            10 => 'Tipificação de resultado'
         ];
 
         if (!isset($key)) {

@@ -375,15 +375,15 @@ class ListValues
         $values = [
             0 => 'Esperando Validação',
             1 => 'Validado',
-            3 => 'Inválido',
-            4 => 'Expirado',
-            5 => 'Envieado',
-            6 => 'Reenviado',
-            7 => 'Reprovado',
-            8 => 'Erro',
-            9 => 'Inexistente',
-            10 => 'Suspenso',
-            11 => 'Tipificação de resultado',
+            2 => 'Inválido',
+            3 => 'Expirado',
+            4 => 'Enviado',
+            5 => 'Reenviado',
+            6 => 'Reprovado',
+            7 => 'Erro',
+            8 => 'Inexistente',
+            9 => 'Suspenso',
+            10 => 'Tipificação de resultado'
         ];
 
         if (!isset($key)) {

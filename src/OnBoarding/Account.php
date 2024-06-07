@@ -292,10 +292,10 @@ class Account extends CallApi
         ?string $bankBranch = null,
         ?string $bankAccount = null,
         ?string $bankAccountDigit = null,
+        ?string $entryClassificationType = null,
         bool $onlyBalance = false,
         int $pageSize = 25,
-        int $pageIndex = 0,
-        ?string $entryClassificationType = null
+        int $pageIndex = 0
     ): object
     {
         $call = $this->call(

@@ -294,7 +294,8 @@ class Account extends CallApi
         ?string $bankAccountDigit = null,
         bool $onlyBalance = false,
         int $pageSize = 25,
-        int $pageIndex = 0
+        int $pageIndex = 0,
+        ?string $entryClassificationType = null
     ): object
     {
         $call = $this->call(
@@ -309,15 +310,15 @@ class Account extends CallApi
                 "BankAccountDigit" => $bankAccountDigit,
                 "OnlyBalance" => $onlyBalance,
                 "PageSize" => $pageSize,
-                "PageIndex" => $pageIndex
+                "PageIndex" => $pageIndex,
+                "EntryClassificationType" => $entryClassificationType
             ], function ($v) {
                 return !is_null($v);
             })
         );
 
-        # fix api return
-        if (isset($call->data->Entry)) {
-            $call->data->Entry = json_decode($call->data->Entry);
+        if (isset($call->Entry)) {
+            $call->Entry = json_decode($call->Entry);
         }
         return $call;
     }

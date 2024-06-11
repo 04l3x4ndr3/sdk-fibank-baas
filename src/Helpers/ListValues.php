@@ -96,6 +96,7 @@ class ListValues
             15 => 'Ata de eleição',
             16 => 'CNH (Verso)',
             17 => 'Faturamento anual',
+            21 => 'Faturamento mensal',
         ];
 
         if (!isset($key)) {
@@ -203,7 +204,9 @@ class ListValues
             5 => 'Condomínio',
             6 => 'SA Fechada',
             7 => 'EIRELI Simples',
-            8 => 'Outros'
+            8 => 'Outros',
+            9 => 'SLU',
+            10 => 'FIDC',
         ];
 
         if (!isset($key)) {

@@ -219,6 +219,17 @@ class ListValues
         return $values[$key];
     }
 
+    public static function companyDocumentsType(?int $companyType): array
+    {
+        return match ($companyType) {
+            2, 3 => [ 0, 2, 7 ],
+            4, 9 => [ 2, 6, 11, 17 ],
+            5 => [ 2, 6, 11, 15 ],
+            10 => [ 2, 5, 6, 17, 13 ],
+            default => [ 2, 5, 6, 17 ]
+        };
+    }
+
     public static function getCompanyTypesKey(string $value): false|string|int
     {
         return array_search($value, self::companyTypes());

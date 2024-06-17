@@ -44,9 +44,9 @@ class PixQRCode extends CallApi
     /**
      * @description This method can be used to generate a static Pix QRCode transaction.
      * @document https://dev.fitbank.com.br/reference/255
-     * @param float $principalValue
      * @param string $taxNumber
      * @param string $pixKey
+     * @param float $principalValue
      * @param Address $address
      * @param string $bank
      * @param string $bankBranch
@@ -93,8 +93,8 @@ class PixQRCode extends CallApi
     /**
      * @description This method can be used to generate a dynamic Pix QRCode transaction.
      * @document https://dev.fitbank.com.br/reference/256
-     * @param string $pixKey
      * @param string $taxNumber
+     * @param string $pixKey
      * @param float $principalValue
      * @param Address $address
      * @param string $bank

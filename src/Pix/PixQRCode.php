@@ -52,7 +52,7 @@ class PixQRCode extends CallApi
      * @param string $bankBranch
      * @param string $bankAccount
      * @param string $bankAccountDigit
-     * @param array|null $additionalData
+     * @param string|null $additionalData
      * @param int|null $transactionPurpose
      * @param string|null $identifier
      * @return object
@@ -66,7 +66,7 @@ class PixQRCode extends CallApi
         string $bankBranch,
         string $bankAccount,
         string $bankAccountDigit,
-        ?array $additionalData = null,
+        ?string $additionalData = null,
         ?int $transactionPurpose = null,
         ?string $identifier = null
     ): object {
@@ -105,7 +105,7 @@ class PixQRCode extends CallApi
      * @param string|null $payerTaxNumber
      * @param string|null $payerName
      * @param string|null $expirationDate
-     * @param array|null $additionalData
+     * @param string|null $additionalData
      * @param string|null $payerRequest
      * @param int|null $transactionPurpose
      * @param float|null $transactionValue
@@ -127,7 +127,7 @@ class PixQRCode extends CallApi
         ?string $payerTaxNumber = null,
         ?string $payerName = null,
         ?string $expirationDate = null,
-        ?array $additionalData = null,
+        ?string $additionalData = null,
         ?string $payerRequest = null,
         ?int $transactionPurpose = null,
         ?float $transactionValue = null,

@@ -58,9 +58,9 @@ class PixQRCode extends CallApi
      * @return object
      */
     public function generateStaticPixQRCode(
-        float $principalValue,
         string $taxNumber,
         string $pixKey,
+        float $principalValue,
         Address $address,
         string $bank,
         string $bankBranch,
@@ -115,8 +115,8 @@ class PixQRCode extends CallApi
      * @return object
      */
     public function generateDynamicPixQRCode(
-        string $pixKey,
         string $taxNumber,
+        string $pixKey,
         float $principalValue,
         Address $address,
         string $bank,

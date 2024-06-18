@@ -9,10 +9,8 @@ class ListValues
     public static function personRoleTypes(?int $key = null): string|array|null
     {
         $values = [
-            0 => 'Titular',
-            1 => 'Procurador',
-            2 => 'O portador',
-            3 => 'Associado'
+            3 => 'Associado',
+            1 => 'Procurador'
         ];
 
         if (!isset($key)) {

@@ -336,9 +336,9 @@ class ListValues
     public static function accountConditionsTypes(?int $key = null): string|array|null
     {
         $values = [
-            0 => 'Criada',
+            0 => 'Em Análise',  //Criada
             1 => 'Limitada',
-            2 => 'Verificada',
+            2 => 'Aprovada',    //Verificada
             3 => 'Bloqueada',
             4 => 'Encerrada'
         ];

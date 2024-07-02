@@ -194,6 +194,7 @@ class ListValues
     public static function companyTypes(?int $key = null): string|array|null
     {
         $values = [
+            13 => 'Associação Privada',
             0 => 'SA',
             1 => 'LTDA',
             2 => 'MEI',
@@ -205,7 +206,6 @@ class ListValues
             8 => 'Outros',
             9 => 'SLU',
             10 => 'FIDC',
-            13 => 'Associação Privada'
         ];
 
         if (!isset($key)) {

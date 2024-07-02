@@ -205,6 +205,7 @@ class ListValues
             8 => 'Outros',
             9 => 'SLU',
             10 => 'FIDC',
+            13 => 'Associação Privada'
         ];
 
         if (!isset($key)) {

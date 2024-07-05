@@ -86,7 +86,7 @@ class Payments extends CallApi
                 "InitialPaymentDate" => $initialPaymentDate,
                 "FinalPaymentDate" => $finalPaymentDate,
                 "TaxNumber" => $taxNumber,
-                "InicialDate" => $inicialDate,
+                "InicialDate" => $initialDate,
                 "Bank" => $bank,
                 "BankBranch" => $bankBranch,
                 "BankAccount" => $bankAccount,

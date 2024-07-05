@@ -65,6 +65,7 @@ class Payments extends CallApi
      * @param string|null $bankBranch
      * @param string|null $bankAccount
      * @param string|null $bankAccountDigit
+     * @param string|null $paymentType
      * @return object
      */
     public function getPayments(
@@ -77,7 +78,8 @@ class Payments extends CallApi
         ?string $bank = null,
         ?string $bankBranch = null,
         ?string $bankAccount = null,
-        ?string $bankAccountDigit = null
+        ?string $bankAccountDigit = null,
+        ?int $paymentType = null
     ): object {
         return $this->call('GetPayments', array_filter(
             [
@@ -91,6 +93,7 @@ class Payments extends CallApi
                 "BankBranch" => $bankBranch,
                 "BankAccount" => $bankAccount,
                 "BankAccountDigit" => $bankAccountDigit,
+                "PaymentType" => $paymentType
             ],
             function ($v) {
                 return !is_null($v);

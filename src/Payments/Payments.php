@@ -65,7 +65,7 @@ class Payments extends CallApi
      * @param string|null $bankBranch
      * @param string|null $bankAccount
      * @param string|null $bankAccountDigit
-     * @param string|null $paymentType
+     * @param int|null $paymentType
      * @return object
      */
     public function getPayments(

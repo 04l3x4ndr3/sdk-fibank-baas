@@ -194,18 +194,22 @@ class ListValues
     public static function companyTypes(?int $key = null): string|array|null
     {
         $values = [
-            13 => 'Associação Privada',
-            0 => 'SA',
-            1 => 'LTDA',
-            2 => 'MEI',
-            3 => 'ME',
-            4 => 'EIRELI',
-            5 => 'Condomínio',
-            6 => 'SA Fechada',
-            7 => 'EIRELI Simples',
-            8 => 'Outros',
-            9 => 'SLU',
-            10 => 'FIDC',
+            0 => "SA",
+            1 => "LTDA",
+            2 => "MEI",
+            3 => "ME",
+            4 => "EIRELI",
+            5 => "Condomínio",
+            6 => "SA Fechada",
+            7 => "EIRELI Simples",
+            9 => "SLU",
+            10 => "FIDC",
+            11 => "Sociedade Conta de Participação",
+            12 => "Cooperativa",
+            13 => "Associação Privada",
+            14 => "Sociedade Simples Pura",
+            15 => "Cartório",
+            16 => "Órgão Público",
         ];
 
         if (!isset($key)) {
@@ -221,11 +225,11 @@ class ListValues
     public static function companyDocumentsType(?int $companyType): array
     {
         return match ($companyType) {
-            2, 3 => [ 0, 2, 7 ],
-            4, 9 => [ 2, 6, 11, 17 ],
-            5 => [ 2, 6, 11, 15 ],
-            10 => [ 2, 5, 6, 17, 13 ],
-            default => [ 2, 5, 6, 17 ]
+            2, 3 => [0, 2, 7],
+            4, 9 => [2, 6, 11, 17],
+            5 => [2, 6, 11, 15],
+            10 => [2, 5, 6, 17, 13],
+            default => [2, 5, 6, 17]
         };
     }
 

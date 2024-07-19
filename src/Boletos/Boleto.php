@@ -1203,34 +1203,35 @@ class Boleto extends CallApi
      *
      * @return object
      * @throws GuzzleException
-     * @throws GuzzleException
      */
     public function changeBoleto(int $documentNumber, string $taxNumber, ?float $rebateValue, ?string $dueDateBoleto, ?float $principalValue, ?string $fineDate): object
     {
         $charges = [];
         if (isset($rebateValue)) {
             $charges[] = [
-                "Type" => "ChangeRebateBoleto", "Values" => $rebateValue
+                "Type" => "ChangeRebateBoleto",
+                "Value" => $rebateValue
             ];
         }
 
         if (isset($dueDateBoleto)) {
             $charges[] = [
-                "Type" => "ChangeDueDateBoleto", "Values" => $dueDateBoleto
+                "Type" => "ChangeDueDateBoleto",
+                "Value" => $dueDateBoleto
             ];
         }
 
         if (isset($principalValue)) {
             $charges[] = [
                 "Type" => "ChangePrincipalValueBoleto",
-                "Values" => $principalValue
+                "Value" => $principalValue
             ];
         }
 
         if (isset($fineDate)) {
             $charges[] = [
                 "Type" => "ChangeFineDateBoleto",
-                "Values" => $fineDate
+                "Value" => $fineDate
             ];
         }
 

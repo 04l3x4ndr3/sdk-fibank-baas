@@ -1236,7 +1236,7 @@ class Boleto extends CallApi
         }
 
         return $this->call(
-            'CancelBoleto',
+            'ChangeBoleto',
             array_filter([
                 "DocumentNumber" => $documentNumber,
                 "TaxNumber" => $taxNumber,

@@ -60,7 +60,7 @@ class PixQRCode extends CallApi
     public function generateStaticPixQRCode(
         string $taxNumber,
         string $pixKey,
-        float $principalValue,
+        ?float $principalValue,
         Address $address,
         string $bank,
         string $bankBranch,

@@ -270,24 +270,26 @@ class PixQRCode extends CallApi
         ?int $transactionChangeType = null,
         ?int $agentModality = null
     ): object {
-        return $this->call('ChangeDynamicPixQRCode', array_filter(
-            [
-                "PixKey" => $pixKey,
-                "TaxNumber" => $taxNumber,
-                "PayerTaxNumber" => $payerTaxNumber,
-                "PayerName" => $payerName,
-                "PrincipalValue" => $principalValue,
-                "ExpirationDate" => $expirationDate,
-                "Address" => $address->toArray(),
-                "ChangeType" => $changeType,
-                "AdditionalData" => $additionalData,
-                "PayerRequest" => $payerRequest,
-                "DocumentNumber" => $documentNumber,
-                "TransactionPurpose" => $transactionPurpose,
-                "TransactionValue" => $transactionValue,
-                "TransactionChangeType" => $transactionChangeType,
-                "AgentModality" => $agentModality
-            ],
+        $data = [
+            "PixKey" => $pixKey,
+            "TaxNumber" => $taxNumber,
+            "PayerTaxNumber" => $payerTaxNumber,
+            "PayerName" => $payerName,
+            "PrincipalValue" => $principalValue,
+            "ExpirationDate" => $expirationDate,
+            "ChangeType" => $changeType,
+            "AdditionalData" => $additionalData,
+            "PayerRequest" => $payerRequest,
+            "DocumentNumber" => $documentNumber,
+            "TransactionPurpose" => $transactionPurpose,
+            "TransactionValue" => $transactionValue,
+            "TransactionChangeType" => $transactionChangeType,
+            "AgentModality" => $agentModality
+        ];
+        if (isset($address)) {
+            $data["Address"] = $address->toArray();
+        }
+        return $this->call('ChangeDynamicPixQRCode', array_filter($data,
             function ($v) {
                 return !is_null($v);
             }

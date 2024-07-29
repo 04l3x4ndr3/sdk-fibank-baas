@@ -1335,24 +1335,34 @@ class Boleto extends CallApi
     public function getListBoletoByDate(
         string $initialDate,
         string $finalDate,
-        string $pageIndex,
-        string $pageSize,
+        int $pageIndex,
+        int $pageSize,
         ?int $status
     ): object {
-        return $this->call('GetListBoletoByDate', array_filter(
-            [
-                "InitialDate" => $initialDate,
-                "FinalDate" => $finalDate,
-                "PageIndex" => $pageIndex,
-                "PageSize" => $pageSize,
-                "Status" => $status,
-                "CustomerTaxNumber" => $this->customerTaxNumber,
+        $data = [
+            "Date" => [
+                "Initial" => $initialDate,
+                "Final" => $finalDate,
+                "Type" => 0
+            ],
+            "PageIndex" => $pageIndex,
+            "PageSize" => $pageSize,
+            "Status" => $status,
+            "CustomerTaxNumber" => $this->customerTaxNumber,
+        ];
+        if (!empty($this->supplierTaxNumber)) {
+            $data["Supplier"] = array_filter([
                 "SupplierTaxNumber" => $this->supplierTaxNumber,
                 "SupplierBank" => $this->supplierBank,
                 "SupplierBankBranch" => $this->supplierBankBranch,
                 "SupplierBankAccount" => $this->supplierBankAccount,
                 "SupplierBankAccountDigit" => $this->supplierBankAccountDigit
-            ],
+            ], function ($v) {
+                return !is_null($v);
+            });
+        }
+        return $this->call('GetListBoletoByDate', array_filter(
+            $data,
             function ($v) {
                 return !is_null($v);
             }

@@ -1172,7 +1172,7 @@ class Boleto extends CallApi
                 'Carnet' => $carnet
             ]
         );
-        return $this->call('GenerateBoleto', array_filter($data));
+        return $this->call('GenerateRecurrenceBoleto', array_filter($data));
     }
 
     /**

@@ -1352,11 +1352,11 @@ class Boleto extends CallApi
         ];
         if (!empty($this->supplierTaxNumber)) {
             $data["Supplier"] = array_filter([
-                "SupplierTaxNumber" => $this->supplierTaxNumber,
-                "SupplierBank" => $this->supplierBank,
-                "SupplierBankBranch" => $this->supplierBankBranch,
-                "SupplierBankAccount" => $this->supplierBankAccount,
-                "SupplierBankAccountDigit" => $this->supplierBankAccountDigit
+                "TaxNumber" => $this->supplierTaxNumber,
+                "Bank" => $this->supplierBank,
+                "BankBranch" => $this->supplierBankBranch,
+                "BankAccount" => $this->supplierBankAccount,
+                "BankAccountDigit" => $this->supplierBankAccountDigit
             ], function ($v) {
                 return !is_null($v);
             });

@@ -264,6 +264,9 @@ class PixKey extends CallApi
     public function resendToken(): object
     {
         $data = $this->toArray();
+        if (!empty($data["PixKeyType"])) {
+            $data["PixKeyType"] = intval($data["PixKeyType"]);
+        }
         return $this->call(
             'ResendPixKeyToken',
             array_filter(

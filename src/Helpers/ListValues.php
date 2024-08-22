@@ -418,4 +418,31 @@ class ListValues
         return array_search($value, self::documentStatus());
     }
 
+    public static function justificationLimitType(?int $key = null): string|array|null
+    {
+        $values = [
+            1 => "Negócio",
+            "Renda",
+            "Emergência",
+            "Education",
+            "Saúde",
+            "Viagem",
+            "Reforma",
+        ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
+    }
+
+    public static function getJustificationLimitTypeKey(string $value): false|string|int
+    {
+        return array_search($value, self::justificationLimitType());
+    }
+
 }

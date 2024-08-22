@@ -3,6 +3,7 @@
 namespace O4l3x4ndr3\SdkFitbank\OnBoarding;
 
 use GuzzleHttp\Exception\GuzzleException;
+use O4l3x4ndr3\SdkFitbank\Common\Document;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
@@ -16,11 +17,12 @@ class AccountOperationLimit extends CallApi
     private ?string $bankBranch;
     private ?string $bankAccount;
     private ?int $bankAccountDigit;
-    private ?int $type;
     private ?int $operationType;
+    private ?int $type;
     private ?int $subType;
-    private ?float $minLimitValue;
     private ?float $maxLimitValue;
+    private ?array $document;
+    private ?int $justification;
 
     public function __construct(Configuration $config = null)
     {
@@ -34,8 +36,9 @@ class AccountOperationLimit extends CallApi
         $this->type = null;
         $this->operationType = null;
         $this->subType = null;
-        $this->minLimitValue = null;
         $this->maxLimitValue = null;
+        $this->document = null;
+        $this->justification = null;
     }
 
     /**
@@ -218,28 +221,6 @@ class AccountOperationLimit extends CallApi
      * @description
      * @return float|null
      */
-    public function getMinLimitValue(): ?float
-    {
-        return $this->minLimitValue;
-    }
-
-    /**
-     * @description
-     *
-     * @param float|null $minLimitValue
-     *
-     * @return AccountOperationLimit
-     */
-    public function setMinLimitValue(?float $minLimitValue): self
-    {
-        $this->minLimitValue = $minLimitValue;
-        return $this;
-    }
-
-    /**
-     * @description
-     * @return float|null
-     */
     public function getMaxLimitValue(): ?float
     {
         return $this->maxLimitValue;
@@ -258,6 +239,35 @@ class AccountOperationLimit extends CallApi
         return $this;
     }
 
+    public function getDocument(): ?array
+    {
+        return $this->document;
+    }
+
+    public function addDocument(Document $document): AccountOperationLimit
+    {
+        $this->document[] = $document->toArray();
+        return $this;
+    }
+
+    public function setDocument(?array $documents): AccountOperationLimit
+    {
+        $this->document = $documents;
+        return $this;
+    }
+
+
+    public function getJustification(): ?int
+    {
+        return $this->justification;
+    }
+
+    public function setJustification(?int $justification): AccountOperationLimit
+    {
+        $this->justification = $justification;
+        return $this;
+    }
+
     /**
      * @description
      * @return array
@@ -273,8 +283,9 @@ class AccountOperationLimit extends CallApi
             "OperationType" => $this->operationType,
             "Type" => $this->type,
             "SubType" => $this->subType,
-            "MinLimitValue" => $this->minLimitValue,
             "MaxLimitValue" => $this->maxLimitValue,
+            "Document" => $this->document,
+            "Justification" => $this->justification,
         ];
     }
 

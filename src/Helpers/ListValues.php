@@ -76,6 +76,7 @@ class ListValues
         return array_search($value, self::brazilianStates());
     }
 
+
     public static function documentTypes(?int $key = null): string|array|null
     {
         $values = [
@@ -233,6 +234,7 @@ class ListValues
         };
     }
 
+
     public static function getCompanyTypesKey(string $value): false|string|int
     {
         return array_search($value, self::companyTypes());
@@ -258,6 +260,7 @@ class ListValues
         return $values[$key];
     }
 
+
     public static function getPixKeyTypesKey(string $value): false|string|int
     {
         return array_search($value, self::pixKeyTypes());
@@ -269,7 +272,7 @@ class ListValues
         $values = [
             0 => 'Manual',
             1 => 'Chave Pix',
-            2 => 'QR Code stático',
+            2 => 'QR Code estático',
             3 => 'QR Code dinâmico',
         ];
 
@@ -418,6 +421,7 @@ class ListValues
         return array_search($value, self::documentStatus());
     }
 
+
     public static function justificationLimitType(?int $key = null): string|array|null
     {
         $values = [
@@ -445,4 +449,71 @@ class ListValues
         return array_search($value, self::justificationLimitType());
     }
 
+
+    /** PIX key Actions sent in the webhooks:
+     * @param int|null $key
+     * @return string|array|null
+     */
+    public static function pixKeyStatus(?int $key = null): string|array|null
+    {
+        $values = [
+            0 => 'Criada',
+            'Registrando',
+            'Registrada',
+            'Desativada',
+            'Cancelada',
+            'Erro',
+            'Reivindicada',
+            'Erro de propriedade',
+            'Erro de portabilidade'
+        ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
+    }
+
+    public static function getPixKeyStatusCode(string $value): false|string|int
+    {
+        return array_search($value, self::pixKeyStatus());
+    }
+
+
+    /** Action status sent in the webhooks:
+     * @param int|null $key
+     * @return string|array|null
+     */
+    public static function pixKeyActionStatus(?int $key = null): string|array|null
+    {
+        $values = [
+            0 => 'Criada',
+            'Processado',
+            'Erro',
+            'Cancelada',
+            'Registrando',
+            'Pode ser Cancelado',
+            'Registado',
+            'Pode ser processado',
+            'Esperado'
+        ];
+
+        if (!isset($key)) {
+            return $values;
+        }
+        if (!isset($values[$key])) {
+            return null;
+        }
+
+        return $values[$key];
+    }
+
+    public static function getPixKeyActionStatusCode(string $value): false|string|int
+    {
+        return array_search($value, self::pixKeyActionStatus());
+    }
 }

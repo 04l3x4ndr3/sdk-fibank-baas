@@ -450,22 +450,26 @@ class ListValues
     }
 
 
-    /** PIX key Actions sent in the webhooks:
-     * @param int|null $key
-     * @return string|array|null
+    /**
+     * Retrieves the status value or values associated with a specified Pix Key status code.
+     *
+     * @param int|null $key The status code to search for.
+     * @param string $lang The language code for the status value (default: 'en').
+     * @return string|array|null The status value or values associated with the specified Pix Key status code, or null if the code is not found. If $key is not provided, an array of all status values will be returned.
+     *
      */
-    public static function pixKeyStatus(?int $key = null): string|array|null
+    public static function pixKeyStatus(?int $key = null, string $lang = 'en'): string|array|null
     {
         $values = [
-            0 => 'Criada',
-            'Registrando',
-            'Registrada',
-            'Desativada',
-            'Cancelada',
-            'Erro',
-            'Reivindicada',
-            'Erro de propriedade',
-            'Erro de portabilidade'
+            0 => ["pt-br" => 'Criada', "en" => "Created"],
+            ["pt-br" => 'Registrando', "en" => "Registering"],
+            ["pt-br" => 'Registrada', "en" => "Registered"],
+            ["pt-br" => 'Desativada', "en" => "Disabled"],
+            ["pt-br" => 'Cancelada', "en" => "Canceled"],
+            ["pt-br" => 'Erro', "en" => "Error"],
+            ["pt-br" => 'Reivindicada', "en" => "Claiming"],
+            ["pt-br" => 'Erro de propriedade', "en" => "ErrorOwnership"],
+            ["pt-br" => 'Erro de portabilidade', "en" => "ErrorPortability"]
         ];
 
         if (!isset($key)) {
@@ -475,31 +479,50 @@ class ListValues
             return null;
         }
 
-        return $values[$key];
+        return $values[$key][strtolower($lang)];
     }
 
-    public static function getPixKeyStatusCode(string $value): false|string|int
-    {
-        return array_search($value, self::pixKeyStatus());
-    }
-
-
-    /** Action status sent in the webhooks:
-     * @param int|null $key
-     * @return string|array|null
+    /**
+     * Retrieves the status code for a specified Pix Key value.
+     *
+     * @param string $value The Pix Key value to search for.
+     * @param string $lang The language code for the status value (default: 'en').
+     * @return false|string|int The status code associated with the Pix Key value, or false if the value is not found.
+     *
      */
-    public static function pixKeyActionStatus(?int $key = null): string|array|null
+    public static function getPixKeyStatusCode(string $value, string $lang = 'en'): false|string|int
+    {
+        foreach (self::pixKeyStatus() as $key => $status) {
+            if (strtolower($status[strtolower($lang)]) == strtolower($value)) {
+                return $key;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * Retrieves the status of a given action key in PIXEL.
+     *
+     * @param int|null $key The key indicating the action status. If null, returns all action statuses.
+     * @param string $lang The language to retrieve the status in. Default is 'en'.
+     *
+     * @return string|array|null The status of the action key. If $key is null, returns an array of all action statuses.
+     *                          If $key is not found, returns null.
+     */
+    public static function pixKeyActionStatus(?int $key = null, string $lang = 'en'): string|array|null
     {
         $values = [
-            0 => 'Criada',
-            'Processado',
-            'Erro',
-            'Cancelada',
-            'Registrando',
-            'Pode ser Cancelado',
-            'Registado',
-            'Pode ser processado',
-            'Esperado'
+            0 => ['pt-br' => 'Criada', 'en' => 'Created'],
+            ['pt-br' => 'Processado', 'en' => 'Processed'],
+            ['pt-br' => 'Erro', 'en' => 'Error'],
+            ['pt-br' => 'Cancelada', 'en' => 'Canceled'],
+            ['pt-br' => 'Registrando', 'en' => 'Registering'],
+            ['pt-br' => 'Pode ser Cancelado', 'en' => 'CanBeCancel'],
+            ['pt-br' => 'Registado', 'en' => 'Registered'],
+            ['pt-br' => 'Pode ser completado', 'en' => 'CanBeCompleted'],
+            ['pt-br' => 'Pode ser processado', 'en' => 'CanBeProcessed'],
+            ['pt-br' => 'Esperado', 'en' => 'Expected'],
         ];
 
         if (!isset($key)) {
@@ -509,11 +532,23 @@ class ListValues
             return null;
         }
 
-        return $values[$key];
+        return $values[$key][strtolower($lang)];
     }
 
-    public static function getPixKeyActionStatusCode(string $value): false|string|int
+    /**
+     * Retrieves the status code for a given action status value.
+     *
+     * @param string $value The action status value.
+     * @param string $lang The language code. Defaults to 'en'.
+     * @return false|string|int The status code as an integer, false if not found, or the entire status array if no value is provided.
+     */
+    public static function getPixKeyActionStatusCode(string $value, string $lang = 'en'): false|string|int
     {
-        return array_search($value, self::pixKeyActionStatus());
+        foreach (self::pixKeyActionStatus() as $key => $status) {
+            if (strtolower($status[strtolower($lang)]) == strtolower($value)) {
+                return $key;
+            }
+        }
+        return false;
     }
 }

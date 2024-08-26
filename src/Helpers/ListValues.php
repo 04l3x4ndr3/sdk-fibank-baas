@@ -487,14 +487,13 @@ class ListValues
      *
      * @param string $value The Pix Key value to search for.
      * @param string $lang The language code for the status value (default: 'en').
-     * @return false|string|int The status code associated with the Pix Key value, or false if the value is not found.
-     *
+     * @return false|int The status code associated with the Pix Key value, or false if the value is not found.
      */
-    public static function getPixKeyStatusCode(string $value, string $lang = 'en'): false|string|int
+    public static function getPixKeyStatusCode(string $value, string $lang = 'en'): false|int
     {
         foreach (self::pixKeyStatus() as $key => $status) {
             if (strtolower($status[strtolower($lang)]) == strtolower($value)) {
-                return $key;
+                return intval($key);
             }
         }
         return false;
@@ -540,13 +539,13 @@ class ListValues
      *
      * @param string $value The action status value.
      * @param string $lang The language code. Defaults to 'en'.
-     * @return false|string|int The status code as an integer, false if not found, or the entire status array if no value is provided.
+     * @return false|int The status code as an integer, false if not found, or the entire status array if no value is provided.
      */
-    public static function getPixKeyActionStatusCode(string $value, string $lang = 'en'): false|string|int
+    public static function getPixKeyActionStatusCode(string $value, string $lang = 'en'): false|int
     {
         foreach (self::pixKeyActionStatus() as $key => $status) {
             if (strtolower($status[strtolower($lang)]) == strtolower($value)) {
-                return $key;
+                return intval($key);
             }
         }
         return false;

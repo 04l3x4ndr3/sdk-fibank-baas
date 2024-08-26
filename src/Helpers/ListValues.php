@@ -95,6 +95,9 @@ class ListValues
             15 => 'Ata de eleição',
             16 => 'CNH (Verso)',
             17 => 'Faturamento anual',
+            18 => 'Termo do chefe da legislatura municipal',
+            19 => 'Termo do chefe do poder executivo municipal',
+            20 => 'Ato de Nomeação do representante máximo',
             21 => 'Faturamento mensal',
         ];
 
@@ -425,13 +428,14 @@ class ListValues
     public static function justificationLimitType(?int $key = null): string|array|null
     {
         $values = [
-            1 => "Negócio",
+            0 => "Negócio",
             "Renda",
             "Emergência",
             "Education",
             "Saúde",
             "Viagem",
             "Reforma",
+            "Outros",
         ];
 
         if (!isset($key)) {

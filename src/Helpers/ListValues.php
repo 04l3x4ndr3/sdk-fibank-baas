@@ -344,14 +344,21 @@ class ListValues
 
     # WEBHOOK RETURN LIST VALUES
 
-    public static function accountConditionsTypes(?int $key = null): string|array|null
+    /**
+     * Retrieves the account conditions types.
+     *
+     * @param int|null $key The key of the condition type to retrieve (optional).
+     * @param string $lang The language code for the condition type value (default: 'en').
+     * @return string|array|null The condition type value if $key is provided, or an array of all condition types if $key is not provided. Returns null if the $key is invalid.
+     */
+    public static function accountConditionsTypes(?int $key = null, string $lang = 'en'): string|array|null
     {
         $values = [
-            0 => 'Em Análise',  //Criada
-            1 => 'Limitada',
-            2 => 'Aprovada',    //Verificada
-            3 => 'Bloqueada',
-            4 => 'Encerrada'
+            ['pt-br' => 'Em Análise', 'en' => 'Created'],
+            ['pt-br' => 'Limitada', 'en' => 'Limited'],
+            ['pt-br' => 'Aprovada', 'en' => 'Verified'],
+            ['pt-br' => 'Bloqueada', 'en' => 'Blocked'],
+            ['pt-br' => 'Encerrada', 'en' => 'Terminated'],
         ];
 
         if (!isset($key)) {
@@ -361,20 +368,46 @@ class ListValues
             return null;
         }
 
-        return $values[$key];
+        return $values[$key][$lang];
     }
 
-    public static function getAccountConditionsTypes(string $value): false|string|int
+    /**
+     * Retrieves the condition type code for a specified condition type value.
+     *
+     * @param string $value The condition type value to search for.
+     * @param string $lang The language code for the condition type value (default: 'en').
+     * @return false|int The condition type code associated with the condition type value,
+     *                  or false if the value is not found.
+     */
+    public static function getAccountConditionsTypes(string $value, string $lang = 'en'): false|int
     {
-        return array_search($value, self::accountConditionsTypes());
+        foreach (self::accountConditionsTypes() as $key => $status) {
+            if (strtolower($status[strtolower($lang)]) == strtolower($value)) {
+                return intval($key);
+            }
+        }
+        return false;
     }
 
 
-    public static function accountStatus(?int $key = null): string|array|null
+    /**
+     * Retrieves the status code or status values for a specified account key.
+     *
+     * @param int|null $key The account key to retrieve the status for.
+     * @param string $lang The language code for the status value (default: 'en').
+     * @return string|array|null If $key is null, returns an array of all status values. If $key exists in the array, returns the corresponding status value. If $key is not found, returns null.
+     */
+    public static function accountStatus(?int $key = null, string $lang = 'en'): string|array|null
     {
         $values = [
-            0 => 'Desativada',
-            1 => 'Ativada',
+            ['pt-br' => 'Desabilitado', 'en' => 'Disabled'],
+            ['pt-br' => 'Habilitado', 'en' => 'Enabled'],
+            ['pt-br' => 'Tipo de condição de conta', 'en' => 'AccountConditionType'],
+            ['pt-br' => 'Criado', 'en' => 'Created'],
+            ['pt-br' => 'Limitado', 'en' => 'Limited'],
+            ['pt-br' => 'Verificado', 'en' => 'Verified'],
+            ['pt-br' => 'Bloqueado', 'en' => 'Blocked'],
+            ['pt-br' => 'Terminado', 'en' => 'Terminated'],
         ];
 
         if (!isset($key)) {
@@ -384,29 +417,49 @@ class ListValues
             return null;
         }
 
-        return $values[$key];
+        return $values[$key][$lang];
     }
 
-    public static function getAccountStatusKey(string $value): false|string|int
+    /**
+     * Retrieves the status code for a specified account status value.
+     *
+     * @param string $value The account status value to search for.
+     * @param string $lang The language code for the status value (default: 'en').
+     * @return false|int The status code associated with the account status value, or false if the value is not found.
+     */
+    public static function getAccountStatusKey(string $value, string $lang = 'en'): false|int
     {
-        return array_search($value, self::accountStatus());
+        foreach (self::accountStatus() as $key => $status) {
+            if (strtolower($status[strtolower($lang)]) == strtolower($value)) {
+                return intval($key);
+            }
+        }
+        return false;
     }
 
 
-    public static function documentStatus(?int $key = null): string|array|null
+    /**
+     * Retrieves the document status for a specified key and language.
+     *
+     * @param int|null $key The key representing the document status (default: null).
+     * @param string|null $lang The language code for the document status (default: 'en').
+     * @return string|array|null The document status or an array of all document statuses if the key is not specified.
+     *                          Returns null if the key is not found.
+     */
+    public static function documentStatus(?int $key = null, ?string $lang = 'en'): string|array|null
     {
         $values = [
-            0 => 'Esperando Validação',
-            1 => 'Validado',
-            2 => 'Inválido',
-            3 => 'Expirado',
-            4 => 'Enviado',
-            5 => 'Reenviado',
-            6 => 'Reprovado',
-            7 => 'Erro',
-            8 => 'Inexistente',
-            9 => 'Suspenso',
-            10 => 'Tipificação de resultado'
+            0 => ['pt-br' => 'Esperando Validação', 'en' => 'Awaiting Validation'],
+            1 => ['pt-br' => 'Validado', 'en' => 'Validated'],
+            2 => ['pt-br' => 'Inválido', 'en' => 'Invalid'],
+            3 => ['pt-br' => 'Expirado', 'en' => 'Expired'],
+            4 => ['pt-br' => 'Enviado', 'en' => 'Sent'],
+            5 => ['pt-br' => 'Reenviado', 'en' => 'Resubmitted'],
+            6 => ['pt-br' => 'Reprovado', 'en' => 'Disapproved'],
+            7 => ['pt-br' => 'Erro', 'en' => 'Error'],
+            8 => ['pt-br' => 'Inexistente', 'en' => 'Inexistent'],
+            9 => ['pt-br' => 'Suspenso', 'en' => 'Suspended'],
+            10 => ['pt-br' => 'Tipificação de resultado', 'en' => 'TypificationResult']
         ];
 
         if (!isset($key)) {
@@ -416,26 +469,45 @@ class ListValues
             return null;
         }
 
-        return $values[$key];
+        return $values[$key][$lang];
     }
 
-    public static function getDocumentStatusKey(string $value): false|string|int
+    /**
+     * Retrieves the status code for a specified document status value.
+     *
+     * @param string $value The document status value to search for.
+     * @param string|null $lang The language code for the status value (default: 'en').
+     * @return false|int The status code associated with the document status value, or false if the value is not found.
+     */
+    public static function getDocumentStatusKey(string $value, ?string $lang = 'en'): false|int
     {
-        return array_search($value, self::documentStatus());
+        foreach (self::documentStatus() as $key => $status) {
+            if (strtolower($status[strtolower($lang)]) == strtolower($value)) {
+                return intval($key);
+            }
+        }
+        return false;
     }
 
 
-    public static function justificationLimitType(?int $key = null): string|array|null
+    /**
+     * Retrieves the justification limit type for a specified key and language.
+     *
+     * @param int|null $key The key to search for (default: null).
+     * @param string|null $lang The language code for the justification limit type (default: 'en').
+     * @return string|array|null The justification limit type associated with the key and language, or the entire array of justification limit types if key is null, or null if the key is not found.
+     */
+    public static function justificationLimitType(?int $key = null, ?string $lang = 'en'): string|array|null
     {
         $values = [
-            0 => "Negócio",
-            "Renda",
-            "Emergência",
-            "Education",
-            "Saúde",
-            "Viagem",
-            "Reforma",
-            "Outros",
+            0 => ["pt-br" => "Negócio", "en" => "Business"],
+            ["pt-br" => "Renda", "en" => "Income"],
+            ["pt-br" => "Emergência", "en" => "Emergency"],
+            ["pt-br" => "Education", "en" => "Education"],
+            ["pt-br" => "Saúde", "en" => "Health"],
+            ["pt-br" => "Viagem", "en" => "Travel"],
+            ["pt-br" => "Reforma", "en" => "Renovation"],
+            ["pt-br" => "Outros", "en" => "Others"],
         ];
 
         if (!isset($key)) {
@@ -445,12 +517,24 @@ class ListValues
             return null;
         }
 
-        return $values[$key];
+        return $values[$key][strtolower($lang)];
     }
 
-    public static function getJustificationLimitTypeKey(string $value): false|string|int
+    /**
+     * Retrieves the type key for a specified justification limit value.
+     *
+     * @param string $value The justification limit value to search for.
+     * @param string|null $lang The language code for the type value (default: 'en').
+     * @return false|int The type key associated with the justification limit value, or false if the value is not found.
+     */
+    public static function getJustificationLimitTypeKey(string $value, ?string $lang = 'en'): false|int
     {
-        return array_search($value, self::justificationLimitType());
+        foreach (self::justificationLimitType() as $key => $status) {
+            if (strtolower($status[strtolower($lang)]) == strtolower($value)) {
+                return intval($key);
+            }
+        }
+        return false;
     }
 
 

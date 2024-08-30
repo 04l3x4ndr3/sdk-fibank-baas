@@ -20,7 +20,7 @@ class Documents extends CallApi
      * @description Get document account
      * @document https://dev.fitbank.com.br/reference/413
      * @param string $taxNumber
-     * @param int    $documentType
+     * @param int $documentType
      *
      * @return Document|bool
      * @throws GuzzleException
@@ -40,7 +40,8 @@ class Documents extends CallApi
             $documentType,
             $resp->Description,
             $resp->ExpirationDate,
-            $resp->DocumentStatus
+            $resp->DocumentStatus,
+            $resp->DocumentKey
         );
     }
 
@@ -51,6 +52,7 @@ class Documents extends CallApi
      * @param array $documents
      * @param string|null $holderTaxNumber
      * @return object
+     * @throws GuzzleException
      */
     public function resendDocuments(string $taxNumber, array $documents, ?string $holderTaxNumber = null): object
     {
@@ -65,5 +67,21 @@ class Documents extends CallApi
         }
 
         return $this->call('ResendDocuments', array_filter(['TaxNumber' => $taxNumber, 'HolderTaxNumber' => $holderTaxNumber, 'Documents' => $docs]));
+    }
+
+    /**
+     * @param string $taxNumber
+     * @param array $documents of Document
+     * @param string|null $requestIdentifier
+     * @return object
+     * @throws GuzzleException
+     */
+    public function sendDocument(string $taxNumber, array $documents, string $requestIdentifier = null): object
+    {
+        $docs = [];
+        foreach ($documents as $doc) {
+            $docs[] = $doc->toArray();
+        }
+        return $this->call('SendDocument', array_filter(['TaxNumber' => $taxNumber, '$requestIdentifier' => $requestIdentifier, 'Documents' => $docs]));
     }
 }

@@ -11,24 +11,27 @@ class Document
     private ?string $description;
     private ?string $expirationDate;
     private ?int $documentStatus;
+    private ?string $documentKey;
 
     /**
      * @param string|null $documentFile
-     * @param int|null    $documentFormat
+     * @param int|null $documentFormat
      * @param string|null $documentName
-     * @param int|null    $documentType
+     * @param int|null $documentType
      * @param string|null $description
      * @param string|null $expirationDate
-     * @param int|null    $documentStatus
+     * @param int|null $documentStatus
+     * @param string|null $documentKey
      */
     public function __construct(
         ?string $documentFile = null,
-        ?int $documentFormat = null,
+        ?int    $documentFormat = null,
         ?string $documentName = null,
-        ?int $documentType = null,
+        ?int    $documentType = null,
         ?string $description = null,
         ?string $expirationDate = null,
-        ?int $documentStatus = null,
+        ?int    $documentStatus = null,
+        ?string $documentKey = null
     )
     {
         $this->documentFile = $documentFile;
@@ -38,6 +41,7 @@ class Document
         $this->description = $description;
         $this->expirationDate = $expirationDate;
         $this->documentStatus = $documentStatus;
+        $this->documentKey = $documentKey;
     }
 
     /**
@@ -174,6 +178,17 @@ class Document
         return $this;
     }
 
+    public function getDocumentKey(): ?string
+    {
+        return $this->documentKey;
+    }
+
+    public function setDocumentKey(?string $documentKey): Document
+    {
+        $this->documentKey = $documentKey;
+        return $this;
+    }
+
     /**
      * @return array
      */
@@ -187,6 +202,7 @@ class Document
             "Description" => $this->description,
             "ExpirationDate" => $this->expirationDate,
             "DocumentStatus" => $this->documentStatus,
+            "DocumentKey" => $this->documentKey,
         ], function ($v) {
             return $v !== null;
         });

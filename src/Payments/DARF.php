@@ -84,6 +84,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $taxNumber
+     *
      * @return DARF
      */
     public function setTaxNumber(?string $taxNumber): DARF
@@ -102,6 +103,7 @@ class DARF extends CallApi
 
     /**
      * @param int|null $fromBank
+     *
      * @return DARF
      */
     public function setFromBank(?int $fromBank): DARF
@@ -120,6 +122,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $fromBankBranch
+     *
      * @return DARF
      */
     public function setFromBankBranch(?string $fromBankBranch): DARF
@@ -138,6 +141,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $fromBankAccount
+     *
      * @return DARF
      */
     public function setFromBankAccount(?string $fromBankAccount): DARF
@@ -156,6 +160,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $fromBankAccountDigit
+     *
      * @return DARF
      */
     public function setFromBankAccountDigit(?string $fromBankAccountDigit): DARF
@@ -174,6 +179,7 @@ class DARF extends CallApi
 
     /**
      * @param int|null $DARFType
+     *
      * @return DARF
      */
     public function setDARFType(?int $DARFType): DARF
@@ -192,6 +198,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $calculationPeriod
+     *
      * @return DARF
      */
     public function setCalculationPeriod(?string $calculationPeriod): DARF
@@ -210,6 +217,7 @@ class DARF extends CallApi
 
     /**
      * @param int|null $codeRevenue
+     *
      * @return DARF
      */
     public function setCodeRevenue(?int $codeRevenue): DARF
@@ -228,6 +236,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $contributorTaxNumber
+     *
      * @return DARF
      */
     public function setContributorTaxNumber(?string $contributorTaxNumber): DARF
@@ -246,6 +255,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $referenceNumber
+     *
      * @return DARF
      */
     public function setReferenceNumber(?string $referenceNumber): DARF
@@ -264,6 +274,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $dueDate
+     *
      * @return DARF
      */
     public function setDueDate(?string $dueDate): DARF
@@ -282,6 +293,7 @@ class DARF extends CallApi
 
     /**
      * @param float|null $grossRevenueValue
+     *
      * @return DARF
      */
     public function setGrossRevenueValue(?float $grossRevenueValue): DARF
@@ -300,6 +312,7 @@ class DARF extends CallApi
 
     /**
      * @param float|null $grossRevenuePercentage
+     *
      * @return DARF
      */
     public function setGrossRevenuePercentage(?float $grossRevenuePercentage): DARF
@@ -318,6 +331,7 @@ class DARF extends CallApi
 
     /**
      * @param float|null $principalValue
+     *
      * @return DARF
      */
     public function setPrincipalValue(?float $principalValue): DARF
@@ -336,6 +350,7 @@ class DARF extends CallApi
 
     /**
      * @param float|null $fineValue
+     *
      * @return DARF
      */
     public function setFineValue(?float $fineValue): DARF
@@ -354,6 +369,7 @@ class DARF extends CallApi
 
     /**
      * @param float|null $interestValue
+     *
      * @return DARF
      */
     public function setInterestValue(?float $interestValue): DARF
@@ -372,6 +388,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $paymentDate
+     *
      * @return DARF
      */
     public function setPaymentDate(?string $paymentDate): DARF
@@ -390,6 +407,7 @@ class DARF extends CallApi
 
     /**
      * @param array|null $tags
+     *
      * @return DARF
      */
     public function setTags(?array $tags): DARF
@@ -408,6 +426,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $description
+     *
      * @return DARF
      */
     public function setDescription(?string $description): DARF
@@ -426,6 +445,7 @@ class DARF extends CallApi
 
     /**
      * @param string|null $identifier
+     *
      * @return DARF
      */
     public function setIdentifier(?string $identifier): DARF
@@ -444,6 +464,7 @@ class DARF extends CallApi
 
     /**
      * @param int|null $rateValueType
+     *
      * @return DARF
      */
     public function setRateValueType(?int $rateValueType): DARF
@@ -460,31 +481,37 @@ class DARF extends CallApi
      */
     public function generatePaymentDARF(): object
     {
-        $data = $this->toArray();
-        return $this->call('GeneratePaymentDARF', array_filter($data));
+        $data = array_filter($this->toArray(), function ($v) {
+            return ! is_null($v);
+        });
+        return $this->call('GeneratePaymentDARF', $data);
     }
 
     /**
      * @description Returns a DARF payment by document number.
      * @document https://dev.fitbank.com.br/reference/35-1
+     *
      * @param string $DocumentNumber
+     *
      * @return object
      * @throws GuzzleException
      */
     public function getDarfOutById(string $DocumentNumber): object
     {
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $this->call('GetDarfOutById', array_filter($data));
+        return $this->call('GetDarfOutById', $data);
     }
 
     /**
      * @description Returns a DARF payment by informations.
      * @document https://dev.fitbank.com.br/reference/47-1
+     *
      * @param string $dueDate
      * @param string $principalValue
      * @param string $taxContributor
      * @param string $referenceNumber
      * @param string $calculationPeriod
+     *
      * @return object
      * @throws GuzzleException
      */
@@ -494,26 +521,26 @@ class DARF extends CallApi
         string $taxContributor,
         string $referenceNumber,
         string $calculationPeriod,
-    ): object
-    {
-        return $this->call('GetDarfOutByInformations', array_filter(
-                [
-                    "DueDate" => $dueDate,
-                    "PrincipalValue" => $principalValue,
-                    "TaxContributor" => $taxContributor,
-                    "ReferenceNumber" => $referenceNumber,
-                    "CalculationPeriod" => $calculationPeriod
-                ],
-                function ($v) {
-                    return !is_null($v);
-                }
-            ));
+    ): object {
+        $data = array_filter([
+            "DueDate" => $dueDate,
+            "PrincipalValue" => $principalValue,
+            "TaxContributor" => $taxContributor,
+            "ReferenceNumber" => $referenceNumber,
+            "CalculationPeriod" => $calculationPeriod
+        ], function ($v) {
+            return ! is_null($v);
+        }
+        );
+        return $this->call('GetDarfOutByInformations', $data);
     }
 
     /**
      * @description Cancels DARF payment by document number.
      * @document https://dev.fitbank.com.br/reference/27-1
+     *
      * @param string $DocumentNumber
+     *
      * @return object
      * @throws GuzzleException
      */

@@ -12,10 +12,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class DARF
+class DARF extends CallApi
 {
-    private Configuration $configuration;
-
     private ?string $taxNumber;
     private ?int $fromBank;
     private ?string $fromBankBranch;
@@ -40,9 +38,9 @@ class DARF
 
     /**
      */
-    public function __construct()
+    public function __construct(?Configuration $config = null)
     {
-        $this->configuration = new Configuration();
+        parent::__construct($config);
 
         $this->taxNumber = null;
         $this->fromBank = null;
@@ -462,9 +460,8 @@ class DARF
      */
     public function generatePaymentDARF(): object
     {
-        $http = new CallApi($this->configuration);
         $data = $this->toArray();
-        return $http->call('GeneratePaymentDARF', array_filter($data));
+        return $this->call('GeneratePaymentDARF', array_filter($data));
     }
 
     /**
@@ -476,9 +473,8 @@ class DARF
      */
     public function getDarfOutById(string $DocumentNumber): object
     {
-        $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('GetDARFOutById', array_filter($data));
+        return $this->call('GetDARFOutById', array_filter($data));
     }
 
     /**
@@ -500,8 +496,7 @@ class DARF
         string $calculationPeriod,
     ): object
     {
-        return (new CallApi($this->configuration))
-            ->call('GetDARFOutByInformations', array_filter(
+        return $this->call('GetDARFOutByInformations', array_filter(
                 [
                     "DueDate" => $dueDate,
                     "PrincipalValue" => $principalValue,
@@ -524,9 +519,8 @@ class DARF
      */
     public function cancelPaymentDARF(string $DocumentNumber): object
     {
-        $http = new CallApi($this->configuration);
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('CancelPaymentDARF', array_filter($data));
+        return $this->call('CancelPaymentDARF', array_filter($data));
     }
 
 

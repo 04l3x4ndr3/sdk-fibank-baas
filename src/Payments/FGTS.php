@@ -12,7 +12,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class FGTS
+class FGTS extends CallApi
 {
     private Configuration $configuration;
     private ?string $taxNumber;
@@ -29,45 +29,24 @@ class FGTS
     private ?string $identifier;
 
     /**
-     * @param string|null $taxNumber
-     * @param string|null $contributorTaxNumber
-     * @param float|null $principalValue
-     * @param int|null $codeRevenue
-     * @param string|null $barcode
-     * @param int|null $fgtsIdentifier
-     * @param int|null $socialConnectivityCode
-     * @param int|null $socialConnectivityDigit
-     * @param string|null $paymentDate
-     * @param int $rateValueType
-     * @param float $rateValue
-     * @param string|null $identifier
+     * @param Configuration|null $configuration
      */
-    public function __construct(?string $taxNumber = null,
-                                ?string $contributorTaxNumber = null,
-                                ?float  $principalValue = null,
-                                ?int    $codeRevenue = null,
-                                ?string $barcode = null,
-                                ?int    $fgtsIdentifier = null,
-                                ?int    $socialConnectivityCode = null,
-                                ?int    $socialConnectivityDigit = null,
-                                ?string $paymentDate = null,
-                                int     $rateValueType = 0,
-                                float   $rateValue = 0,
-                                ?string $identifier = null)
+    public function __construct(?Configuration $configuration = null)
     {
-        $this->configuration = new Configuration();
-        $this->taxNumber = $taxNumber;
-        $this->contributorTaxNumber = $contributorTaxNumber;
-        $this->principalValue = $principalValue;
-        $this->codeRevenue = $codeRevenue;
-        $this->barcode = $barcode;
-        $this->fgtsIdentifier = $fgtsIdentifier;
-        $this->socialConnectivityCode = $socialConnectivityCode;
-        $this->socialConnectivityDigit = $socialConnectivityDigit;
-        $this->paymentDate = $paymentDate;
-        $this->rateValueType = $rateValueType;
-        $this->rateValue = $rateValue;
-        $this->identifier = $identifier;
+        parent::__construct($configuration);
+
+        $this->taxNumber = null;
+        $this->contributorTaxNumber = null;
+        $this->principalValue = null;
+        $this->codeRevenue = null;
+        $this->barcode = null;
+        $this->fgtsIdentifier = null;
+        $this->socialConnectivityCode = null;
+        $this->socialConnectivityDigit = null;
+        $this->paymentDate = null;
+        $this->rateValueType = null;
+        $this->rateValue = null;
+        $this->identifier = null;
     }
 
     /**
@@ -270,6 +249,55 @@ class FGTS
         $this->identifier = $identifier;
     }
 
+    /**
+     * @param FGTS|null $fgts
+     * @return object
+     * @throws GuzzleException
+     * @deprecated
+     */
+    public function generatePaymentFGTS(?FGTS $fgts = null): object
+    {
+        $data = (isset($fgts)) ? $fgts->toArray() : $this->toArray();
+        return $this->call('GeneratePaymentFGTS', array_filter($data));
+    }
+
+    /**
+     * @description Generates a FGTS payment.
+     * @document https://dev.fitbank.com.br/reference/56-1
+     * @return object
+     * @throws GuzzleException
+     */
+    public function generatePaymentsFGTS(): object
+    {
+        $data = $this->toArray();
+        return $this->call('GeneratePaymentsFGTS', array_filter($data));
+    }
+
+    /**
+     * @description Returns a FGTS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/57-1
+     * @param string $DocumentNumber
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getFgtsOutById(string $DocumentNumber): object
+    {
+        $data = ['DocumentNumber' => $DocumentNumber];
+        return $this->call('GetFgtsOutById', array_filter($data));
+    }
+
+    /**
+     * @description Cancels FGTS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/58-1
+     * @param string $DocumentNumber
+     * @return object
+     * @throws GuzzleException
+     */
+    public function cancelPaymentFgts(string $DocumentNumber): object
+    {
+        $data = ['DocumentNumber' => $DocumentNumber];
+        return $this->call('CancelPaymentFgts', array_filter($data));
+    }
 
     /**
      * @return array
@@ -289,71 +317,5 @@ class FGTS
             "RateValueType" => $this->rateValueType,
             "Identifier" => $this->identifier
         ];
-    }
-
-    /**
-     * @param FGTS $fgts
-     * @return object
-     * @throws GuzzleException
-     * @deprecated
-     */
-    public function generatePaymentFGTS(?FGTS $fgts = null): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = (isset($fgts)) ? $fgts->toArray() : $this->toArray();
-        return $http->call('GeneratePaymentFGTS', array_filter($data));
-    }
-
-    /**
-     * @description Generates a FGTS payment.
-     * @document https://dev.fitbank.com.br/reference/56-1
-     * @param FGTS|null $fgts
-     * @return object
-     */
-    public function generatePaymentsFGTS(?FGTS $fgts = null): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = (isset($fgts)) ? $fgts->toArray() : $this->toArray();
-        return $http->call('GeneratePaymentsFGTS', array_filter($data));
-    }
-
-    /**
-     * @description New version, generates a FGTS payment.
-     * @document https://dev.fitbank.com.br/reference/56-1
-     * @param \O4l3x4ndr3\SdkFitbank\Common\Pagadoria\FGTS|null $fgts
-     * @return object
-     */
-    public function generatePaymentsFGTS2(?\O4l3x4ndr3\SdkFitbank\Common\Pagadoria\FGTS $fgts = null): object
-    {
-        $http = new CallApi(new Configuration());
-        return $http->call('GeneratePaymentsFGTS', array_filter($fgts->toArray()));
-    }
-
-    /**
-     * @description Returns a FGTS payment by document number.
-     * @document https://dev.fitbank.com.br/reference/57-1
-     * @param string $DocumentNumber
-     * @return object
-     * @throws GuzzleException
-     */
-    public function getFgtsOutById(string $DocumentNumber): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('GetFgtsOutById', array_filter($data));
-    }
-
-    /**
-     * @description Cancels FGTS payment by document number.
-     * @document https://dev.fitbank.com.br/reference/58-1
-     * @param string $DocumentNumber
-     * @return object
-     * @throws GuzzleException
-     */
-    public function cancelPaymentFgts(string $DocumentNumber): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('CancelPaymentFgts', array_filter($data));
     }
 }

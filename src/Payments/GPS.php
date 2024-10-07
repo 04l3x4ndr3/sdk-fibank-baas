@@ -12,7 +12,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
-class GPS
+class GPS extends CallApi
 {
     private Configuration $configuration;
     private ?string $taxNumber;
@@ -30,47 +30,25 @@ class GPS
     private ?float $rateValue;
 
     /**
-     * @param string|null $taxNumber
-     * @param string|null $contributorTaxNumber
-     * @param float|null $principalValue
-     * @param float|null $fineInterestValue
-     * @param float|null $otherValues
-     * @param string|null $paymentDate
-     * @param string|null $dueDate
-     * @param string|null $identifier
-     * @param int|null $paymentCode
-     * @param string|null $referenceNumber
-     * @param string|null $jurisdictionDate
-     * @param int|null $rateValueType
-     * @param float|null $rateValue
+     * @param Configuration|null $configuration
      */
-    public function __construct(?string $taxNumber = null,
-                                ?string $contributorTaxNumber = null,
-                                ?float  $principalValue = null,
-                                ?float  $fineInterestValue = null,
-                                ?float  $otherValues = null,
-                                ?string $paymentDate = null,
-                                ?string $dueDate = null,
-                                ?string $identifier = null,
-                                ?int    $paymentCode = null,
-                                ?string $referenceNumber = null,
-                                ?string $jurisdictionDate = null,
-                                ?int    $rateValueType = null,
-                                ?float  $rateValue = null)
+    public function __construct(?Configuration $configuration = null)
     {
-        $this->taxNumber = $taxNumber;
-        $this->contributorTaxNumber = $contributorTaxNumber;
-        $this->principalValue = $principalValue;
-        $this->fineInterestValue = $fineInterestValue;
-        $this->otherValues = $otherValues;
-        $this->paymentDate = $paymentDate;
-        $this->dueDate = $dueDate;
-        $this->identifier = $identifier;
-        $this->paymentCode = $paymentCode;
-        $this->referenceNumber = $referenceNumber;
-        $this->jurisdictionDate = $jurisdictionDate;
-        $this->rateValueType = $rateValueType;
-        $this->rateValue = $rateValue;
+        parent::__construct($configuration);
+
+        $this->taxNumber = null;
+        $this->contributorTaxNumber = null;
+        $this->principalValue = null;
+        $this->fineInterestValue = null;
+        $this->otherValues = null;
+        $this->paymentDate = null;
+        $this->dueDate = null;
+        $this->identifier = null;
+        $this->paymentCode = null;
+        $this->referenceNumber = null;
+        $this->jurisdictionDate = null;
+        $this->rateValueType = null;
+        $this->rateValue = null;
     }
 
     /**
@@ -298,6 +276,44 @@ class GPS
     }
 
     /**
+     * @description Generates a GPS payment.
+     * @document https://dev.fitbank.com.br/reference/50-1
+     * @return object
+     * @throws GuzzleException
+     */
+    public function generatePaymentGPS(): object
+    {
+        $data =  array_filter($this->toArray());
+        return $this->call('GeneratePaymentGPS', array_filter($data));
+    }
+
+    /**
+     * @description Returns a GPS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/53-1
+     * @param string $DocumentNumber
+     * @return object
+     * @throws GuzzleException
+     */
+    public function getGpsOutById(string $DocumentNumber): object
+    {
+        $data = ['DocumentNumber' => $DocumentNumber];
+        return $this->call('GetGpsOutById', array_filter($data));
+    }
+
+    /**
+     * @description Cancels GPS payment by document number.
+     * @document https://dev.fitbank.com.br/reference/55-1
+     * @param string $DocumentNumber
+     * @return object
+     * @throws GuzzleException
+     */
+    public function cancelPaymentGps(string $DocumentNumber): object
+    {
+        $data = ['DocumentNumber' => $DocumentNumber];
+        return $this->call('CancelPaymentGps', array_filter($data));
+    }
+
+    /**
      * @return array
      */
     public function toArray(): array
@@ -317,60 +333,5 @@ class GPS
             "ReferenceNumber" => $this->referenceNumber,
             "JurisdictionDate" => $this->jurisdictionDate
         ];
-    }
-
-    /**
-     * @description Generates a GPS payment.
-     * @document https://dev.fitbank.com.br/reference/50-1
-     * @param GPS $gps
-     * @return object
-     * @throws GuzzleException
-     */
-    public function generatePaymentGPS(?GPS $gps = null): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = (isset($gps)) ? $gps->toArray() : $this->toArray();
-        return $http->call('GeneratePaymentGPS', array_filter($data));
-    }
-
-    /**
-     * @description Second version generates a GPS payment.
-     * @document https://dev.fitbank.com.br/reference/50-1
-     * @param \O4l3x4ndr3\SdkFitbank\Common\Pagadoria\GPS|null $gps
-     * @return object
-     * @throws GuzzleException
-     */
-    public function generatePaymentGPS2(?\O4l3x4ndr3\SdkFitbank\Common\Pagadoria\GPS $gps = null): object
-    {
-        $http = new CallApi(new Configuration());
-        return $http->call('GeneratePaymentGPS', array_filter($gps->toArray()));
-    }
-
-    /**
-     * @description Returns a GPS payment by document number.
-     * @document https://dev.fitbank.com.br/reference/53-1
-     * @param string $DocumentNumber
-     * @return object
-     * @throws GuzzleException
-     */
-    public function getGpsOutById(string $DocumentNumber): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('GetGpsOutById', array_filter($data));
-    }
-
-    /**
-     * @description Cancels GPS payment by document number.
-     * @document https://dev.fitbank.com.br/reference/55-1
-     * @param string $DocumentNumber
-     * @return object
-     * @throws GuzzleException
-     */
-    public function cancelPaymentGps(string $DocumentNumber): object
-    {
-        $http = new CallApi($this->configuration);
-        $data = ['DocumentNumber' => $DocumentNumber];
-        return $http->call('CancelPaymentGps', array_filter($data));
     }
 }

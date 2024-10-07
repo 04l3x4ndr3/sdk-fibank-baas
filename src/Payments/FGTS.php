@@ -14,7 +14,6 @@ use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
 class FGTS extends CallApi
 {
-    private Configuration $configuration;
     private ?string $taxNumber;
     private ?string $contributorTaxNumber;
     private ?float $principalValue;
@@ -24,9 +23,15 @@ class FGTS extends CallApi
     private ?int $socialConnectivityCode;
     private ?int $socialConnectivityDigit;
     private ?string $paymentDate;
+    private ?array $tags;
     private ?int $rateValueType;
     private ?float $rateValue;
+    private ?string $description;
     private ?string $identifier;
+    private ?int $fromBank;
+    private ?string $fromBankBranch;
+    private ?string $fromBankAccount;
+    private ?string $fromBankAccountDigit;
 
     /**
      * @param Configuration|null $configuration
@@ -44,9 +49,15 @@ class FGTS extends CallApi
         $this->socialConnectivityCode = null;
         $this->socialConnectivityDigit = null;
         $this->paymentDate = null;
+        $this->tags = null;
         $this->rateValueType = null;
         $this->rateValue = null;
+        $this->description = null;
         $this->identifier = null;
+        $this->fromBank = null;
+        $this->fromBankBranch = null;
+        $this->fromBankAccount = null;
+        $this->fromBankAccountDigit = null;
     }
 
     /**
@@ -67,10 +78,12 @@ class FGTS extends CallApi
 
     /**
      * @param string|null $taxNumber
+     * @return FGTS
      */
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): FGTS
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     /**
@@ -83,10 +96,12 @@ class FGTS extends CallApi
 
     /**
      * @param string|null $contributorTaxNumber
+     * @return FGTS
      */
-    public function setContributorTaxNumber(?string $contributorTaxNumber): void
+    public function setContributorTaxNumber(?string $contributorTaxNumber): FGTS
     {
         $this->contributorTaxNumber = $contributorTaxNumber;
+        return $this;
     }
 
     /**
@@ -99,10 +114,12 @@ class FGTS extends CallApi
 
     /**
      * @param float|null $principalValue
+     * @return FGTS
      */
-    public function setPrincipalValue(?float $principalValue): void
+    public function setPrincipalValue(?float $principalValue): FGTS
     {
         $this->principalValue = $principalValue;
+        return $this;
     }
 
     /**
@@ -115,10 +132,12 @@ class FGTS extends CallApi
 
     /**
      * @param int|null $codeRevenue
+     * @return FGTS
      */
-    public function setCodeRevenue(?int $codeRevenue): void
+    public function setCodeRevenue(?int $codeRevenue): FGTS
     {
         $this->codeRevenue = $codeRevenue;
+        return $this;
     }
 
     /**
@@ -131,10 +150,12 @@ class FGTS extends CallApi
 
     /**
      * @param string|null $barcode
+     * @return FGTS
      */
-    public function setBarcode(?string $barcode): void
+    public function setBarcode(?string $barcode): FGTS
     {
         $this->barcode = $barcode;
+        return $this;
     }
 
     /**
@@ -147,10 +168,12 @@ class FGTS extends CallApi
 
     /**
      * @param int|null $fgtsIdentifier
+     * @return FGTS
      */
-    public function setFgtsIdentifier(?int $fgtsIdentifier): void
+    public function setFgtsIdentifier(?int $fgtsIdentifier): FGTS
     {
         $this->fgtsIdentifier = $fgtsIdentifier;
+        return $this;
     }
 
     /**
@@ -163,10 +186,12 @@ class FGTS extends CallApi
 
     /**
      * @param int|null $socialConnectivityCode
+     * @return FGTS
      */
-    public function setSocialConnectivityCode(?int $socialConnectivityCode): void
+    public function setSocialConnectivityCode(?int $socialConnectivityCode): FGTS
     {
         $this->socialConnectivityCode = $socialConnectivityCode;
+        return $this;
     }
 
     /**
@@ -179,10 +204,12 @@ class FGTS extends CallApi
 
     /**
      * @param int|null $socialConnectivityDigit
+     * @return FGTS
      */
-    public function setSocialConnectivityDigit(?int $socialConnectivityDigit): void
+    public function setSocialConnectivityDigit(?int $socialConnectivityDigit): FGTS
     {
         $this->socialConnectivityDigit = $socialConnectivityDigit;
+        return $this;
     }
 
     /**
@@ -195,10 +222,39 @@ class FGTS extends CallApi
 
     /**
      * @param string|null $paymentDate
+     * @return FGTS
      */
-    public function setPaymentDate(?string $paymentDate): void
+    public function setPaymentDate(?string $paymentDate): FGTS
     {
         $this->paymentDate = $paymentDate;
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getTags(): ?array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @return FGTS
+     */
+    public function clearTags(): FGTS
+    {
+        $this->tags = null;
+        return $this;
+    }
+
+    /**
+     * @param string|null $tags
+     * @return FGTS
+     */
+    public function addTag(?string $tags): FGTS
+    {
+        $this->tags[] = $tags;
+        return $this;
     }
 
     /**
@@ -211,26 +267,30 @@ class FGTS extends CallApi
 
     /**
      * @param int|null $rateValueType
+     * @return FGTS
      */
-    public function setRateValueType(?int $rateValueType): void
+    public function setRateValueType(?int $rateValueType): FGTS
     {
         $this->rateValueType = $rateValueType;
+        return $this;
     }
 
     /**
-     * @return float|int|null
+     * @return string|null
      */
-    public function getRateValue(): float|int|null
+    public function getDescription(): ?string
     {
-        return $this->rateValue;
+        return $this->description;
     }
 
     /**
-     * @param float|int|null $rateValue
+     * @param string|null $description
+     * @return FGTS
      */
-    public function setRateValue(float|int|null $rateValue): void
+    public function setDescription(?string $description): FGTS
     {
-        $this->rateValue = $rateValue;
+        $this->description = $description;
+        return $this;
     }
 
     /**
@@ -243,34 +303,97 @@ class FGTS extends CallApi
 
     /**
      * @param string|null $identifier
+     * @return FGTS
      */
-    public function setIdentifier(?string $identifier): void
+    public function setIdentifier(?string $identifier): FGTS
     {
         $this->identifier = $identifier;
+        return $this;
     }
 
     /**
-     * @param FGTS|null $fgts
+     * @return int|null
+     */
+    public function getFromBank(): ?int
+    {
+        return $this->fromBank;
+    }
+
+    /**
+     * @param int|null $fromBank
+     * @return FGTS
+     */
+    public function setFromBank(?int $fromBank): FGTS
+    {
+        $this->fromBank = $fromBank;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFromBankBranch(): ?string
+    {
+        return $this->fromBankBranch;
+    }
+
+    /**
+     * @param string|null $fromBankBranch
+     * @return FGTS
+     */
+    public function setFromBankBranch(?string $fromBankBranch): FGTS
+    {
+        $this->fromBankBranch = $fromBankBranch;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFromBankAccount(): ?string
+    {
+        return $this->fromBankAccount;
+    }
+
+    /**
+     * @param string|null $fromBankAccount
+     * @return FGTS
+     */
+    public function setFromBankAccount(?string $fromBankAccount): FGTS
+    {
+        $this->fromBankAccount = $fromBankAccount;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFromBankAccountDigit(): ?string
+    {
+        return $this->fromBankAccountDigit;
+    }
+
+    /**
+     * @param string|null $fromBankAccountDigit
+     * @return FGTS
+     */
+    public function setFromBankAccountDigit(?string $fromBankAccountDigit): FGTS
+    {
+        $this->fromBankAccountDigit = $fromBankAccountDigit;
+        return $this;
+    }
+
+    /**
      * @return object
      * @throws GuzzleException
      * @deprecated
      */
-    public function generatePaymentFGTS(?FGTS $fgts = null): object
+    public function generatePaymentFGTS(): object
     {
-        $data = (isset($fgts)) ? $fgts->toArray() : $this->toArray();
-        return $this->call('GeneratePaymentFGTS', array_filter($data));
-    }
-
-    /**
-     * @description Generates a FGTS payment.
-     * @document https://dev.fitbank.com.br/reference/56-1
-     * @return object
-     * @throws GuzzleException
-     */
-    public function generatePaymentsFGTS(): object
-    {
-        $data = $this->toArray();
-        return $this->call('GeneratePaymentsFGTS', array_filter($data));
+        $data = array_filter($this->toArray(), function ($value) {
+            return !is_null($value);
+        });
+        return $this->call('GeneratePaymentFGTS', $data);
     }
 
     /**
@@ -283,7 +406,7 @@ class FGTS extends CallApi
     public function getFgtsOutById(string $DocumentNumber): object
     {
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $this->call('GetFgtsOutById', array_filter($data));
+        return $this->call('GetFgtsOutById', $data);
     }
 
     /**
@@ -296,7 +419,7 @@ class FGTS extends CallApi
     public function cancelPaymentFgts(string $DocumentNumber): object
     {
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $this->call('CancelPaymentFgts', array_filter($data));
+        return $this->call('CancelPaymentFgts', $data);
     }
 
     /**
@@ -314,8 +437,15 @@ class FGTS extends CallApi
             "SocialConnectivityCode" => $this->socialConnectivityCode,
             "SocialConnectivityDigit" => $this->socialConnectivityDigit,
             "PaymentDate" => $this->paymentDate,
+            "Tags" => $this->tags,
             "RateValueType" => $this->rateValueType,
-            "Identifier" => $this->identifier
+            "RateValue" => $this->rateValue,
+            "Description" => $this->description,
+            "Identifier" => $this->identifier,
+            "FromBank" => $this->fromBank,
+            "FromBankBranch" => $this->fromBankBranch,
+            "FromBankAccount" => $this->fromBankAccount,
+            "FromBankAccountDigit" => $this->fromBankAccountDigit,
         ];
     }
 }

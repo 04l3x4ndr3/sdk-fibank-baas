@@ -474,7 +474,7 @@ class DARF extends CallApi
     public function getDarfOutById(string $DocumentNumber): object
     {
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $this->call('GetDARFOutById', array_filter($data));
+        return $this->call('GetDarfOutById', array_filter($data));
     }
 
     /**
@@ -496,7 +496,7 @@ class DARF extends CallApi
         string $calculationPeriod,
     ): object
     {
-        return $this->call('GetDARFOutByInformations', array_filter(
+        return $this->call('GetDarfOutByInformations', array_filter(
                 [
                     "DueDate" => $dueDate,
                     "PrincipalValue" => $principalValue,

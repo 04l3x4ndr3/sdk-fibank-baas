@@ -218,12 +218,21 @@ class GPS extends CallApi
     }
 
     /**
-     * @param array|null $tags
+     * @param string $tags
      * @return GPS
      */
-    public function setTags(?array $tags): GPS
+    public function addTags(string $tags): GPS
     {
-        $this->tags = $tags;
+        $this->tags[] = $tags;
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearTags(): GPS
+    {
+        $this->tags = null;
         return $this;
     }
 
@@ -433,7 +442,9 @@ class GPS extends CallApi
      */
     public function generatePaymentGPS(): object
     {
-        $data =  array_filter($this->toArray(), function ($value) {return !is_null($value);});
+        $data = array_filter($this->toArray(), function ($value) {
+            return !is_null($value);
+        });
         return $this->call('GeneratePaymentGPS', array_filter($data));
     }
 

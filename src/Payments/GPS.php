@@ -14,20 +14,27 @@ use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
 
 class GPS extends CallApi
 {
-    private Configuration $configuration;
     private ?string $taxNumber;
     private ?string $contributorTaxNumber;
     private ?float $principalValue;
     private ?float $fineInterestValue;
     private ?float $otherValues;
+    private ?float $rateValue;
     private ?string $paymentDate;
     private ?string $dueDate;
+    private ?array $tags;
+    private ?int $rateValueType;
+    private ?string $description;
     private ?string $identifier;
     private ?int $paymentCode;
     private ?string $referenceNumber;
     private ?string $jurisdictionDate;
-    private ?int $rateValueType;
-    private ?float $rateValue;
+    private ?int $fromBank;
+    private ?string $fromBankBranch;
+    private ?string $fromBankAccount;
+    private ?string $fromBankAccountDigit;
+    private ?int $contributorDocumentType;
+
 
     /**
      * @param Configuration|null $configuration
@@ -41,30 +48,21 @@ class GPS extends CallApi
         $this->principalValue = null;
         $this->fineInterestValue = null;
         $this->otherValues = null;
+        $this->rateValue = null;
         $this->paymentDate = null;
         $this->dueDate = null;
+        $this->tags = null;
+        $this->rateValueType = null;
+        $this->description = null;
         $this->identifier = null;
         $this->paymentCode = null;
         $this->referenceNumber = null;
         $this->jurisdictionDate = null;
-        $this->rateValueType = null;
-        $this->rateValue = null;
-    }
-
-    /**
-     * @return Configuration
-     */
-    public function getConfiguration(): Configuration
-    {
-        return $this->configuration;
-    }
-
-    /**
-     * @param Configuration $configuration
-     */
-    public function setConfiguration(Configuration $configuration): void
-    {
-        $this->configuration = $configuration;
+        $this->fromBank = null;
+        $this->fromBankBranch = null;
+        $this->fromBankAccount = null;
+        $this->fromBankAccountDigit = null;
+        $this->contributorDocumentType = null;
     }
 
     /**
@@ -77,10 +75,12 @@ class GPS extends CallApi
 
     /**
      * @param string|null $taxNumber
+     * @return GPS
      */
-    public function setTaxNumber(?string $taxNumber): void
+    public function setTaxNumber(?string $taxNumber): GPS
     {
         $this->taxNumber = $taxNumber;
+        return $this;
     }
 
     /**
@@ -93,10 +93,12 @@ class GPS extends CallApi
 
     /**
      * @param string|null $contributorTaxNumber
+     * @return GPS
      */
-    public function setContributorTaxNumber(?string $contributorTaxNumber): void
+    public function setContributorTaxNumber(?string $contributorTaxNumber): GPS
     {
         $this->contributorTaxNumber = $contributorTaxNumber;
+        return $this;
     }
 
     /**
@@ -109,10 +111,12 @@ class GPS extends CallApi
 
     /**
      * @param float|null $principalValue
+     * @return GPS
      */
-    public function setPrincipalValue(?float $principalValue): void
+    public function setPrincipalValue(?float $principalValue): GPS
     {
         $this->principalValue = $principalValue;
+        return $this;
     }
 
     /**
@@ -125,10 +129,12 @@ class GPS extends CallApi
 
     /**
      * @param float|null $fineInterestValue
+     * @return GPS
      */
-    public function setFineInterestValue(?float $fineInterestValue): void
+    public function setFineInterestValue(?float $fineInterestValue): GPS
     {
         $this->fineInterestValue = $fineInterestValue;
+        return $this;
     }
 
     /**
@@ -141,122 +147,12 @@ class GPS extends CallApi
 
     /**
      * @param float|null $otherValues
+     * @return GPS
      */
-    public function setOtherValues(?float $otherValues): void
+    public function setOtherValues(?float $otherValues): GPS
     {
         $this->otherValues = $otherValues;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPaymentDate(): ?string
-    {
-        return $this->paymentDate;
-    }
-
-    /**
-     * @param string|null $paymentDate
-     */
-    public function setPaymentDate(?string $paymentDate): void
-    {
-        $this->paymentDate = $paymentDate;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getDueDate(): ?string
-    {
-        return $this->dueDate;
-    }
-
-    /**
-     * @param string|null $dueDate
-     */
-    public function setDueDate(?string $dueDate): void
-    {
-        $this->dueDate = $dueDate;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getIdentifier(): ?string
-    {
-        return $this->identifier;
-    }
-
-    /**
-     * @param string|null $identifier
-     */
-    public function setIdentifier(?string $identifier): void
-    {
-        $this->identifier = $identifier;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getPaymentCode(): ?int
-    {
-        return $this->paymentCode;
-    }
-
-    /**
-     * @param int|null $paymentCode
-     */
-    public function setPaymentCode(?int $paymentCode): void
-    {
-        $this->paymentCode = $paymentCode;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getReferenceNumber(): ?string
-    {
-        return $this->referenceNumber;
-    }
-
-    /**
-     * @param string|null $referenceNumber
-     */
-    public function setReferenceNumber(?string $referenceNumber): void
-    {
-        $this->referenceNumber = $referenceNumber;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getJurisdictionDate(): ?string
-    {
-        return $this->jurisdictionDate;
-    }
-
-    /**
-     * @param string|null $jurisdictionDate
-     */
-    public function setJurisdictionDate(?string $jurisdictionDate): void
-    {
-        $this->jurisdictionDate = $jurisdictionDate;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getRateValueType(): ?int
-    {
-        return $this->rateValueType;
-    }
-
-    /**
-     * @param int|null $rateValueType
-     */
-    public function setRateValueType(?int $rateValueType): void
-    {
-        $this->rateValueType = $rateValueType;
+        return $this;
     }
 
     /**
@@ -269,10 +165,192 @@ class GPS extends CallApi
 
     /**
      * @param float|null $rateValue
+     * @return GPS
      */
-    public function setRateValue(?float $rateValue): void
+    public function setRateValue(?float $rateValue): GPS
     {
         $this->rateValue = $rateValue;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPaymentDate(): ?string
+    {
+        return $this->paymentDate;
+    }
+
+    /**
+     * @param string|null $paymentDate
+     * @return GPS
+     */
+    public function setPaymentDate(?string $paymentDate): GPS
+    {
+        $this->paymentDate = $paymentDate;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDueDate(): ?string
+    {
+        return $this->dueDate;
+    }
+
+    /**
+     * @param string|null $dueDate
+     * @return GPS
+     */
+    public function setDueDate(?string $dueDate): GPS
+    {
+        $this->dueDate = $dueDate;
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getTags(): ?array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param array|null $tags
+     * @return GPS
+     */
+    public function setTags(?array $tags): GPS
+    {
+        $this->tags = $tags;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getRateValueType(): ?int
+    {
+        return $this->rateValueType;
+    }
+
+    /**
+     * @param int|null $rateValueType
+     * @return GPS
+     */
+    public function setRateValueType(?int $rateValueType): GPS
+    {
+        $this->rateValueType = $rateValueType;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $description
+     * @return GPS
+     */
+    public function setDescription(?string $description): GPS
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * @param string|null $identifier
+     * @return GPS
+     */
+    public function setIdentifier(?string $identifier): GPS
+    {
+        $this->identifier = $identifier;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPaymentCode(): ?int
+    {
+        return $this->paymentCode;
+    }
+
+    /**
+     * @param int|null $paymentCode
+     * @return GPS
+     */
+    public function setPaymentCode(?int $paymentCode): GPS
+    {
+        $this->paymentCode = $paymentCode;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getReferenceNumber(): ?string
+    {
+        return $this->referenceNumber;
+    }
+
+    /**
+     * @param string|null $referenceNumber
+     * @return GPS
+     */
+    public function setReferenceNumber(?string $referenceNumber): GPS
+    {
+        $this->referenceNumber = $referenceNumber;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getJurisdictionDate(): ?string
+    {
+        return $this->jurisdictionDate;
+    }
+
+    /**
+     * @param string|null $jurisdictionDate
+     * @return GPS
+     */
+    public function setJurisdictionDate(?string $jurisdictionDate): GPS
+    {
+        $this->jurisdictionDate = $jurisdictionDate;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getContributorDocumentType(): ?int
+    {
+        return $this->contributorDocumentType;
+    }
+
+    /**
+     * @param int|null $contributorDocumentType
+     * @return GPS
+     */
+    public function setContributorDocumentType(?int $contributorDocumentType): GPS
+    {
+        $this->contributorDocumentType = $contributorDocumentType;
+        return $this;
     }
 
     /**
@@ -283,7 +361,7 @@ class GPS extends CallApi
      */
     public function generatePaymentGPS(): object
     {
-        $data =  array_filter($this->toArray());
+        $data =  array_filter($this->toArray(), function ($value) {return !is_null($value);});
         return $this->call('GeneratePaymentGPS', array_filter($data));
     }
 
@@ -297,7 +375,7 @@ class GPS extends CallApi
     public function getGpsOutById(string $DocumentNumber): object
     {
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $this->call('GetGpsOutById', array_filter($data));
+        return $this->call('GetGpsOutById', $data);
     }
 
     /**
@@ -310,7 +388,7 @@ class GPS extends CallApi
     public function cancelPaymentGps(string $DocumentNumber): object
     {
         $data = ['DocumentNumber' => $DocumentNumber];
-        return $this->call('CancelPaymentGps', array_filter($data));
+        return $this->call('CancelPaymentGps', $data);
     }
 
     /**
@@ -327,11 +405,18 @@ class GPS extends CallApi
             "RateValue" => $this->rateValue,
             "PaymentDate" => $this->paymentDate,
             "DueDate" => $this->dueDate,
+            "Tags" => $this->tags,
             "RateValueType" => $this->rateValueType,
+            "Description" => $this->description,
             "Identifier" => $this->identifier,
             "PaymentCode" => $this->paymentCode,
             "ReferenceNumber" => $this->referenceNumber,
-            "JurisdictionDate" => $this->jurisdictionDate
+            "JurisdictionDate" => $this->jurisdictionDate,
+            "FromBank" => $this->fromBank,
+            "FromBankBranch" => $this->fromBankBranch,
+            "FromBankAccount" => $this->fromBankAccount,
+            "FromBankAccountDigit" => $this->fromBankAccountDigit,
+            "ContributorDocumentType" => $this->contributorDocumentType
         ];
     }
 }

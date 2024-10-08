@@ -338,6 +338,78 @@ class GPS extends CallApi
     /**
      * @return int|null
      */
+    public function getFromBank(): ?int
+    {
+        return $this->fromBank;
+    }
+
+    /**
+     * @param int|null $fromBank
+     * @return GPS
+     */
+    public function setFromBank(?int $fromBank): GPS
+    {
+        $this->fromBank = $fromBank;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFromBankBranch(): ?string
+    {
+        return $this->fromBankBranch;
+    }
+
+    /**
+     * @param string|null $fromBankBranch
+     * @return GPS
+     */
+    public function setFromBankBranch(?string $fromBankBranch): GPS
+    {
+        $this->fromBankBranch = $fromBankBranch;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFromBankAccount(): ?string
+    {
+        return $this->fromBankAccount;
+    }
+
+    /**
+     * @param string|null $fromBankAccount
+     * @return GPS
+     */
+    public function setFromBankAccount(?string $fromBankAccount): GPS
+    {
+        $this->fromBankAccount = $fromBankAccount;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFromBankAccountDigit(): ?string
+    {
+        return $this->fromBankAccountDigit;
+    }
+
+    /**
+     * @param string|null $fromBankAccountDigit
+     * @return GPS
+     */
+    public function setFromBankAccountDigit(?string $fromBankAccountDigit): GPS
+    {
+        $this->fromBankAccountDigit = $fromBankAccountDigit;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
     public function getContributorDocumentType(): ?int
     {
         return $this->contributorDocumentType;

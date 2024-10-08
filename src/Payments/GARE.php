@@ -30,7 +30,7 @@ class GARE extends CallApi
     private ?string $fromBank;
     private ?string $fromBankBranch;
     private ?string $fromBankAccount;
-    private ?string $fromBankDigit;
+    private ?string $fromBankAccountDigit;
 
     public function __construct(?Configuration $configuration = null)
     {
@@ -57,7 +57,7 @@ class GARE extends CallApi
         $this->fromBank = null;
         $this->fromBankBranch = null;
         $this->fromBankAccount = null;
-        $this->fromBankDigit = null;
+        $this->fromBankAccountDigit = null;
     }
 
     /**
@@ -249,12 +249,21 @@ class GARE extends CallApi
     }
 
     /**
-     * @param array|null $tags
+     * @param string $tag
+     * @return $this
+     */
+    public function addTag(string $tag): GARE
+    {
+        $this->tags[] = $tag;
+        return $this;
+    }
+
+    /**
      * @return GARE
      */
-    public function setTags(?array $tags): GARE
+    public function clearTags(): GARE
     {
-        $this->tags = $tags;
+        $this->tags = null;
         return $this;
     }
 
@@ -477,18 +486,18 @@ class GARE extends CallApi
     /**
      * @return string|null
      */
-    public function getFromBankDigit(): ?string
+    public function getFromBankAccountDigit(): ?string
     {
-        return $this->fromBankDigit;
+        return $this->fromBankAccountDigit;
     }
 
     /**
-     * @param string|null $fromBankDigit
+     * @param string|null $fromBankAccountDigit
      * @return GARE
      */
-    public function setFromBankDigit(?string $fromBankDigit): GARE
+    public function setFromBankAccountDigit(?string $fromBankAccountDigit): GARE
     {
-        $this->fromBankDigit = $fromBankDigit;
+        $this->fromBankAccountDigit = $fromBankAccountDigit;
         return $this;
     }
 
@@ -557,7 +566,7 @@ class GARE extends CallApi
             "FromBank" => $this->fromBank,
             "FromBankBranch" => $this->fromBankBranch,
             "FromBankAccount" => $this->fromBankAccount,
-            "FromBankAccountDigit" => $this->fromBankDigit,
+            "FromBankAccountDigit" => $this->fromBankAccountDigit,
         ];
     }
 }

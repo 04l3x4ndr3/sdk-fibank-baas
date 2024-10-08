@@ -24,7 +24,6 @@ class GARE extends CallApi
     private ?string $activeDebit;
     private ?string $quoteNumberNotification;
     private ?int $rateValueType;
-    private ?string $calculationPeriod;
     private ?string $description;
     private ?string $identifier;
     private ?int $gareType;
@@ -36,6 +35,29 @@ class GARE extends CallApi
     public function __construct(?Configuration $configuration = null)
     {
         parent::__construct($configuration);
+        $this->taxNumber = null;
+        $this->contributorTaxNumber = null;
+        $this->referenceNumber = null;
+        $this->principalValue = null;
+        $this->fineValue = null;
+        $this->interestValue = null;
+        $this->totalValue = null;
+        $this->rateValue = null;
+        $this->dueDate = null;
+        $this->paymentDate = null;
+        $this->tags = null;
+        $this->codeRevenue = null;
+        $this->stateRegistration = null;
+        $this->activeDebit = null;
+        $this->quoteNumberNotification = null;
+        $this->rateValueType = null;
+        $this->description = null;
+        $this->identifier = null;
+        $this->gareType = null;
+        $this->fromBank = null;
+        $this->fromBankBranch = null;
+        $this->fromBankAccount = null;
+        $this->fromBankDigit = null;
     }
 
     /**
@@ -478,7 +500,9 @@ class GARE extends CallApi
      */
     public function generatePaymentGARE(): object
     {
-        $data = array_filter($this->toArray());
+        $data = array_filter($this->toArray(), function ($value) {
+            return !is_null($value);
+        });
         return $this->call('GeneratePaymentGARE', $data);
     }
 
@@ -491,7 +515,7 @@ class GARE extends CallApi
      */
     public function getGAREOutById(string $documentNumber): object
     {
-        $data = array_filter(["DocumentNumber" => $documentNumber]);
+        $data = ["DocumentNumber" => $documentNumber];
         return $this->call('GetGAREOutById', $data);
     }
 
@@ -504,7 +528,7 @@ class GARE extends CallApi
      */
     public function cancelPaymentGARE(string $documentNumber): object
     {
-        $data = array_filter(["DocumentNumber" => $documentNumber]);
+        $data = ["DocumentNumber" => $documentNumber];
         return $this->call('CancelPaymentGARE', $data);
     }
 

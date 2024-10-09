@@ -214,6 +214,7 @@ class ListValues
             14 => "Sociedade Simples Pura",
             15 => "Cartório",
             16 => "Órgão Público",
+            17 => "Entidade Sindical",
         ];
 
         if (!isset($key)) {

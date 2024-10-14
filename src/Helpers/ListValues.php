@@ -99,6 +99,13 @@ class ListValues
             19 => 'Termo do chefe do poder executivo municipal',
             20 => 'Ato de Nomeação do representante máximo',
             21 => 'Faturamento mensal',
+            22 => 'Certificado Digital',
+            23 => 'Estatuto do Sindicato',
+            24 => 'Ata da Assembleia de Posse Eleitoral',
+            25 => 'Declaração de Faturamento',
+            26 => 'Estatuto de Organização Religiosa',
+            27 => 'Ata de Nomeação',
+            28 => 'Ata de Incorporação',
         ];
 
         if (!isset($key)) {

@@ -17,7 +17,7 @@ class Product
     private ?string $reference;
     private ?string $productCode;
     private ?string $productName;
-    private ?float $productQty;
+    private ?int $productQty;
     private ?float $productValue;
     private ?int $automaticType;
     private ?int $accountType;

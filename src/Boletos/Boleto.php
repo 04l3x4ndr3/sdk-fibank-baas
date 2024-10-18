@@ -12,7 +12,6 @@ use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
  */
 class Boleto extends CallApi
 {
-
     private ?string $groupTemplate;
     private ?string $customerName;
     private ?string $customerTaxNumber;
@@ -34,8 +33,8 @@ class Boleto extends CallApi
     private ?string $supplierBankAccountDigit;
     private ?string $supplierMail;
     private ?string $supplierPhone;
-    private ?string $rateValue;
-    private ?string $rateSent;
+    private ?float $rateValue;
+    private ?int $rateSent;
     private ?string $addressLine1;
     private ?string $addressLine2;
     private ?string $externalNumber;
@@ -44,20 +43,20 @@ class Boleto extends CallApi
     private ?string $comments;
     private ?array $products;
     private ?string $dueDate;
-    private ?string $totalValue;
+    private ?float $totalValue;
     private ?string $fineDate;
     private ?float $finePercent;
     private ?float $fineValue;
     private ?float $interestPercent;
     private ?float $interestValue;
     private ?string $discountDate;
-    private ?string $discountValue;
+    private ?float $discountValue;
     private ?string $discountDate2;
     private ?float $discountValue2;
     private ?string $discountDate3;
     private ?float $discountValue3;
     private ?float $rebateValue;
-    private ?string $tags;
+    private ?array $tags;
     private ?array $operationVars;
     private ?int $divergentPaymentType;
     private ?float $minPaymentValue;
@@ -133,10 +132,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $groupTemplate
-     *
      * @return Boleto
      */
-    public function setGroupTemplate(?string $groupTemplate): self
+    public function setGroupTemplate(?string $groupTemplate): Boleto
     {
         $this->groupTemplate = $groupTemplate;
         return $this;
@@ -152,10 +150,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $customerName
-     *
      * @return Boleto
      */
-    public function setCustomerName(?string $customerName): self
+    public function setCustomerName(?string $customerName): Boleto
     {
         $this->customerName = $customerName;
         return $this;
@@ -171,10 +168,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $customerTaxNumber
-     *
      * @return Boleto
      */
-    public function setCustomerTaxNumber(?string $customerTaxNumber): self
+    public function setCustomerTaxNumber(?string $customerTaxNumber): Boleto
     {
         $this->customerTaxNumber = $customerTaxNumber;
         return $this;
@@ -190,10 +186,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $customerMail
-     *
      * @return Boleto
      */
-    public function setCustomerMail(?string $customerMail): self
+    public function setCustomerMail(?string $customerMail): Boleto
     {
         $this->customerMail = $customerMail;
         return $this;
@@ -209,10 +204,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $customerPhone
-     *
      * @return Boleto
      */
-    public function setCustomerPhone(?string $customerPhone): self
+    public function setCustomerPhone(?string $customerPhone): Boleto
     {
         $this->customerPhone = $customerPhone;
         return $this;
@@ -228,10 +222,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $neighborhood
-     *
      * @return Boleto
      */
-    public function setNeighborhood(?string $neighborhood): self
+    public function setNeighborhood(?string $neighborhood): Boleto
     {
         $this->neighborhood = $neighborhood;
         return $this;
@@ -247,10 +240,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $phoneToSend
-     *
      * @return Boleto
      */
-    public function setPhoneToSend(?string $phoneToSend): self
+    public function setPhoneToSend(?string $phoneToSend): Boleto
     {
         $this->phoneToSend = $phoneToSend;
         return $this;
@@ -266,10 +258,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $mailToSend
-     *
      * @return Boleto
      */
-    public function setMailToSend(?string $mailToSend): self
+    public function setMailToSend(?string $mailToSend): Boleto
     {
         $this->mailToSend = $mailToSend;
         return $this;
@@ -285,10 +276,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $city
-     *
      * @return Boleto
      */
-    public function setCity(?string $city): self
+    public function setCity(?string $city): Boleto
     {
         $this->city = $city;
         return $this;
@@ -304,10 +294,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $state
-     *
      * @return Boleto
      */
-    public function setState(?string $state): self
+    public function setState(?string $state): Boleto
     {
         $this->state = $state;
         return $this;
@@ -325,7 +314,7 @@ class Boleto extends CallApi
      * @param string|null $zipCode
      * @return Boleto
      */
-    public function setZipCode(?string $zipCode): self
+    public function setZipCode(?string $zipCode): Boleto
     {
         $this->zipCode = $zipCode;
         return $this;
@@ -341,10 +330,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierTaxNumber
-     *
      * @return Boleto
      */
-    public function setSupplierTaxNumber(?string $supplierTaxNumber): self
+    public function setSupplierTaxNumber(?string $supplierTaxNumber): Boleto
     {
         $this->supplierTaxNumber = $supplierTaxNumber;
         return $this;
@@ -360,10 +348,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierFullName
-     *
      * @return Boleto
      */
-    public function setSupplierFullName(?string $supplierFullName): self
+    public function setSupplierFullName(?string $supplierFullName): Boleto
     {
         $this->supplierFullName = $supplierFullName;
         return $this;
@@ -379,10 +366,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierTradingName
-     *
      * @return Boleto
      */
-    public function setSupplierTradingName(?string $supplierTradingName): self
+    public function setSupplierTradingName(?string $supplierTradingName): Boleto
     {
         $this->supplierTradingName = $supplierTradingName;
         return $this;
@@ -398,10 +384,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierLegalName
-     *
      * @return Boleto
      */
-    public function setSupplierLegalName(?string $supplierLegalName): self
+    public function setSupplierLegalName(?string $supplierLegalName): Boleto
     {
         $this->supplierLegalName = $supplierLegalName;
         return $this;
@@ -417,10 +402,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierBank
-     *
      * @return Boleto
      */
-    public function setSupplierBank(?string $supplierBank): self
+    public function setSupplierBank(?string $supplierBank): Boleto
     {
         $this->supplierBank = $supplierBank;
         return $this;
@@ -436,10 +420,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierBankBranch
-     *
      * @return Boleto
      */
-    public function setSupplierBankBranch(?string $supplierBankBranch): self
+    public function setSupplierBankBranch(?string $supplierBankBranch): Boleto
     {
         $this->supplierBankBranch = $supplierBankBranch;
         return $this;
@@ -455,10 +438,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierBankAccount
-     *
      * @return Boleto
      */
-    public function setSupplierBankAccount(?string $supplierBankAccount): self
+    public function setSupplierBankAccount(?string $supplierBankAccount): Boleto
     {
         $this->supplierBankAccount = $supplierBankAccount;
         return $this;
@@ -474,10 +456,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierBankAccountDigit
-     *
      * @return Boleto
      */
-    public function setSupplierBankAccountDigit(?string $supplierBankAccountDigit): self
+    public function setSupplierBankAccountDigit(?string $supplierBankAccountDigit): Boleto
     {
         $this->supplierBankAccountDigit = $supplierBankAccountDigit;
         return $this;
@@ -493,10 +474,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierMail
-     *
      * @return Boleto
      */
-    public function setSupplierMail(?string $supplierMail): self
+    public function setSupplierMail(?string $supplierMail): Boleto
     {
         $this->supplierMail = $supplierMail;
         return $this;
@@ -512,48 +492,45 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $supplierPhone
-     *
      * @return Boleto
      */
-    public function setSupplierPhone(?string $supplierPhone): self
+    public function setSupplierPhone(?string $supplierPhone): Boleto
     {
         $this->supplierPhone = $supplierPhone;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return float|null
      */
-    public function getRateValue(): ?string
+    public function getRateValue(): ?float
     {
         return $this->rateValue;
     }
 
     /**
-     * @param string|null $rateValue
-     *
+     * @param float|null $rateValue
      * @return Boleto
      */
-    public function setRateValue(?string $rateValue): self
+    public function setRateValue(?float $rateValue): Boleto
     {
         $this->rateValue = $rateValue;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getRateSent(): ?string
+    public function getRateSent(): ?int
     {
         return $this->rateSent;
     }
 
     /**
-     * @param string|null $rateSent
-     *
+     * @param int|null $rateSent
      * @return Boleto
      */
-    public function setRateSent(?string $rateSent): self
+    public function setRateSent(?int $rateSent): Boleto
     {
         $this->rateSent = $rateSent;
         return $this;
@@ -569,10 +546,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $addressLine1
-     *
      * @return Boleto
      */
-    public function setAddressLine1(?string $addressLine1): self
+    public function setAddressLine1(?string $addressLine1): Boleto
     {
         $this->addressLine1 = $addressLine1;
         return $this;
@@ -588,10 +564,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $addressLine2
-     *
      * @return Boleto
      */
-    public function setAddressLine2(?string $addressLine2): self
+    public function setAddressLine2(?string $addressLine2): Boleto
     {
         $this->addressLine2 = $addressLine2;
         return $this;
@@ -607,10 +582,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $externalNumber
-     *
      * @return Boleto
      */
-    public function setExternalNumber(?string $externalNumber): self
+    public function setExternalNumber(?string $externalNumber): Boleto
     {
         $this->externalNumber = $externalNumber;
         return $this;
@@ -644,10 +618,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $identifier
-     *
      * @return Boleto
      */
-    public function setIdentifier(?string $identifier): self
+    public function setIdentifier(?string $identifier): Boleto
     {
         $this->identifier = $identifier;
         return $this;
@@ -663,10 +636,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $comments
-     *
      * @return Boleto
      */
-    public function setComments(?string $comments): self
+    public function setComments(?string $comments): Boleto
     {
         $this->comments = $comments;
         return $this;
@@ -682,18 +654,30 @@ class Boleto extends CallApi
 
     /**
      * @param array|null $products
-     *
      * @return Boleto
      */
-    public function setProducts(?array $products): self
+    public function setProducts(?array $products): Boleto
     {
         $this->products = $products;
         return $this;
     }
 
-    public function addProduct(Product $product): self
+    /**
+     * @param Product|null $products
+     * @return $this
+     */
+    public function addProducts(Product $products): Boleto
     {
-        $this->products[] = $product;
+        $this->products[] = $products;
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearProducts(): Boleto
+    {
+        $this->products[] = null;
         return $this;
     }
 
@@ -707,29 +691,27 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $dueDate
-     *
      * @return Boleto
      */
-    public function setDueDate(?string $dueDate): self
+    public function setDueDate(?string $dueDate): Boleto
     {
         $this->dueDate = $dueDate;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return float|null
      */
-    public function getTotalValue(): ?string
+    public function getTotalValue(): ?float
     {
         return $this->totalValue;
     }
 
     /**
-     * @param string|null $totalValue
-     *
+     * @param float|null $totalValue
      * @return Boleto
      */
-    public function setTotalValue(?string $totalValue): self
+    public function setTotalValue(?float $totalValue): Boleto
     {
         $this->totalValue = $totalValue;
         return $this;
@@ -745,10 +727,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $fineDate
-     *
      * @return Boleto
      */
-    public function setFineDate(?string $fineDate): self
+    public function setFineDate(?string $fineDate): Boleto
     {
         $this->fineDate = $fineDate;
         return $this;
@@ -764,10 +745,9 @@ class Boleto extends CallApi
 
     /**
      * @param float|null $finePercent
-     *
      * @return Boleto
      */
-    public function setFinePercent(?float $finePercent): self
+    public function setFinePercent(?float $finePercent): Boleto
     {
         $this->finePercent = $finePercent;
         return $this;
@@ -783,10 +763,9 @@ class Boleto extends CallApi
 
     /**
      * @param float|null $fineValue
-     *
      * @return Boleto
      */
-    public function setFineValue(?float $fineValue): self
+    public function setFineValue(?float $fineValue): Boleto
     {
         $this->fineValue = $fineValue;
         return $this;
@@ -802,10 +781,9 @@ class Boleto extends CallApi
 
     /**
      * @param float|null $interestPercent
-     *
      * @return Boleto
      */
-    public function setInterestPercent(?float $interestPercent): self
+    public function setInterestPercent(?float $interestPercent): Boleto
     {
         $this->interestPercent = $interestPercent;
         return $this;
@@ -821,10 +799,9 @@ class Boleto extends CallApi
 
     /**
      * @param float|null $interestValue
-     *
      * @return Boleto
      */
-    public function setInterestValue(?float $interestValue): self
+    public function setInterestValue(?float $interestValue): Boleto
     {
         $this->interestValue = $interestValue;
         return $this;
@@ -840,29 +817,27 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $discountDate
-     *
      * @return Boleto
      */
-    public function setDiscountDate(?string $discountDate): self
+    public function setDiscountDate(?string $discountDate): Boleto
     {
         $this->discountDate = $discountDate;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return float|null
      */
-    public function getDiscountValue(): ?string
+    public function getDiscountValue(): ?float
     {
         return $this->discountValue;
     }
 
     /**
-     * @param string|null $discountValue
-     *
+     * @param float|null $discountValue
      * @return Boleto
      */
-    public function setDiscountValue(?string $discountValue): self
+    public function setDiscountValue(?float $discountValue): Boleto
     {
         $this->discountValue = $discountValue;
         return $this;
@@ -878,10 +853,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $discountDate2
-     *
      * @return Boleto
      */
-    public function setDiscountDate2(?string $discountDate2): self
+    public function setDiscountDate2(?string $discountDate2): Boleto
     {
         $this->discountDate2 = $discountDate2;
         return $this;
@@ -897,10 +871,9 @@ class Boleto extends CallApi
 
     /**
      * @param float|null $discountValue2
-     *
      * @return Boleto
      */
-    public function setDiscountValue2(?float $discountValue2): self
+    public function setDiscountValue2(?float $discountValue2): Boleto
     {
         $this->discountValue2 = $discountValue2;
         return $this;
@@ -916,10 +889,9 @@ class Boleto extends CallApi
 
     /**
      * @param string|null $discountDate3
-     *
      * @return Boleto
      */
-    public function setDiscountDate3(?string $discountDate3): self
+    public function setDiscountDate3(?string $discountDate3): Boleto
     {
         $this->discountDate3 = $discountDate3;
         return $this;
@@ -935,10 +907,9 @@ class Boleto extends CallApi
 
     /**
      * @param float|null $discountValue3
-     *
      * @return Boleto
      */
-    public function setDiscountValue3(?float $discountValue3): self
+    public function setDiscountValue3(?float $discountValue3): Boleto
     {
         $this->discountValue3 = $discountValue3;
         return $this;
@@ -954,111 +925,171 @@ class Boleto extends CallApi
 
     /**
      * @param float|null $rebateValue
-     *
      * @return Boleto
      */
-    public function setRebateValue(?float $rebateValue): self
+    public function setRebateValue(?float $rebateValue): Boleto
     {
         $this->rebateValue = $rebateValue;
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return array|null
      */
-    public function getTags(): ?string
+    public function getTags(): ?array
     {
         return $this->tags;
     }
 
     /**
-     * @param string|null $tags
-     *
+     * @param array|null $tags
      * @return Boleto
      */
-    public function setTags(?string $tags): self
+    public function setTags(?array $tags): Boleto
     {
         $this->tags = $tags;
         return $this;
     }
 
+    /**
+     * @param string|null $tags
+     * @return $this
+     */
+    public function addTag(?string $tags): Boleto
+    {
+        $this->tags[] = $tags;
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearTag(): Boleto
+    {
+        $this->tags[] = null;
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
     public function getOperationVars(): ?array
     {
         return $this->operationVars;
     }
 
+    /**
+     * @param array|null $operationVars
+     * @return Boleto
+     */
     public function setOperationVars(?array $operationVars): Boleto
     {
         $this->operationVars = $operationVars;
         return $this;
     }
 
-    public function addOperationVars(?array $operationVar): Boleto
-    {
-        $this->operationVars[] = $operationVar;
-        return $this;
-    }
-
+    /**
+     * @return int|null
+     */
     public function getDivergentPaymentType(): ?int
     {
         return $this->divergentPaymentType;
     }
 
+    /**
+     * @param int|null $divergentPaymentType
+     * @return Boleto
+     */
     public function setDivergentPaymentType(?int $divergentPaymentType): Boleto
     {
         $this->divergentPaymentType = $divergentPaymentType;
         return $this;
     }
 
+    /**
+     * @return float|null
+     */
     public function getMinPaymentValue(): ?float
     {
         return $this->minPaymentValue;
     }
 
+    /**
+     * @param float|null $minPaymentValue
+     * @return Boleto
+     */
     public function setMinPaymentValue(?float $minPaymentValue): Boleto
     {
         $this->minPaymentValue = $minPaymentValue;
         return $this;
     }
 
+    /**
+     * @return float|null
+     */
     public function getMaxPaymentValue(): ?float
     {
         return $this->maxPaymentValue;
     }
 
+    /**
+     * @param float|null $maxPaymentValue
+     * @return Boleto
+     */
     public function setMaxPaymentValue(?float $maxPaymentValue): Boleto
     {
         $this->maxPaymentValue = $maxPaymentValue;
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getExpirationDays(): ?int
     {
         return $this->expirationDays;
     }
 
+    /**
+     * @param int|null $expirationDays
+     * @return Boleto
+     */
     public function setExpirationDays(?int $expirationDays): Boleto
     {
         $this->expirationDays = $expirationDays;
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getInterestType(): ?int
     {
         return $this->interestType;
     }
 
+    /**
+     * @param int|null $interestType
+     * @return Boleto
+     */
     public function setInterestType(?int $interestType): Boleto
     {
         $this->interestType = $interestType;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getInterestDate(): ?string
     {
         return $this->interestDate;
     }
 
+    /**
+     * @param string|null $interestDate
+     * @return Boleto
+     */
     public function setInterestDate(?string $interestDate): Boleto
     {
         $this->interestDate = $interestDate;
@@ -1128,7 +1159,7 @@ class Boleto extends CallApi
             "DiscountDate3" => $this->discountDate3,
             "DiscountValue3" => $this->discountValue3,
             "RebateValue" => $this->rebateValue,
-            "Tags" => $this->tags,
+            "Tags" => join(',', $this->tags),
             "OperationVars" => $this->operationVars,
             "DivergentPaymentType" => $this->divergentPaymentType,
             "MinPaymentValue" => $this->minPaymentValue,
@@ -1157,7 +1188,7 @@ class Boleto extends CallApi
      * @description
      * @document https://dev.fitbank.com.br/reference/1
      *
-     * @param int  $installmentsNumber
+     * @param int $installmentsNumber
      * @param bool $carnet
      *
      * @return object
@@ -1195,11 +1226,11 @@ class Boleto extends CallApi
     /**
      * @description Method used to send change instructions.
      * @document https://dev.fitbank.com.br/reference/post_changeboleto
-     * @param int         $documentNumber
-     * @param string      $taxNumber
-     * @param float|null  $rebateValue
+     * @param int $documentNumber
+     * @param string $taxNumber
+     * @param float|null $rebateValue
      * @param string|null $dueDateBoleto
-     * @param float|null  $principalValue
+     * @param float|null $principalValue
      *
      * @return object
      * @throws GuzzleException
@@ -1271,7 +1302,7 @@ class Boleto extends CallApi
      * @param string|null $finalDueDate
      * @param string|null $inicialPaymentDate
      * @param string|null $finalPaymentDate
-     * @param int|null    $status
+     * @param int|null $status
      * @param string|null $receiverTaxNumber
      * @param string|null $sellerTaxNumber
      * @param string|null $supplierTaxNumber
@@ -1287,7 +1318,7 @@ class Boleto extends CallApi
         ?string $finalDueDate,
         ?string $inicialPaymentDate,
         ?string $finalPaymentDate,
-        ?int $status,
+        ?int    $status,
         ?string $receiverTaxNumber,
         ?string $sellerTaxNumber,
         ?string $supplierTaxNumber
@@ -1316,6 +1347,7 @@ class Boleto extends CallApi
      * @document https://dev.fitbank.com.br/reference/780
      * @param int $documentNumber
      * @return object
+     * @throws GuzzleException
      */
     public function getBoletoInById(int $documentNumber): object
     {
@@ -1327,18 +1359,14 @@ class Boleto extends CallApi
      * @document https://dev.fitbank.com.br/reference/775
      * @param string $initialDate
      * @param string $finalDate
-     * @param string $pageIndex
-     * @param string $pageSize
+     * @param int $pageIndex
+     * @param int $pageSize
      * @param int|null $status
      * @return object
+     * @throws GuzzleException
      */
-    public function getListBoletoByDate(
-        string $initialDate,
-        string $finalDate,
-        int $pageIndex,
-        int $pageSize,
-        ?int $status
-    ): object {
+    public function getListBoletoByDate(string $initialDate, string $finalDate, int $pageIndex, int $pageSize, ?int $status): object
+    {
         $data = [
             "Date" => [
                 "Initial" => $initialDate,
@@ -1375,11 +1403,10 @@ class Boleto extends CallApi
      * @param string $taxNumber
      * @param string $protocolNumber
      * @return object
+     * @throws GuzzleException
      */
-    public function getChangeBoleto(
-        string $taxNumber,
-        string $protocolNumber
-    ): object {
+    public function getChangeBoleto(string $taxNumber, string $protocolNumber): object
+    {
         return $this->call('GetChangeBoleto', array_filter(
             [
                 "TaxNumber" => $taxNumber,

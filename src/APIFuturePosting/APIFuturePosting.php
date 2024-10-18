@@ -2,6 +2,7 @@
 
 namespace O4l3x4ndr3\SdkFitbank\APIFuturePosting;
 
+use GuzzleHttp\Exception\GuzzleException;
 use O4l3x4ndr3\SdkFitbank\Common\AccountInfo;
 use O4l3x4ndr3\SdkFitbank\Configuration;
 use O4l3x4ndr3\SdkFitbank\Helpers\CallApi;
@@ -12,6 +13,7 @@ class APIFuturePosting extends CallApi
     {
         parent::__construct($configuration);
     }
+
     /**
      * @description This method can be used to generate a new Future Posting
      * @document https://dev.fitbank.com.br/reference/generatefutureposting
@@ -38,6 +40,7 @@ class APIFuturePosting extends CallApi
      * @param string|null $description
      * @param array|null $tags
      * @return object
+     * @throws GuzzleException
      */
     public function generateFuturePosting(
         string $taxNumber,
@@ -90,11 +93,13 @@ class APIFuturePosting extends CallApi
             return !is_null($v);
         }));
     }
+
     /**
      * @description This method can be used to cancel a new Future Posting
      * @document https://dev.fitbank.com.br/reference/cancelfutureposting
      * @param int $documentNumber
      * @return object
+     * @throws GuzzleException
      */
     public function cancelFuturePosting(
         int $documentNumber
@@ -103,6 +108,7 @@ class APIFuturePosting extends CallApi
             "DocumentNumber" => $documentNumber
         ]);
     }
+
     /**
      * @description This method can be used to change a Future Posting
      * @document https://dev.fitbank.com.br/reference/changefutureposting
@@ -110,6 +116,7 @@ class APIFuturePosting extends CallApi
      * @param float|null $value
      * @param string|null $dueDate
      * @return object
+     * @throws GuzzleException
      */
     public function changeFuturePosting(
         int $documentNumber,
@@ -124,12 +131,14 @@ class APIFuturePosting extends CallApi
             return !is_null($v);
         }));
     }
+
     /**
      * @description This method can be used to get Future Posting by id
      * @document https://dev.fitbank.com.br/reference/getfuturepostingbyid
      * @param int $documentNumber
      * @param string $taxNumber
      * @return object
+     * @throws GuzzleException
      */
     public function getFuturePostingById(
         int $documentNumber,
@@ -140,6 +149,7 @@ class APIFuturePosting extends CallApi
             "TaxNumber" => $taxNumber
         ]);
     }
+
     /**
      * @description This method can be used to get Future Posting
      * @document https://dev.fitbank.com.br/reference/getfutureposting
@@ -148,6 +158,7 @@ class APIFuturePosting extends CallApi
      * @param int|null $documentNumber
      * @param AccountInfo|null $accountInfo
      * @return object
+     * @throws GuzzleException
      */
     public function getFuturePosting(
         string $initialDate,

@@ -663,10 +663,10 @@ class Boleto extends CallApi
     }
 
     /**
-     * @param Product|null $products
+     * @param Product $products
      * @return $this
      */
-    public function addProducts(Product $products): Boleto
+    public function addProduct(Product $products): Boleto
     {
         $this->products[] = $products;
         return $this;

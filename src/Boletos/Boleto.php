@@ -112,7 +112,7 @@ class Boleto extends CallApi
         $this->discountDate3 = null;
         $this->discountValue3 = null;
         $this->rebateValue = null;
-        $this->tags = null;
+        $this->tags = [];
         $this->operationVars = null;
         $this->divergentPaymentType = null;
         $this->minPaymentValue = null;
@@ -966,7 +966,7 @@ class Boleto extends CallApi
      */
     public function clearTag(): Boleto
     {
-        $this->tags[] = null;
+        $this->tags[] = [];
         return $this;
     }
 
@@ -1159,7 +1159,7 @@ class Boleto extends CallApi
             "DiscountDate3" => $this->discountDate3,
             "DiscountValue3" => $this->discountValue3,
             "RebateValue" => $this->rebateValue,
-            "Tags" => join(',', $this->tags),
+            "Tags" => join(',', $this->tags ?? []),
             "OperationVars" => $this->operationVars,
             "DivergentPaymentType" => $this->divergentPaymentType,
             "MinPaymentValue" => $this->minPaymentValue,

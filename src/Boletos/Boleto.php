@@ -1172,6 +1172,9 @@ class Boleto extends CallApi
         });
     }
 
+
+    # BOLETO ISSUE ----
+
     /**
      * @description
      * @document https://dev.fitbank.com.br/reference/0
@@ -1206,22 +1209,7 @@ class Boleto extends CallApi
         return $this->call('GenerateRecurrenceBoleto', array_filter($data));
     }
 
-    /**
-     * @description Method used to cancel boletos using DocumentNumber.
-     * @document https://dev.fitbank.com.br/reference/post_cancelboleto
-     * @param int $documentNumber
-     *
-     * @return object
-     * @throws GuzzleException
-     */
-    public function cancelBoleto(int $documentNumber): object
-    {
-        return $this->call(
-            'CancelBoleto',
-            array_filter(["DocumentNumber" => $documentNumber])
-        );
-    }
-
+    # CHANGE BOLETO ----
 
     /**
      * @description Method used to send change instructions.
@@ -1231,7 +1219,7 @@ class Boleto extends CallApi
      * @param float|null $rebateValue
      * @param string|null $dueDateBoleto
      * @param float|null $principalValue
-     *
+     * @param string|null $fineDate
      * @return object
      * @throws GuzzleException
      */
@@ -1277,70 +1265,46 @@ class Boleto extends CallApi
     }
 
     /**
-     * @description Get boleto by DocumentNumber.
-     * @document https://dev.fitbank.com.br/reference/20-1
-     * @param int $documentNumber
-     *
+     * @description Method for viewing the change instructions via Protocol Number.
+     * @document https://dev.fitbank.com.br/reference/19
+     * @param string $taxNumber
+     * @param string $protocolNumber
      * @return object
      * @throws GuzzleException
      */
-    public function getBoletoById(int $documentNumber): object
+    public function getChangeBoleto(string $taxNumber, string $protocolNumber): object
     {
-        return $this->call(
-            'GetBoletoById',
-            array_filter(['DocumentNumber' => $documentNumber])
-        );
+        return $this->call('GetChangeBoleto', ["TaxNumber" => $taxNumber, "ProtocolNumber" => $protocolNumber]);
     }
 
     /**
-     * @description
-     *
-     * @param string|null $inicialDate
-     * @param string|null $finalDate
-     * @param string|null $customerTaxNumber
-     * @param string|null $inicialDueDate
-     * @param string|null $finalDueDate
-     * @param string|null $inicialPaymentDate
-     * @param string|null $finalPaymentDate
-     * @param int|null $status
-     * @param string|null $receiverTaxNumber
-     * @param string|null $sellerTaxNumber
-     * @param string|null $supplierTaxNumber
-     *
+     * @description Allows for the modification of the final beneficiary of the boleto
+     * @document https://dev.fitbank.com.br/docs/22-boleto-change-copy#alterboletoinproducts
+     * @param int $documentNumber
+     * @param string $taxNumber
+     * @param array $products of Products
      * @return object
      * @throws GuzzleException
      */
-    public function getBoletoByDate(
-        ?string $inicialDate,
-        ?string $finalDate,
-        ?string $customerTaxNumber,
-        ?string $inicialDueDate,
-        ?string $finalDueDate,
-        ?string $inicialPaymentDate,
-        ?string $finalPaymentDate,
-        ?int    $status,
-        ?string $receiverTaxNumber,
-        ?string $sellerTaxNumber,
-        ?string $supplierTaxNumber
-    ): object
+    public function alterBoletoInProducts(int $documentNumber, string $taxNumber, array $products): object
     {
-        return $this->call(
-            'GetBoletoByDate',
-            array_filter([
-                "InicialDate" => $inicialDate,
-                "FinalDate" => $finalDate,
-                "CustomerTaxNumber" => $customerTaxNumber,
-                "InicialDueDate" => $inicialDueDate,
-                "FinalDueDate" => $finalDueDate,
-                "InicialPaymentDate" => $inicialPaymentDate,
-                "FinalPaymentDate" => $finalPaymentDate,
-                "Status" => $status,
-                "ReceiverTaxNumber" => $receiverTaxNumber,
-                "SellerTaxNumber" => $sellerTaxNumber,
-                "SupplierTaxNumber" => $supplierTaxNumber,
+        $_products = [];
+        /**
+         * @var Product $product
+         */
+        foreach ($products as $product) {
+            $_products[] = $product->toArray();
+        }
+
+        return $this->call('AlterBoletoInProducts', array_filter([
+                "DocumentNumber" => $documentNumber,
+                "TaxNumber" => $taxNumber,
+                "Products" => $_products
             ])
         );
     }
+
+    # QUERY BOLETO -----
 
     /**
      * @description More performant version than GetBoletoById. Use to get a boleto by DocumentNumber.
@@ -1397,24 +1361,92 @@ class Boleto extends CallApi
         ));
     }
 
+
+    # BOLETO CANCELLATION ----
+
     /**
-     * @description Method for viewing the change instructions via Protocol Number.
-     * @document https://dev.fitbank.com.br/reference/19
-     * @param string $taxNumber
-     * @param string $protocolNumber
+     * @description Method used to cancel boletos using DocumentNumber.
+     * @document https://dev.fitbank.com.br/reference/post_cancelboleto
+     * @param int $documentNumber
+     *
      * @return object
      * @throws GuzzleException
      */
-    public function getChangeBoleto(string $taxNumber, string $protocolNumber): object
+    public function cancelBoleto(int $documentNumber): object
     {
-        return $this->call('GetChangeBoleto', array_filter(
-            [
-                "TaxNumber" => $taxNumber,
-                "ProtocolNumber" => $protocolNumber
-            ],
-            function ($v) {
-                return !is_null($v);
-            }
-        ));
+        return $this->call(
+            'CancelBoleto',
+            array_filter(["DocumentNumber" => $documentNumber])
+        );
+    }
+
+
+    # DEPRECATED ----
+
+    /**
+     * @description Get boleto by DocumentNumber. (The GetBoletoById method will be discontinued.)
+     * @document https://dev.fitbank.com.br/reference/20-1
+     * @param int $documentNumber
+     *
+     * @return object
+     * @throws GuzzleException
+     * @deprecated
+     */
+    public function getBoletoById(int $documentNumber): object
+    {
+        return $this->call(
+            'GetBoletoById',
+            array_filter(['DocumentNumber' => $documentNumber])
+        );
+    }
+
+    /**
+     * @description The GetBoletoByDate method will be discontinued.
+     * @document https://dev.fitbank.com.br/docs/23-boleto-query#getboletobydate
+     * @param string|null $inicialDate
+     * @param string|null $finalDate
+     * @param string|null $customerTaxNumber
+     * @param string|null $inicialDueDate
+     * @param string|null $finalDueDate
+     * @param string|null $inicialPaymentDate
+     * @param string|null $finalPaymentDate
+     * @param int|null $status
+     * @param string|null $receiverTaxNumber
+     * @param string|null $sellerTaxNumber
+     * @param string|null $supplierTaxNumber
+     * @return object
+     * @throws GuzzleException
+     * @deprecated
+     */
+    public function getBoletoByDate(
+        ?string $inicialDate,
+        ?string $finalDate,
+        ?string $customerTaxNumber,
+        ?string $inicialDueDate,
+        ?string $finalDueDate,
+        ?string $inicialPaymentDate,
+        ?string $finalPaymentDate,
+        ?int    $status,
+        ?string $receiverTaxNumber,
+        ?string $sellerTaxNumber,
+        ?string $supplierTaxNumber
+    ): object
+    {
+        return $this->call(
+            'GetBoletoByDate',
+            array_filter([
+                "InicialDate" => $inicialDate,
+                "FinalDate" => $finalDate,
+                "CustomerTaxNumber" => $customerTaxNumber,
+                "InicialDueDate" => $inicialDueDate,
+                "FinalDueDate" => $finalDueDate,
+                "InicialPaymentDate" => $inicialPaymentDate,
+                "FinalPaymentDate" => $finalPaymentDate,
+                "Status" => $status,
+                "ReceiverTaxNumber" => $receiverTaxNumber,
+                "SellerTaxNumber" => $sellerTaxNumber,
+                "SupplierTaxNumber" => $supplierTaxNumber,
+            ])
+        );
     }
 }

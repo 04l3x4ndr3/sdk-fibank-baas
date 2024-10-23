@@ -303,12 +303,15 @@ class ListValues
     }
 
 
-    public static function boletoStatus(?int $key = null): string|array|null
+    public static function boletoStatus(?int $key = null, string $lang = 'en'): string|array|null
     {
         $values = [
-            3 => 'Registrado',
-            5 => 'Pago',
-            7 => 'Cancelado',
+            0 => ['pt-br'=>'Emitido', 'en'=> 'Created'],
+            1 => ['pt-br'=>'Em registro', 'en'=> 'Registering'],
+            3 => ['pt-br'=>'Registrado', 'en'=> 'Registered'],
+            5 => ['pt-br'=>'Pago', 'en'=> 'Paid'],
+            7 => ['pt-br'=>'Cancelado', 'en'=> 'Canceled'],
+            8 => ['pt-br'=>'Falhou', 'en'=> 'Fail'],
         ];
 
         if (!isset($key)) {
@@ -318,12 +321,17 @@ class ListValues
             return null;
         }
 
-        return $values[$key];
+        return $values[$key][$lang];
     }
 
-    public static function getBoletoStatusKey(string $value): false|string|int
+    public static function getBoletoStatusKey(string $value, string $lang = 'en'): false|string|int
     {
-        return array_search($value, self::boletoStatus());
+        foreach (self::boletoStatus() as $key => $status) {
+            if (strtolower($status[strtolower($lang)]) == strtolower($value)) {
+                return intval($key);
+            }
+        }
+        return false;
     }
 
 

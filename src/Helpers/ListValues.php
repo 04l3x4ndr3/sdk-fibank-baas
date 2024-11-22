@@ -569,7 +569,7 @@ class ListValues
             ["pt-br" => 'Registrando', "en" => "Registering"],
             ["pt-br" => 'Registrada', "en" => "Registered"],
             ["pt-br" => 'Desativada', "en" => "Disabled"],
-            ["pt-br" => 'Cancelada', "en" => "Canceled"],
+            ["pt-br" => 'Cancelada', "en" => "Cancelled"],
             ["pt-br" => 'Erro', "en" => "Error"],
             ["pt-br" => 'Reivindicada', "en" => "Claiming"],
             ["pt-br" => 'Erro de propriedade', "en" => "ErrorOwnership"],

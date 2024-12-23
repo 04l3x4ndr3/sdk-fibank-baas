@@ -19,7 +19,7 @@ class TransferOut extends CallApi
     private ?string $toTaxNumber;
     private ?string $toName;
     private ?int $bank;
-    private ?int $bankBranch;
+    private ?string $bankBranch;
     private ?int $bankAccount;
     private ?int $bankAccountDigit;
     private ?int $accountType;
@@ -132,7 +132,7 @@ class TransferOut extends CallApi
     }
 
     /**
-     * @param int|null $fromBankBranch
+     * @param string|null $fromBankBranch
      *
      * @return TransferOut
      */
@@ -231,7 +231,7 @@ class TransferOut extends CallApi
      *
      * @return TransferOut
      */
-    public function setBank(?int $bank): self
+    public function setBank(?string $bank): self
     {
         $this->bank = $bank;
         return $this;
@@ -240,7 +240,7 @@ class TransferOut extends CallApi
     /**
      * @return int|null
      */
-    public function getBankBranch(): ?int
+    public function getBankBranch(): ?string
     {
         return $this->bankBranch;
     }

@@ -25,7 +25,6 @@ class Payment extends CallApi
         ?string $initialPaymentDate = null,
         ?string $finalPaymentDate = null,
         ?string $taxNumber = null,
-        ?string $inicialDate = null,
         ?string $bank = null,
         ?string $bankBranch = null,
         ?string $bankAccount = null,
@@ -34,12 +33,12 @@ class Payment extends CallApi
     ): object
     {
         $data = array_filter([
-            "InitialDate" => $initialDate,
+            //"InitialDate" => $initialDate,
             "FinalDate" => $finalDate,
             "InitialPaymentDate" => $initialPaymentDate,
             "FinalPaymentDate" => $finalPaymentDate,
             "TaxNumber" => $taxNumber,
-            "InicialDate" => $inicialDate,
+            "InicialDate" => $initialDate,
             "Bank" => $bank,
             "BankBranch" => $bankBranch,
             "BankAccount" => $bankAccount,

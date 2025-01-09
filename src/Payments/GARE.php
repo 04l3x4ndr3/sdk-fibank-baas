@@ -525,7 +525,7 @@ class GARE extends CallApi
     public function getGAREOutById(string $documentNumber): object
     {
         $data = ["DocumentNumber" => $documentNumber];
-        return $this->call('GetGAREOutById', $data);
+        return $this->call('GetGareOutById', $data);
     }
 
     /**
@@ -538,7 +538,7 @@ class GARE extends CallApi
     public function cancelPaymentGARE(string $documentNumber): object
     {
         $data = ["DocumentNumber" => $documentNumber];
-        return $this->call('CancelPaymentGARE', $data);
+        return $this->call('CancelPaymentGare', $data);
     }
 
     public function toArray(): array

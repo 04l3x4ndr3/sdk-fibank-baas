@@ -830,31 +830,41 @@ class PixOut extends CallApi
     /**
      * @description This method can be used to consult a Pix Out transaction by date.
      * @document https://dev.fitbank.com.br/reference/338
+     * @param int|null $taxNumber
+     * @param string $bank
+     * @param string $bankBranch
+     * @param string $bankAccount
+     * @param string $bankAccountDigit
      * @param string $startDate
      * @param string $endDate
-     * @param int $pageIndex
-     * @param int $pageSize
+     * @param string $pageIndex
+     * @param string $pageSize
      * @return object
      * @throws GuzzleException
      */
     public function getPixOutByDate(
-        string $startDate,
-        string $endDate,
-        int    $pageIndex,
-        int    $pageSize
+        ?int    $taxNumber,
+        string  $bank,
+        string  $bankBranch,
+        string  $bankAccount,
+        string  $bankAccountDigit,
+        string  $startDate,
+        string  $endDate,
+        string  $pageIndex,
+        string  $pageSize,
     ): object
     {
         return $this->call('GetPixOutByDate', array_filter(
             [
-                "TaxNumber" => $this->taxNumber,
-                "Bank" => $this->bank,
-                "BankBranch" => $this->bankBranch,
-                "BankAccount" => $this->bankAccount,
-                "BankAccountDigit" => $this->bankAccountDigit,
+                "TaxNumber" => $taxNumber,
+                "Bank" => $bank,
+                "BankBranch" => $bankBranch,
+                "BankAccount" => $bankAccount,
+                "BankAccountDigit" => $bankAccountDigit,
                 "StartDate" => $startDate,
                 "EndDate" => $endDate,
-                "PageIndex" => $pageIndex,
-                "PageSize" => $pageSize
+                "PageIndex" => $pageIndex ?? null,
+                "PageSize" => $pageSize ?? null
             ],
             function ($v) {
                 return !is_null($v);
